@@ -8,7 +8,7 @@ import configureStore from "./store/store";
 
 let store = configureStore({});
 
-function Root() {
+const Root = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
