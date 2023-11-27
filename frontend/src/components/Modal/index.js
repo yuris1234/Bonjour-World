@@ -1,6 +1,6 @@
-import LoginFormPage from "../SessionForms/LoginFormPage";
-import SignupFormPage from "../SessionForms/SignupFormPage";
 import { closeModal } from "../../store/modal";
+import LoginForm from "../SessionForms/LoginForm/LoginForm";
+import SignupForm from "../SessionForms/SignupForm/SignupForm";
 import "./modal.css";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,25 +13,21 @@ const Modal = () => {
   }
 
   let component;
-  let modalClass = "modal-child";
 
   switch (modal) {
     case "login":
-      component = <LoginFormPage modal={"null"} />;
+      component = <LoginForm />;
       break;
     case "signup":
-      component = <SignupFormPage modal={"null"} />;
+      component = <SignupForm />;
       break;
     default:
       return null;
   }
 
   return (
-    <div
-      className="modal-background"
-      onClick={() => dispatch(closeModal("null"))}
-    >
-      <div className={modalClass} onClick={(e) => e.stopPropagation()}>
+    <div className="modal-background" onClick={() => dispatch(closeModal())}>
+      <div className="modal-child" onClick={(e) => e.stopPropagation()}>
         {component}
       </div>
     </div>
