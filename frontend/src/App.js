@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Switch } from "react-router-dom";
-import { AuthRoute } from "./components/Routes/Routes";
+import { Switch, Route } from "react-router-dom";
+import { AuthRoute, ProtectedRoute } from "./components/Routes/Routes";
 import NavBar from "./components/NavBar";
-import MainPage from "./components/MainPage";
-import LoginForm from "./components/SessionForms/LoginForm";
+import SplashPage from "./components/MainPage";
 import SignupForm from "./components/SessionForms/SignupForm";
+import LoginForm from "./components/SessionForms/LoginForm";
 import { getCurrentUser } from "./store/session";
 
 const App = () => {
@@ -18,9 +18,9 @@ const App = () => {
   return (
     loaded && (
       <>
-        <NavBar />
+        {/* <NavBar /> */}
         <Switch>
-          <AuthRoute exact path="/" component={MainPage} />
+          <Route exact path="/" component={SplashPage} />
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
         </Switch>
