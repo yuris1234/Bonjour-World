@@ -21,7 +21,8 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-color: #022954;
+  background-color: #022a54f0;
+  backdrop-filter: blur(7px);
   border-radius: 5px;
   width: 50%;
   height: 50%;
@@ -31,6 +32,10 @@
   color: white;
   font-size: 2rem;
   margin-bottom: 20px;
+}
+
+.login-form .inputs {
+  width: 40%;
 }
 
 .login-form label {
@@ -46,6 +51,7 @@
   border-radius: 5px;
   background-color: #354c7c;
   border: none;
+  color: white;
 }
 
 .login-form input::placeholder {
@@ -53,17 +59,20 @@
 }
 
 .login-form .errors {
-  color: #d9534f;
+  color: red;
   margin-bottom: 10px;
+  font-size: .7rem;
 }
 
 .login-form input[type="submit"] {
-  background-color: #022954;
+  background-color: #354c7c;
   color: white;
   cursor: pointer;
+  width: 50%;
 }
 
 .login-form input[type="submit"]:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+  width: 50%;
 }
