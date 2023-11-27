@@ -67,3 +67,30 @@ for (let i = 0; i < NUM_SEED_EVENTS; i++) {
     })
   )
 }
+
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => {
+    console.log('Connected to MongoDB successfully');
+    insertSeeds();
+  })
+  .catch(err => {
+    console.error(err.stack);
+    process.exit(1);
+  });
+
+const insertSeeds = () => {
+    console.log("Resetting db and seeding users and events...");
+  
+    Event.collection.drop()
+      .then(() => User.insertMany(users))
+      .then(() => Event.insertMany(events))
+      .then(() => {
+        console.log("Done!");
+        mongoose.disconnect();
+      })
+      .catch(err => {
+        console.error(err.stack);
+        process.exit(1);
+      });
+}
