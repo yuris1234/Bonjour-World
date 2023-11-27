@@ -16,21 +16,29 @@ const NavBar = () => {
   const getLinks = () => {
     if (loggedIn) {
       return (
-        <div className="links-nav">
-          <Link to={"/events"}>All Events</Link>
-          <Link to={"/profile"}>Profile</Link>
+        <div className="logged-in-links">
+          <Link className="all-events" to={"/events"}>All Events</Link>
           <Link to={"/events/new"}>Create an Event</Link>
+          <Link to={"/profile"}>Profile</Link>
           <button onClick={logoutUser}>Logout</button>
         </div>
       );
     } else {
       return (
-        <div className="links-auth">
-          <div className="links-div">
-            <button className="signup-button" onClick={() => dispatch(openModal("signup"))}>Signup</button>
-            <button className="login-button"onClick={() => dispatch(openModal("login"))}>Login</button>
+          <div className="logged-out-links">
+            <button
+              className="signup-button"
+              onClick={() => dispatch(openModal("signup"))}
+            >
+              Signup
+            </button>
+            <button
+              className="login-button"
+              onClick={() => dispatch(openModal("login"))}
+            >
+              Login
+            </button>
           </div>
-        </div>
       );
     }
   };
