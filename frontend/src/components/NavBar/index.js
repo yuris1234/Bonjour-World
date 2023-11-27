@@ -17,9 +17,9 @@ const NavBar = () => {
     if (loggedIn) {
       return (
         <div className="logged-in-links">
-          <Link to={"/events"}>All Events</Link>
-          <Link to={"/profile"}>Profile</Link>
+          <Link className="all-events" to={"/events"}>All Events</Link>
           <Link to={"/events/new"}>Create an Event</Link>
+          <Link to={"/profile"}>Profile</Link>
           <button onClick={logoutUser}>Logout</button>
         </div>
       );
