@@ -1,0 +1,69 @@
+.login-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url(../../../images/world-flags-modal-background.jpeg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 562px;
+  width: 800px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #022954;
+  border-radius: 5px;
+  width: 50%;
+  height: 50%;
+}
+
+.login-form h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.login-form label {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.login-form input {
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 5px;
+  background-color: #354c7c;
+  border: none;
+}
+
+.login-form input::placeholder {
+  color: #022954;
+}
+
+.login-form .errors {
+  color: #d9534f;
+  margin-bottom: 10px;
+}
+
+.login-form input[type="submit"] {
+  background-color: #022954;
+  color: white;
+  cursor: pointer;
+}
+
+.login-form input[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
