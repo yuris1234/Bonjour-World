@@ -21,16 +21,21 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-color: #022954;
+  background-color: #022a54f0;
+  backdrop-filter: blur(7px);
   border-radius: 5px;
   width: 60%;
-  height: 75%;
+  height: 70%;
 }
 
 .signup-form h2 {
   color: white;
   font-size: 2rem;
   margin-bottom: 20px;
+}
+
+.signup-form .inputs {
+  width: 40%;
 }
 
 .signup-form label {
@@ -47,7 +52,6 @@
   background-color: #354c7c;
   border: none;
   color: white;
-  width: 100%;
 }
 
 .signup-form input::placeholder {

@@ -56,44 +56,49 @@ const SignupForm = () => {
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
-        <input type="text"
-          value={email}
-          onChange={update('email')}
-          placeholder="Email"
-        />
-      </label>
-      <div className="errors">{errors?.username}</div>
-      <label>
-        <span>Username</span>
-        <input type="text"
-          value={username}
-          onChange={update('username')}
-          placeholder="Username"
-        />
-      </label>
-      <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
-        <input type="password"
-          value={password}
-          onChange={update('password')}
-          placeholder="Password"
-        />
-      </label>
-      <div className="errors">
-        {password !== passwordConfirmation && 'Confirm Password field must match'}
+
+
+      <div className='inputs'>
+        <div className="errors">{errors?.email}</div>
+        <label>
+          <span>Email</span>
+          <input type="text"
+            value={email}
+            onChange={update('email')}
+            placeholder="Email"
+          />
+        </label>
+        <div className="errors">{errors?.username}</div>
+        <label>
+          <span>Username</span>
+          <input type="text"
+            value={username}
+            onChange={update('username')}
+            placeholder="Username"
+          />
+        </label>
+        <div className="errors">{errors?.password}</div>
+        <label>
+          <span>Password</span>
+          <input type="password"
+            value={password}
+            onChange={update('password')}
+            placeholder="Password"
+          />
+        </label>
+        <div className="errors">
+          {password !== passwordConfirmation && 'Confirm Password field must match'}
+        </div>
+        <label>
+          <span>Confirm Password</span>
+          <input type="password"
+            value={passwordConfirmation}
+            onChange={update('passwordConfirmation')}
+            placeholder="Confirm Password"
+          />
+        </label>
       </div>
-      <label>
-        <span>Confirm Password</span>
-        <input type="password"
-          value={passwordConfirmation}
-          onChange={update('passwordConfirmation')}
-          placeholder="Confirm Password"
-        />
-      </label>
+  
       <input
         type="submit"
         value="Sign Up"
