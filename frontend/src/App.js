@@ -18,9 +18,11 @@ const App = () => {
   return (
     loaded && (
       <>
-        {/* <NavBar /> */}
         <Switch>
-          <Route exact path="/" component={SplashPage} />
+          <Route exact path="/">
+            <NavBar />    
+            <SplashPage />
+          </Route>
           <AuthRoute exact path="/login" component={LoginForm} />
           <AuthRoute exact path="/signup" component={SignupForm} />
         </Switch>
