@@ -25,7 +25,7 @@ const SplashPage = () => {
         return "Hola Mundo";
       case "fr":
         return "Bonjour le monde";
-      case "ar":
+      case "ar":s
         return "مرحباً بالعالم";
       default:
         return "Hello World";
