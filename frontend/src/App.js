@@ -6,7 +6,7 @@ import { getCurrentUser } from "./store/session";
 import LoginForm from "./components/SessionForms/LoginForm/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm/SignupForm";
 import Modal from "./components/Modal";
-import MainPage from "./components/MainPage"
+import SplashPage from "./components/SplashPage";
 
 const App = () => {
   const [loaded, setLoaded] = useState(false);
@@ -20,7 +20,7 @@ const App = () => {
       {loaded && (
         <>
           <Switch>
-            <Route exact path="/" component={MainPage}></Route>
+            <Route exact path="/" component={SplashPage}></Route>
             <AuthRoute exact path="/login" component={LoginForm} />
             <AuthRoute exact path="/signup" component={SignupForm} />
           </Switch>
