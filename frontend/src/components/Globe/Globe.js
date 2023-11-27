@@ -17,7 +17,7 @@ const Globe = () => {
     container.appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('../Earth.jpeg', () => {
+    const texture = textureLoader.load('./Earth.jpeg', () => {
       const geometry = new THREE.SphereGeometry(6, 64, 64);
       const material = new THREE.MeshPhongMaterial({ map: texture, shininess: 10 });
       const globe = new THREE.Mesh(geometry, material);
