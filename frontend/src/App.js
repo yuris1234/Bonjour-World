@@ -7,20 +7,18 @@ import SplashPage from "./components/MainPage";
 import SignupForm from "./components/SessionForms/SignupForm";
 import LoginForm from "./components/SessionForms/LoginForm";
 import { getCurrentUser } from "./store/session";
-
 const App = () => {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
   }, [dispatch]);
-
   return (
     loaded && (
       <>
         <Switch>
           <Route exact path="/">
-            <NavBar />    
+            <NavBar />
             <SplashPage />
           </Route>
           <AuthRoute exact path="/login" component={LoginForm} />
@@ -29,6 +27,5 @@ const App = () => {
       </>
     )
   );
-}
-
+};
 export default App;
