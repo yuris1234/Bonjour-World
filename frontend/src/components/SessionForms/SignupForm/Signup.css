@@ -1,9 +1,9 @@
-.login-modal {
+.signup-modal {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url(../../../images/world-flags-modal-background.jpeg);
+  background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -15,63 +15,62 @@
   justify-content: center;
 }
 
-.login-form {
+.signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-color: #022a54f0;
-  backdrop-filter: blur(7px);
+  background-color: white;
   border-radius: 5px;
-  width: 50%;
-  height: 50%;
+  width: 60%;
+  height: 70%;
 }
 
-.login-form h2 {
-  color: white;
+.signup-form h2 {
+  color: #022a54;
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.login-form .inputs {
+.signup-form .inputs {
   width: 40%;
 }
 
-.login-form label {
-  color: white;
+.signup-form label {
+  color: #022a54f0;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.login-form input {
+.signup-form input {
   padding: 8px;
   margin-top: 8px;
   border-radius: 5px;
-  background-color: #354c7c;
-  color: white;
-  border: 1px solid #022954;
+  background-color: white;
+  color: #022a54f0;
+  border: 1px solid #022a54f0;
 }
 
-.login-form input::placeholder {
-  color: #022954;
+.signup-form input::placeholder {
+  color: gray;
 }
 
-.login-form .errors {
+.signup-form .errors {
   color: red;
   margin-bottom: 10px;
   font-size: .7rem;
 }
 
-.login-form input[type="submit"] {
-  background-color: #354c7c;
+.signup-form input[type="submit"] {
+  background-color: #022a54f0;
   color: white;
   cursor: pointer;
   width: 50%;
 }
 
-.login-form input[type="submit"]:disabled {
+.signup-form input[type="submit"]:disabled {
   background-color: #ccc;
   cursor: not-allowed;
   width: 50%;
