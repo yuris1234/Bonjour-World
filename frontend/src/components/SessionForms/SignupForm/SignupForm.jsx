@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './Signup.css';
+import './index.css';
 import { closeModal } from "../../../store/modal";
 import { signup, clearSessionErrors } from '../../../store/session';
 
