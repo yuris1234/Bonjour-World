@@ -23,6 +23,8 @@
   font-size: 100px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   transform: translate(-50%, -50%);
+  color: #022a54f0;
+  white-space: nowrap;
 }
 
 .footer {
