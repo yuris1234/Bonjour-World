@@ -11,7 +11,7 @@
     font-size: 30px;
     font-family: Helvetica;
     margin: 0px;
-    color: #354c7c;
+    color: #022a54f0;
 }
 
 /* logged out nav */
@@ -21,10 +21,10 @@
     width: 100px;
     margin-left: 10px;
     font-weight: bold;
-    border: 2px solid #354c7c;
+    border: 2px solid #022a54f0;
     border-radius: 3ch;
     background-color: transparent;
-    color: #354c7c;
+    color: #022a54f0;
     cursor: pointer;
     font-family: Helvetica;
 }
