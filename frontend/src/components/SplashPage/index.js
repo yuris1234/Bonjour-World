@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './index.css';
 import NavBar from "../NavBar/index.js"
+import Globe from '../Globe/Globe.js';
 
 const SplashPage = () => {
   const changingLanguages = ["en", "ch", "sp", "fr", "ar"];
@@ -37,6 +38,7 @@ const SplashPage = () => {
       <div className="main-page-div">
         <NavBar />
         <h1 className="currentlanguage">{displayCurrentLanguage()}</h1>
+        <Globe />
         <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
       </div>
     </>
