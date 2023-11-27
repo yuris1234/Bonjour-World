@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import './SignupForm.css';
+import { closeModal } from "../../../store/modal";
 import { signup, clearSessionErrors } from '../../../store/session';
 
 const SignupForm = () => {
@@ -40,7 +41,7 @@ const SignupForm = () => {
     return e => setState(e.currentTarget.value);
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
       email,
@@ -48,7 +49,8 @@ const SignupForm = () => {
       password
     };
 
-    dispatch(signup(user)); 
+    await dispatch(signup(user)); 
+    dispatch(closeModal("signup"))
   }
 
   return (

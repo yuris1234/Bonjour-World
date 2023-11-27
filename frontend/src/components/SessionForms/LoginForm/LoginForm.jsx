@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import './LoginForm.css';
+import { closeModal } from "../../../store/modal";
 import { login, clearSessionErrors } from '../../../store/session';
 
 const LoginForm = () => {
@@ -20,9 +21,10 @@ const LoginForm = () => {
     return e => setState(e.currentTarget.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login({ email, password })); 
+    await dispatch(login({ email, password })); 
+    dispatch(closeModal("login"))
   }
 
   return (
