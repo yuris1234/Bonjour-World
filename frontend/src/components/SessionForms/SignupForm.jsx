@@ -7,7 +7,7 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
 
@@ -30,8 +30,8 @@ const SignupForm = () => {
       case 'password':
         setState = setPassword;
         break;
-      case 'password2':
-        setState = setPassword2;
+      case 'passwordConfirmation':
+        setState = setPasswordConfirmation;
         break;
       default:
         throw Error('Unknown field in Signup Form');
@@ -52,8 +52,8 @@ const SignupForm = () => {
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Sign Up Form</h2>
+    <form className="signup-form" onSubmit={handleSubmit}>
+      <h2>Sign Up</h2>
       <div className="errors">{errors?.email}</div>
       <label>
         <span>Email</span>
@@ -82,20 +82,20 @@ const SignupForm = () => {
         />
       </label>
       <div className="errors">
-        {password !== password2 && 'Confirm Password field must match'}
+        {password !== passwordConfirmation && 'Confirm Password field must match'}
       </div>
       <label>
         <span>Confirm Password</span>
         <input type="password"
-          value={password2}
-          onChange={update('password2')}
+          value={passwordConfirmation}
+          onChange={update('passwordConfirmation')}
           placeholder="Confirm Password"
         />
       </label>
       <input
         type="submit"
         value="Sign Up"
-        disabled={!email || !username || !password || password !== password2}
+        disabled={!email || !username || !password || password !== passwordConfirmation}
       />
     </form>
   );

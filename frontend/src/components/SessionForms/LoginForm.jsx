@@ -26,11 +26,10 @@ const LoginForm = () => {
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In Form</h2>
+    <form className="login-form" onSubmit={handleSubmit}>
+      <h2>Log In</h2>
       <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
+      <label>Email
         <input type="text"
           value={email}
           onChange={update('email')}
@@ -38,8 +37,7 @@ const LoginForm = () => {
         />
       </label>
       <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
+      <label>Password
         <input type="password"
           value={password}
           onChange={update('password')}
