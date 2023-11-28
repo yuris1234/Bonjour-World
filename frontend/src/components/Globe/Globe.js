@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import './Globe.css';
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
+import "./Globe.css";
 
 const Globe = () => {
   const containerRef = useRef(null);
@@ -9,7 +9,12 @@ const Globe = () => {
     const container = containerRef.current;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      50,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      1000
+    );
     const renderer = new THREE.WebGLRenderer();
 
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -17,9 +22,12 @@ const Globe = () => {
     container.appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('./Earth.jpeg', () => {
+    const texture = textureLoader.load("./Earth.jpeg", () => {
       const geometry = new THREE.SphereGeometry(6, 64, 64);
-      const material = new THREE.MeshPhongMaterial({ map: texture, shininess: 10 });
+      const material = new THREE.MeshPhongMaterial({
+        map: texture,
+        shininess: 10,
+      });
       const globe = new THREE.Mesh(geometry, material);
       scene.add(globe);
 
@@ -29,10 +37,10 @@ const Globe = () => {
       camera.position.y = 5;
       camera.lookAt(globe.position);
 
-      const ambientLight = new THREE.AmbientLight(0xFFFFFF, 5);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 5);
       scene.add(ambientLight);
 
-      const pointLight = new THREE.PointLight(0xFFFFFF, 1);
+      const pointLight = new THREE.PointLight(0xffffff, 1);
       pointLight.position.set(10, 10, 10);
       scene.add(pointLight);
 
@@ -57,18 +65,15 @@ const Globe = () => {
       renderer.setSize(newWidth, newHeight);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       container.removeChild(renderer.domElement);
     };
   }, []);
 
-  return (
-    <div ref={containerRef} className="globe-container"></div>
-  );
+  return <div ref={containerRef} className="globe-container"></div>;
 };
 
 export default Globe;
-
