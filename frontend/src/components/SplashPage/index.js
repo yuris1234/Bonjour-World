@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import './index.css';
-import NavBar from "../NavBar/index.js"
-import Globe from '../Globe/Globe.js';
+import React, { useState, useEffect } from "react";
+import "./index.css";
+import NavBar from "../NavBar/index.js";
+import Globe from "../Globe/Globe.js";
 
 const SplashPage = () => {
   const changingLanguages = ["en", "ch", "sp", "fr", "ar"];
@@ -9,7 +9,9 @@ const SplashPage = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentLanguageIndex((prevIndex) => (prevIndex + 1) % changingLanguages.length);
+      setCurrentLanguageIndex(
+        (prevIndex) => (prevIndex + 1) % changingLanguages.length
+      );
     }, 4000);
 
     return () => clearInterval(intervalId);
@@ -34,21 +36,19 @@ const SplashPage = () => {
   }
 
   return (
-    <>
-      <div className="splash-page">
-        <NavBar />
-        <div className="content-container">
-          <h1 className="currentlanguage">{displayCurrentLanguage()}</h1>
-          <div className="globe-container">
-            <Globe />
-          </div>
-          <h2 className="slogan">
-            Connect through Conversation, Learn through Language.
-          </h2>
+    <div className="splash-page">
+      <NavBar />
+      <div className="currentlanguage">{displayCurrentLanguage()}</div>
+      <div className="content-container">
+        <div className="globe-container">
+          <Globe />
         </div>
-        <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
+        <div className="slogan">
+          Connect through Conversation, Learn through Language.
+        </div>
       </div>
-    </>
+      <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
+    </div>
   );
 };
 
