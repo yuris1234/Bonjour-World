@@ -22,11 +22,11 @@ const NavBar = () => {
           <Link className="all-events" to={"/events"}>
             All Events
           </Link>
-          <button onClick={() => dispatch(openModal("createEvent"))}>
+          <button className="create-event-button" onClick={() => dispatch(openModal("createEvent"))}>
             Create an Event
           </button>
           <Link to={"/profile"}>Profile</Link>
-          <button onClick={logoutUser}>Logout</button>
+          <button onClick={logoutUser} className="logout-button">Logout</button>
         </div>
       );
     } else {
@@ -52,7 +52,9 @@ const NavBar = () => {
   return (
     <>
       <nav className="nav-bar">
-        <h1 className="nav-bar-header">Bonjour World</h1>
+        <Link to="/" className="no-underline">
+          <h1 className="nav-bar-header">Bonjour World</h1>
+        </Link>
         <div className="nav-links">{getLinks()}</div>
       </nav>
     </>
