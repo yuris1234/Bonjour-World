@@ -1,7 +1,7 @@
 .splash-page {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 100vh;
   background-color: #FFEDDD;
 }
@@ -29,14 +29,16 @@
   }
 }
 
-.splash-page-content {
+.content-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .slogan {
   color: #022a54f0;
   font-size: 1.5rem;
+  max-width: 40%;
 }
 
 .footer {

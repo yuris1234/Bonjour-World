@@ -37,9 +37,11 @@ const SplashPage = () => {
     <>
       <div className="splash-page">
         <NavBar />
-        <h1 className="currentlanguage">{displayCurrentLanguage()}</h1>
-        <div className="splash-page-content">
-          <Globe />
+        <div className="content-container">
+          <h1 className="currentlanguage">{displayCurrentLanguage()}</h1>
+          <div className="globe-container">
+            <Globe />
+          </div>
           <h2 className="slogan">
             Connect through Conversation, Learn through Language.
           </h2>
