@@ -3,16 +3,15 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Event = mongoose.model('Event');
 const User = mongoose.model('User');
+
 const validateEventCreation = require('../../validations/event');
 
 // GET /api/events/:id
 router.get('/:id', async (req, res, next) => {
     try {
-        console.log(req.params.id);
         const event = await Event.findById(req.params.id).populate('host', '_id username')
-        console.log(event);
         await event.populate('attendees', '_id username');
-        // await event.populate('host', '_id username');
+        await event.populate('host', '_id username');
         return res.json(event)
     }
     catch(err) {
@@ -22,12 +21,14 @@ router.get('/:id', async (req, res, next) => {
         return next(error);
     }
 })
+
 // GET /api/events
 router.get('/', async (req, res, next) => {
     const events = await Event.find();
     console.log(events)
     return res.json(events);
 });
+
 // POST /api/events
 router.post('/', validateEventCreation, async (req, res, next) => {
     try {
@@ -47,17 +48,20 @@ router.post('/', validateEventCreation, async (req, res, next) => {
             attendees: req.body.attendees
         })
         let event = await newEvent.save();
+
         let user = await User.findOne({_id: req.body.host})
         user.events.push(event._id);
         user.hostedEvents = event._id
         event.attendees.push(user._id)
-        await user.save();
+        await user.save();  
         await event.save();
+    
         return res.json(event)
     } catch {
         return res.json({message: 'Could not create event'})
     }
 })
+
 // DELETE /api/events/:id
 router.delete('/:id', async (req, res, next) => {
     try {
@@ -71,7 +75,9 @@ router.delete('/:id', async (req, res, next) => {
         res.json({message: 'error deleting event'});
     }
 })
+
 // UPDATE /api/events/:id
+
 router.patch('/:id', validateEventCreation, async (req, res, next) => {
     try {
         const updatedEvent = await Event.findByIdAndUpdate(req.params.id, req.body, {new: true});
