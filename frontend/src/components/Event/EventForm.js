@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import "./EventForm.css"
 import {
   getEvent,
   fetchEvent,
@@ -124,7 +125,7 @@ const EventForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="event-form" onSubmit={handleSubmit}>
       <h2>{eventType}</h2>
 
       <div className="errors">{errors?.title}</div>
