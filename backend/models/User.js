@@ -14,6 +14,7 @@ const userSchema = new Schema({
       type: String,
       required: true
     },
+    
     hostedEvents: {
       type: Schema.Types.ObjectId,
       ref: 'Event'
