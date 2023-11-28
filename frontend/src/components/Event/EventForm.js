@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEvent, fetchEvent, createEvent, updateEvent } from '../store/events';
+import { getEvent, fetchEvent, createEvent, updateEvent } from '../../store/events';
 
 const EventForm = () => {
     const { eventId } = useParams();
