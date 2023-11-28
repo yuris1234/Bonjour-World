@@ -18,39 +18,16 @@ const Globe = () => {
     const renderer = new THREE.WebGLRenderer();
 
     renderer.setSize(container.clientWidth, container.clientHeight);
-renderer.setClearColor(new THREE.Color(0xffeddd));
-
+    renderer.setClearColor(0xffffff);
     container.appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load("./Earth.jpeg", () => {
-      const material = new THREE.ShaderMaterial({
-        uniforms: {
-          earthTexture: { value: texture },
-          darkBlueColor: { value: new THREE.Color(0x00008b) },
-        },
-        vertexShader: `
-          varying vec2 vUv;
-          void main() {
-            vUv = uv;
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-          }
-        `,
-        fragmentShader: `
-          uniform sampler2D earthTexture;
-          uniform vec3 darkBlueColor;
-          varying vec2 vUv;
-          void main() {
-            vec4 texColor = texture2D(earthTexture, vUv);
-            vec3 landColor = texColor.rgb;
-            float isBlue = step(0.5, texColor.b);
-            vec3 finalColor = mix(landColor, darkBlueColor, isBlue);
-            gl_FragColor = vec4(finalColor, texColor.a);
-          }
-        `,
-      });
-
       const geometry = new THREE.SphereGeometry(6, 64, 64);
+      const material = new THREE.MeshPhongMaterial({
+        map: texture,
+        shininess: 10,
+      });
       const globe = new THREE.Mesh(geometry, material);
       scene.add(globe);
 
