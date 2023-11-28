@@ -10,11 +10,13 @@ const Globe = () => {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      50,
+      75,
       container.clientWidth / container.clientHeight,
       0.1,
       1000
     );
+    camera.position.set(0, 0, 20);
+
     const renderer = new THREE.WebGLRenderer();
 
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -53,11 +55,7 @@ const Globe = () => {
       const globe = new THREE.Mesh(geometry, material);
       scene.add(globe);
 
-      globe.position.set(0, 0, 0);
-
-      camera.position.z = 15;
-      camera.position.y = 5;
-      camera.lookAt(globe.position);
+      globe.position.set(-10, 0, 0);
 
       const ambientLight = new THREE.AmbientLight(0xffffff, 5);
       scene.add(ambientLight);
