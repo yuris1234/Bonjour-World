@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent } from '../../store/events';
 import NavBar from '../NavBar';
+import "./EventShow.css"
 
 const EventShow = () => {
     const dispatch = useDispatch();
@@ -16,20 +17,50 @@ const EventShow = () => {
     return (
         <>
             <NavBar />
-            <div className="eventdetails">
-                <label>{event?.title}</label>
-                <label>{event?.description}</label>
-                <label>{event?.language}</label>
-                <label>{event?.state}</label>
-                <label>{event?.city}</label>
-                <label>{event?.address}</label>
-                <label>{event?.zipcode}</label>
-                <label>{event?.lat}</label>
-                <label>{event?.long}</label>
-                <label>{event?.date}</label>
-                <label>{event?.time}</label>
-                <label>{event?.host}</label>
-                <Link to={"/"}></Link>
+            <div className="event-show-index">
+                <div className="google-maps-show-container">
+
+                </div>
+                <div className="display-one-event">
+                    <ul className="event-info-list">
+                        <li>
+                        <label className="event-title">Title: {event?.title}</label>
+                        </li>
+                        <li>
+                        <label className="event-description">Description: {event?.description}</label>
+                        </li>
+                        <li>
+                        <label className="event-language">Language: {event?.language}</label>
+                        </li>
+                        <li>
+                        <label className="event-state">State: {event?.state}</label>
+                        </li>
+                        <li>
+                        <label className="event-city">City: {event?.city}</label>
+                        </li>
+                        <li>
+                        <label className="event-address">Address: {event?.address}</label>
+                        </li>
+                        <li>
+                        <label className="event-zipcode">Zip Code: {event?.zipcode}</label>
+                        </li>
+                        <li>
+                        <label className="event-lat">Latitude: {event?.lat}</label>
+                        </li>
+                        <li>
+                        <label className="event-long">Longitude: {event?.long}</label>
+                        </li>
+                        <li>
+                        <label className="event-date">Date: {event?.date}</label>
+                        </li>
+                        <li>
+                        <label className="event-time">Time: {event?.time}</label>
+                        </li>
+                        <li>
+                        <label className="event-host">Host: {event?.host}</label>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </>
     )
