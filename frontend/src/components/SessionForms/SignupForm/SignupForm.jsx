@@ -49,8 +49,10 @@ const SignupForm = () => {
       password
     };
 
-    await dispatch(signup(user)); 
-    dispatch(closeModal("signup"))
+    const res = await dispatch(signup(user)); 
+    if (res.ok) {
+      dispatch(closeModal())
+    }
   }
 
   return (
