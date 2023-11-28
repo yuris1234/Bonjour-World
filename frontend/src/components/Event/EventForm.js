@@ -58,19 +58,19 @@ const EventForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     event = {
-        ...event,
-        title,
-        description,
-        language,
-        state,
-        city,
-        address,
-        zipcode,
-        lat,
-        long,
-        date,
-        time,
-        host,
+      ...event,
+      title,
+      description,
+      language,
+      state,
+      city,
+      address,
+      zipcode,
+      lat,
+      long,
+      date,
+      time,
+      host,
     };
     eventType === "Create Event"
       ? dispatch(createEvent(event))
