@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import './Globe.css';
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
+import "./Globe.css";
 
 const Globe = () => {
   const containerRef = useRef(null);
@@ -9,7 +9,12 @@ const Globe = () => {
     const container = containerRef.current;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      50,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      1000
+    );
     const renderer = new THREE.WebGLRenderer();
 
     renderer.setSize(container.clientWidth, container.clientHeight);
@@ -17,9 +22,34 @@ const Globe = () => {
     container.appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('./Earth.jpeg', () => {
+    const texture = textureLoader.load("./Earth.jpeg", () => {
+      const material = new THREE.ShaderMaterial({
+        uniforms: {
+          earthTexture: { value: texture },
+          darkBlueColor: { value: new THREE.Color(0x00008b) },
+        },
+        vertexShader: `
+          varying vec2 vUv;
+          void main() {
+            vUv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform sampler2D earthTexture;
+          uniform vec3 darkBlueColor;
+          varying vec2 vUv;
+          void main() {
+            vec4 texColor = texture2D(earthTexture, vUv);
+            vec3 landColor = texColor.rgb;
+            float isBlue = step(0.5, texColor.b);
+            vec3 finalColor = mix(landColor, darkBlueColor, isBlue);
+            gl_FragColor = vec4(finalColor, texColor.a);
+          }
+        `,
+      });
+
       const geometry = new THREE.SphereGeometry(6, 64, 64);
-      const material = new THREE.MeshPhongMaterial({ map: texture, shininess: 10 });
       const globe = new THREE.Mesh(geometry, material);
       scene.add(globe);
 
@@ -29,10 +59,10 @@ const Globe = () => {
       camera.position.y = 5;
       camera.lookAt(globe.position);
 
-      const ambientLight = new THREE.AmbientLight(0xFFFFFF, 5);
+      const ambientLight = new THREE.AmbientLight(0xffffff, 5);
       scene.add(ambientLight);
 
-      const pointLight = new THREE.PointLight(0xFFFFFF, 1);
+      const pointLight = new THREE.PointLight(0xffffff, 1);
       pointLight.position.set(10, 10, 10);
       scene.add(pointLight);
 
@@ -57,18 +87,15 @@ const Globe = () => {
       renderer.setSize(newWidth, newHeight);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       container.removeChild(renderer.domElement);
     };
   }, []);
 
-  return (
-    <div ref={containerRef} className="globe-container"></div>
-  );
+  return <div ref={containerRef} className="globe-container"></div>;
 };
 
 export default Globe;
-
