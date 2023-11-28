@@ -90,5 +90,4 @@ router.patch('/:id', validateEventCreation, async (req, res, next) => {
         return res.json({message: 'error updating event'});
     }
 })
-
 module.exports = router
