@@ -5,7 +5,7 @@ import './EventIndexItem.css'
 // import { deleteEvent } from '../../store/events';
 
 const EventIndexItem = ({ event }) => {
-    // const dispatch = useDispatch();
+
 
     return (
         <>
