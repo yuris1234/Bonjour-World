@@ -7,10 +7,67 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 400px;
-  width: 450px;
+  height: 700px;
+  width: 500px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  width: 180%;
+  height: 100%;
+}
+
+.event-form h2 {
+  color: #022a54;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.event-form .errors {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 0.7rem;
+}
+
+.event-form label {
+  color: #022a54f0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.event-form input {
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 5px;
+  background-color: white;
+  color: #022a54f0;
+  border: 1px solid #022a54f0;
+}
+
+.event-form input::placeholder {
+  color: gray;
+}
+
+.event-form input[type="submit"] {
+  background-color: #022a54f0;
+  color: white;
+  cursor: pointer;
+  width: 50%;
+}
+
+.event-form input[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  width: 50%;
 }
