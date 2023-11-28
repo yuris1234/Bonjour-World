@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import { openModal } from "../../store/modal";
@@ -7,10 +7,12 @@ import "./index.css";
 const NavBar = () => {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const logoutUser = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push("/");
   };
 
   const getLinks = () => {
