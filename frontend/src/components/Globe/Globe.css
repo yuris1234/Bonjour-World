@@ -1,8 +1,10 @@
 .globe-container {
-  display: flex;
-  width: 600px;
-  height: 400px;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
+  /* display: flex; */
+  /* width: 600px;
+  height: 400px; */
+  /* justify-content: center;
+  align-items: center; */
+  position: absolute;
+  top: 30%;
+  left: 12%;
 }

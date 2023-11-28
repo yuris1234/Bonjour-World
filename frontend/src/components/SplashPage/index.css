@@ -10,7 +10,7 @@
   animation: fade 4s infinite;
   opacity: 0; 
   position: absolute;
-  top: 20%;
+  top: 15%;
   left: 50%;
   font-size: 100px;
   transform: translate(-50%, -50%);
@@ -29,8 +29,14 @@
   }
 }
 
-.slogan {
+.splash-page-content {
+  display: flex;
+  justify-content: space-between;
+}
 
+.slogan {
+  color: #022a54f0;
+  font-size: 1.5rem;
 }
 
 .footer {
