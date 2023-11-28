@@ -1,13 +1,4 @@
-@keyframes fade {
-  0%, 100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.main-page-div {
+.splash-page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,6 +16,21 @@
   transform: translate(-50%, -50%);
   color: #022a54f0;
   white-space: nowrap;
+}
+
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.slogan {
+
 }
 
 .footer {
