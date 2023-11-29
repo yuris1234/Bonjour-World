@@ -6,7 +6,7 @@ import NavBar from '../NavBar';
 import "./EventShow.css"
 import { addEventJoin, removeEventJoin } from '../../store/users';
 import { getCurrentUser } from '../../store/session';
-import { openModal } from '../../store/modal';
+import { openModal, updateEvent } from '../../store/modal';
 
 const EventShow = () => {
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const EventShow = () => {
     }
 
     const handleModal = (e) => {
-        dispatch(openModal("updateEvent"));
+        dispatch(updateEvent("updateEvent", eventId));
     }
 
     return (
@@ -92,11 +92,11 @@ const EventShow = () => {
                             <div className="event-lat">{event?.lat}</div>
                         </div>
 
-                        {host && <button class="event-language" onClick={handleModal}>Edit Event</button>}
                         
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
+                        {host && <button class="event-language" onClick={handleModal}>Edit Event</button>}
                         {!subscribed && 
                             <button className="event-language" onClick={handleJoin}>+ Join </button>
                         }

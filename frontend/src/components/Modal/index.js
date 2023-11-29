@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Modal = () => {
   const dispatch = useDispatch();
   const modal = useSelector((state) => state.modal?.modal);
+  const eventId = useSelector((state) => state.modal?.eventId)
 
   if (!modal) {
     return null;
@@ -31,7 +32,7 @@ const Modal = () => {
       modalClass = "create-event-modal";
       break;
     case "updateEvent": 
-      component = <EventUpdateForm modal={"null"} />;
+      component = <EventUpdateForm eventId={eventId} modal={"null"} />;
       modalClass = "update-event-modal";
       break;
     default:
