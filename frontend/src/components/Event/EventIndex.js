@@ -21,7 +21,7 @@ const EventIndex = () => {
                     
                 </div>
                 <div className="display-all-events">
-                    {events.map((event) => (
+                    {Object.values(events).map((event) => (
                         <EventIndexItem
                             key={event._id}
                             event={event}
