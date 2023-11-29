@@ -17,7 +17,12 @@
     text-decoration: none;
 }
 
-/* logged out nav */
+/* logged out nav links */
+
+.logged-out-links {
+    display: flex;
+    align-items: center;
+}
 
 .logged-out-links .signup-button, .login-button {
     height: 25px;
@@ -36,7 +41,23 @@
      transform: scale(1.05);
  }
 
-/* logged in nav */
+ .logged-out-links a {
+     margin-left: 10px;
+     border: none;
+     color: #022a54f0;
+     cursor: pointer;
+     text-decoration: none;
+     white-space: nowrap;
+     display: inline-block;
+     text-align: center;
+     font-size: 1rem;
+ }
+
+ .logged-out-links a:hover {
+     text-decoration: underline;
+ }
+
+/* logged in nav links */
 
 .all-events {
     display: flex;
