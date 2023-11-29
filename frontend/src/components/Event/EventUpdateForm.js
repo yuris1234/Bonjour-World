@@ -10,11 +10,13 @@ import {
   clearEventErrors,
 } from "../../store/events";
 import { closeModal } from "../../store/modal";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const EventUpdateForm = () => {
+const EventUpdateForm = ({eventId}) => {
   const errors = useSelector((state) => state.errors.event);
+  const history = useHistory()
 
-  const { eventId } = useParams();
+  // const { eventId } = useParams();
   // const eventType = eventId ? "Update Event" : "Create Event";
   let event = useSelector(getEvent(eventId));
 
@@ -36,16 +38,21 @@ const EventUpdateForm = () => {
     if (eventId) {
       dispatch(fetchEvent(eventId));
     }
-  }, [dispatch, eventId]);
+    if (event) {
+      const newDate = formatDate(new Date(date))
+      setDate(newDate);
+    }
+  }, [eventId]);
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
   }, [dispatch]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const updatedEvent = {
+      ...event,
       title,
       description,
       language,
@@ -58,13 +65,21 @@ const EventUpdateForm = () => {
       date,
       time,
     };
-    const res = dispatch(updateEvent(updatedEvent));
-    if (res.ok){
+    const res = await dispatch(updateEvent(updatedEvent));
+    // debugger
+    if (res.ok) {
         dispatch(closeModal())
-        // history.push(`/events/${eventId}`);
+        history.push(`/events/${eventId}`);
     }
   };
   
+  const formatDate = (inputDate) => {
+    const year = inputDate.getFullYear();
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(inputDate.getDate()).padStart(2, '0');
+  
+    return `${year}-${month}-${day}`;
+  };
 
   const update = (field) => {
     return (e) => {
@@ -162,23 +177,27 @@ const EventUpdateForm = () => {
     "Wyoming",
   ];
 
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
+  // const formatDate = (e) => {
+  //   const updatedDate = date.toISOString().substring(0, 10),
+  //   field = document.querySelector('#date');
+  //   field.value = updatedDate;
+  // }
 
   const generateTimeOptions = () => {
     const timeOptions = [];
     const interval = 15;
 
-    for (let hour = 7; hour < 20; hour++) {
+    for (let hour = 7; hour <= 20; hour++) {
       for (let minute = 0; minute < 60; minute += interval) {
         const formattedHour = hour.toString().padStart(2, "0");
         const formattedMinute = minute.toString().padStart(2, "0");
-        const formattedTime = `${formattedHour}:${formattedMinute}`;
+        const formattedTime = `${formattedHour}:${formattedMinute}`;  
         timeOptions.push(
+          time === formattedTime ? 
+          <option key={formattedTime} value={formattedTime} selected>
+            {formattedTime}
+          </option>
+          :
           <option key={formattedTime} value={formattedTime}>
             {formattedTime}
           </option>
@@ -268,10 +287,9 @@ const EventUpdateForm = () => {
             Date
             <input
               type="date"
-              value={date }
+              value={date}
               onChange={(e) => {
-                setDate(new Date(e.target.value));
-                update("date");
+                setDate(e.target.value);
               }}
             />
           </label>
@@ -280,7 +298,7 @@ const EventUpdateForm = () => {
           <label>
             Time
             <select value={time} onChange={update("time")}>
-              <option value="">Select Time</option>
+              <option disabled value="">Select Time</option>
               {generateTimeOptions()}
             </select>
           </label>
