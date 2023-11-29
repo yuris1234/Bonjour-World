@@ -31,14 +31,14 @@
   text-align: center;
 }
 
-.inputs {
+.event-form .inputs {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
 
-.right-column {
+.event-form .right-column {
   margin-right: 65px;
 }
 
