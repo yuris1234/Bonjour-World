@@ -74,7 +74,6 @@ const EventForm = () => {
       date: formattedDate,
       time,
     };
-    debugger
 
     eventType === "Create Event"
       ? dispatch(createEvent(updatedEvent))
