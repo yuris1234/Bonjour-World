@@ -124,6 +124,59 @@ const EventForm = () => {
     };
   };
 
+  const states = [
+    "Alabama",
+    "Alaska",
+    "Arizona",
+    "Arkansas",
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Delaware",
+    "Florida",
+    "Georgia",
+    "Hawaii",
+    "Idaho",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kansas",
+    "Kentucky",
+    "Louisiana",
+    "Maine",
+    "Maryland",
+    "Massachusetts",
+    "Michigan",
+    "Minnesota",
+    "Mississippi",
+    "Missouri",
+    "Montana",
+    "Nebraska",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New Mexico",
+    "New York",
+    "North Carolina",
+    "North Dakota",
+    "Ohio",
+    "Oklahoma",
+    "Oregon",
+    "Pennsylvania",
+    "Rhode Island",
+    "South Carolina",
+    "South Dakota",
+    "Tennessee",
+    "Texas",
+    "Utah",
+    "Vermont",
+    "Virginia",
+    "Washington",
+    "West Virginia",
+    "Wisconsin",
+    "Wyoming",
+  ];
+
   return (
     <form className="event-form" onSubmit={handleSubmit}>
       <h2>{eventType}</h2>
@@ -157,10 +210,16 @@ const EventForm = () => {
               />
             </label>
 
-            <div className="errors">{errors?.state}</div>
             <label>
               State
-              <input type="text" value={state} onChange={update("state")} />
+              <select value={state} onChange={update("state")}>
+                <option value="">Select State</option>
+                {states.map((stateOption) => (
+                  <option key={stateOption} value={stateOption}>
+                    {stateOption}
+                  </option>
+                ))}
+              </select>
             </label>
 
             <div className="errors">{errors?.city}</div>
@@ -206,12 +265,6 @@ const EventForm = () => {
           <label>
             Time
             <input type="text" value={time} onChange={update("time")} />
-          </label>
-
-          <div className="errors">{errors?.host}</div>
-          <label>
-            Host
-            <input type="text" value={host} onChange={update("host")} />
           </label>
         </div>
       </div>
