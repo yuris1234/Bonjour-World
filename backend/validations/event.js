@@ -39,10 +39,10 @@ const validateEventCreation = [
         .exists({checkFalsy: true})
         .isPostalCode('US')
         .withMessage('Zipcode is invalid'),
-    check('date') 
-        .exists({checkFalsy: true})
-        .isDate()
-        .withMessage('Date is invalid'),
+    // check('date') 
+    //     .exists({checkFalsy: true})
+    //     .isDate()
+    //     .withMessage('Date is invalid'),
     check('time')
         .exists({checkFalsy: true})
         .custom(value => timeRegex.test(value))
