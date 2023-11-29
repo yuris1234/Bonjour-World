@@ -14,7 +14,13 @@ const validateUserInput = require('../../validations/user')
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
   const users = await User.find();
-  res.json(users);
+  const newState = {}
+  const userVals = Object.values(users);
+    userVals.forEach((user) => {
+        newState[user._id] = user
+    })
+  return res.json(newState);
+
 });
 
 // GET /api/users/current

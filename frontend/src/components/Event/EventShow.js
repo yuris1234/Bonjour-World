@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent } from '../../store/events';
 import NavBar from '../NavBar';
 import "./EventShow.css"
-import { addEventJoin, removeEventJoin } from '../../store/users';
+import { addEventJoin, fetchUsers, removeEventJoin } from '../../store/users';
 import { getCurrentUser } from '../../store/session';
 import { openModal, updateEvent } from '../../store/modal';
 
@@ -13,11 +13,14 @@ const EventShow = () => {
     const { eventId } = useParams();
     const event = useSelector(getEvent(eventId))
     const user = useSelector((state) => state.session.user);
+    const users = useSelector((state) => state.users);
     const [subscribed, setSubscribed] = useState(false);
-    const [host, setHost] = useState(false);
+    const [hostShow, setHostShow] = useState(false);
+    const [host, setHost] = useState("");
 
     useEffect(() => {
         dispatch(getCurrentUser());
+        dispatch(fetchUsers());
         dispatch(fetchEvent(eventId));
     },[eventId])
 
@@ -25,11 +28,16 @@ const EventShow = () => {
         if (user.events) {
             setSubscribed(user.events.includes(eventId) ? true : false)
         }
-    },[user])
+        if (event && users) {
+            if (event.host) {
+                setHost(users[event.host]?.username)
+            }
+        }
+    },[user, users, event])
 
     useEffect(() => {
         if (user && event) {
-            setHost(user._id === event.host ? true : false)
+            setHostShow(user._id === event.host ? true : false)
         }
     }, [user, event])
 
@@ -60,7 +68,7 @@ const EventShow = () => {
                     <ul className="event-info-list">
                         <div className="event-title">{event?.title}
                             <div className="event-title-hosted-by">Hosted By:
-                                <div className="event-title-host">Potato.{event?.host}</div>
+                                <div className="event-title-host">{host}</div>
                             </div>
                         </div>
 
@@ -96,7 +104,7 @@ const EventShow = () => {
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
-                        {host && <button class="event-language" onClick={handleModal}>Edit Event</button>}
+                        {hostShow && <button class="event-language" onClick={handleModal}>Edit Event</button>}
                         {!subscribed && 
                             <button className="event-language" onClick={handleJoin}>+ Join </button>
                         }
