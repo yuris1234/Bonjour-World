@@ -6,13 +6,15 @@ import NavBar from '../NavBar';
 import "./EventShow.css"
 import { addEventJoin, removeEventJoin } from '../../store/users';
 import { getCurrentUser } from '../../store/session';
+import { openModal, updateEvent } from '../../store/modal';
 
 const EventShow = () => {
     const dispatch = useDispatch();
     const { eventId } = useParams();
     const event = useSelector(getEvent(eventId))
     const user = useSelector((state) => state.session.user);
-    const [subscribed, setSubscribed] = useState(false)
+    const [subscribed, setSubscribed] = useState(false);
+    const [host, setHost] = useState(false);
 
     useEffect(() => {
         dispatch(getCurrentUser());
@@ -25,6 +27,12 @@ const EventShow = () => {
         }
     },[user])
 
+    useEffect(() => {
+        if (user && event) {
+            setHost(user._id === event.host ? true : false)
+        }
+    }, [user, event])
+
     const handleJoin = (e) => {
         e.preventDefault();
         setSubscribed(true);
@@ -35,6 +43,10 @@ const EventShow = () => {
         e.preventDefault();
         setSubscribed(false);
         dispatch(removeEventJoin(user._id, eventId));
+    }
+
+    const handleModal = (e) => {
+        dispatch(updateEvent("updateEvent", eventId));
     }
 
     return (
@@ -84,6 +96,7 @@ const EventShow = () => {
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
+                        {host && <button class="event-language" onClick={handleModal}>Edit Event</button>}
                         {!subscribed && 
                             <button className="event-language" onClick={handleJoin}>+ Join </button>
                         }
