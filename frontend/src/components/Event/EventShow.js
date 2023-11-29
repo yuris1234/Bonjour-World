@@ -1,5 +1,5 @@
-import { useDebugValue, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent } from '../../store/events';
 import NavBar from '../NavBar';
@@ -12,7 +12,7 @@ const EventShow = () => {
 
     useEffect(() => {
         dispatch(fetchEvent(eventId))
-    },[])
+    },[dispatch,eventId])
 
     return (
         <>
