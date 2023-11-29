@@ -32,6 +32,9 @@ const NavBar = () => {
     } else {
       return (
         <div className="logged-out-links">
+          <Link className="all-events no-underline" to={"/events"}>
+            All Events
+          </Link>
           <button
             className="signup-button"
             onClick={() => dispatch(openModal("signup"))}
