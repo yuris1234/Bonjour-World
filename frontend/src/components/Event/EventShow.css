@@ -129,9 +129,48 @@ html, body {
     background-color: #022a54f0;
     color: white;
     border-radius: 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
     text-align: center;
     line-height: 1.5;
 }
 
+.edit-event {
+    margin-left: 10px;
+    height: auto; 
+    width: auto; 
+    padding: 5px 10px; 
+    display: inline-block;
+    border: 1px;
+    background-color: #022a54f0;
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 2;
+}
+
+.join-event {
+    margin-left: 10px;
+    height: auto; 
+    width: auto; 
+    padding: 5px 10px; 
+    display: inline-block;
+    border: 1px;
+    background-color: #022a54f0;
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 2;
+}
+
+.unjoin-event {
+    margin-left: 10px;
+    height: auto; 
+    width: auto; 
+    padding: 5px 10px; 
+    display: inline-block;
+    border: 1px;
+    background-color: #022a54f0;
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 2;
+}
