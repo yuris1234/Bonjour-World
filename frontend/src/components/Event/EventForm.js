@@ -183,6 +183,26 @@ const EventForm = () => {
     return `${year}-${month}-${day}`;
   };
 
+  const generateTimeOptions = () => {
+    const timeOptions = [];
+    const interval = 15;
+
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += interval) {
+        const formattedHour = hour.toString().padStart(2, "0");
+        const formattedMinute = minute.toString().padStart(2, "0");
+        const formattedTime = `${formattedHour}:${formattedMinute}`;
+        timeOptions.push(
+          <option key={formattedTime} value={formattedTime}>
+            {formattedTime}
+          </option>
+        );
+      }
+    }
+
+    return timeOptions;
+  };
+
   return (
     <form className="event-form" onSubmit={handleSubmit}>
       <h2>{eventType}</h2>
@@ -274,10 +294,12 @@ const EventForm = () => {
             />
           </label>
 
-          <div className="errors">{errors?.time}</div>
           <label>
             Time
-            <input type="text" value={time} onChange={update("time")} />
+            <select value={time} onChange={update("time")}>
+              <option value="">Select Time</option>
+              {generateTimeOptions()}
+            </select>
           </label>
         </div>
       </div>
