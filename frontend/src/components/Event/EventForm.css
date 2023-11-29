@@ -1,4 +1,4 @@
-.create-event-modal {
+.create-event-modal  {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -11,6 +11,20 @@
   align-items: center;
   justify-content: center;
 }
+
+.update-event-modal  {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: transparent;
+   height: 600px;
+   width: 750px;
+   border-radius: 10px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
 
 .event-form {
   padding: 20px;
