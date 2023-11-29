@@ -80,8 +80,9 @@ export const createEvent = (data) => async (dispatch) => {
 };
 
 export const updateEvent = (event) => async (dispatch) => {
-  const res = await jwtFetch(`/api/events/${event.id}`, {
-    method: "PUT",
+  // debugger
+  const res = await jwtFetch(`/api/events/${event._id}`, {
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
@@ -91,6 +92,7 @@ export const updateEvent = (event) => async (dispatch) => {
   if (res.ok) {
     const event = await res.json();
     dispatch(recieveEvent(event));
+    return res;
   }
 };
 

@@ -2,12 +2,14 @@ import { closeModal } from "../../store/modal";
 import LoginForm from "../SessionForms/LoginForm/LoginForm";
 import SignupForm from "../SessionForms/SignupForm/SignupForm";
 import EventForm from "../Event/EventForm";
+import EventUpdateForm from "../Event/EventUpdateForm";
 import "./modal.css";
 import { useDispatch, useSelector } from "react-redux";
 
 const Modal = () => {
   const dispatch = useDispatch();
   const modal = useSelector((state) => state.modal?.modal);
+  const eventId = useSelector((state) => state.modal?.eventId)
 
   if (!modal) {
     return null;
@@ -28,6 +30,10 @@ const Modal = () => {
     case "createEvent":
       component = <EventForm modal={"null"} />;
       modalClass = "create-event-modal";
+      break;
+    case "updateEvent": 
+      component = <EventUpdateForm eventId={eventId} modal={"null"} />;
+      modalClass = "update-event-modal";
       break;
     default:
       return null;
