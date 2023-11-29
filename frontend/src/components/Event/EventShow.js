@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent } from '../../store/events';
 import NavBar from '../NavBar';
 import "./EventShow.css"
-import { addEventJoin } from '../../store/users';
+import { addEventJoin, removeEventJoin } from '../../store/users';
 import { getCurrentUser } from '../../store/session';
 
 const EventShow = () => {
@@ -33,7 +33,8 @@ const EventShow = () => {
 
     const handleUnjoin = (e) => {
         e.preventDefault();
-        // dispatch(removeEventJoin(user._id, eventId));
+        setSubscribed(false);
+        dispatch(removeEventJoin(user._id, eventId));
     }
 
     return (
