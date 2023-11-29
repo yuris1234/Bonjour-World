@@ -1,14 +1,9 @@
-body, html {
-    height: 100%;
-    margin: 0;
-}
-  
 .app-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
-  
+
 .profile-container {
     flex-grow: 1;
     display: flex;
@@ -27,23 +22,16 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-}  
-  
+}
+
 .profile-details-div {
     display: flex;
-    flex-direction: column;
-    height: 650px;
     border: 5px solid #022a54f0;
+    height: 100%;
 }
-  
-.profile-details > div {
-    margin-bottom: 10px; 
-}
-  
+
 .profile-img-div {
-    position: absolute;
-    height: 500px;
-    width: 500px;
+    flex: 1;
     overflow: hidden;
 }
 
@@ -74,11 +62,13 @@ body, html {
     max-height: 100%;
     max-width: 100%;
     margin: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .upload-label {
-    position: relative;
-    left: 370px;
+    z-index: 1; 
     border: 5px solid #022a54f0;
     border-radius: 10px;
     background-color: white;
@@ -86,18 +76,26 @@ body, html {
     color: #022a54f0;
     font-size: 15px;
     font-family: bolder;
+    cursor: pointer;
+    text-align: center; 
+    margin-top: 10px;
+    position: relative; 
 }
 
 .profile-img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70%;
-    width: 70%;
+    text-align: center;
+    height: 50%;
+    width: 50%;
     position: relative;
-    left: 0;
-    border: 5px solid #022a54f0;
-    border-radius: 300px;
+    border: 10px solid #022a54f0;
+    border-radius: 500px;
     overflow: hidden;
     margin-left: 50px;
+}
+
+.profile-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-left: 5px solid #022a54f0;
 }
