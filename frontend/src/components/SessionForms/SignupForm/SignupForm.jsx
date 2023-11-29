@@ -72,6 +72,7 @@ const SignupForm = () => {
 
       <div className='inputs'>
 
+        <div className='name-inputs'>
         <div className="errors">{errors?.firstName}</div>
         <label>
           <span>First Name</span>
@@ -93,6 +94,7 @@ const SignupForm = () => {
             placeholder="Last Name"
           />
         </label>
+        </div>
 
         <div className="errors">{errors?.email}</div>
         <label>
