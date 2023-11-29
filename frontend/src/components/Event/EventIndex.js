@@ -7,8 +7,6 @@ import NavBar from '../NavBar'
 import EventsMapWrapper, { EventMap } from '../EventMap'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-
-
 const EventIndex = () => {
     const dispatch = useDispatch();
     const events = useSelector(getEvents);
@@ -17,6 +15,32 @@ const EventIndex = () => {
     useEffect(() => {
         dispatch(fetchEvents());
     }, [dispatch]);
+
+    useEffect(() => {
+        const getAddressCoordinates = async (address, apiKey) => {
+        try {
+            const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+    
+            if (data.results.length > 0) {
+                const location = data.results[0].geometry.location;
+                const latitude = location.lat;
+                const longitude = location.lng;
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+            } else {
+                throw new Error('No results found for the provided address.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+    
+        // Example usage
+        const apiKey = process.env.REACT_APP_MAPS_API_KEY;
+        const address = '1600 Amphitheatre Parkway, Mountain View, CA';
+        getAddressCoordinates(address, apiKey);
+    }, []);
 
     const markerEventHandlers = {
         click: (eventId) => {

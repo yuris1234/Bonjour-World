@@ -11,16 +11,18 @@ export const EventMap = ({ mapOptions, events, markerEventHandlers, mapEventHand
         if (!map) {
             // Default values for the map, such as zoom level and center
             const defaultMapOptions = {
-                zoom: 1,
-                center: { lat: 40.7128, lng: -74.0060 } // New York as an example
+                zoom: 11,
+                center: { lat: 40.7128, lng: -74.0060 }, // New York as an example
+                controls: true
             };
-
             // Create a new Google Map object with mapRef as its first argument
             const newMap = new window.google.maps.Map(mapRef.current, {
                 ...defaultMapOptions,
                 ...mapOptions, // Override defaults with provided mapOptions
             });
+
             setMap(newMap);
+            console.log('Map Reference:', mapRef.current);
         }
     }, [mapOptions]);
 
@@ -28,21 +30,20 @@ export const EventMap = ({ mapOptions, events, markerEventHandlers, mapEventHand
         // Create markers for new events and remove markers for events that no longer exist
         const newMarkers = {};
         Object.values(events).forEach((event) => {
-            const { _id, lat, long } = event;
-            const position = new window.google.maps.LatLng(lat, long);
+            const position = new window.google.maps.LatLng(event.lat, event.long);
     
             // Add a null check for markersRef.current
-            if (!markersRef.current || !markersRef.current[_id]) {
+            if (!markersRef.current || !markersRef.current[event._id]) {
                 // If no marker exists for the event, create one
                 const marker = new window.google.maps.Marker({
                     position,
-                    map: mapRef.current,
+                    map
                     // ...other marker options
                 });
-                newMarkers[_id] = marker;
+                newMarkers[event._id] = marker;
             } else {
                 // If a marker already exists for the event, reuse it
-                newMarkers[_id] = markersRef.current[_id];
+                newMarkers[event._id] = markersRef.current[event._id];
             }
         });
     
@@ -54,25 +55,23 @@ export const EventMap = ({ mapOptions, events, markerEventHandlers, mapEventHand
                 }
             });
         }
-    
         // Update the markers ref with the new set of markers
         markersRef.current = newMarkers;
     }, [events]);
     
+    // useEffect(() => {
+    //     // Attach event handlers to the map object
+    //     if (mapEventHandlers && mapRef.current) {
+    //         Object.entries(mapEventHandlers).forEach(([eventName, handler]) => {
+    //             window.google.maps.event.addListener(mapRef.current, eventName, (event) => {
+    //                 // Pass the event object or nothing to the provided handler
+    //                 handler(event || null, mapRef.current);
+    //             });
+    //         });
+    //     }
+    // }, [mapEventHandlers]);
 
-    useEffect(() => {
-        // Attach event handlers to the map object
-        if (mapEventHandlers && mapRef.current) {
-            Object.entries(mapEventHandlers).forEach(([eventName, handler]) => {
-                window.google.maps.event.addListener(mapRef.current, eventName, (event) => {
-                    // Pass the event object or nothing to the provided handler
-                    handler(event || null, mapRef.current);
-                });
-            });
-        }
-    }, [mapEventHandlers]);
-
-    return <div ref={mapRef} style={{ height: '400px', width: '100%' }} />
+    return <div ref={mapRef} style={{ height: '750px', width: '100%' }} />
 }
 
 
