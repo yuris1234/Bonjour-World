@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom'; 
 import './index.css';
 import { closeModal } from "../../../store/modal";
 import { login, clearSessionErrors } from '../../../store/session';
@@ -9,6 +10,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     return () => {
@@ -26,6 +28,7 @@ const LoginForm = () => {
     const res = await dispatch(login({ email, password }))
     if (res.ok){
       dispatch(closeModal())
+      history.push('/events');
     }
   }
 

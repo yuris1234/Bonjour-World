@@ -1,6 +1,7 @@
 import { closeModal } from "../../store/modal";
 import LoginForm from "../SessionForms/LoginForm/LoginForm";
 import SignupForm from "../SessionForms/SignupForm/SignupForm";
+import EventForm from "../Event/EventForm";
 import "./modal.css";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,11 +19,15 @@ const Modal = () => {
   switch (modal) {
     case "login":
       component = <LoginForm modal={"null"} />;
-      modalClass = "login-modal"
+      modalClass = "login-modal";
       break;
     case "signup":
       component = <SignupForm modal={"null"} />;
       modalClass = "signup-modal";
+      break;
+    case "createEvent":
+      component = <EventForm modal={"null"} />;
+      modalClass = "create-event-modal";
       break;
     default:
       return null;

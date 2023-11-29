@@ -1,0 +1,85 @@
+.create-event-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  height: 700px;
+  width: 750px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-form {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-form h2 {
+  color: #022a54;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.event-form .inputs {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.event-form .right-column {
+  margin-right: 65px;
+}
+
+.event-form .errors {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 0.7rem;
+}
+
+.event-form label {
+  color: #022a54f0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.event-form input {
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 5px;
+  background-color: white;
+  color: #022a54f0;
+  border: 1px solid #022a54f0;
+  width: 120%;
+}
+
+.event-form input::placeholder {
+  color: gray;
+}
+
+.event-form input[type="submit"] {
+  background-color: #022a54f0;
+  color: white;
+  cursor: pointer;
+  width: 50%;
+  height: 6%;
+  margin-top: 40px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.event-form input[type="submit"]:hover {
+  transform: scale(1.05);
+}
