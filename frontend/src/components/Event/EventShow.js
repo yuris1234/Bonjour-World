@@ -1,18 +1,40 @@
-import { useDebugValue, useEffect } from 'react';
+import { useDebugValue, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent } from '../../store/events';
 import NavBar from '../NavBar';
 import "./EventShow.css"
+import { addEventJoin } from '../../store/users';
+import { getCurrentUser } from '../../store/session';
 
 const EventShow = () => {
     const dispatch = useDispatch();
     const { eventId } = useParams();
     const event = useSelector(getEvent(eventId))
+    const user = useSelector((state) => state.session.user);
+    const [subscribed, setSubscribed] = useState(false)
 
     useEffect(() => {
-        dispatch(fetchEvent(eventId))
-    },[])
+        dispatch(getCurrentUser());
+        dispatch(fetchEvent(eventId));
+    },[eventId])
+
+    useEffect(() => {
+        if (user.events) {
+            setSubscribed(user.events.includes(eventId) ? true : false)
+        }
+    },[user])
+
+    const handleJoin = (e) => {
+        e.preventDefault();
+        setSubscribed(true);
+        dispatch(addEventJoin(user._id, eventId));
+    }
+
+    const handleUnjoin = (e) => {
+        e.preventDefault();
+        // dispatch(removeEventJoin(user._id, eventId));
+    }
 
     return (
         <>
@@ -61,6 +83,12 @@ const EventShow = () => {
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
+                        {!subscribed && 
+                            <button className="event-language" onClick={handleJoin}>+ Join </button>
+                        }
+                        {subscribed && 
+                            <button class="event-language" onClick={handleUnjoin}>Joined</button>
+                        }
                     </ul>
                 </div>
             </div>
