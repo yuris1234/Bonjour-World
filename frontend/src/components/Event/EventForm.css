@@ -39,7 +39,7 @@
 }
 
 .event-form .right-column {
-  margin-right: 65px;
+  /* margin-right: 65px; */
 }
 
 .event-form .errors {
@@ -62,7 +62,7 @@
   background-color: white;
   color: #022a54f0;
   border: 1px solid #022a54f0;
-  width: 120%;
+  width: 200px;
 }
 
 .event-form input::placeholder {
