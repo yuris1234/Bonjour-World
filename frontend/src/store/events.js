@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import { RECEIVE_EVENT_JOIN } from "./users";
 
 export const RECEIVE_EVENTS = "events/RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "events/RECEIVE_EVENT";
@@ -128,6 +129,8 @@ const eventsReducer = (state = {}, action) => {
       const newState = { ...state };
       delete newState[action.eventId];
       return newState;
+    case RECEIVE_EVENT_JOIN:
+      return {...state, [action.eventJoin.event._id]: action.eventJoin.event}
     default:
       return state;
   }
