@@ -41,7 +41,7 @@ export const clearEventErrors = (errors) => ({
 export const getEvent = (eventId) => (state) =>
   state.events ? state.events[eventId] : null;
 export const getEvents = (state) =>
-  state.events ? Object.values(state.events) : [];
+  state.events ? state.events : [];
 
 export const fetchEvents = () => async (dispatch) => {
   const res = await jwtFetch(`/api/events`);
