@@ -74,6 +74,7 @@ const EventForm = () => {
       date: formattedDate,
       time,
     };
+    debugger
 
     eventType === "Create Event"
       ? dispatch(createEvent(updatedEvent))
@@ -219,11 +220,7 @@ const EventForm = () => {
             <div className="errors">{errors?.description}</div>
             <label>
               Description
-              <input
-                type="text"
-                value={description}
-                onChange={update("description")}
-              />
+              <textarea value={description} onChange={update("description")} />
             </label>
 
             <div className="errors">{errors?.language}</div>
