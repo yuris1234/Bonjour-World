@@ -23,7 +23,6 @@ html, body {
 }
   
 .event-info-list div {
-    font-family: Helvetica;
     font-size: 20px;
     color: #022a54f0;
     padding: 5px;
@@ -130,7 +129,6 @@ html, body {
     background-color: #022a54f0;
     color: white;
     border-radius: 30px;
-    font-family: 'Comic Sans MS', cursive;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
     text-align: center;
