@@ -29,6 +29,14 @@ export const addEventJoin = (userId, eventId) => async (dispatch) => {
   }
 }
 
+export const removeEventJoin = (userId, eventId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${userId}/events/${eventId}`, {method: "DELETE"})
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(receiveEventJoin(data));
+  }
+}
+
 export const fetchUser = (userId) => async (dispatch) => {
     const res = await jwtFetch(`/api/users/${userId}`);
     if (res.ok) {
