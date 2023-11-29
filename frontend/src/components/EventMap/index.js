@@ -76,10 +76,10 @@ export const EventMap = ({ mapOptions, events, markerEventHandlers, mapEventHand
 }
 
 
-const EventsMapWrapper = ({ events }) => {
+const EventsMapWrapper = ({ events, mapEventHandlers, markerEventHandlers}) => {
     return (
         <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}  >
-            <EventMap events={events} />
+            <EventMap events={events} mapEventHandlers={mapEventHandlers} markerEventHandlers={markerEventHandlers}/>
         </Wrapper>
     );
 };
