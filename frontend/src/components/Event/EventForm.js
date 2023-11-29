@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "./EventForm.css"
+import "./EventForm.css";
 import {
   getEvent,
   fetchEvent,
@@ -39,8 +39,8 @@ const EventForm = () => {
   const [city, setCity] = useState(event.city);
   const [address, setAddress] = useState(event.address);
   const [zipcode, setZipcode] = useState(event.zipcode);
-  const [lat, setLat] = useState(event.zipcode);
-  const [long, setLong] = useState(event.zipcode);
+  const [lat, setLat] = useState(event.lat);
+  const [long, setLong] = useState(event.long);
   const [date, setDate] = useState(event.date);
   const [time, setTime] = useState(event.time);
   const [host, setHost] = useState(event.host);
@@ -128,81 +128,93 @@ const EventForm = () => {
     <form className="event-form" onSubmit={handleSubmit}>
       <h2>{eventType}</h2>
 
-      <div className="errors">{errors?.title}</div>
-      <label>
-        Title
-        <input type="text" value={title} onChange={update("title")} />
-      </label>
+      <div className="inputs">
+        <div className="left-column">
+          <div className="errors">{errors?.title}</div>
+          <div className="column">
+            <label>
+              Title
+              <input type="text" value={title} onChange={update("title")} />
+            </label>
 
-      <div className="errors">{errors?.description}</div>
-      <label>
-        Description
-        <input
-          type="text"
-          value={description}
-          onChange={update("description")}
-        />
-      </label>
+            <div className="errors">{errors?.description}</div>
+            <label>
+              Description
+              <input
+                type="text"
+                value={description}
+                onChange={update("description")}
+              />
+            </label>
 
-      <div className="errors">{errors?.language}</div>
-      <label>
-        Language
-        <input type="text" value={language} onChange={update("language")} />
-      </label>
+            <div className="errors">{errors?.language}</div>
+            <label>
+              Language
+              <input
+                type="text"
+                value={language}
+                onChange={update("language")}
+              />
+            </label>
 
-      <div className="errors">{errors?.state}</div>
-      <label>
-        State
-        <input type="text" value={state} onChange={update("state")} />
-      </label>
+            <div className="errors">{errors?.state}</div>
+            <label>
+              State
+              <input type="text" value={state} onChange={update("state")} />
+            </label>
 
-      <div className="errors">{errors?.city}</div>
-      <label>
-        City
-        <input type="text" value={city} onChange={update("city")} />
-      </label>
+            <div className="errors">{errors?.city}</div>
+            <label>
+              City
+              <input type="text" value={city} onChange={update("city")} />
+            </label>
 
-      <div className="errors">{errors?.address}</div>
-      <label>
-        Address
-        <input type="text" value={address} onChange={update("address")} />
-      </label>
+            <div className="errors">{errors?.address}</div>
+            <label>
+              Address
+              <input type="text" value={address} onChange={update("address")} />
+            </label>
+          </div>
+        </div>
 
-      <div className="errors">{errors?.zipcode}</div>
-      <label>
-        Zipcode
-        <input type="text" value={zipcode} onChange={update("zipcode")} />
-      </label>
+        <div className="right-column">
+          <div className="errors">{errors?.zipcode}</div>
+          <label>
+            Zipcode
+            <input type="text" value={zipcode} onChange={update("zipcode")} />
+          </label>
 
-      <div className="errors">{errors?.lat}</div>
-      <label>
-        Lat
-        <input type="text" value={lat} onChange={update("lat")} />
-      </label>
+          <div className="errors">{errors?.lat}</div>
+          <label>
+            Lat
+            <input type="text" value={lat} onChange={update("lat")} />
+          </label>
 
-      <div className="errors">{errors?.long}</div>
-      <label>
-        Long
-        <input type="text" value={long} onChange={update("long")} />
-      </label>
+          <div className="errors">{errors?.long}</div>
+          <label>
+            Long
+            <input type="text" value={long} onChange={update("long")} />
+          </label>
 
-      <div className="errors">{errors?.date}</div>
-      <label>
-        Date
-        <input type="text" value={date} onChange={update("date")} />
-      </label>
+          <div className="errors">{errors?.date}</div>
+          <label>
+            Date
+            <input type="text" value={date} onChange={update("date")} />
+          </label>
 
-      <div className="errors">{errors?.time}</div>
-      <label>
-        Time
-        <input type="text" value={time} onChange={update("time")} />
-      </label>
+          <div className="errors">{errors?.time}</div>
+          <label>
+            Time
+            <input type="text" value={time} onChange={update("time")} />
+          </label>
 
-      <div className="errors">{errors?.host}</div>
-      <label>
-        Host
-        <input type="text" value={host} onChange={update("host")} />
-      </label>
+          <div className="errors">{errors?.host}</div>
+          <label>
+            Host
+            <input type="text" value={host} onChange={update("host")} />
+          </label>
+        </div>
+      </div>
 
       <input type="submit" value={eventType} />
     </form>
