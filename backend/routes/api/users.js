@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Event = mongoose.model('Event');
 const passport = require('passport');
 const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
@@ -15,16 +16,6 @@ router.get('/', async (req, res, next) => {
   const users = await User.find();
   res.json(users);
 });
-
-// GET /api/users/:id
-router.get('/:id', async (req, res, next) => {
-  try {
-    const user = await User.findById(req.params.id);
-    return res.json(user);
-  } catch {
-    return res.json({message: "hello from get user"})
-  }
-})
 
 // GET /api/users/current
 router.get('/current', restoreUser, (req, res) => {
@@ -39,9 +30,24 @@ router.get('/current', restoreUser, (req, res) => {
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
+    events: req.user.events,
+    hostedEvents: req.user.hostedEvents
   });
 });
+
+// GET /api/users/:id
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    return res.json(user);
+  } catch {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+}
+})
 
 // POST /api/users/register
 router.post('/register', validateRegisterInput, async (req, res, next) => {
@@ -107,7 +113,7 @@ router.patch('/:id', validateUserInput, async (req, res, next) => {
   try {
     let user = await User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
     user = await user.populate('events');
-    console.log(user)
+    // console.log(user)
     return res.json(user);
   } catch {
     res.json({message: 'error updating user'});
@@ -122,13 +128,23 @@ router.post('/:userId/events/:eventId', async(req, res, next) => {
     if (!user || !event) {
       return res.json({message: 'User or Event not found'});
     }
-    user.events.push(req.params.eventId);
-    event.attendees.push(req.params.userId);
-    await user.save();
-    await event.save();
-    return res.json({message: 'User added to event'});
+    if (!user.events.includes(req.params.eventId)) {
+      user.events.push(req.params.eventId);
+      event.attendees.push(req.params.userId);
+      await user.save();
+      await event.save();
+    } else {
+      const error = new Error('User has already joined this event');
+      error.statusCode = 400;
+      error.errors = {message: 'User has already joined this event'};
+      return next(error);
+    }
+    return res.json({user: user, event: event});
   } catch {
-    return res.json({message: 'Error adding user to event'})
+    const error = new Error('Event or User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No event or user found with that id" };
+    return next(error);
   }
 })
 
@@ -141,7 +157,7 @@ router.delete('/:userId/events/:eventId', async (req, res, next) => {
       return res.json({message: 'User or Event not found'});
     }
     user.events.pull(req.params.eventId);
-    event.attendees.pull(req.params.userId);
+    event.attendees.pull(req.params.userId);  
     await user.save();
     await event.save();
 
