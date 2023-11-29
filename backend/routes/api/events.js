@@ -9,9 +9,7 @@ const validateEventCreation = require('../../validations/event');
 // GET /api/events/:id
 router.get('/:id', async (req, res, next) => {
     try {
-        const event = await Event.findById(req.params.id).populate('host', '_id username')
-        await event.populate('attendees', '_id username');
-        await event.populate('host', '_id username');
+        const event = await Event.findById(req.params.id)
         return res.json(event)
     }
     catch(err) {
@@ -25,7 +23,6 @@ router.get('/:id', async (req, res, next) => {
 // GET /api/events
 router.get('/', async (req, res, next) => {
     const events = await Event.find();
-    console.log(events)
     return res.json(events);
 });
 
