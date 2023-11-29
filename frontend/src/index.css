@@ -2,5 +2,10 @@
 @import './reset.css';
 
 body {
-  font-family: Helvetica;
+  font-family: Geneva, Tahoma, sans-serif;
 }
+
+/* @font-face {
+  font-family: 'BrandierTrial-SemiBoldItalic';
+  src: url('./fonts/brandier/') format('truetype');
+} */
