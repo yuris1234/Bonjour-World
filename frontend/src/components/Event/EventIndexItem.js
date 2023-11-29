@@ -1,15 +1,17 @@
 import React from 'react';
 import './EventIndexItem.css'
-// import { Link } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import { deleteEvent } from '../../store/events';
+import { useHistory } from 'react-router-dom';
 
 const EventIndexItem = ({ event }) => {
+    const history = useHistory();
 
+    const redirectShow = () => {
+        history.push(`/events/${event._id}`)
+    }
 
     return (
         <>
-            <div className="event-item">
+            <div className="event-item" onClick={redirectShow}>
                 <div className="event-item-time">{event.title}</div>
                 <br />
                 <div className="event-item-description">{event.description}</div>
