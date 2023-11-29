@@ -156,15 +156,23 @@ router.delete('/:userId/events/:eventId', async (req, res, next) => {
     if (!user || !event) {
       return res.json({message: 'User or Event not found'});
     }
-    user.events.pull(req.params.eventId);
-    event.attendees.pull(req.params.userId);  
-    await user.save();
-    await event.save();
-
-
-    return res.json({message: 'Event deleted for user'});
+    if (user.events.includes(req.params.eventId)) {
+      user.events.pull(req.params.eventId);
+      event.attendees.pull(req.params.userId);  
+      await user.save();
+      await event.save();
+    } else {
+      const error = new Error('User has not joined this event');
+      error.statusCode = 400;
+      error.errors = {message: 'User has not joined this event'};
+      return next(error);
+    }
+    return res.json({user: user, event: event});
   } catch {
-    return res.json({message: 'Error deleting event for user'})
+    const error = new Error('Event or User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No event or user found with that id" };
+    return next(error);
   }
 })
 
