@@ -41,7 +41,7 @@
 .logged-in-links a {
     margin-left: 10px;
     border: none;
-    color: #354c7c;
+    color: #022a54f0;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -57,7 +57,7 @@
 .create-event-button {
     margin-left: 10px;
     border: none;
-    color: #354c7c;
+    color: #022a54f0;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -72,13 +72,17 @@
 }
 
 .logout-button {
-    height: 25px;
+    height: 30px;
     width: 80px;
     margin-left: 10px;
     font-weight: bold;
     border: none;
     border-radius: 3ch;
     cursor: pointer;
-    background-color: #354c7c;
+    background-color: #022a54f0;
     color: white;
+}
+
+.logout-button:hover {
+    transform: scale(1.05);
 }
