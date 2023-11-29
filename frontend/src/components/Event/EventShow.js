@@ -106,10 +106,10 @@ const EventShow = () => {
                         </div>
                         {hostShow && <button class="event-language" onClick={handleModal}>Edit Event</button>}
                         {!subscribed && 
-                            <button className="event-language" onClick={handleJoin}>+ Join </button>
+                            <button className="join-event" onClick={handleJoin}>+ Join </button>
                         }
                         {subscribed && 
-                            <button class="event-language" onClick={handleUnjoin}>Joined</button>
+                            <button class="unjoin-event" onClick={handleUnjoin}>Joined</button>
                         }
                     </ul>
                 </div>

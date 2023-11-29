@@ -38,10 +38,6 @@
   width: 100%;
 }
 
-.event-form .right-column {
-  /* margin-right: 65px; */
-}
-
 .event-form .errors {
   color: red;
   margin-bottom: 10px;
