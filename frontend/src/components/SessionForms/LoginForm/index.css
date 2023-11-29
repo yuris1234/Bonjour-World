@@ -75,3 +75,11 @@
   cursor: not-allowed;
   width: 55%;
 }
+
+.login-form input[type="submit"]:hover {
+  transform: scale(1.05);
+}
+
+.login-form input[type="submit"]:disabled {
+  transform: none;
+}
