@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: transparent;
-  height: 650px;
+  height: 700px;
   width: 750px;
   border-radius: 10px;
   display: flex;
@@ -74,14 +74,12 @@
   color: white;
   cursor: pointer;
   width: 50%;
+  height: 6%;
   margin-top: 40px;
   border-radius: 10px;
+  font-weight: bold;
 }
 
-.event-form input[type="submit"]:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  width: 50%;
-  margin-top: 40px;
-  border-radius: 10px;
+.event-form input[type="submit"]:hover {
+  transform: scale(1.05);
 }
