@@ -9,59 +9,50 @@ import {
   updateEvent,
   clearEventErrors,
 } from "../../store/events";
+import { closeModal } from "../../store/modal";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const EventForm = () => {
+const EventUpdateForm = ({eventId}) => {
   const errors = useSelector((state) => state.errors.event);
+  const history = useHistory()
 
-  const { eventId } = useParams();
-  const eventType = eventId ? "Update Event" : "Create Event";
+  // const { eventId } = useParams();
+  // const eventType = eventId ? "Update Event" : "Create Event";
   let event = useSelector(getEvent(eventId));
-  if (eventType === "Create Event")
-    event = {
-      title: "",
-      description: "",
-      language: "",
-      state: "",
-      city: "",
-      address: "",
-      zipcode: "",
-      lat: "",
-      long: "",
-      date: "",
-      time: "",
-      host: "",
-    };
 
-  const [title, setTitle] = useState(event.title);
-  const [description, setDescription] = useState(event.description);
-  const [language, setLanguage] = useState(event.language);
-  const [state, setState] = useState(event.state);
-  const [city, setCity] = useState(event.city);
-  const [address, setAddress] = useState(event.address);
-  const [zipcode, setZipcode] = useState(event.zipcode);
-  const [lat, setLat] = useState(event.lat);
-  const [long, setLong] = useState(event.long);
-  const [date, setDate] = useState(
-    event.date ? new Date(event.date) : new Date()
-  );
-  const [time, setTime] = useState(event.time);
+  const [title, setTitle] = useState(event?.title);
+  const [description, setDescription] = useState(event?.description);
+  const [language, setLanguage] = useState(event?.language);
+  const [state, setState] = useState(event?.state);
+  const [city, setCity] = useState(event?.city);
+  const [address, setAddress] = useState(event?.address);
+  const [zipcode, setZipcode] = useState(event?.zipcode);
+  const [lat, setLat] = useState(event?.lat);
+  const [long, setLong] = useState(event?.long);
+  const [date, setDate] = useState(event?.date);
+  const [time, setTime] = useState(event?.time);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (eventId) {
       dispatch(fetchEvent(eventId));
     }
-  }, [dispatch, eventId]);
+    if (event) {
+      const newDate = formatDate(new Date(date))
+      setDate(newDate);
+    }
+  }, [eventId]);
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
   }, [dispatch]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedDate = formatDate(date);
 
     const updatedEvent = {
+      ...event,
       title,
       description,
       language,
@@ -71,13 +62,23 @@ const EventForm = () => {
       zipcode,
       lat,
       long,
-      date: formattedDate,
+      date,
       time,
     };
-
-    eventType === "Create Event"
-      ? dispatch(createEvent(updatedEvent))
-      : dispatch(updateEvent(updatedEvent));
+    const res = await dispatch(updateEvent(updatedEvent));
+    // debugger
+    if (res.ok) {
+        dispatch(closeModal())
+        history.push(`/events/${eventId}`);
+    }
+  };
+  
+  const formatDate = (inputDate) => {
+    const year = inputDate.getFullYear();
+    const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(inputDate.getDate()).padStart(2, '0');
+  
+    return `${year}-${month}-${day}`;
   };
 
   const update = (field) => {
@@ -176,23 +177,27 @@ const EventForm = () => {
     "Wyoming",
   ];
 
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
+  // const formatDate = (e) => {
+  //   const updatedDate = date.toISOString().substring(0, 10),
+  //   field = document.querySelector('#date');
+  //   field.value = updatedDate;
+  // }
 
   const generateTimeOptions = () => {
     const timeOptions = [];
     const interval = 15;
 
-    for (let hour = 7; hour < 20; hour++) {
+    for (let hour = 7; hour <= 20; hour++) {
       for (let minute = 0; minute < 60; minute += interval) {
         const formattedHour = hour.toString().padStart(2, "0");
         const formattedMinute = minute.toString().padStart(2, "0");
-        const formattedTime = `${formattedHour}:${formattedMinute}`;
+        const formattedTime = `${formattedHour}:${formattedMinute}`;  
         timeOptions.push(
+          time === formattedTime ? 
+          <option key={formattedTime} value={formattedTime} selected>
+            {formattedTime}
+          </option>
+          :
           <option key={formattedTime} value={formattedTime}>
             {formattedTime}
           </option>
@@ -205,7 +210,7 @@ const EventForm = () => {
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>{eventType}</h2>
+      <h2>Edit Event</h2>
 
       <div className="inputs">
         <div className="left-column">
@@ -282,10 +287,9 @@ const EventForm = () => {
             Date
             <input
               type="date"
-              value={formatDate(date)}
+              value={date}
               onChange={(e) => {
-                setDate(new Date(e.target.value));
-                update("date");
+                setDate(e.target.value);
               }}
             />
           </label>
@@ -294,16 +298,16 @@ const EventForm = () => {
           <label>
             Time
             <select value={time} onChange={update("time")}>
-              <option value="">Select Time</option>
+              <option disabled value="">Select Time</option>
               {generateTimeOptions()}
             </select>
           </label>
         </div>
       </div>
 
-      <input type="submit" value={eventType} />
+      <input type="submit" value="Update Event" />
     </form>
   );
 };
 
-export default EventForm;
+export default EventUpdateForm;

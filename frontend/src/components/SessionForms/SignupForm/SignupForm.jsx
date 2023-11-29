@@ -5,6 +5,8 @@ import { closeModal } from "../../../store/modal";
 import { signup, clearSessionErrors } from '../../../store/session';
 
 const SignupForm = () => {
+    const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -22,6 +24,12 @@ const SignupForm = () => {
     let setState;
 
     switch (field) {
+      case 'firstName':
+        setState = setFirstName;
+        break;
+      case 'lastName':
+        setState = setLastName;
+        break;
       case 'email':
         setState = setEmail;
         break;
@@ -44,6 +52,8 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
+      firstName,
+      lastName,
       email,
       username,
       password
@@ -61,6 +71,31 @@ const SignupForm = () => {
 
 
       <div className='inputs'>
+
+        <div className='name-inputs'>
+        <div className="errors">{errors?.firstName}</div>
+        <label>
+          <span>First Name</span>
+          <input
+            type="text"
+            value={firstName}
+            onChange={update('firstName')}
+            placeholder="First Name"
+          />
+        </label>
+
+        <div className="errors">{errors?.lastName}</div>
+        <label>
+          <span>Last Name</span>
+          <input
+            type="text"
+            value={lastName}
+            onChange={update('lastName')}
+            placeholder="Last Name"
+          />
+        </label>
+        </div>
+
         <div className="errors">{errors?.email}</div>
         <label>
           <span>Email</span>
@@ -70,6 +105,7 @@ const SignupForm = () => {
             placeholder="Email"
           />
         </label>
+
         <div className="errors">{errors?.username}</div>
         <label>
           <span>Username</span>
@@ -79,6 +115,7 @@ const SignupForm = () => {
             placeholder="Username"
           />
         </label>
+
         <div className="errors">{errors?.password}</div>
         <label>
           <span>Password</span>
@@ -88,6 +125,7 @@ const SignupForm = () => {
             placeholder="Password"
           />
         </label>
+        
         <div className="errors">
           {password !== passwordConfirmation && 'Confirm Password field must match'}
         </div>

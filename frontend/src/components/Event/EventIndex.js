@@ -76,8 +76,11 @@ const EventIndex = () => {
                 </div>
                 </div>
                 <div className="display-all-events">
-                    {events.map((event) => (
-                        <EventIndexItem key={event.id} event={event} />
+                    {Object.values(events).map((event) => (
+                        <EventIndexItem
+                            key={event._id}
+                            event={event}
+                        />
                     ))}
                 </div>
             </div>

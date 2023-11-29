@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import { RECEIVE_EVENT_JOIN } from "./users";
 
 export const RECEIVE_EVENTS = "events/RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "events/RECEIVE_EVENT";
@@ -41,7 +42,7 @@ export const clearEventErrors = (errors) => ({
 export const getEvent = (eventId) => (state) =>
   state.events ? state.events[eventId] : null;
 export const getEvents = (state) =>
-  state.events ? Object.values(state.events) : [];
+  state.events ? state.events : [];
 
 export const fetchEvents = () => async (dispatch) => {
   const res = await jwtFetch(`/api/events`);
@@ -53,6 +54,7 @@ export const fetchEvents = () => async (dispatch) => {
 };
 
 export const fetchEvent = (eventId) => async (dispatch) => {
+  // debugger
   const res = await jwtFetch(`/api/events/${eventId}`);
 
   if (res.ok) {
@@ -78,8 +80,9 @@ export const createEvent = (data) => async (dispatch) => {
 };
 
 export const updateEvent = (event) => async (dispatch) => {
-  const res = await jwtFetch(`/api/events/${event.id}`, {
-    method: "PUT",
+  // debugger
+  const res = await jwtFetch(`/api/events/${event._id}`, {
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
     },
@@ -89,6 +92,7 @@ export const updateEvent = (event) => async (dispatch) => {
   if (res.ok) {
     const event = await res.json();
     dispatch(recieveEvent(event));
+    return res;
   }
 };
 
@@ -122,11 +126,13 @@ const eventsReducer = (state = {}, action) => {
     case RECEIVE_EVENTS:
       return { ...action.events };
     case RECEIVE_EVENT:
-      return { ...state, [action.event.id]: action.event };
+      return { ...state, [action.event._id]: action.event };
     case REMOVE_EVENT:
       const newState = { ...state };
       delete newState[action.eventId];
       return newState;
+    case RECEIVE_EVENT_JOIN:
+      return {...state, [action.eventJoin.event._id]: action.eventJoin.event}
     default:
       return state;
   }

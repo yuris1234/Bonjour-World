@@ -3,20 +3,21 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Event = mongoose.model('Event');
 const passport = require('passport');
 const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
+const validateUserInput = require('../../validations/user')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.json({
-    
-    message: "GET /api/users"
-  });
+router.get('/', async (req, res, next) => {
+  const users = await User.find();
+  res.json(users);
 });
 
+// GET /api/users/current
 router.get('/current', restoreUser, (req, res) => {
   if (!isProduction) {
     // In development, allow React server to gain access to the CSRF token
@@ -29,9 +30,24 @@ router.get('/current', restoreUser, (req, res) => {
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
+    events: req.user.events,
+    hostedEvents: req.user.hostedEvents
   });
 });
+
+// GET /api/users/:id
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    return res.json(user);
+  } catch {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+}
+})
 
 // POST /api/users/register
 router.post('/register', validateRegisterInput, async (req, res, next) => {
@@ -91,5 +107,87 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
     return res.json(await loginUser(user)); // <-- THIS IS THE CHANGED LINE
   })(req, res, next);
 });
+
+// UPDATE /api/users/:id
+router.patch('/:id', validateUserInput, async (req, res, next) => {
+  try {
+    let user = await User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
+    user = await user.populate('events');
+    // console.log(user)
+    return res.json(user);
+  } catch {
+    res.json({message: 'error updating user'});
+  }
+})
+
+// POST /api/users/:id/events/:id (post a many to many relationship)
+router.post('/:userId/events/:eventId', async(req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const event = await Event.findById(req.params.eventId);
+    if (!user || !event) {
+      return res.json({message: 'User or Event not found'});
+    }
+    if (!user.events.includes(req.params.eventId)) {
+      user.events.push(req.params.eventId);
+      event.attendees.push(req.params.userId);
+      await user.save();
+      await event.save();
+    } else {
+      const error = new Error('User has already joined this event');
+      error.statusCode = 400;
+      error.errors = {message: 'User has already joined this event'};
+      return next(error);
+    }
+    return res.json({user: user, event: event});
+  } catch {
+    const error = new Error('Event or User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No event or user found with that id" };
+    return next(error);
+  }
+})
+
+// DELETE /api/users/:id/events/:id (delete a many to many relationship)
+router.delete('/:userId/events/:eventId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const event = await Event.findById(req.params.eventId);
+    if (!user || !event) {
+      return res.json({message: 'User or Event not found'});
+    }
+    if (user.events.includes(req.params.eventId)) {
+      user.events.pull(req.params.eventId);
+      event.attendees.pull(req.params.userId);  
+      await user.save();
+      await event.save();
+    } else {
+      const error = new Error('User has not joined this event');
+      error.statusCode = 400;
+      error.errors = {message: 'User has not joined this event'};
+      return next(error);
+    }
+    return res.json({user: user, event: event});
+  } catch {
+    const error = new Error('Event or User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No event or user found with that id" };
+    return next(error);
+  }
+})
+
+// DELETE /api/users/:id
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id)
+    if (user) {
+        return res.json(user);
+    } else {
+        return res.json({message: 'user not found'})
+    }
+} catch {
+    res.json({message: 'error deleting user'});
+}
+})
 
 module.exports = router;

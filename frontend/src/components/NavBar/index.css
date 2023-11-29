@@ -2,34 +2,68 @@
     height: 50px;
     display: flex;
     justify-content: space-between;
-    margin: 0 10px;
+    padding: 0 10px;
     align-items: center;
     position: relative;
+    background-color: #022A54;
 }
 
 .nav-bar-header {
-    font-size: 30px;
-    font-family: Helvetica;
+    font-size: 2rem;
     margin: 0px;
-    color: #022a54f0;
+    color: white;
 }
 
-/* logged out nav */
+.no-underline {
+    text-decoration: none;
+}
+
+/* logged out nav links */
+
+.logged-out-links {
+    display: flex;
+    align-items: center;
+}
 
 .logged-out-links .signup-button, .login-button {
     height: 25px;
     width: 100px;
     margin-left: 10px;
     font-weight: bold;
-    border: 2px solid #022a54f0;
+    border: 2px solid white;
     border-radius: 3ch;
     background-color: transparent;
-    color: #022a54f0;
+    color: white;
     cursor: pointer;
-    font-family: Helvetica;
 }
 
-/* logged in nav */
+ .signup-button:hover,
+ .login-button:hover {
+     transform: scale(1.05);
+ }
+
+ .logged-out-links a {
+     margin-left: 10px;
+     border: none;
+     color: white;
+     cursor: pointer;
+     text-decoration: none;
+     white-space: nowrap;
+     display: inline-block;
+     text-align: center;
+     font-size: 1rem;
+ }
+
+ .logged-out-links a:hover {
+     text-decoration: underline;
+ }
+
+/* logged in nav links */
+
+.logged-in-links {
+    display: flex;
+    align-items: center;
+}
 
 .all-events {
     display: flex;
@@ -39,26 +73,48 @@
 .logged-in-links a {
     margin-left: 10px;
     border: none;
-    color: #354c7c;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
     display: inline-block;
     text-align: center;
+    font-size: 1rem;
 }
 
 .logged-in-links a:hover {
     text-decoration: underline;
 }
 
-.logged-in-links button {
-    height: 25px;
+.create-event-button {
+    margin-left: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    background: transparent;
+    font-size: 1rem;
+}
+
+.create-event-button:hover {
+    text-decoration: underline;
+}
+
+.logout-button {
+    height: 30px;
     width: 80px;
     margin-left: 10px;
     font-weight: bold;
     border: none;
     border-radius: 3ch;
     cursor: pointer;
-    background-color: #354c7c;
-    color: white;
+    background-color: white;
+    color: #022a54f0;
+}
+
+.logout-button:hover {
+    transform: scale(1.05);
 }
