@@ -18,7 +18,8 @@ const Globe = () => {
     const renderer = new THREE.WebGLRenderer();
 
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setClearColor(0xffffff);
+    renderer.setClearColor(new THREE.Color(0, 0, 0, 0), 0);
+
     container.appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();

@@ -52,7 +52,7 @@ const EventShow = () => {
                             </div>
                         </div>
 
-                        <span class="event-language">{event?.language}</span>
+                        <span className="event-language">{event?.language}</span>
 
                         <div className="event-description-div">Description
                             <div className="event-description">{event?.description}</div>

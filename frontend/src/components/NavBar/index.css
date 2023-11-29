@@ -2,32 +2,38 @@
     height: 50px;
     display: flex;
     justify-content: space-between;
-    margin: 0 10px;
+    padding: 0 10px;
     align-items: center;
     position: relative;
+    background-color: #022a54f0;
 }
 
 .nav-bar-header {
     font-size: 2rem;
     margin: 0px;
-    color: #022a54f0;
+    color: white;
 }
 
 .no-underline {
     text-decoration: none;
 }
 
-/* logged out nav */
+/* logged out nav links */
+
+.logged-out-links {
+    display: flex;
+    align-items: center;
+}
 
 .logged-out-links .signup-button, .login-button {
     height: 25px;
     width: 100px;
     margin-left: 10px;
     font-weight: bold;
-    border: 2px solid #022a54f0;
+    border: 2px solid white;
     border-radius: 3ch;
     background-color: transparent;
-    color: #022a54f0;
+    color: white;
     cursor: pointer;
 }
 
@@ -36,7 +42,28 @@
      transform: scale(1.05);
  }
 
-/* logged in nav */
+ .logged-out-links a {
+     margin-left: 10px;
+     border: none;
+     color: white;
+     cursor: pointer;
+     text-decoration: none;
+     white-space: nowrap;
+     display: inline-block;
+     text-align: center;
+     font-size: 1rem;
+ }
+
+ .logged-out-links a:hover {
+     text-decoration: underline;
+ }
+
+/* logged in nav links */
+
+.logged-in-links {
+    display: flex;
+    align-items: center;
+}
 
 .all-events {
     display: flex;
@@ -46,7 +73,7 @@
 .logged-in-links a {
     margin-left: 10px;
     border: none;
-    color: #022a54f0;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -62,7 +89,7 @@
 .create-event-button {
     margin-left: 10px;
     border: none;
-    color: #022a54f0;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -84,8 +111,8 @@
     border: none;
     border-radius: 3ch;
     cursor: pointer;
-    background-color: #022a54f0;
-    color: white;
+    background-color: white;
+    color: #022a54f0;
 }
 
 .logout-button:hover {
