@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import EventIndexItem from './EventIndexItem';
 import { getEvents, fetchEvents } from '../../store/events';
 import './EventIndex.css';
-import NavBar from '../NavBar'
+import NavBar from '../NavBar';
 
 const EventIndex = () => {
     const dispatch = useDispatch();
@@ -22,7 +22,10 @@ const EventIndex = () => {
                 </div>
                 <div className="display-all-events">
                     {events.map((event) => (
-                        <EventIndexItem key={event.id} event={event} />
+                        <EventIndexItem
+                            key={event._id}
+                            event={event}
+                        />
                     ))}
                 </div>
             </div>

@@ -1,0 +1,139 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+  
+.event-show-index {
+    display: flex;
+    width: 100vw;
+}
+  
+.display-one-event {
+    display: flex;
+    width: 900px;
+    height: 100vh;
+    border-left: 3px solid black;
+    border-top: 3px solid black;
+    overflow: hidden;
+}
+
+.event-info-list span {
+    margin-top: 10px;
+}
+  
+.event-info-list div {
+    font-family: Helvetica;
+    font-size: 20px;
+    color: #022a54f0;
+    padding: 5px;
+}
+  
+.google-maps-show-container {
+    border-top: 3px solid black;
+    padding: 20px;
+    pointer-events: none;
+    height: 100vh;
+    width: 596px;
+}
+
+.event-info-list .event-title {
+    position: relative;
+    border-bottom: 2px solid #022a54f0;
+    height: 100px;
+    width: 820px;
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.event-title-hosted-by {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.event-title-host {
+    font-weight: 100;
+    font-size: 10px;
+}
+
+.event-description-div {
+    font-weight: bolder;
+    margin-left: 10px;
+}
+
+.event-description {
+    font-weight: 100;
+}
+
+.event-date-div {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.event-date {
+    font-weight: 100;
+}
+
+.event-time-div {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.event-time {
+    font-weight: 100;
+}
+
+.event-location-div {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.event-location {
+    font-weight: 100;
+}
+
+.event-address-div {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.event-address {
+    font-weight: 100;
+}
+
+.event-long-div {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.event-long {
+    font-weight: 100;
+}
+
+.event-lat-div {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.event-lat {
+    font-weight: 100;
+}
+
+.event-language {
+    margin-left: 10px;
+    height: auto; 
+    width: auto; 
+    padding: 5px 10px; 
+    display: inline-block;
+    background-color: #022a54f0;
+    color: white;
+    border-radius: 30px;
+    font-family: 'Comic Sans MS', cursive;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+    line-height: 1.5;
+}
+
