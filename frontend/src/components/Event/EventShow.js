@@ -96,12 +96,12 @@ const EventShow = () => {
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
-                        {host && <button class="event-language" onClick={handleModal}>Edit Event</button>}
+                        {host && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
                         {!subscribed && 
-                            <button className="event-language" onClick={handleJoin}>+ Join </button>
+                            <button className="join-event" onClick={handleJoin}>+ Join </button>
                         }
                         {subscribed && 
-                            <button class="event-language" onClick={handleUnjoin}>Joined</button>
+                            <button class="unjoin-event" onClick={handleUnjoin}>Joined</button>
                         }
                     </ul>
                 </div>
