@@ -28,8 +28,8 @@ const users = [];
 users.push(
   new User ({
     username: 'demo-user',
-    email: 'demo-user@appacademy.io',
-    hashedPassword: bcrypt.hashSync('starwars', 10)
+    email: 'demo@demo.com',
+    hashedPassword: bcrypt.hashSync('password', 10)
   })
 )
 
@@ -58,12 +58,11 @@ for (let i = 0; i < NUM_SEED_EVENTS; i++) {
       city: faker.location.city(),
       address: faker.location.streetAddress(),
       zipcode: parseInt(faker.location.zipCode()),
-      lat: faker.number.float(),
-      long: faker.number.float(),
-      date: formatDate(faker.date.future()),
+      lat: 40.7128,
+      long: -74.0060,
+      date: faker.date.future(),
       time: "00:00",
-      host: "6564ba77122569fe91a5ef49",
-      attendees: ["6563a2bb66f7cd8279c661c0","6564fb5d122569fe91a5ef58","6564cbc8122569fe91a5ef4d"]
+      host: "65663fdc660cf7f22d333445"
     })
   )
 }
@@ -82,8 +81,13 @@ mongoose
 const insertSeeds = () => {
     console.log("Resetting db and seeding users and events...");
   
-    Event.collection.drop()
+    User.collection.drop()
       .then(() => User.insertMany(users))
+      .then(() => Event.collection.drop())
+      .then(() => events.forEach((event) => {
+        let user = User.find({email: "demo@demo.com"})
+        event.host = user._id
+      }))
       .then(() => Event.insertMany(events))
       .then(() => {
         console.log("Done!");
