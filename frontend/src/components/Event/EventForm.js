@@ -41,9 +41,10 @@ const EventForm = () => {
   const [zipcode, setZipcode] = useState(event.zipcode);
   const [lat, setLat] = useState(event.lat);
   const [long, setLong] = useState(event.long);
-  const [date, setDate] = useState(event.date);
+  const [date, setDate] = useState(
+    event.date ? new Date(event.date) : new Date()
+  );
   const [time, setTime] = useState(event.time);
-  const [host, setHost] = useState(event.host);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,8 +59,9 @@ const EventForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    event = {
-      ...event,
+    const formattedDate = formatDate(date);
+
+    const updatedEvent = {
       title,
       description,
       language,
@@ -69,13 +71,13 @@ const EventForm = () => {
       zipcode,
       lat,
       long,
-      date,
+      date: formattedDate,
       time,
-      host,
     };
+
     eventType === "Create Event"
-      ? dispatch(createEvent(event))
-      : dispatch(updateEvent(event));
+      ? dispatch(createEvent(updatedEvent))
+      : dispatch(updateEvent(updatedEvent));
   };
 
   const update = (field) => {
@@ -109,13 +111,10 @@ const EventForm = () => {
           setLong(e.currentTarget.value);
           break;
         case "date":
-          setDate(e.currentTarget.value);
+          setDate(new Date(e.target.value));
           break;
         case "time":
           setTime(e.currentTarget.value);
-          break;
-        case "host":
-          setHost(e.currentTarget.value);
           break;
         default:
           console.error("Field name error");
@@ -176,6 +175,13 @@ const EventForm = () => {
     "Wisconsin",
     "Wyoming",
   ];
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
@@ -258,7 +264,14 @@ const EventForm = () => {
           <div className="errors">{errors?.date}</div>
           <label>
             Date
-            <input type="text" value={date} onChange={update("date")} />
+            <input
+              type="date"
+              value={formatDate(date)}
+              onChange={(e) => {
+                setDate(new Date(e.target.value));
+                update("date");
+              }}
+            />
           </label>
 
           <div className="errors">{errors?.time}</div>
