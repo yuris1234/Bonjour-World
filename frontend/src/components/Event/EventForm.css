@@ -1,4 +1,4 @@
-.create-event-modal {
+.create-event-modal  {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -11,6 +11,20 @@
   align-items: center;
   justify-content: center;
 }
+
+.update-event-modal  {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: transparent;
+   height: 600px;
+   width: 750px;
+   border-radius: 10px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
 
 .event-form {
   padding: 20px;
@@ -45,7 +59,7 @@
 }
 
 .event-form label {
-  color: #022a54f0;
+  color: #0A345B;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
@@ -56,8 +70,8 @@
   margin-top: 8px;
   border-radius: 5px;
   background-color: white;
-  color: #022a54f0;
-  border: 1px solid #022a54f0;
+  color: #0A345B;
+  border: 1px solid #0A345B;
   width: 200px;
 }
 
@@ -66,7 +80,7 @@
 }
 
 .event-form input[type="submit"] {
-  background-color: #022a54f0;
+  background-color: #0A345B;
   color: white;
   cursor: pointer;
   width: 50%;

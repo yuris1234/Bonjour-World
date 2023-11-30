@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import NavBar from "../NavBar/index.js";
-import Globe from "../Globe/Globe.js";
+// import Globe from "../Globe/Globe.js";
+import image1 from "../../static/images/img1.png";
+import image2 from "../../static/images/img2.png";
+import image3 from "../../static/images/img3.png";
 
 const SplashPage = () => {
   const changingLanguages = ["en", "ch", "sp", "fr", "ar"];
@@ -27,7 +30,7 @@ const SplashPage = () => {
       text: "Bonjour World is like a passport to linguistic adventures! The platform's events are not just about learning languages but immersing yourself in diverse cultures. The connections I've made and the languages I've learned have enriched my life. Join the revolution! 🗺️ #LingoVoyager - Isabella",
     },
     {
-      text: "I never knew language learning could be this fun and enriching until I discovered Bonjour World! The platform's events are a perfect blend of education and entertainment. My language skills have skyrocketed, and I've gained friends from every corner of the world. Bravo, Bonjour World! 👏 #LanguageLiberator - Oliver",
+      text: "I never knew language learning could be this fun and enriching until I discovered Bonjour World! The platform's events are a perfect blend of education and entertainment. My language skills have skyrocketed, and I've gained friends from every corner of the world. Bravo, Bonjour World! 👏 #LanguageLiberator - Allon",
     },
     {
       text: "Bonjour World is the key to unlocking a multilingual paradise! The platform's events are well-organized, diverse, and filled with passionate language learners. My journey with Bonjour World has been nothing short of amazing. If you're serious about languages, don't miss out! 🌐 #PolyglotUtopia - Emma",
@@ -71,19 +74,23 @@ const SplashPage = () => {
   }
 
   return (
-    <div className="splash-page">
+    <>
       <NavBar />
-      <div className="currentlanguage">{displayCurrentLanguage()}</div>
-      <div className="content-container">
-        <div className="globe-container">
-          <Globe />
-        </div>
-        <div className="slogan review">
-          🌍 "{getRandomReview().text}"
+      <div className="splash-page">
+        <div className="content-container">
+          <div className="currentlanguage">{displayCurrentLanguage()}</div>
+
+          <div className="image-div">
+            <img src={image1} className="image" alt=""></img>
+            <img src={image2} className="image" alt=""></img>
+            <img src={image3} className="image" alt=""></img>
+          </div>
+
+          <div className="review">🌍 "{getRandomReview().text}"</div>
         </div>
       </div>
       <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
-    </div>
+    </>
   );
 };
 

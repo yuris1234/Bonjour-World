@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./EventForm.css";
 import {
@@ -10,7 +10,7 @@ import {
   clearEventErrors,
 } from "../../store/events";
 import { closeModal } from "../../store/modal";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "./EventForm.css";
 
 const EventUpdateForm = ({eventId}) => {
   const errors = useSelector((state) => state.errors.event);
