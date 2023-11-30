@@ -145,6 +145,7 @@ html, body {
     border-radius: 30px;
     text-align: center;
     line-height: 2;
+    cursor: pointer;
 }
 
 .join-event {
@@ -159,6 +160,7 @@ html, body {
     border-radius: 30px;
     text-align: center;
     line-height: 2;
+    cursor: pointer;
 }
 
 .unjoin-event {
@@ -168,9 +170,14 @@ html, body {
     padding: 5px 10px; 
     display: inline-block;
     border: 1px;
-    background-color: #022a54f0;
+    background-color: green;
     color: white;
     border-radius: 30px;
     text-align: center;
     line-height: 2;
+    cursor: pointer;
 }
+
+button:hover {
+    transform: scale(1.05);
+  }
