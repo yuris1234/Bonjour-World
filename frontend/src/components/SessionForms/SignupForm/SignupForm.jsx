@@ -66,38 +66,42 @@ const SignupForm = () => {
   }
 
   return (
-    <form className="signup-form" onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+  <form className="signup-form" onSubmit={handleSubmit}>
+    <h2>Sign Up</h2>
 
+    <div className='inputs'>
 
-      <div className='inputs'>
-
-        <div className='row-1'>
-        <div className="errors">{errors?.firstName}</div>
-        <label>
-          <span>First Name</span>
-          <input
-            type="text"
-            value={firstName}
-            onChange={update('firstName')}
-            placeholder="First Name"
-          />
-        </label>
-
-        <div className="errors">{errors?.lastName}</div>
-        <label>
-          <span>Last Name</span>
-          <input
-            type="text"
-            value={lastName}
-            onChange={update('lastName')}
-            placeholder="Last Name"
-          />
-        </label>
+      <div className='row-1'>
+        <div className='input-div'>
+          <label>
+            <span>First Name</span>
+            <input
+              type="text"
+              value={firstName}
+              onChange={update('firstName')}
+              placeholder="First Name"
+            />
+          </label>
         </div>
 
-        <div className='row-2'>
-          <div className="errors">{errors?.email}</div>
+        <div className='input-div'>
+          <label>
+            <span>Last Name</span>
+            <input
+              type="text"
+              value={lastName}
+              onChange={update('lastName')}
+              placeholder="Last Name"
+            />
+          </label>
+        </div>
+      </div>
+
+      <div className="errors">{errors?.username}</div>
+      <div className="errors">{errors?.email}</div>
+      <div className='row-2'>
+
+        <div className='input-div'>
           <label>
             <span>Email</span>
             <input type="text"
@@ -106,7 +110,9 @@ const SignupForm = () => {
               placeholder="Email"
             />
           </label>
-          <div className="errors">{errors?.username}</div>
+        </div>
+
+        <div className='input-div'>
           <label>
             <span>Username</span>
             <input type="text"
@@ -116,8 +122,13 @@ const SignupForm = () => {
             />
           </label>
         </div>
+      </div>
 
-        <div className='row-3'>
+      <div className="errors">
+        {password !== passwordConfirmation && 'Confirm Password field must match'}
+      </div>
+      <div className='row-3'>
+        <div className='input-div'>
           <div className="errors">{errors?.password}</div>
           <label>
             <span>Password</span>
@@ -127,9 +138,9 @@ const SignupForm = () => {
               placeholder="Password"
             />
           </label>
-          <div className="errors">
-            {password !== passwordConfirmation && 'Confirm Password field must match'}
-          </div>
+        </div>
+
+        <div className='input-div confirm-div'>
           <label>
             <span>Confirm Password</span>
             <input type="password"
@@ -140,14 +151,17 @@ const SignupForm = () => {
           </label>
         </div>
       </div>
-  
-      <input
-        type="submit"
-        value="Sign Up"
-        disabled={!email || !username || !password || password !== passwordConfirmation}
-      />
-    </form>
-  );
+      
+    </div>
+
+    <input
+      type="submit"
+      value="Sign Up"
+      disabled={!email || !username || !password || password !== passwordConfirmation}
+    />
+  </form>
+);
+
 }
 
 export default SignupForm;
