@@ -26,14 +26,14 @@
 }
 
 .logged-out-links .signup-button, .login-button {
-    height: 25px;
-    width: 100px;
+    height: 30px;
+    width: 90px;
     margin-left: 10px;
     font-weight: bold;
-    border: 2px solid white;
+    border: 2px solid #022a54f0;;
     border-radius: 3ch;
-    background-color: transparent;
-    color: white;
+    background-color: white;
+    color: #022a54f0;;
     cursor: pointer;
 }
 

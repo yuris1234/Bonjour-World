@@ -1,12 +1,12 @@
-import { useDebugValue, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent } from '../../store/events';
 import NavBar from '../NavBar';
 import "./EventShow.css"
 import { addEventJoin, removeEventJoin } from '../../store/users';
 import { getCurrentUser } from '../../store/session';
-import { openModal, updateEvent } from '../../store/modal';
+import { updateEvent } from '../../store/modal';
 
 const EventShow = () => {
     const dispatch = useDispatch();
@@ -96,12 +96,12 @@ const EventShow = () => {
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
-                        {host && <button class="event-language" onClick={handleModal}>Edit Event</button>}
+                        {host && <button className="event-language" onClick={handleModal}>Edit Event</button>}
                         {!subscribed && 
                             <button className="event-language" onClick={handleJoin}>+ Join </button>
                         }
                         {subscribed && 
-                            <button class="event-language" onClick={handleUnjoin}>Joined</button>
+                            <button className="event-language" onClick={handleUnjoin}>Joined</button>
                         }
                     </ul>
                 </div>
