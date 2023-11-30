@@ -28,7 +28,7 @@
 }
 
 .login-form h2 {
-  color: #022a54f0;
+  color: black;
   font-size: 2rem;
   margin-bottom: 20px;
 }
@@ -38,7 +38,7 @@
 }
 
 .login-form label {
-  color: #022a54f0;
+  color: black;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
@@ -49,8 +49,8 @@
   margin-top: 8px;
   border-radius: 5px;
   background-color: white;
-  color: #022a54f0;
-  border: 1px solid #022a54f0;
+  color: black;
+  border: 1px solid black;
 }
 
 .login-form input::placeholder {
@@ -74,7 +74,7 @@
 
 .login-form .login-button,
 .login-form .login-as-guest-button {
-  background-color: #022a54f0;
+  background-color: black;
   color: white;
   cursor: pointer;
   padding: 8px;

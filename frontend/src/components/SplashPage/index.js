@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import NavBar from "../NavBar/index.js";
-import Globe from "../Globe/Globe.js";
+// import Globe from "../Globe/Globe.js";
+import image1 from "../../static/images/img1.png";
+import image2 from "../../static/images/img2.png";
+import image3 from "../../static/images/img3.png";
 
 const SplashPage = () => {
   const changingLanguages = ["en", "ch", "sp", "fr", "ar"];
@@ -71,19 +74,21 @@ const SplashPage = () => {
   }
 
   return (
-    <div className="splash-page">
+    <>
       <NavBar />
-      <div className="currentlanguage">{displayCurrentLanguage()}</div>
-      <div className="content-container">
-        <div className="globe-container">
-          <Globe />
+      <div className="splash-page">
+          <div className="content-container">
+            <div className="currentlanguage">{displayCurrentLanguage()}</div>
+            <div className="image-div">
+              <img src={image1} className="image" alt=""></img>
+              <img src={image2} className="image" alt=""></img>
+              <img src={image3} className="image" alt=""></img>
+            </div>
+            <div className="review">🌍 "{getRandomReview().text}"</div>
+          </div>
         </div>
-        <div className="slogan review">
-          🌍 "{getRandomReview().text}"
-        </div>
-      </div>
-      <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
-    </div>
+        <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
+    </>
   );
 };
 

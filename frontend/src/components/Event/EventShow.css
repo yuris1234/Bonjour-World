@@ -14,8 +14,8 @@ html, body {
     display: flex;
     width: 900px;
     height: 100vh;
-    border-left: 3px solid black;
-    border-top: 3px solid black;
+    border-left: 3px solid black;;
+    border-top: 3px solid black;;
     overflow: hidden;
 }
 
@@ -25,12 +25,12 @@ html, body {
   
 .event-info-list div {
     font-size: 20px;
-    color: black;
+    color: black;;
     padding: 5px;
 }
   
 .google-maps-show-container {
-    border-top: 3px solid black;
+    border-top: 3px solid black;;
     padding: 20px;
     pointer-events: none;
     height: 100vh;
@@ -39,7 +39,7 @@ html, body {
 
 .event-info-list .event-title {
     position: relative;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid black;;
     height: 100px;
     width: 820px;
     font-weight: bolder;
@@ -127,7 +127,7 @@ html, body {
     width: auto; 
     padding: 5px 10px; 
     display: inline-block;
-    background-color: black;
+    background-color: black;;
     color: white;
     border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
