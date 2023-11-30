@@ -7,14 +7,15 @@ html, body {
 .event-show-index {
     display: flex;
     width: 100vw;
+    background-color: white;
 }
   
 .display-one-event {
     display: flex;
     width: 900px;
     height: 100vh;
-    border-left: 3px solid black;
-    border-top: 3px solid black;
+    border-left: 3px solid #0A345B;;
+    border-top: 3px solid #0A345B;;
     overflow: hidden;
 }
 
@@ -24,12 +25,12 @@ html, body {
   
 .event-info-list div {
     font-size: 20px;
-    color: #022a54f0;
+    color: #0A345B;;
     padding: 5px;
 }
   
 .google-maps-show-container {
-    border-top: 3px solid black;
+    border-top: 3px solid #0A345B;;
     padding: 20px;
     pointer-events: none;
     height: 100vh;
@@ -38,7 +39,7 @@ html, body {
 
 .event-info-list .event-title {
     position: relative;
-    border-bottom: 2px solid #022a54f0;
+    border-bottom: 2px solid #0A345B;;
     height: 100px;
     width: 820px;
     font-weight: bolder;
@@ -126,12 +127,59 @@ html, body {
     width: auto; 
     padding: 5px 10px; 
     display: inline-block;
+    background-color: #0A345B;;
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 1.5;
+    border: none;
+}
+
+.edit-event {
+    margin-left: 10px;
+    height: auto; 
+    width: auto; 
+    padding: 5px 10px; 
+    display: inline-block;
+    border: 1px;
     background-color: #022a54f0;
     color: white;
     border-radius: 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
     text-align: center;
-    line-height: 1.5;
+    line-height: 2;
+    cursor: pointer;
 }
 
+.join-event {
+    margin-left: 10px;
+    height: auto; 
+    width: auto; 
+    padding: 5px 10px; 
+    display: inline-block;
+    border: 1px;
+    background-color: #022a54f0;
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 2;
+    cursor: pointer;
+}
+
+.unjoin-event {
+    margin-left: 10px;
+    height: auto; 
+    width: auto; 
+    padding: 5px 10px; 
+    display: inline-block;
+    border: 1px;
+    background-color: green;
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 2;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+  }
