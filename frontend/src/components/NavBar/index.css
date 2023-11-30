@@ -5,20 +5,13 @@
     padding: 0 10px;
     align-items: center;
     position: relative;
-}
-
-.nav-bar.logged-in {
-    background-color: #022a54f0;
-}
-
-.nav-bar.logged-out {
     background-color: transparent;
 }
 
 .nav-bar-header {
     font-size: 2rem;
     margin: 0px;
-    color: white;
+    color: black;
 }
 
 .no-underline {
@@ -35,12 +28,12 @@
 .logged-out-links .signup-button, .login-button {
     height: 30px;
     width: 90px;
-    margin-left: 10px;
+    margin-left: 15px;
     font-weight: bold;
-    border: 2px solid #022a54f0;
+    border: none;
     border-radius: 3ch;
-    background-color: white;
-    color: #022a54f0;;
+    background-color: black;
+    color: white;;
     cursor: pointer;
 }
 
@@ -52,7 +45,7 @@
  .logged-out-links a {
      margin-left: 10px;
      border: none;
-     color: white;
+     color: black;
      cursor: pointer;
      text-decoration: none;
      white-space: nowrap;
@@ -80,7 +73,7 @@
 .logged-in-links a {
     margin-left: 10px;
     border: none;
-    color: white;
+    color: black;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -96,7 +89,7 @@
 .create-event-button {
     margin-left: 10px;
     border: none;
-    color: white;
+    color: black;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -118,8 +111,8 @@
     border: none;
     border-radius: 3ch;
     cursor: pointer;
-    background-color: white;
-    color: #022a54f0;
+    background-color: black;
+    color: white;
 }
 
 .logout-button:hover {
