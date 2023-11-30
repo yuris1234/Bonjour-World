@@ -1,10 +1,12 @@
 .event-index {
   display: flex;
   width: 100%;
+  border: cyan 1px solid
 }
 
 .display-all-events {
   display: flex;
+  /* border: red solid 1px; */
   width: 800px;
   height: 100vh;
   padding: 20px;
@@ -16,15 +18,17 @@
   overflow-y: auto;
 }  
 
+
+/* 
 .google-maps-container {
   flex: 1;
   padding: 20px;
   border-top: 3px solid black;
   pointer-events: none; 
   height: 100vh;
-}
+} */
 
-.google-maps-container,
+/* .google-maps-container,
 .display-all-events {
   height: calc(90vh - 20px); 
-}
+} */

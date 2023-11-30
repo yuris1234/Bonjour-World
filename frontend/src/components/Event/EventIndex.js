@@ -70,11 +70,7 @@ const EventIndex = () => {
         <>
             <NavBar />
             <div className="event-index">
-                <div className="google-maps-container">
-                <div>
-                    <EventsMapWrapper events={events} mapEventHandlers={mapEventHandlers} markerEventHandlers={markerEventHandlers} />
-                </div>
-                </div>
+                    <EventsMapWrapper events={events} markerEventHandlers={markerEventHandlers} />
                 <div className="display-all-events">
                     {Object.values(events).map((event) => (
                         <EventIndexItem
