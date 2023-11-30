@@ -72,7 +72,7 @@ const SignupForm = () => {
 
       <div className='inputs'>
 
-        <div className='name-inputs'>
+        <div className='row-1'>
         <div className="errors">{errors?.firstName}</div>
         <label>
           <span>First Name</span>
@@ -96,47 +96,49 @@ const SignupForm = () => {
         </label>
         </div>
 
-        <div className="errors">{errors?.email}</div>
-        <label>
-          <span>Email</span>
-          <input type="text"
-            value={email}
-            onChange={update('email')}
-            placeholder="Email"
-          />
-        </label>
-
-        <div className="errors">{errors?.username}</div>
-        <label>
-          <span>Username</span>
-          <input type="text"
-            value={username}
-            onChange={update('username')}
-            placeholder="Username"
-          />
-        </label>
-
-        <div className="errors">{errors?.password}</div>
-        <label>
-          <span>Password</span>
-          <input type="password"
-            value={password}
-            onChange={update('password')}
-            placeholder="Password"
-          />
-        </label>
-        
-        <div className="errors">
-          {password !== passwordConfirmation && 'Confirm Password field must match'}
+        <div className='row-2'>
+          <div className="errors">{errors?.email}</div>
+          <label>
+            <span>Email</span>
+            <input type="text"
+              value={email}
+              onChange={update('email')}
+              placeholder="Email"
+            />
+          </label>
+          <div className="errors">{errors?.username}</div>
+          <label>
+            <span>Username</span>
+            <input type="text"
+              value={username}
+              onChange={update('username')}
+              placeholder="Username"
+            />
+          </label>
         </div>
-        <label>
-          <span>Confirm Password</span>
-          <input type="password"
-            value={passwordConfirmation}
-            onChange={update('passwordConfirmation')}
-            placeholder="Confirm Password"
-          />
-        </label>
+
+        <div className='row-3'>
+          <div className="errors">{errors?.password}</div>
+          <label>
+            <span>Password</span>
+            <input type="password"
+              value={password}
+              onChange={update('password')}
+              placeholder="Password"
+            />
+          </label>
+          <div className="errors">
+            {password !== passwordConfirmation && 'Confirm Password field must match'}
+          </div>
+          <label>
+            <span>Confirm Password</span>
+            <input type="password"
+              value={passwordConfirmation}
+              onChange={update('passwordConfirmation')}
+              placeholder="Confirm Password"
+            />
+          </label>
+        </div>
       </div>
   
       <input
