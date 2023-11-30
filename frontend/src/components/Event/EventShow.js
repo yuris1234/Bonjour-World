@@ -4,48 +4,64 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent } from '../../store/events';
 import NavBar from '../NavBar';
 import "./EventShow.css"
-import { addEventJoin, removeEventJoin } from '../../store/users';
+import { addEventJoin, fetchUsers, removeEventJoin } from '../../store/users';
 import { getCurrentUser } from '../../store/session';
-import { updateEvent } from '../../store/modal';
+import { openModal, updateEvent } from '../../store/modal';
+import { getUsers } from '../../store/users';
 
 const EventShow = () => {
     const dispatch = useDispatch();
     const { eventId } = useParams();
     const event = useSelector(getEvent(eventId))
     const user = useSelector((state) => state.session.user);
+    const users = useSelector(getUsers(eventId));
     const [subscribed, setSubscribed] = useState(false);
-    const [host, setHost] = useState(false);
+    const [hostShow, setHostShow] = useState(false);
+    const [host, setHost] = useState("");
 
     useEffect(() => {
         dispatch(getCurrentUser());
+        dispatch(fetchUsers());
         dispatch(fetchEvent(eventId));
     },[eventId])
 
     useEffect(() => {
-        if (user.events) {
-            setSubscribed(user.events.includes(eventId) ? true : false)
+        if (user?.events) {
+            if (subscribed === false) {
+                setSubscribed(user.events.includes(eventId) ? true : false)
+            }
         }
-    },[user])
-
-    useEffect(() => {
-        if (user && event) {
-            setHost(user._id === event.host ? true : false)
+        if (event) {
+            if (user && user?._id === event.host) {
+                setHostShow(true)
+            }
         }
-    }, [user, event])
+        if (event && users?.length > 0) {    
+            users.forEach((user) => {
+                if (user._id === event.host) {
+                    setHost(user.username)
+                }
+            })
+        }
+    },[user, event])
 
-    const handleJoin = (e) => {
+    const handleJoin = async (e) => {
         e.preventDefault();
         setSubscribed(true);
-        dispatch(addEventJoin(user._id, eventId));
+        await dispatch(addEventJoin(user._id, eventId));
+        // debugger
     }
 
-    const handleUnjoin = (e) => {
+    const handleUnjoin = async (e) => {
         e.preventDefault();
-        setSubscribed(false);
-        dispatch(removeEventJoin(user._id, eventId));
+        if (user.username !== host) {
+            await dispatch(removeEventJoin(user._id, eventId));
+            setSubscribed(false);
+        }
     }
 
     const handleModal = (e) => {
+        // debugger
         dispatch(updateEvent("updateEvent", eventId));
     }
 
@@ -60,7 +76,7 @@ const EventShow = () => {
                     <ul className="event-info-list">
                         <div className="event-title">{event?.title}
                             <div className="event-title-hosted-by">Hosted By:
-                                <div className="event-title-host">Potato.{event?.host}</div>
+                                <div className="event-title-host">{host}</div>
                             </div>
                         </div>
 
@@ -80,7 +96,7 @@ const EventShow = () => {
                         
                         <div className="event-location-div">Location
                             <div className="event-location">
-                                {event?.state}, {event?.city} {event?.zipcode}
+                                {event?.city}, {event?.state} {event?.zipcode}
                             </div>
                         </div>
     
@@ -96,12 +112,12 @@ const EventShow = () => {
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
-                        {host && <button className="event-language" onClick={handleModal}>Edit Event</button>}
+                        {host && <button class="event-language" onClick={handleModal}>Edit Event</button>}
                         {!subscribed && 
                             <button className="event-language" onClick={handleJoin}>+ Join </button>
                         }
                         {subscribed && 
-                            <button className="event-language" onClick={handleUnjoin}>Joined</button>
+                            <button class="event-language" onClick={handleUnjoin}>Joined</button>
                         }
                     </ul>
                 </div>

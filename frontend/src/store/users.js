@@ -19,6 +19,16 @@ export const receiveEventJoin = (eventJoin) => ({
   eventJoin
 })
 
+export const getUsers = (eventId) => (state) => {
+  const holder = [];
+  Object.values(state.users).filter((user) => {
+    if (user.events.includes(eventId)) {
+      holder.push(user)
+    }
+  }) 
+  return holder
+}
+
 export const addEventJoin = (userId, eventId) => async (dispatch) => {
   const res = await jwtFetch(`/api/users/${userId}/events/${eventId}`, {
     method: "POST"

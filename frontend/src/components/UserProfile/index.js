@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getCurrentUser } from '../../store/session';
 import NavBar from '../NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,6 +9,11 @@ import './index.css';
 const UserProfile = () => {
     const user = getCurrentUser();
     const [uploadedImage, setUploadedImage] = useState(null);
+    const [fadeIn, setFadeIn] = useState(false);
+
+    useEffect(() => {
+        setFadeIn(true);
+    }, []);
 
     const handleImageChange = (event) => {
         const selectedImage = event.target.files[0];
@@ -25,19 +30,23 @@ const UserProfile = () => {
     };
 
     return (
-        <div className="app-container">
+        <div className={`app-container ${fadeIn ? 'fade-in' : ''}`}>
             <NavBar />
-            <div className="profile-container">
-                <div className="profile-greeting">Greetings, {user?.username ? user?.username : 'Guest'}</div>
-                <div className="profile-details-div">
+            <div className={`profile-container ${fadeIn ? 'fade-in' : ''}`}>
+                <div className={`profile-greeting ${fadeIn ? 'fade-in' : ''}`}>Greetings, {user?.username ? user?.username : 'Guest'}</div>
+                <div className={`profile-details-div ${fadeIn ? 'fade-in' : ''}`}>
                     <div className="profile-img-div">
                         <div className="profile-back-to-main-div">
                             <button className="profile-back-to-main-button">
                                 <FontAwesomeIcon icon={faArrowLeft} style={{ fontSize: '40px', color: '#022a54f0' }} />
                             </button>
                         </div>
+
                         <div className="profile-img-container">
                             <img className="profile-img" alt="uploaded-user" src={uploadedImage || EmptyUser} />
+                        </div>
+                            
+                        <div className="upload-label-container">
                             <label htmlFor="imageInput" className="upload-label">
                                 Upload Image
                                 <input
@@ -52,11 +61,11 @@ const UserProfile = () => {
                     </div>
 
                     <div className="profile-details">
-                        <div className="profile-email">Bob{user?.email}</div>
-                        <div className="profile-username">Bob{user?.username}</div>
-                        <div className="profile-age">Bob{user?.age}</div>
-                        <div className="profile-first">Bob{user?.firstName}</div>
-                        <div className="profile-last">Bob{user?.lastName}</div>
+                        <div className="profile-email">Email: {user?.email}</div><button>Edit</button>
+                        <div className="profile-username">Username: {user?.username}</div><button>Edit</button>
+                        <div className="profile-age">Age: {user?.age}</div><button>Edit</button>
+                        <div className="profile-first">First Name: {user?.firstName}</div><button>Edit</button>
+                        <div className="profile-last">Last Name: {user?.lastName}</div><button>Edit</button>
                     </div>
                 </div>
             </div>
