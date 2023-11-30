@@ -14,7 +14,7 @@ const EventShow = () => {
     const { eventId } = useParams();
     const event = useSelector(getEvent(eventId))
     const user = useSelector((state) => state.session.user);
-    const users = useSelector(getUsers(eventId));
+    const users = useSelector(getUsers(event));
     const [subscribed, setSubscribed] = useState(false);
     const [hostShow, setHostShow] = useState(false);
     const [host, setHost] = useState("");
@@ -26,9 +26,9 @@ const EventShow = () => {
     },[eventId])
 
     useEffect(() => {
-        if (user?.events) {
+        if (user && event?.attendees) {
             if (subscribed === false) {
-                setSubscribed(user.events.includes(eventId) ? true : false)
+                setSubscribed(event.attendees.includes(user._id) ? true : false)
             }
         }
         if (event) {
