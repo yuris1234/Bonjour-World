@@ -14,8 +14,8 @@ html, body {
     display: flex;
     width: 900px;
     height: 100vh;
-    border-left: 3px solid #0A345B;;
-    border-top: 3px solid #0A345B;;
+    border-left: 3px solid #FBE1B5;
+    border-top: 3px solid #FBE1B5;
     overflow: hidden;
 }
 
@@ -25,12 +25,12 @@ html, body {
   
 .event-info-list div {
     font-size: 20px;
-    color: #0A345B;;
+    color: black;
     padding: 5px;
 }
   
 .google-maps-show-container {
-    border-top: 3px solid #0A345B;;
+    border-top: 3px solid #FBE1B5;
     padding: 20px;
     pointer-events: none;
     height: 100vh;
@@ -39,7 +39,7 @@ html, body {
 
 .event-info-list .event-title {
     position: relative;
-    border-bottom: 2px solid #0A345B;;
+    border-bottom: 2px solid #FBE1B5;;
     height: 100px;
     width: 820px;
     font-weight: bolder;
@@ -127,8 +127,8 @@ html, body {
     width: auto; 
     padding: 5px 10px; 
     display: inline-block;
-    background-color: #0A345B;;
-    color: white;
+    background-color: #FBE1B5;
+    color: black;
     border-radius: 30px;
     text-align: center;
     line-height: 1.5;
@@ -142,7 +142,7 @@ html, body {
     padding: 5px 10px; 
     display: inline-block;
     border: 1px;
-    background-color: #022a54f0;
+    background-color: #FBE1B5;
     color: white;
     border-radius: 30px;
     text-align: center;
@@ -157,7 +157,7 @@ html, body {
     padding: 5px 10px; 
     display: inline-block;
     border: 1px;
-    background-color: #022a54f0;
+    background-color: #FBE1B5;
     color: white;
     border-radius: 30px;
     text-align: center;
