@@ -77,17 +77,19 @@ const SplashPage = () => {
     <>
       <NavBar />
       <div className="splash-page">
-          <div className="content-container">
-            <div className="currentlanguage">{displayCurrentLanguage()}</div>
-            <div className="image-div">
-              <img src={image1} className="image" alt=""></img>
-              <img src={image2} className="image" alt=""></img>
-              <img src={image3} className="image" alt=""></img>
-            </div>
-            <div className="review">🌍 "{getRandomReview().text}"</div>
+        <div className="content-container">
+          <div className="currentlanguage">{displayCurrentLanguage()}</div>
+
+          <div className="image-div">
+            <img src={image1} className="image" alt=""></img>
+            <img src={image2} className="image" alt=""></img>
+            <img src={image3} className="image" alt=""></img>
           </div>
+
+          <div className="review">🌍 "{getRandomReview().text}"</div>
         </div>
-        <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
+      </div>
+      <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
     </>
   );
 };
