@@ -4,14 +4,20 @@ import NavBar from '../NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
-import empty-user from "../Images/empty-user.jpeg";
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import EmptyUser from '../Images/EmptyUser.png';
+
+// import empty-user from '../Images/empty-user.jpeg';
 
 const UserProfile = () => {
-    const user = getCurrentUser();
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
     const [uploadedImage, setUploadedImage] = useState(null);
     const [fadeIn, setFadeIn] = useState(false);
 
     useEffect(() => {
+        dispatch(getCurrentUser());
         setFadeIn(true);
     }, []);
 
@@ -43,10 +49,7 @@ const UserProfile = () => {
                         </div>
 
                         <div className="profile-img-container">
-                            <img className="profile-img" alt="uploaded-user" src={"../Images/empty-user.jpeg"} />
-                        </div>
-                            
-                        <div className="upload-label-container">
+                            <img className="profile-img" alt="uploaded-user" src={EmptyUser} />
                             <label htmlFor="imageInput" className="upload-label">
                                 Upload Image
                                 <input
@@ -58,12 +61,13 @@ const UserProfile = () => {
                                 />
                             </label>
                         </div>
+                            
                         <div className="profile-details">
-                            <div className="profile-email">Email: {user?.email}</div><button>Edit</button>
-                            <div className="profile-username">Username: {user?.username}</div><button>Edit</button>
-                            <div className="profile-age">Age: {user?.age}</div><button>Edit</button>
-                            <div className="profile-first">First Name: {user?.firstName}</div><button>Edit</button>
-                            <div className="profile-last">Last Name: {user?.lastName}</div><button>Edit</button>
+                            <div className="profile-email">{user?.email}</div><button>Edit</button>
+                            <div className="profile-username">{user?.username}</div><button>Edit</button>
+                            {/* <div className="profile-age">{user?.age}</div><button>Edit</button> */}
+                            <div className="profile-first">{user?.firstName}</div><button>Edit</button>
+                            <div className="profile-last">{user?.lastName}</div><button>Edit</button>
                         </div>
                     </div>
 
