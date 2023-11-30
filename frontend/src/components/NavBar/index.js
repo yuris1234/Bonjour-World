@@ -54,7 +54,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className={`nav-bar ${loggedIn ? "logged-in" : "logged-out"}`}>
+      <nav className="nav-bar">
         <Link to="/" className="no-underline">
           <h1 className="nav-bar-header">Bonjour World</h1>
         </Link>

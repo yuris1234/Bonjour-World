@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #354c7c, #022954);
+  background: linear-gradient(to bottom, #ecf0f1, #d6eaf8);
 }
 
 .currentlanguage {
@@ -10,7 +10,7 @@
   opacity: 0;
   text-align: center;
   font-size: 100px;
-  color: white;
+  color: black;
   white-space: nowrap;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .slogan {
-  color: white;
+  color: black;
   font-size: 1.5rem;
   max-width: 40%;
 }
@@ -51,5 +51,5 @@
   width: 100%;
   text-align: center;
   padding: 10px;
-  color: white;
+  color: black;
 }
