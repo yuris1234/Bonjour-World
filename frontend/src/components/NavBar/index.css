@@ -11,7 +11,8 @@
 .nav-bar-header {
     font-size: 2rem;
     margin: 0px;
-    color: black;;
+    color: black;
+    font-family: 'BrandierTrial-SemiBoldItalic';
 }
 
 .no-underline {
