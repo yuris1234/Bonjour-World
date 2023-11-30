@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   background-color: white;
+  height: 100%
 }
 
 .display-all-events {
@@ -10,8 +11,12 @@
   padding: 10px;
   flex-wrap: wrap;
   overflow-y: auto;
-}
+  height: 91vh;
+} 
 
+.display-all-events :last-child {
+  /* margin-bottom: 70px; */
+}
 
 /* 
 .google-maps-container {
