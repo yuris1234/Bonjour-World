@@ -81,9 +81,9 @@ const SplashPage = () => {
           <div className="currentlanguage">{displayCurrentLanguage()}</div>
 
           <div className="image-div">
-            <img src={image1} className="image" alt=""></img>
-            <img src={image2} className="image" alt=""></img>
-            <img src={image3} className="image" alt=""></img>
+            <img src={image1} className="image" alt="" style={{ animationDelay: '0.5s' }} />
+            <img src={image2} className="image" alt="" style={{ animationDelay: '1s' }} />
+            <img src={image3} className="image" alt="" style={{ animationDelay: '1.5s' }} />
           </div>
 
           <div className="review">🌍 "{getRandomReview().text}"</div>
