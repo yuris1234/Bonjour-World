@@ -67,6 +67,7 @@ for (let i = 0; i < NUM_SEED_EVENTS; i++) {
       long: -74.0060,
       date: faker.date.future(),
       time: "00:00",
+      attendees: [],
       host: "65663fdc660cf7f22d333445"
     })
   )
@@ -92,6 +93,7 @@ const insertSeeds = () => {
       .then(async () => {let user = await User.find({email: "demo@demo.com"});
         events.forEach((event) => {
           event.host = user[0]._id;
+          event.attendees.push(user[0]._id)
           newEvents.push(event);
       })})
       .then(() => Event.insertMany(newEvents))
