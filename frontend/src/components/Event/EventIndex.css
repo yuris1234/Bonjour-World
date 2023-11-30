@@ -1,20 +1,17 @@
 .event-index {
   display: flex;
   width: 100%;
-  background-color: white;
 }
 
 .display-all-events {
   display: flex;
-  /* border: red solid 1px; */
-  width: 800px;
+  width: 50vw;
   height: 100vh;
   padding: 20px;
   padding-top: 5px;
-  order: 1;
   flex-wrap: wrap;
-  border-left: 3px solid #0A345B;;
-  border-top: 3px solid #0A345B;;
+  /* border-left: 3px solid #0A345B; */
+  /* border-top: 3px solid #0A345B; */
   overflow-y: auto;
 }  
 
