@@ -1,21 +1,21 @@
 .event-item {
     padding: 20px;
-    height: 200px;
-    width: 780px;
+    height: 20%;
+    width: 95%;
     margin: 10px;
     border-radius: 10px;
-    border: 3px solid #0A345B;;
+    border: 2px solid #0A345B;
     box-sizing: border-box;
-    color: #0A345B;;
+    color: #0A345B;
     font-size: 20px;
     font-weight: 500;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     transition: transform 0.2s ease-in-out;
 }
 
 .event-item:hover {
     transform: scale(1.02);
-    border: 3px solid #0A345B;;
+    border: 3px solid #0A345B;
     border-radius: 10px;
     animation: backgroundGlow 2s ease-in-out infinite alternate;
     cursor: pointer;
