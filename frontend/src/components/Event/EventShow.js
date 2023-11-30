@@ -7,13 +7,14 @@ import "./EventShow.css"
 import { addEventJoin, fetchUsers, removeEventJoin } from '../../store/users';
 import { getCurrentUser } from '../../store/session';
 import { openModal, updateEvent } from '../../store/modal';
+import { getUsers } from '../../store/users';
 
 const EventShow = () => {
     const dispatch = useDispatch();
     const { eventId } = useParams();
     const event = useSelector(getEvent(eventId))
     const user = useSelector((state) => state.session.user);
-    const users = useSelector((state) => state.users);
+    const users = useSelector(getUsers(eventId));
     const [subscribed, setSubscribed] = useState(false);
     const [hostShow, setHostShow] = useState(false);
     const [host, setHost] = useState("");
@@ -25,35 +26,42 @@ const EventShow = () => {
     },[eventId])
 
     useEffect(() => {
-        if (user.events) {
-            setSubscribed(user.events.includes(eventId) ? true : false)
-        }
-        if (event && users) {
-            if (event.host) {
-                setHost(users[event.host]?.username)
+        if (user?.events) {
+            if (subscribed === false) {
+                setSubscribed(user.events.includes(eventId) ? true : false)
             }
         }
-    },[user, users, event])
-
-    useEffect(() => {
-        if (user && event) {
-            setHostShow(user._id === event.host ? true : false)
+        if (event) {
+            if (user && user?._id === event.host) {
+                setHostShow(true)
+            }
         }
-    }, [user, event])
+        if (event && users?.length > 0) {    
+            users.forEach((user) => {
+                if (user._id === event.host) {
+                    setHost(user.username)
+                }
+            })
+        }
+    },[user, event])
 
-    const handleJoin = (e) => {
+    const handleJoin = async (e) => {
         e.preventDefault();
         setSubscribed(true);
-        dispatch(addEventJoin(user._id, eventId));
+        await dispatch(addEventJoin(user._id, eventId));
+        // debugger
     }
 
-    const handleUnjoin = (e) => {
+    const handleUnjoin = async (e) => {
         e.preventDefault();
-        setSubscribed(false);
-        dispatch(removeEventJoin(user._id, eventId));
+        if (user.username !== host) {
+            await dispatch(removeEventJoin(user._id, eventId));
+            setSubscribed(false);
+        }
     }
 
     const handleModal = (e) => {
+        // debugger
         dispatch(updateEvent("updateEvent", eventId));
     }
 
@@ -88,7 +96,7 @@ const EventShow = () => {
                         
                         <div className="event-location-div">Location
                             <div className="event-location">
-                                {event?.state}, {event?.city} {event?.zipcode}
+                                {event?.city}, {event?.state} {event?.zipcode}
                             </div>
                         </div>
     
@@ -104,11 +112,11 @@ const EventShow = () => {
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
-                        {hostShow && <button class="event-language" onClick={handleModal}>Edit Event</button>}
-                        {!subscribed && 
+                        {hostShow && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
+                        {!subscribed && user &&
                             <button className="join-event" onClick={handleJoin}>+ Join </button>
                         }
-                        {subscribed && 
+                        {subscribed && user &&
                             <button class="unjoin-event" onClick={handleUnjoin}>Joined</button>
                         }
                     </ul>
