@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useDebugValue, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent } from '../../store/events';
 import NavBar from '../NavBar';
@@ -49,19 +49,17 @@ const EventShow = () => {
         e.preventDefault();
         setSubscribed(true);
         await dispatch(addEventJoin(user._id, eventId));
-        // debugger
     }
 
     const handleUnjoin = async (e) => {
         e.preventDefault();
         if (user.username !== host) {
-            await dispatch(removeEventJoin(user._id, eventId));
             setSubscribed(false);
+            await dispatch(removeEventJoin(user._id, eventId));
         }
     }
 
     const handleModal = (e) => {
-        // debugger
         dispatch(updateEvent("updateEvent", eventId));
     }
 
@@ -112,12 +110,12 @@ const EventShow = () => {
                         <div className="event-long-div">Longitude
                             <div className="event-long">{event?.long}</div>
                         </div>
-                        {host && <button class="event-language" onClick={handleModal}>Edit Event</button>}
-                        {!subscribed && 
-                            <button className="event-language" onClick={handleJoin}>+ Join </button>
+                        {hostShow && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
+                        {!subscribed && user &&
+                            <button className="join-event" onClick={handleJoin}>+ Join </button>
                         }
-                        {subscribed && 
-                            <button class="event-language" onClick={handleUnjoin}>Joined</button>
+                        {subscribed && user &&
+                            <button class="unjoin-event" onClick={handleUnjoin}>Joined</button>
                         }
                     </ul>
                 </div>
