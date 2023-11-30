@@ -1,12 +1,12 @@
 .event-item {
     padding: 20px;
-    height: 20%;
+    height: 3.5%;
     width: 95%;
     margin: 10px;
     border-radius: 10px;
-    border: 2px solid #0A345B;
+    border: 2px solid black;
     box-sizing: border-box;
-    color: #0A345B;
+    color: black;
     font-size: 20px;
     font-weight: 500;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
@@ -15,20 +15,20 @@
 
 .event-item:hover {
     transform: scale(1.02);
-    border: 3px solid #0A345B;
+    border: 3px solid #FBE1B5;
     border-radius: 10px;
     animation: backgroundGlow 2s ease-in-out infinite alternate;
     cursor: pointer;
 }
 
-@keyframes backgroundGlow {
+/* @keyframes backgroundGlow {
     from {
-        box-shadow: 0 0 1px #0d1948, 0 0 3px #0d1948, 0 0 5px #0d1948;
+        box-shadow: 0 0 1px black, 0 0 3px black, 0 0 5px black;
     }
     to {
-        box-shadow: 0 0 2px #0d1948, 0 0 4px #0d1948, 0 0 6px #0d1948;
+        box-shadow: 0 0 2px black, 0 0 4px black, 0 0 6px black;
     }
-}
+} */
 
 .event-item-time,
 .event-item-description,
