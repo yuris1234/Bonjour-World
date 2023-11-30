@@ -39,7 +39,6 @@ html, body {
 
 .event-info-list .event-title {
     position: relative;
-    border-bottom: 2px solid #FBE1B5;;
     height: 100px;
     width: 820px;
     font-weight: bolder;
@@ -143,7 +142,7 @@ html, body {
     display: inline-block;
     border: 1px;
     background-color: #FBE1B5;
-    color: white;
+    color: black;
     border-radius: 30px;
     text-align: center;
     line-height: 2;
@@ -158,7 +157,7 @@ html, body {
     display: inline-block;
     border: 1px;
     background-color: #FBE1B5;
-    color: white;
+    color: black;
     border-radius: 30px;
     text-align: center;
     line-height: 2;
@@ -173,7 +172,7 @@ html, body {
     display: inline-block;
     border: 1px;
     background-color: green;
-    color: white;
+    color: black;
     border-radius: 30px;
     text-align: center;
     line-height: 2;

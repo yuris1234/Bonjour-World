@@ -3,7 +3,7 @@ import "./index.css";
 import NavBar from "../NavBar/index.js";
 // import Globe from "../Globe/Globe.js";
 import image1 from "../../static/images/img1.png";
-import image2 from "../../static/images/img2_copy.png";
+import image2 from "../../static/images/img2.png";
 import image3 from "../../static/images/img3.png";
 
 const SplashPage = () => {
