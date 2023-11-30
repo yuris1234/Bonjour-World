@@ -3,7 +3,7 @@ import "./index.css";
 import NavBar from "../NavBar/index.js";
 // import Globe from "../Globe/Globe.js";
 import image1 from "../../static/images/img1.png";
-import image2 from "../../static/images/img2.png";
+import image2 from "../../static/images/img2_copy.png";
 import image3 from "../../static/images/img3.png";
 
 const SplashPage = () => {
@@ -81,8 +81,8 @@ const SplashPage = () => {
           <div className="currentlanguage">{displayCurrentLanguage()}</div>
 
           <div className="image-div">
+            <img src={image2} className="image image1" alt=""></img>
             <img src={image1} className="image" alt=""></img>
-            <img src={image2} className="image" alt=""></img>
             <img src={image3} className="image" alt=""></img>
           </div>
 

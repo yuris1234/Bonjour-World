@@ -46,7 +46,12 @@ background: linear-gradient(to bottom, #FBE1B5, white);
 }
 
 .image {
-  width: 500px;
+  width: 32%;
+}
+
+.image1 {
+  border-bottom: 5px solid #F9D36B;
+  border-radius: 5px;
 }
 
 .review {
