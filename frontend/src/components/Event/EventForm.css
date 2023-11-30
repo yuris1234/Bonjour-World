@@ -63,7 +63,7 @@
 }
 
 .event-form label {
-  color: black;
+  color: #0A345B;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
@@ -74,8 +74,8 @@
   margin-top: 8px;
   border-radius: 5px;
   background-color: white;
-  color: black;
-  border: 1px solid black;
+  color: #0A345B;
+  border: 1px solid #0A345B;
   width: 200px;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .event-form input[type="submit"] {
-  background-color: black;
+  background-color: #0A345B;
   color: white;
   cursor: pointer;
   width: 50%;

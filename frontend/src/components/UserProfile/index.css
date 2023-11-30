@@ -11,12 +11,12 @@
 }
 
 .profile-greeting {
-    border-top: 5px solid black;
-    border-left: 5px solid black;
-    border-right: 5px solid black;
+    border-top: 5px solid #0A345B;
+    border-left: 5px solid #0A345B;
+    border-right: 5px solid #0A345B;
     font-size: 60px;
     text-align: center;
-    color: black;
+    color: #0A345B;
     background-color: whitesmoke;
     height: 80px;
     display: flex;
@@ -26,7 +26,7 @@
 
 .profile-details-div {
     display: flex;
-    border: 5px solid black;
+    border: 5px solid #0A345B;
     height: 100%;
 }
 
@@ -39,7 +39,7 @@
     position: relative;
     height: 56px;
     width: 56px;
-    border: 5px solid black;
+    border: 5px solid #0A345B;
     border-radius: 30px;
     margin: 10px;
     display: flex;
@@ -55,7 +55,7 @@
     border: none;
     position: relative;
     bottom: 3px;
-    color: black;
+    color: #0A345B;
 }
 
 .profile-img {
@@ -69,11 +69,11 @@
 
 .upload-label {
     z-index: 1; 
-    border: 5px solid black;
+    border: 5px solid #0A345B;
     border-radius: 10px;
     background-color: white;
     padding: 5px;
-    color: black;
+    color: #0A345B;
     font-size: 15px;
     font-family: bolder;
     cursor: pointer;
@@ -87,7 +87,7 @@
     height: 50%;
     width: 50%;
     position: relative;
-    border: 10px solid black;
+    border: 10px solid #0A345B;
     border-radius: 500px;
     overflow: hidden;
     margin-left: 50px;
@@ -97,5 +97,5 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    border-left: 5px solid black;
+    border-left: 5px solid #0A345B;
 }

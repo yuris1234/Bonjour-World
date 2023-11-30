@@ -4,7 +4,7 @@
   justify-content: space-evenly;
   min-height: 100vh;
   width: 100vw;
-  background: linear-gradient(to bottom, #ecf0f1, #d6eaf8);
+background: linear-gradient(to bottom, #FBE1B5, white);
 }
 
 .content-container {
@@ -20,7 +20,7 @@
   opacity: 0;
   text-align: center;
   font-size: 500%;
-  color: black;
+  color: #0A345B;
   white-space: nowrap;
   height: 100%;
   position: fixed;
@@ -50,7 +50,7 @@
 }
 
 .review {
-  color: black;
+  color: #0A345B;
   font-size: 1.5rem;
   width: 70%;
   letter-spacing: 2px;
@@ -67,5 +67,5 @@
   width: 100%;
   text-align: center;
   padding: 10px;
-  color: black;;
+  color: #0A345B;;
 }

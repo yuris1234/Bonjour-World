@@ -30,7 +30,7 @@ const SplashPage = () => {
       text: "Bonjour World is like a passport to linguistic adventures! The platform's events are not just about learning languages but immersing yourself in diverse cultures. The connections I've made and the languages I've learned have enriched my life. Join the revolution! 🗺️ #LingoVoyager - Isabella",
     },
     {
-      text: "I never knew language learning could be this fun and enriching until I discovered Bonjour World! The platform's events are a perfect blend of education and entertainment. My language skills have skyrocketed, and I've gained friends from every corner of the world. Bravo, Bonjour World! 👏 #LanguageLiberator - Oliver",
+      text: "I never knew language learning could be this fun and enriching until I discovered Bonjour World! The platform's events are a perfect blend of education and entertainment. My language skills have skyrocketed, and I've gained friends from every corner of the world. Bravo, Bonjour World! 👏 #LanguageLiberator - Allon",
     },
     {
       text: "Bonjour World is the key to unlocking a multilingual paradise! The platform's events are well-organized, diverse, and filled with passionate language learners. My journey with Bonjour World has been nothing short of amazing. If you're serious about languages, don't miss out! 🌐 #PolyglotUtopia - Emma",
