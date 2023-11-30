@@ -5,7 +5,14 @@
     padding: 0 10px;
     align-items: center;
     position: relative;
-    background-color: #022A54;
+}
+
+.nav-bar.logged-in {
+    background-color: #022a54f0;
+}
+
+.nav-bar.logged-out {
+    background-color: transparent;
 }
 
 .nav-bar-header {
@@ -30,7 +37,7 @@
     width: 90px;
     margin-left: 10px;
     font-weight: bold;
-    border: 2px solid #022a54f0;;
+    border: 2px solid #022a54f0;
     border-radius: 3ch;
     background-color: white;
     color: #022a54f0;;
