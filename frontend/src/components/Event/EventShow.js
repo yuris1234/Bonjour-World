@@ -49,19 +49,17 @@ const EventShow = () => {
         e.preventDefault();
         setSubscribed(true);
         await dispatch(addEventJoin(user._id, eventId));
-        // debugger
     }
 
     const handleUnjoin = async (e) => {
         e.preventDefault();
         if (user.username !== host) {
-            await dispatch(removeEventJoin(user._id, eventId));
             setSubscribed(false);
+            await dispatch(removeEventJoin(user._id, eventId));
         }
     }
 
     const handleModal = (e) => {
-        // debugger
         dispatch(updateEvent("updateEvent", eventId));
     }
 
