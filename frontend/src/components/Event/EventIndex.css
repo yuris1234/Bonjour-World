@@ -12,15 +12,15 @@
   padding-top: 5px;
   order: 1;
   flex-wrap: wrap;
-  border-left: 3px solid black;;
-  border-top: 3px solid black;;
+  border-left: 3px solid #0A345B;;
+  border-top: 3px solid #0A345B;;
   overflow-y: auto;
 }  
 
 .google-maps-container {
   flex: 1;
   padding: 20px;
-  border-top: 3px solid black;;
+  border-top: 3px solid #0A345B;;
   pointer-events: none; 
   height: 100vh;
 }

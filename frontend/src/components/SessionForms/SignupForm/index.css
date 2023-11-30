@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-color: black;
+  background-color: #0A345B;
   border-radius: 5px;
   width: 100%;
   height: 100%;
@@ -55,7 +55,7 @@
   padding: 8px;
   margin-top: 8px;
   border-radius: 5px;
-  background-color: black;
+  background-color: #0A345B;
   color: white;
   border: 1px solid gray;
 }
@@ -72,7 +72,7 @@
 
 .signup-form input[type="submit"] {
   background-color: white;
-  color: black;
+  color: #0A345B;
   cursor: pointer;
   width: 50%;
   border-radius: 10px;
