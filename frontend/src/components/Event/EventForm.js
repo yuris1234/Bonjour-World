@@ -294,10 +294,14 @@ const EventForm = () => {
       </div>
 
       <div className="errors">{errors?.description}</div>
-      <label>
-        Description
-        <textarea value={description} onChange={update("description")} />
-      </label>
+      {/* <label>
+        Description */}
+        <textarea
+          placeholder="Description"
+          value={description}
+          onChange={update("description")}
+        />
+      {/* </label> */}
 
       <input type="submit" value={eventType} />
     </form>

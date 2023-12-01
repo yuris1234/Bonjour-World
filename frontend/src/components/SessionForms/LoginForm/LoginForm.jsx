@@ -66,13 +66,13 @@ const LoginForm = () => {
       </div>
 
       <div className="button-container">
-      <button
-        type="submit"
-        disabled={!email || !password}
-        className='login-button'
-      >
-        Log In
-      </button>
+        <button
+          type="submit"
+          disabled={!email || !password}
+          className='login-button'
+        >
+          Log In
+        </button>
         <button type="button" onClick={handleGuestLogin} className='login-as-guest-button'>
           Login as Guest
         </button>

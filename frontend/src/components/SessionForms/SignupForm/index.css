@@ -93,7 +93,7 @@
 }
 
 .signup-form input[type="submit"]:disabled {
-  /* background-color: red; */
+  background-color: #ccc;
   cursor: not-allowed;
   width: 50%;
   border-radius: 10px;
