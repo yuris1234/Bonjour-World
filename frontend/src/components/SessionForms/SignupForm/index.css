@@ -1,0 +1,96 @@
+.signup-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 40%;
+  width: 30%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #0A345B;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+.signup-form h2 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.signup-form .inputs {
+  width: 45%;
+  padding-right: 12px;
+}
+
+.signup-form .row-1, .signup-form .row-2, .signup-form .row-3 {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.signup-form label {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.signup-form input {
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 5px;
+  background-color: #0A345B;
+  color: white;
+  border: 1px solid gray;
+}
+
+.signup-form input::placeholder {
+  color: gray;
+}
+
+.signup-form .errors {
+  color: red;
+  margin-bottom: 10px;
+  font-size: .7rem;
+}
+
+.signup-form input[type="submit"] {
+  background-color: white;
+  color: #0A345B;
+  cursor: pointer;
+  width: 50%;
+  border-radius: 10px;
+}
+
+.signup-form input[type="submit"]:disabled {
+  /* background-color: red; */
+  cursor: not-allowed;
+  width: 50%;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+}
+
+.signup-form input[type="submit"]:hover {
+  transform: scale(1.05);
+}
+
+.signup-form input[type="submit"]:disabled {
+    transform: none;
+}
