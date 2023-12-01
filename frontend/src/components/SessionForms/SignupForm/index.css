@@ -62,11 +62,12 @@
 
 .signup-form input {
   padding: 8px;
-  margin-top: 8px;
+  /* margin-top: 4px; */
   background-color: transparent;
   color: black;
   border: none;
   border-bottom: 1px solid black;
+    font-size: .9rem;
 }
 
 .signup-form input::placeholder {
