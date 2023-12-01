@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: 20px;
   background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
   border-radius: 15px;
@@ -33,24 +33,21 @@
   margin-bottom: 20px;
 }
 
-.login-form .inputs {
-  width: 50%;
-}
-
-.login-form label {
+/* .login-form label {
   color: black;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
-}
+} */
 
 .login-form input {
   padding: 8px;
   margin-top: 8px;
-  border-radius: 5px;
-  background-color: white;
+  background-color: transparent;
   color: black;
-  border: 1px solid gray;
+  border: none;
+    border-bottom: 1px solid black;
+    font-size: 1rem;
 }
 
 .login-form input::placeholder {
@@ -70,6 +67,7 @@
   align-items: center;
   width: 100%;
   gap: 10px;
+  font-weight: bold;
 }
 
 .login-form .login-button,
@@ -81,12 +79,16 @@
   border-radius: 5px;
   margin-top: 8px;
   white-space: nowrap;
-  height: 45%;
   border: none;
+  width: 150px;
+  height: 30px;
+}
+
+.login-button {
+  /* width: 70%; */
 }
 
 .login-as-guest-button {
-  width: 50%;
   border: none;
 }
 
@@ -96,7 +98,6 @@
   cursor: not-allowed;
 }
 
-.login-form input[type="submit"]:hover,
 .login-form button:hover {
   transform: scale(1.05);
 }
