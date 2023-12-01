@@ -1,7 +1,7 @@
 .event-index {
   display: flex;
   width: 100%;
-  background-color: white;
+  background: linear-gradient(to bottom, #FBE1B5, white);
   height: 100%
 }
 
@@ -13,10 +13,6 @@
   overflow-y: auto;
   height: 91vh;
 } 
-
-.display-all-events :last-child {
-  /* margin-bottom: 70px; */
-}
 
 /* 
 .google-maps-container {

@@ -168,6 +168,8 @@ const EventUpdateForm = ({eventId}) => {
     "Wyoming",
   ];
 
+  const languages = ["German", "Spanish", "English", "French"];
+
   // const formatDate = (e) => {
   //   const updatedDate = date.toISOString().substring(0, 10),
   //   field = document.querySelector('#date');
@@ -225,7 +227,14 @@ const EventUpdateForm = ({eventId}) => {
             onChange={update("title")}
           />
           {/* </label> */}
-          <div className="errors">{errors?.language}</div>
+          <select value={language} onChange={update("language")}>
+            <option value="">Select Language</option>
+            {languages.map((lang) => (
+              <option key={lang} value={lang}>
+                {lang}
+              </option>
+            ))}
+          </select>
           {/* <label>
             Language */}
           <input
