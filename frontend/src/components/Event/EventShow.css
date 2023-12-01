@@ -1,36 +1,37 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
-  
+
 .event-show-index {
     display: flex;
     width: 100vw;
-    background-color: white;
+    background: linear-gradient(to bottom, #FBE1B5, white);
 }
-  
+
 .display-one-event {
     display: flex;
     width: 900px;
     height: 100vh;
-    border-left: 3px solid #0A345B;;
-    border-top: 3px solid #0A345B;;
+    border-left: 3px solid black;
+    border-top: 3px solid black;
     overflow: hidden;
 }
 
 .event-info-list span {
     margin-top: 10px;
 }
-  
+
 .event-info-list div {
     font-size: 20px;
-    color: #0A345B;;
+    color: black;
     padding: 5px;
 }
-  
+
 .google-maps-show-container {
-    border-top: 3px solid #0A345B;;
+    border-top: 3px solid #FBE1B5;
     padding: 20px;
     pointer-events: none;
     height: 100vh;
@@ -39,7 +40,6 @@ html, body {
 
 .event-info-list .event-title {
     position: relative;
-    border-bottom: 2px solid #0A345B;;
     height: 100px;
     width: 820px;
     font-weight: bolder;
@@ -123,11 +123,11 @@ html, body {
 
 .event-language {
     margin-left: 10px;
-    height: auto; 
-    width: auto; 
-    padding: 5px 10px; 
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
     display: inline-block;
-    background-color: #0A345B;;
+    background-color: black;
     color: white;
     border-radius: 30px;
     text-align: center;
@@ -137,12 +137,12 @@ html, body {
 
 .edit-event {
     margin-left: 10px;
-    height: auto; 
-    width: auto; 
-    padding: 5px 10px; 
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
     display: inline-block;
     border: 1px;
-    background-color: #022a54f0;
+    background-color: black;
     color: white;
     border-radius: 30px;
     text-align: center;
@@ -152,12 +152,12 @@ html, body {
 
 .join-event {
     margin-left: 10px;
-    height: auto; 
-    width: auto; 
-    padding: 5px 10px; 
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
     display: inline-block;
     border: 1px;
-    background-color: #022a54f0;
+    background-color: black;
     color: white;
     border-radius: 30px;
     text-align: center;
@@ -167,13 +167,13 @@ html, body {
 
 .unjoin-event {
     margin-left: 10px;
-    height: auto; 
-    width: auto; 
-    padding: 5px 10px; 
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
     display: inline-block;
     border: 1px;
     background-color: green;
-    color: white;
+    color: black;
     border-radius: 30px;
     text-align: center;
     line-height: 2;
@@ -182,4 +182,4 @@ html, body {
 
 button:hover {
     transform: scale(1.05);
-  }
+}
