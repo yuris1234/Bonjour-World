@@ -14,7 +14,14 @@ const userSchema = new Schema({
       type: String,
       required: true
     },
-    
+    firstName: {
+      type: String,
+      required: true
+    },
+    lastName: {
+      type: String,
+      required: true
+    },
     hostedEvents: {
       type: Schema.Types.ObjectId,
       ref: 'Event'
@@ -22,7 +29,10 @@ const userSchema = new Schema({
     events: [{
       type: Schema.Types.ObjectId,
       ref: 'Event'
-    }]
+    }],
+    age: {
+      type: Number
+    }
   }, {
     timestamps: true
   });
