@@ -7,15 +7,15 @@ html, body {
 .event-show-index {
     display: flex;
     width: 100vw;
-    background-color: white;
+    background: linear-gradient(to bottom, #FBE1B5, white);
 }
   
 .display-one-event {
     display: flex;
     width: 900px;
     height: 100vh;
-    border-left: 3px solid #FBE1B5;
-    border-top: 3px solid #FBE1B5;
+    border-left: 3px solid black;
+    border-top: 3px solid black;
     overflow: hidden;
 }
 
@@ -126,8 +126,8 @@ html, body {
     width: auto; 
     padding: 5px 10px; 
     display: inline-block;
-    background-color: #FBE1B5;
-    color: black;
+    background-color: black;
+    color: white;
     border-radius: 30px;
     text-align: center;
     line-height: 1.5;
