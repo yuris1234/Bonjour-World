@@ -205,7 +205,7 @@ const EventForm = () => {
             {generateTimeOptions()}
           </select>
           {/* </label> */}
-          
+
           <div className="errors">{errors?.title}</div>
           {/* <label>
             Title */}
@@ -233,7 +233,6 @@ const EventForm = () => {
             Date */}
           <input
             type="date"
-            placeholder="Date"
             value={formatDate(date)}
             onChange={(e) => {
               setDate(new Date(e.target.value));
