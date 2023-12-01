@@ -44,34 +44,35 @@ const LoginForm = () => {
 
       <div className="inputs">
         <div className="errors">{errors?.email}</div>
-        <label>
-          Email
+        {/* <label>
+          Email */}
           <input
             type="text"
             value={email}
             onChange={update('email')}
             placeholder="Email"
           />
-        </label>
+        {/* </label> */}
         <div className="errors">{errors?.password}</div>
-        <label>
-          Password
+        {/* <label>
+          Password */}
           <input
             type="password"
             value={password}
             onChange={update('password')}
             placeholder="Password"
           />
-        </label>
+        {/* </label> */}
       </div>
 
       <div className="button-container">
-        <input
+        <button
           type="submit"
-          value="Log In"
           disabled={!email || !password}
           className='login-button'
-        />
+        >
+          Log In
+        </button>
         <button type="button" onClick={handleGuestLogin} className='login-as-guest-button'>
           Login as Guest
         </button>
