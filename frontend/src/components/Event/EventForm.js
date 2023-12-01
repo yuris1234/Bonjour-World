@@ -197,70 +197,96 @@ const EventForm = () => {
 
       <div className="inputs">
         <div className="left-column">
+          <div className="errors">{errors?.time}</div>
+          {/* <label>
+            Time */}
+          <select value={time} onChange={update("time")}>
+            <option value="">Select Time</option>
+            {generateTimeOptions()}
+          </select>
+          {/* </label> */}
+          
           <div className="errors">{errors?.title}</div>
           {/* <label>
             Title */}
-            <input type="text" placeholder="Title" value={title} onChange={update("title")} />
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={update("title")}
+          />
           {/* </label> */}
 
           <div className="errors">{errors?.language}</div>
-          <label>
-            Language
-            <input type="text" value={language} onChange={update("language")} />
-          </label>
+          {/* <label>
+            Language */}
+          <input
+            type="text"
+            placeholder="Language"
+            value={language}
+            onChange={update("language")}
+          />
+          {/* </label> */}
 
           <div className="errors">{errors?.date}</div>
-          <label>
-            Date
-            <input
-              type="date"
-              value={formatDate(date)}
-              onChange={(e) => {
-                setDate(new Date(e.target.value));
-                update("date");
-              }}
-            />
-          </label>
-
-          <div className="errors">{errors?.time}</div>
-          <label>
-            Time
-            <select value={time} onChange={update("time")}>
-              <option value="">Select Time</option>
-              {generateTimeOptions()}
-            </select>
-          </label>
+          {/* <label>
+            Date */}
+          <input
+            type="date"
+            placeholder="Date"
+            value={formatDate(date)}
+            onChange={(e) => {
+              setDate(new Date(e.target.value));
+              update("date");
+            }}
+          />
+          {/* </label> */}
         </div>
 
         <div className="right-column">
-          <label>
-            State
-            <select value={state} onChange={update("state")}>
-              <option value="">Select State</option>
-              {states.map((stateOption) => (
-                <option key={stateOption} value={stateOption}>
-                  {stateOption}
-                </option>
-              ))}
-            </select>
-          </label>
+          {/* <label>
+            State */}
+          <select value={state} onChange={update("state")}>
+            <option value="">Select State</option>
+            {states.map((stateOption) => (
+              <option key={stateOption} value={stateOption}>
+                {stateOption}
+              </option>
+            ))}
+          </select>
+          {/* </label> */}
 
           <div className="errors">{errors?.city}</div>
-          <label>
-            City
-            <input type="text" value={city} onChange={update("city")} />
-          </label>
+          {/* <label>
+            City */}
+          <input
+            type="text"
+            placeholder="City"
+            value={city}
+            onChange={update("city")}
+          />
+          {/* </label> */}
 
           <div className="errors">{errors?.address}</div>
-          <label>
-            Address
-            <input type="text" value={address} onChange={update("address")} />
-          </label>
+          {/* <label>
+            Address */}
+          <input
+            type="text"
+            placeholder="Address"
+            value={address}
+            onChange={update("address")}
+          />
+          {/* </label> */}
           <div className="errors">{errors?.zipcode}</div>
-          <label>
-            Zipcode
-            <input type="text" value={zipcode} onChange={update("zipcode")} />
-          </label>
+          {/* <label>
+            Zipcode */}
+          <input
+            type="text"
+            placeholder="Zipcode"
+            value={zipcode}
+            onChange={update("zipcode")}
+          />
+          {/* </label> */}
         </div>
       </div>
 
