@@ -1,0 +1,106 @@
+.login-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 300px;
+  width: 400px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+.login-form h2 {
+  color: #0A345B;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.login-form .inputs {
+  width: 50%;
+}
+
+.login-form label {
+  color: #0A345B;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.login-form input {
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 5px;
+  background-color: white;
+  color: #0A345B;
+  border: 1px solid #0A345B;
+}
+
+.login-form input::placeholder {
+  color: gray;
+}
+
+.login-form .errors {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 0.7rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.login-form .login-button,
+.login-form .login-as-guest-button {
+  background-color: #0A345B;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 8px;
+  white-space: nowrap;
+  height: 45%;
+}
+
+.login-as-guest-button {
+  width: 50%;
+  border: none;
+}
+
+.login-form input[type="submit"]:disabled,
+.login-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.login-form input[type="submit"]:hover,
+.login-form button:hover {
+  transform: scale(1.05);
+}
+
+.login-form input[type="submit"]:disabled,
+.login-form button:disabled {
+  transform: none;
+}

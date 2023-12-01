@@ -1,0 +1,121 @@
+.nav-bar {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    align-items: center;
+    position: relative;
+    background-color: transparent;
+}
+
+.nav-bar-header {
+    font-size: 2rem;
+    margin: 0px;
+    color: #0A345B;
+    font-family: 'BrandierTrial-SemiBoldItalic';
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+/* logged out nav links */
+
+.logged-out-links {
+    display: flex;
+    align-items: center;
+}
+
+.logged-out-links .signup-button, .login-button {
+    height: 30px;
+    width: 90px;
+    margin-left: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 3ch;
+    background-color: #0A345B;;
+    color: white;;
+    cursor: pointer;
+}
+
+ .signup-button:hover,
+ .login-button:hover {
+     transform: scale(1.05);
+ }
+
+ .logged-out-links a {
+     margin-left: 10px;
+     border: none;
+     color: #0A345B;;
+     cursor: pointer;
+     text-decoration: none;
+     white-space: nowrap;
+     display: inline-block;
+     text-align: center;
+     font-size: 1rem;
+ }
+
+ .logged-out-links a:hover {
+     text-decoration: underline;
+ }
+
+/* logged in nav links */
+
+.logged-in-links {
+    display: flex;
+    align-items: center;
+}
+
+.all-events {
+    display: flex;
+    justify-content: center;
+}
+
+.logged-in-links a {
+    margin-left: 10px;
+    border: none;
+    color: #0A345B;;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.logged-in-links a:hover {
+    text-decoration: underline;
+}
+
+.create-event-button {
+    margin-left: 10px;
+    border: none;
+    color: #0A345B;;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    background: transparent;
+    font-size: 1rem;
+}
+
+.create-event-button:hover {
+    text-decoration: underline;
+}
+
+.logout-button {
+    height: 30px;
+    width: 80px;
+    margin-left: 10px;
+    font-weight: bold;
+    border: none;
+    border-radius: 3ch;
+    cursor: pointer;
+    background-color: #0A345B;;
+    color: white;
+}
+
+.logout-button:hover {
+    transform: scale(1.05);
+}
