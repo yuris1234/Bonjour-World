@@ -164,6 +164,8 @@ const EventForm = () => {
     "Wyoming",
   ];
 
+  const languages = ["German", "Spanish", "English", "French"];
+
   const formatDate = (date) => {
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -220,12 +222,14 @@ const EventForm = () => {
           <div className="errors">{errors?.language}</div>
           {/* <label>
             Language */}
-          <input
-            type="text"
-            placeholder="Language"
-            value={language}
-            onChange={update("language")}
-          />
+          <select value={language} onChange={update("language")}>
+            <option value="">Select Language</option>
+            {languages.map((lang) => (
+              <option key={lang} value={lang}>
+                {lang}
+              </option>
+            ))}
+          </select>
           {/* </label> */}
 
           <div className="errors">{errors?.date}</div>
