@@ -29,7 +29,9 @@ users.push(
   new User ({
     username: 'demo-user',
     email: 'demo@demo.com',
-    hashedPassword: bcrypt.hashSync('password', 10)
+    hashedPassword: bcrypt.hashSync('password', 10),
+    firstName: "Demo",
+    lastName: "Lition"
   })
 )
 
@@ -40,13 +42,16 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
     new User ({
       username: faker.internet.userName({firstName, lastName}),
       email: faker.internet.email({firstName, lastName}),
-      hashedPassword: bcrypt.hashSync(faker.internet.password(), 10)
+      hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
+      firstName: firstName,
+      lastName: lastName
     })
   )
 }
   
 // Create events
 const events = [];
+const newEvents = [];
 
 for (let i = 0; i < NUM_SEED_EVENTS; i++) {
   events.push(
@@ -62,6 +67,7 @@ for (let i = 0; i < NUM_SEED_EVENTS; i++) {
       long: -74.0060,
       date: faker.date.future(),
       time: "00:00",
+      attendees: [],
       host: "65663fdc660cf7f22d333445"
     })
   )
@@ -84,11 +90,13 @@ const insertSeeds = () => {
     User.collection.drop()
       .then(() => User.insertMany(users))
       .then(() => Event.collection.drop())
-      .then(() => events.forEach((event) => {
-        let user = User.find({email: "demo@demo.com"})
-        event.host = user._id
-      }))
-      .then(() => Event.insertMany(events))
+      .then(async () => {let user = await User.find({email: "demo@demo.com"});
+        events.forEach((event) => {
+          event.host = user[0]._id;
+          event.attendees.push(user[0]._id)
+          newEvents.push(event);
+      })})
+      .then(() => Event.insertMany(newEvents))
       .then(() => {
         console.log("Done!");
         mongoose.disconnect();
