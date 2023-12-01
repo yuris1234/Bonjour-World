@@ -1,15 +1,16 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
-  
+
 .event-show-index {
     display: flex;
     width: 100vw;
     background: linear-gradient(to bottom, #FBE1B5, white);
 }
-  
+
 .display-one-event {
     display: flex;
     width: 900px;
@@ -22,13 +23,13 @@ html, body {
 .event-info-list span {
     margin-top: 10px;
 }
-  
+
 .event-info-list div {
     font-size: 20px;
     color: black;
     padding: 5px;
 }
-  
+
 .google-maps-show-container {
     border-top: 3px solid #FBE1B5;
     padding: 20px;
@@ -122,9 +123,9 @@ html, body {
 
 .event-language {
     margin-left: 10px;
-    height: auto; 
-    width: auto; 
-    padding: 5px 10px; 
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
     display: inline-block;
     background-color: black;
     color: white;
@@ -136,13 +137,13 @@ html, body {
 
 .edit-event {
     margin-left: 10px;
-    height: auto; 
-    width: auto; 
-    padding: 5px 10px; 
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
     display: inline-block;
     border: 1px;
-    background-color: #FBE1B5;
-    color: black;
+    background-color: black;
+    color: white;
     border-radius: 30px;
     text-align: center;
     line-height: 2;
@@ -151,13 +152,13 @@ html, body {
 
 .join-event {
     margin-left: 10px;
-    height: auto; 
-    width: auto; 
-    padding: 5px 10px; 
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
     display: inline-block;
     border: 1px;
-    background-color: #FBE1B5;
-    color: black;
+    background-color: black;
+    color: white;
     border-radius: 30px;
     text-align: center;
     line-height: 2;
@@ -166,9 +167,9 @@ html, body {
 
 .unjoin-event {
     margin-left: 10px;
-    height: auto; 
-    width: auto; 
-    padding: 5px 10px; 
+    height: auto;
+    width: auto;
+    padding: 5px 10px;
     display: inline-block;
     border: 1px;
     background-color: green;
@@ -181,4 +182,4 @@ html, body {
 
 button:hover {
     transform: scale(1.05);
-  }
+}

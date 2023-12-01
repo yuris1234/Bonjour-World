@@ -73,27 +73,27 @@ const SignupForm = () => {
 
       <div className='row-1'>
         <div className='input-div'>
-          <label>
-            <span>First Name</span>
+          {/* <label>
+            <span>First Name</span> */}
             <input
               type="text"
               value={firstName}
               onChange={update('firstName')}
               placeholder="First Name"
             />
-          </label>
+          {/* </label> */}
         </div>
 
         <div className='input-div'>
-          <label>
-            <span>Last Name</span>
+          {/* <label>
+            <span>Last Name</span> */}
             <input
               type="text"
               value={lastName}
               onChange={update('lastName')}
               placeholder="Last Name"
             />
-          </label>
+          {/* </label> */}
         </div>
       </div>
 
@@ -102,25 +102,25 @@ const SignupForm = () => {
       <div className='row-2'>
 
         <div className='input-div'>
-          <label>
-            <span>Email</span>
+          {/* <label>
+            <span>Email</span> */}
             <input type="text"
               value={email}
               onChange={update('email')}
               placeholder="Email"
             />
-          </label>
+          {/* </label> */}
         </div>
 
         <div className='input-div'>
-          <label>
-            <span>Username</span>
+          {/* <label>
+            <span>Username</span> */}
             <input type="text"
               value={username}
               onChange={update('username')}
               placeholder="Username"
             />
-          </label>
+          {/* </label> */}
         </div>
       </div>
 
@@ -130,25 +130,25 @@ const SignupForm = () => {
       <div className='row-3'>
         <div className='input-div'>
           <div className="errors">{errors?.password}</div>
-          <label>
-            <span>Password</span>
+          {/* <label>
+            <span>Password</span> */}
             <input type="password"
               value={password}
               onChange={update('password')}
               placeholder="Password"
             />
-          </label>
+          {/* </label> */}
         </div>
 
         <div className='input-div confirm-div'>
-          <label>
-            <span>Confirm Password</span>
+          {/* <label> */}
+            {/* <span>Confirm Password</span> */}
             <input type="password"
               value={passwordConfirmation}
               onChange={update('passwordConfirmation')}
               placeholder="Confirm Password"
             />
-          </label>
+          {/* </label> */}
         </div>
       </div>
       

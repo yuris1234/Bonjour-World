@@ -63,10 +63,10 @@
 .signup-form input {
   padding: 8px;
   margin-top: 8px;
-  border-radius: 5px;
-  background-color: white;
+  background-color: transparent;
   color: black;
-  border: 1px solid gray;
+  border: none;
+  border-bottom: 1px solid black;
 }
 
 .signup-form input::placeholder {
