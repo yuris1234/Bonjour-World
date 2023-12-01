@@ -9,11 +9,21 @@
     "frontend-build": "npm run build --prefix frontend",
     "build": "npm run backend-install && npm run frontend-install && npm run frontend-build"
   },
+  "engines": {
+    "node": "18.17.1"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.0",
     "@fortawesome/free-solid-svg-icons": "^6.5.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "aws-sdk": "^2.1509.0",
     "react": "^18.2.0"
-  }
+  },
+  "name": "bonjour-world",
+  "description": "# Project Proposal: Bonjour World Language Exchange Platform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
