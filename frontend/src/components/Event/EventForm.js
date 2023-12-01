@@ -197,17 +197,47 @@ const EventForm = () => {
     <form className="event-form" onSubmit={handleSubmit}>
       <h2>{eventType}</h2>
 
+      <div className="select-errors">
+        <div className="errors">{errors?.time}</div>
+        <div className="errors">{errors?.language}</div>
+        <div className="errors">{errors?.state}</div>
+      </div>
+      <div className="selects">
+        {/* <label>
+            Time */}
+        <select value={time} onChange={update("time")}>
+          <option value="">Select Time</option>
+          {generateTimeOptions()}
+        </select>
+        {/* </label> */}
+
+        {/* <label>
+            Language */}
+        <select value={language} onChange={update("language")}>
+          <option value="">Select Language</option>
+          {languages.map((lang) => (
+            <option key={lang} value={lang}>
+              {lang}
+            </option>
+          ))}
+        </select>
+        {/* </label> */}
+
+        {/* <label>
+            State */}
+        <select value={state} onChange={update("state")}>
+          <option value="">Select State</option>
+          {states.map((stateOption) => (
+            <option key={stateOption} value={stateOption}>
+              {stateOption}
+            </option>
+          ))}
+        </select>
+        {/* </label> */}
+      </div>
+
       <div className="inputs">
         <div className="left-column">
-          <div className="errors">{errors?.time}</div>
-          {/* <label>
-            Time */}
-          <select value={time} onChange={update("time")}>
-            <option value="">Select Time</option>
-            {generateTimeOptions()}
-          </select>
-          {/* </label> */}
-
           <div className="errors">{errors?.title}</div>
           {/* <label>
             Title */}
@@ -217,19 +247,6 @@ const EventForm = () => {
             value={title}
             onChange={update("title")}
           />
-          {/* </label> */}
-
-          <div className="errors">{errors?.language}</div>
-          {/* <label>
-            Language */}
-          <select value={language} onChange={update("language")}>
-            <option value="">Select Language</option>
-            {languages.map((lang) => (
-              <option key={lang} value={lang}>
-                {lang}
-              </option>
-            ))}
-          </select>
           {/* </label> */}
 
           <div className="errors">{errors?.date}</div>
@@ -247,18 +264,6 @@ const EventForm = () => {
         </div>
 
         <div className="right-column">
-          {/* <label>
-            State */}
-          <select value={state} onChange={update("state")}>
-            <option value="">Select State</option>
-            {states.map((stateOption) => (
-              <option key={stateOption} value={stateOption}>
-                {stateOption}
-              </option>
-            ))}
-          </select>
-          {/* </label> */}
-
           <div className="errors">{errors?.city}</div>
           {/* <label>
             City */}
@@ -296,11 +301,11 @@ const EventForm = () => {
       <div className="errors">{errors?.description}</div>
       {/* <label>
         Description */}
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={update("description")}
-        />
+      <textarea
+        placeholder="Description"
+        value={description}
+        onChange={update("description")}
+      />
       {/* </label> */}
 
       <input type="submit" value={eventType} />
