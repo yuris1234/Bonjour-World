@@ -13,6 +13,7 @@
     margin: 0px;
     color: #0A345B;
     font-family: 'BrandierTrial-SemiBoldItalic';
+    margin-left: 15px;
 }
 
 .no-underline {
@@ -24,6 +25,7 @@
 .logged-out-links {
     display: flex;
     align-items: center;
+    margin-right: 15px;
 }
 
 .logged-out-links .signup-button, .login-button {
@@ -65,11 +67,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    margin-right: 5px;
-}
-
-.logged-in-links .logged-in-link {
-
+    margin-right: 15px;
 }
 
 #all-events {
@@ -91,7 +89,8 @@
     display: inline-block;
     text-align: center;
     background: transparent;
-    font-size: 15px;
+    font-size: 15.5px;
+    margin-top: 1px;
 }
 
 #create-event-button:hover, #all-events:hover {
