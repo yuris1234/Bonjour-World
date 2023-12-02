@@ -12,11 +12,12 @@ const NavBar = () => {
     if (loggedIn) {
       return (
         <div className="logged-in-links">
-          <Link className="logged-in-link all-events" to={"/events"}>
+          <Link className="logged-in-link" id="all-events" to={"/events"}>
             All Events
           </Link>
           <button
-            className="logged-in-link create-event-button"
+            className="logged-in-link"
+            id="create-event-button"
             onClick={() => dispatch(openModal("createEvent"))}
           >
             Create an Event
