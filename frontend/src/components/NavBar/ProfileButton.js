@@ -3,6 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import { logout } from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./ProfileButton.css";
+import ProfileBtnIcon from "../Images/EmptyUser.png";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -34,8 +35,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        🌍
+      <button className="profile-btn" onClick={openMenu}>
+        <img alt="" className="profile-btn-icon" src={ProfileBtnIcon} />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
