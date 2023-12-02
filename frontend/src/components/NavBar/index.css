@@ -74,7 +74,7 @@
 .logged-in-links a {
     margin-left: 10px;
     border: none;
-    color: #0A345B;;
+    color: #0A345B;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -104,7 +104,7 @@
     text-decoration: underline;
 }
 
-.logout-button {
+/* .logout-button {
     height: 30px;
     width: 80px;
     margin-left: 10px;
@@ -118,4 +118,4 @@
 
 .logout-button:hover {
     transform: scale(1.05);
-}
+} */
