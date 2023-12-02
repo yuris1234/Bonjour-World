@@ -60,7 +60,7 @@
   font-size: 0.7rem;
 }
 
-.button-container {
+.login-form .button-container {
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,23 +1,19 @@
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./EventForm.css";
 import {
   getEvent,
   fetchEvent,
-  createEvent,
   updateEvent,
   clearEventErrors,
 } from "../../store/events";
 import { closeModal } from "../../store/modal";
 import "./EventForm.css";
 
-const EventUpdateForm = ({eventId}) => {
+const EventUpdateForm = ({ eventId }) => {
   const errors = useSelector((state) => state.errors.event);
-  const history = useHistory()
-
-  // const { eventId } = useParams();
-  // const eventType = eventId ? "Update Event" : "Create Event";
+  const history = useHistory();
   let event = useSelector(getEvent(eventId));
 
   const [title, setTitle] = useState(event?.title);
@@ -27,8 +23,6 @@ const EventUpdateForm = ({eventId}) => {
   const [city, setCity] = useState(event?.city);
   const [address, setAddress] = useState(event?.address);
   const [zipcode, setZipcode] = useState(event?.zipcode);
-  const [lat, setLat] = useState(event?.lat);
-  const [long, setLong] = useState(event?.long);
   const [date, setDate] = useState(event?.date);
   const [time, setTime] = useState(event?.time);
 
@@ -39,7 +33,7 @@ const EventUpdateForm = ({eventId}) => {
       dispatch(fetchEvent(eventId));
     }
     if (event) {
-      const newDate = formatDate(new Date(date))
+      const newDate = formatDate(new Date(date));
       setDate(newDate);
     }
   }, [eventId]);
@@ -65,16 +59,16 @@ const EventUpdateForm = ({eventId}) => {
     };
     const res = await dispatch(updateEvent(updatedEvent));
     if (res.ok) {
-        dispatch(closeModal())
-        history.push(`/events/${eventId}`);
+      dispatch(closeModal());
+      history.push(`/events/${eventId}`);
     }
   };
-  
+
   const formatDate = (inputDate) => {
     const year = inputDate.getFullYear();
-    const month = String(inputDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = String(inputDate.getDate()).padStart(2, '0');
-  
+    const month = String(inputDate.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const day = String(inputDate.getDate()).padStart(2, "0");
+
     return `${year}-${month}-${day}`;
   };
 
@@ -184,16 +178,17 @@ const EventUpdateForm = ({eventId}) => {
       for (let minute = 0; minute < 60; minute += interval) {
         const formattedHour = hour.toString().padStart(2, "0");
         const formattedMinute = minute.toString().padStart(2, "0");
-        const formattedTime = `${formattedHour}:${formattedMinute}`;  
+        const formattedTime = `${formattedHour}:${formattedMinute}`;
         timeOptions.push(
-          time === formattedTime ? 
-          <option key={formattedTime} value={formattedTime} selected>
-            {formattedTime}
-          </option>
-          :
-          <option key={formattedTime} value={formattedTime}>
-            {formattedTime}
-          </option>
+          time === formattedTime ? (
+            <option key={formattedTime} value={formattedTime} selected>
+              {formattedTime}
+            </option>
+          ) : (
+            <option key={formattedTime} value={formattedTime}>
+              {formattedTime}
+            </option>
+          )
         );
       }
     }
@@ -205,48 +200,55 @@ const EventUpdateForm = ({eventId}) => {
     <form className="event-form" onSubmit={handleSubmit}>
       <h2>Edit Event</h2>
 
-      <div className="inputs">
-        <div className="left-column">
+      <div className="selects">
+        <div className="select">
           <div className="errors">{errors?.time}</div>
-          {/* <label>
-            Time */}
           <select value={time} onChange={update("time")}>
             <option disabled value="">
               Select Time
             </option>
             {generateTimeOptions()}
           </select>
-          {/* </label> */}
-          <div className="errors">{errors?.title}</div>
-          {/* <label>
-            Title */}
-          <input
-            type="text"
-            value={title}
-            placeholder="Title"
-            onChange={update("title")}
-          />
-          {/* </label> */}
+        </div>
+
+        <div className="select">
+          <div className="errors">{errors?.language}</div>
           <select value={language} onChange={update("language")}>
-            <option value="">Select Language</option>
+            <option disabled value="">
+              Select Language
+            </option>
             {languages.map((lang) => (
               <option key={lang} value={lang}>
                 {lang}
               </option>
             ))}
           </select>
-          {/* <label>
-            Language */}
+        </div>
+
+        <div className="select">
+          <div className="errors">{errors?.state}</div>
+          <select value={state} onChange={update("state")}>
+            <option disabled value="">Select State</option>
+            {states.map((stateOption) => (
+              <option key={stateOption} value={stateOption}>
+                {stateOption}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div className="inputs">
+        <div className="left-column">
+          <div className="errors">{errors?.title}</div>
           <input
             type="text"
-            value={language}
-            placeholder="Language"
-            onChange={update("language")}
+            value={title}
+            placeholder="Title"
+            onChange={update("title")}
           />
-          {/* </label> */}
+
           <div className="errors">{errors?.date}</div>
-          {/* <label>
-            Date */}
           <input
             type="date"
             value={date}
@@ -254,62 +256,41 @@ const EventUpdateForm = ({eventId}) => {
               setDate(e.target.value);
             }}
           />
-          {/* </label> */}
         </div>
 
         <div className="right-column">
-          {/* <label>
-            State */}
-          <select value={state} onChange={update("state")}>
-            <option value="">Select State</option>
-            {states.map((stateOption) => (
-              <option key={stateOption} value={stateOption}>
-                {stateOption}
-              </option>
-            ))}
-          </select>
-          {/* </label> */}
-
           <div className="errors">{errors?.city}</div>
-          {/* <label>
-            City */}
           <input
             type="text"
             placeholder="City"
             value={city}
             onChange={update("city")}
           />
-          {/* </label> */}
 
           <div className="errors">{errors?.address}</div>
-          {/* <label>
-            Address */}
           <input
             type="text"
             placeholder="Address"
             value={address}
             onChange={update("address")}
           />
-          {/* </label> */}
 
           <div className="errors">{errors?.zipcode}</div>
-          {/* <label>
-            Zipcode */}
           <input
             type="text"
             placeholder="Zipcode"
             value={zipcode}
             onChange={update("zipcode")}
           />
-          {/* </label> */}
         </div>
       </div>
 
       <div className="errors">{errors?.description}</div>
-      <label>
-        Description
-        <textarea value={description} onChange={update("description")} />
-      </label>
+      <textarea
+        placeholder="Description"
+        value={description}
+        onChange={update("description")}
+      />
 
       <input type="submit" value="Update Event" />
     </form>
