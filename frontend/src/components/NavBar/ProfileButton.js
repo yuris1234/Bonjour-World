@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
       {showMenu && (
         <ul className="profile-dropdown">
           <li>
-            <Link to={"/profile"}>Profile</Link>
+            <Link to={"/profile"} id="profile-link">Profile</Link>
           </li>
           <li>
             <button onClick={logoutUser} className="logout-button">
