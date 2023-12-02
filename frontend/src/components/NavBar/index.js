@@ -1,19 +1,12 @@
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../store/session";
 import { openModal } from "../../store/modal";
 import "./index.css";
+import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
   const loggedIn = useSelector((state) => !!state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const logoutUser = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-    history.push("/");
-  };
 
   const getLinks = () => {
     if (loggedIn) {
@@ -22,11 +15,17 @@ const NavBar = () => {
           <Link className="all-events" to={"/events"}>
             All Events
           </Link>
-          <button className="create-event-button" onClick={() => dispatch(openModal("createEvent"))}>
+          <button
+            className="create-event-button"
+            onClick={() => dispatch(openModal("createEvent"))}
+          >
             Create an Event
           </button>
-          <Link to={"/profile"}>Profile</Link>
-          <button onClick={logoutUser} className="logout-button">Logout</button>
+          {/* <Link to={"/profile"}>Profile</Link> */}
+          {/* <button onClick={logoutUser} className="logout-button">
+            Logout
+          </button> */}
+          <ProfileButton user={""} />
         </div>
       );
     } else {
