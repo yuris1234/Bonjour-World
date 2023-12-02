@@ -180,6 +180,6 @@ body {
     cursor: pointer;
 }
 
-button:hover {
+.event-show-index button:hover {
     transform: scale(1.05);
 }

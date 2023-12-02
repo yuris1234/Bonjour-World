@@ -59,63 +59,41 @@
      text-decoration: underline;
  }
 
-/* logged in nav links */
+/* logged in links */
 
 .logged-in-links {
     display: flex;
     align-items: center;
+    gap: 5px;
+    margin-right: 5px;
 }
 
-.all-events {
-    display: flex;
-    justify-content: center;
+.logged-in-links .logged-in-link {
+
 }
 
-.logged-in-links a {
-    margin-left: 10px;
-    border: none;
-    color: #0A345B;;
+#all-events {
+    font-size: 15px;
+    color: #0A345B;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
     display: inline-block;
     text-align: center;
-    font-size: 1rem;
 }
 
-.logged-in-links a:hover {
-    text-decoration: underline;
-}
-
-.create-event-button {
-    margin-left: 10px;
+#create-event-button {
     border: none;
-    color: #0A345B;;
+    color: #0A345B;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
     display: inline-block;
     text-align: center;
     background: transparent;
-    font-size: 1rem;
+    font-size: 15px;
 }
 
-.create-event-button:hover {
+#create-event-button:hover, #all-events:hover {
     text-decoration: underline;
-}
-
-.logout-button {
-    height: 30px;
-    width: 80px;
-    margin-left: 10px;
-    font-weight: bold;
-    border: none;
-    border-radius: 3ch;
-    cursor: pointer;
-    background-color: #0A345B;;
-    color: white;
-}
-
-.logout-button:hover {
-    transform: scale(1.05);
 }
