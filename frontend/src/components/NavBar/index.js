@@ -22,10 +22,6 @@ const NavBar = () => {
           >
             Create an Event
           </button>
-          {/* <Link to={"/profile"}>Profile</Link> */}
-          {/* <button onClick={logoutUser} className="logout-button">
-            Logout
-          </button> */}
           <ProfileButton user={""} />
         </div>
       );
