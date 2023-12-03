@@ -56,8 +56,9 @@
 
 .login-form .errors {
   color: red;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 0.7rem;
+  text-align: center;
 }
 
 .login-form .button-container {
