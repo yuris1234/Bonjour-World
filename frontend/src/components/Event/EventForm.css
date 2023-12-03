@@ -50,6 +50,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  font-size: 1rem;
 }
 
 .event-form .inputs {
@@ -75,11 +76,13 @@
   border: none;
   border-bottom: 1px solid black;
   width: 200px;
+  outline: none;
+  font-size: 1rem;
 }
 
 .event-form input::placeholder {
   color: gray;
-  font-size: large;
+  font-size: 1rem;
 }
 
 .event-form textarea {
