@@ -25,10 +25,8 @@ const App = () => {
       {loaded && (
         <>
           <Switch>
-            <Route exact path="/">
-              <SplashPage/>
-              <AboutUs/>
-            </Route>
+            <Route exact path="/" component={SplashPage}></Route>
+            <Route exact path="/aboutus" component={AboutUs}></Route>
             <Route exact path="/events" component={EventIndex}></Route>
             {/* <Route exact path="/events/new" component={EventForm}></Route> */}
             <Route exact path="/events/:eventId" component={EventShow}></Route>
