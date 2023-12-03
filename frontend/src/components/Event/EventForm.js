@@ -201,9 +201,7 @@ const EventForm = () => {
         <div className="select">
           <div className="errors">{errors?.time}</div>
           <select value={time} onChange={update("time")}>
-            <option disabled value="">
-              Select Time
-            </option>
+            <option disabled value="">Select Time</option>
             {generateTimeOptions()}
           </select>
         </div>
@@ -225,9 +223,7 @@ const EventForm = () => {
         <div className="select">
           <div className="errors">{errors?.state}</div>
           <select value={state} onChange={update("state")}>
-            <option disabled value="">
-              Select State
-            </option>
+            <option disabled value="">Select State</option>
             {states.map((stateOption) => (
               <option key={stateOption} value={stateOption}>
                 {stateOption}

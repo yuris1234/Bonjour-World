@@ -40,6 +40,8 @@
 
 .event-form select {
   background-color: transparent;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .event-form .select {
