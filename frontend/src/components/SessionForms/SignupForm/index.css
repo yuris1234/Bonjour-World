@@ -53,12 +53,12 @@
   margin-top: 10px;
 }
 
-.signup-form label {
+/* .signup-form label {
   color: black;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
-}
+} */
 
 .signup-form input {
   padding: 8px;
@@ -67,7 +67,8 @@
   color: black;
   border: none;
   border-bottom: 1px solid black;
-    font-size: .9rem;
+  font-size: .9rem;
+  outline: none;
 }
 
 .signup-form input::placeholder {
