@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Eltion from "../../static/images/img1.png";
-import Yuri from "../../static/images/img2.png";
+import Yuri from "../../static/images/img3.png";
 import Claudia from "../../static/images/img3.png";
 import Jason from "../../static/images/img1.png";
 import "./index.css";
