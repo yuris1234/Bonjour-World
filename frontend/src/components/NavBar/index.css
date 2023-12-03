@@ -71,7 +71,7 @@
 }
 
 #all-events {
-    font-size: 15px;
+    font-size: 1rem;
     color: #0A345B;
     cursor: pointer;
     text-decoration: none;
@@ -79,7 +79,7 @@
 }
 
 #about-us {
-    font-size: 15px;
+    font-size: 1rem;
     color: #0A345B;
     cursor: pointer;
     text-decoration: none;
@@ -95,7 +95,7 @@
     display: inline-block;
     text-align: center;
     background: transparent;
-    font-size: 15px;
+    font-size: 1rem;
     margin-top: 1px;
     padding: 0;
 }
