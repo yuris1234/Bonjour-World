@@ -51,7 +51,7 @@ const AboutUs = () => {
     const currentLanguage = changingLanguages[currentLanguageIndex];
     switch (currentLanguage) {
       case "en":
-        return "Meet the Team";
+        return "Meet The Team";
       case "ch":
         return "团队见面";
       case "sp":
@@ -61,7 +61,7 @@ const AboutUs = () => {
       case "ar":
         return "تعرف على الفريق";
       default:
-        return "Meet the Team";
+        return "Meet The Team";
     }
   }
 
