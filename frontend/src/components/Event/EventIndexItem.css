@@ -13,8 +13,8 @@
 }
 
 .event-item:hover {
-    border: 3px solid #b5cffb;
-    color: #b5cffb;
+    border: 3px solid #9CC0F9;
+    color: #9CC0F9;
     transform: scale(1.02);
     border-radius: 10px;
     animation: backgroundGlow 2s ease-in-out infinite alternate;
