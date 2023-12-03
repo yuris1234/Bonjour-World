@@ -12,6 +12,9 @@ const NavBar = () => {
     if (loggedIn) {
       return (
         <div className="logged-in-links">
+          <Link className="logged-in-link" id="about-us" to={"/aboutus"}>
+            About Us
+          </Link>
           <Link className="logged-in-link" id="all-events" to={"/events"}>
             All Events
           </Link>
@@ -28,6 +31,9 @@ const NavBar = () => {
     } else {
       return (
         <div className="logged-out-links">
+          <Link className="all-events no-underline" to={"/aboutus"}>
+            About Us
+          </Link>
           <Link className="all-events no-underline" to={"/events"}>
             All Events
           </Link>
