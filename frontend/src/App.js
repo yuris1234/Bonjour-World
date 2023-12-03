@@ -11,6 +11,7 @@ import EventIndex from "./components/Event/EventIndex";
 import EventForm from "./components/Event/EventForm";
 import EventShow from "./components/Event/EventShow";
 import UserProfile from "./components/UserProfile";
+import AboutUs from "./components/AboutUs";
 
 const App = () => {
   const [loaded, setLoaded] = useState(false);
@@ -24,7 +25,10 @@ const App = () => {
       {loaded && (
         <>
           <Switch>
-            <Route exact path="/" component={SplashPage}></Route>
+            <Route exact path="/">
+              <SplashPage/>
+              <AboutUs/>
+            </Route>
             <Route exact path="/events" component={EventIndex}></Route>
             {/* <Route exact path="/events/new" component={EventForm}></Route> */}
             <Route exact path="/events/:eventId" component={EventShow}></Route>
