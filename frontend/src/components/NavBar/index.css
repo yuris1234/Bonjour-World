@@ -103,3 +103,9 @@
 #create-event-button:hover, #all-events:hover, #about-us:hover {
     text-decoration: underline;
 }
+
+#all-events.active, #about-us.active,
+.logged-out-links .active {
+    color: #9CC0F9;
+    text-decoration: underline;
+}

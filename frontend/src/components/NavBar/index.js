@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { openModal } from "../../store/modal";
 import "./index.css";
@@ -12,12 +12,22 @@ const NavBar = () => {
     if (loggedIn) {
       return (
         <div className="logged-in-links">
-          <Link className="logged-in-link" id="about-us" to={"/aboutus"}>
+          <NavLink
+            className="logged-in-link"
+            id="about-us"
+            to={"/aboutus"}
+            activeClassName="active"
+          >
             About Us
-          </Link>
-          <Link className="logged-in-link" id="all-events" to={"/events"}>
+          </NavLink>
+          <NavLink
+            className="logged-in-link"
+            id="all-events"
+            to={"/events"}
+            activeClassName="active"
+          >
             All Events
-          </Link>
+          </NavLink>
           <button
             className="logged-in-link"
             id="create-event-button"
@@ -31,12 +41,20 @@ const NavBar = () => {
     } else {
       return (
         <div className="logged-out-links">
-          <Link className="all-events no-underline" to={"/aboutus"}>
+          <NavLink
+            className="no-underline"
+            to={"/aboutus"}
+            activeClassName="active"
+          >
             About Us
-          </Link>
-          <Link className="all-events no-underline" to={"/events"}>
+          </NavLink>
+          <NavLink
+            className="no-underline"
+            to={"/events"}
+            activeClassName="active"
+          >
             All Events
-          </Link>
+          </NavLink>
           <button
             className="signup-button"
             onClick={() => dispatch(openModal("signup"))}
@@ -57,9 +75,9 @@ const NavBar = () => {
   return (
     <>
       <nav className="nav-bar">
-        <Link to="/" className="no-underline">
+        <NavLink to="/" className="no-underline">
           <h1 className="nav-bar-header">Bonjour World</h1>
-        </Link>
+        </NavLink>
         <div className="nav-links">{getLinks()}</div>
       </nav>
     </>
