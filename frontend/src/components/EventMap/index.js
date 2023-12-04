@@ -49,7 +49,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
             // If map already exists, update its options
             map.setOptions({
                 center: mapOptions.center,
-                zoom: mapOptions.zoom
+                zoom: 17
             });
         }
     }, [map, mapOptions]);
