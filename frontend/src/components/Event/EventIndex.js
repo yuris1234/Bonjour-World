@@ -30,16 +30,19 @@ const EventIndex = () => {
         },
     };
 
+
     return (
         <>
             <NavBar />
             <div className="event-index">
-                    <EventsMapWrapper events={events} markerEventHandlers={markerEventHandlers} />
+                    <EventsMapWrapper events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} />
                 <div className="display-all-events">
                     {Object.values(events).map((event) => (
                         <EventIndexItem
                             key={event._id}
                             event={event}
+                            highlightedEvent={highlightedEvent}
+                            setHighlightedEvent={setHighlightedEvent}
                         />
                     ))}
                 </div>
