@@ -9,8 +9,11 @@ import {
   updateEvent,
   clearEventErrors,
 } from "../../store/events";
+import { closeModal } from "../../store/modal";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const EventForm = () => {
+  const history = useHistory();
   const errors = useSelector((state) => state.errors.event);
 
   const { eventId } = useParams();
@@ -53,10 +56,9 @@ const EventForm = () => {
     return () => dispatch(clearEventErrors());
   }, [dispatch]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    debugger
     const updatedEvent = {
       title,
       description,
@@ -69,9 +71,11 @@ const EventForm = () => {
       time,
     };
 
-    eventType === "Create Event"
-      ? dispatch(createEvent(updatedEvent))
-      : dispatch(updateEvent(updatedEvent));
+    const res = await dispatch(createEvent(updatedEvent));
+    if (res.ok) {
+      dispatch(closeModal()); 
+      history.push(`/events`);
+    }
   };
 
   const update = (field) => {
@@ -187,12 +191,12 @@ const EventForm = () => {
     return timeOptions;
   };
 
-  const formatDate = (e) => {
-    const updatedDate = date.toISOString().substring(0, 10),
-    field = document.querySelector('#date');
-    setDate(updatedDate);
-    field.value = updatedDate;
-  }
+  // const formatDate = (e) => {
+  //   const updatedDate = date.toISOString().substring(0, 10),
+  //   field = document.querySelector('#date');
+  //   setDate(updatedDate);
+  //   field.value = updatedDate;
+  // }
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
@@ -249,7 +253,7 @@ const EventForm = () => {
             id="date"
             type="date"
             value={date}
-            onChange={(e) => setDate(new Date(e.target.value))}
+            onChange={(e) => setDate(e.target.value)}
           />
         </div>
 
