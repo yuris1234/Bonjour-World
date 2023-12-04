@@ -84,7 +84,9 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
   // Otherwise create a new user
   const newUser = new User({
     username: req.body.username,
-    email: req.body.email
+    email: req.body.email,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName
   });
 
   bcrypt.genSalt(10, (err, salt) => {
