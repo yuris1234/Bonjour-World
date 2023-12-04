@@ -61,7 +61,6 @@ export const fetchEvents = () => async (dispatch) => {
 };
 
 export const fetchEvent = (eventId) => async (dispatch) => {
-  // debugger
   const res = await jwtFetch(`/api/events/${eventId}`);
 
   if (res.ok) {
@@ -87,7 +86,6 @@ export const createEvent = (data) => async (dispatch) => {
 };
 
 export const updateEvent = (event) => async (dispatch) => {
-  // debugger
   const res = await jwtFetch(`/api/events/${event._id}`, {
     method: "PATCH",
     headers: {

@@ -25,8 +25,6 @@ const EventForm = () => {
       city: "",
       address: "",
       zipcode: "",
-      lat: "",
-      long: "",
       date: "",
       time: "",
       host: "",
@@ -39,8 +37,6 @@ const EventForm = () => {
   const [city, setCity] = useState(event.city);
   const [address, setAddress] = useState(event.address);
   const [zipcode, setZipcode] = useState(event.zipcode);
-  const [lat, setLat] = useState(event.lat);
-  const [long, setLong] = useState(event.long);
   const [date, setDate] = useState(
     event.date ? new Date(event.date) : new Date()
   );
@@ -69,8 +65,6 @@ const EventForm = () => {
       city,
       address,
       zipcode,
-      lat,
-      long,
       date: formattedDate,
       time,
     };
@@ -103,12 +97,6 @@ const EventForm = () => {
           break;
         case "zipcode":
           setZipcode(e.currentTarget.value);
-          break;
-        case "lat":
-          setLat(e.currentTarget.value);
-          break;
-        case "long":
-          setLong(e.currentTarget.value);
           break;
         case "date":
           setDate(new Date(e.target.value));
@@ -176,6 +164,8 @@ const EventForm = () => {
     "Wyoming",
   ];
 
+  const languages = ["German", "Spanish", "English", "French"];
+
   const formatDate = (date) => {
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -207,99 +197,96 @@ const EventForm = () => {
     <form className="event-form" onSubmit={handleSubmit}>
       <h2>{eventType}</h2>
 
+      <div className="selects">
+        <div className="select">
+          <div className="errors">{errors?.time}</div>
+          <select value={time} onChange={update("time")}>
+            <option disabled value="">Select Time</option>
+            {generateTimeOptions()}
+          </select>
+        </div>
+
+        <div className="select">
+          <div className="errors">{errors?.language}</div>
+          <select value={language} onChange={update("language")}>
+            <option disabled value="">
+              Select Language
+            </option>
+            {languages.map((lang) => (
+              <option key={lang} value={lang}>
+                {lang}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="select">
+          <div className="errors">{errors?.state}</div>
+          <select value={state} onChange={update("state")}>
+            <option disabled value="">Select State</option>
+            {states.map((stateOption) => (
+              <option key={stateOption} value={stateOption}>
+                {stateOption}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
       <div className="inputs">
         <div className="left-column">
           <div className="errors">{errors?.title}</div>
-          <div className="column">
-            <label>
-              Title
-              <input type="text" value={title} onChange={update("title")} />
-            </label>
+          <input
+            type="text"
+            placeholder="Title"
+            value={title}
+            onChange={update("title")}
+          />
 
-            <div className="errors">{errors?.description}</div>
-            <label>
-              Description
-              <textarea value={description} onChange={update("description")} />
-            </label>
-
-            <div className="errors">{errors?.language}</div>
-            <label>
-              Language
-              <input
-                type="text"
-                value={language}
-                onChange={update("language")}
-              />
-            </label>
-
-            <label>
-              State
-              <select value={state} onChange={update("state")}>
-                <option value="">Select State</option>
-                {states.map((stateOption) => (
-                  <option key={stateOption} value={stateOption}>
-                    {stateOption}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <div className="errors">{errors?.city}</div>
-            <label>
-              City
-              <input type="text" value={city} onChange={update("city")} />
-            </label>
-
-            <div className="errors">{errors?.address}</div>
-            <label>
-              Address
-              <input type="text" value={address} onChange={update("address")} />
-            </label>
-          </div>
+          <div className="errors">{errors?.date}</div>
+          <input
+            type="date"
+            value={formatDate(date)}
+            onChange={(e) => {
+              setDate(new Date(e.target.value));
+              update("date");
+            }}
+          />
         </div>
 
         <div className="right-column">
+          <div className="errors">{errors?.city}</div>
+          <input
+            type="text"
+            placeholder="City"
+            value={city}
+            onChange={update("city")}
+          />
+
+          <div className="errors">{errors?.address}</div>
+          <input
+            type="text"
+            placeholder="Address"
+            value={address}
+            onChange={update("address")}
+          />
+
           <div className="errors">{errors?.zipcode}</div>
-          <label>
-            Zipcode
-            <input type="text" value={zipcode} onChange={update("zipcode")} />
-          </label>
-
-          <div className="errors">{errors?.lat}</div>
-          <label>
-            Lat
-            <input type="text" value={lat} onChange={update("lat")} />
-          </label>
-
-          <div className="errors">{errors?.long}</div>
-          <label>
-            Long
-            <input type="text" value={long} onChange={update("long")} />
-          </label>
-
-          <div className="errors">{errors?.date}</div>
-          <label>
-            Date
-            <input
-              type="date"
-              value={formatDate(date)}
-              onChange={(e) => {
-                setDate(new Date(e.target.value));
-                update("date");
-              }}
-            />
-          </label>
-
-          <div className="errors">{errors?.time}</div>
-          <label>
-            Time
-            <select value={time} onChange={update("time")}>
-              <option value="">Select Time</option>
-              {generateTimeOptions()}
-            </select>
-          </label>
+          <input
+            type="text"
+            placeholder="Zipcode"
+            value={zipcode}
+            onChange={update("zipcode")}
+          />
         </div>
       </div>
+
+      <div className="errors">{errors?.description}</div>
+      <textarea
+        placeholder="Description"
+        value={description}
+        onChange={update("description")}
+      />
 
       <input type="submit" value={eventType} />
     </form>

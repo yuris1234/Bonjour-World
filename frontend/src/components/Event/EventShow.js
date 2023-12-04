@@ -15,7 +15,7 @@ const EventShow = () => {
     const { eventId } = useParams();
     const event = useSelector(getEvent(eventId))
     const user = useSelector((state) => state.session.user);
-    const users = useSelector(getUsers(eventId));
+    const users = useSelector(getUsers(event));
     const [subscribed, setSubscribed] = useState(false);
     const [hostShow, setHostShow] = useState(false);
     const [host, setHost] = useState("");
@@ -30,10 +30,9 @@ const EventShow = () => {
     },[eventId])
 
     useEffect(() => {
-        debugger
-        if (user?.events) {
+        if (user && event?.attendees) {
             if (subscribed === false) {
-                setSubscribed(user.events.includes(eventId) ? true : false)
+                setSubscribed(event.attendees.includes(user._id) ? true : false)
             }
         }
         if (event) {
@@ -153,14 +152,6 @@ const EventShow = () => {
                             <div className="event-address">{event?.address}</div>
                         </div>
                         
-                        <div className="event-lat-div">Latitude 
-                            <div className="event-lat">{event?.lat}</div>
-                        </div>
-
-                        
-                        <div className="event-long-div">Longitude
-                            <div className="event-long">{event?.long}</div>
-                        </div>
                         {hostShow && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
                         {!subscribed && user &&
                             <button className="join-event" onClick={handleJoin}>+ Join </button>

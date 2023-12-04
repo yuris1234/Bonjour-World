@@ -19,14 +19,17 @@ export const receiveEventJoin = (eventJoin) => ({
   eventJoin
 })
 
-export const getUsers = (eventId) => (state) => {
+export const getUsers = (event) => (state) => {
   const holder = [];
-  Object.values(state.users).filter((user) => {
-    if (user.events.includes(eventId)) {
-      holder.push(user)
-    }
-  }) 
-  return holder
+  if (event) {
+    Object.values(state.users).filter((user) => {
+      if (event.attendees.includes(user._id)) {
+        holder.push(user)
+      }
+    }) 
+    return holder
+
+  }
 }
 
 export const addEventJoin = (userId, eventId) => async (dispatch) => {
