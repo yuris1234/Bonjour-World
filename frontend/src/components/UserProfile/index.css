@@ -38,6 +38,9 @@
     flex: 1;
     overflow: hidden;
     border: solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .profile-back-to-main-div {
@@ -66,8 +69,8 @@
 }
 
 .profile-img {
-    width: 10%;
-    height: 10%;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     display: block;
     /* margin-left: 50px; */
@@ -95,43 +98,54 @@
 
 .profile-img-container {
     display: flex;
+    align-items: center;
     flex-direction: column;
     text-align: center;
     object-fit: cover;
     position: relative;
     margin-left: 50px;
-    bottom: 60px;
+    /* bottom: 60px; */
     border: solid red;
+    width: 30%;
+    padding: 20px;
     /* justify-content; */
 }
 
-.profile {
+.profile-details {
+    margin-left: 50px;
+    margin-bottom: 50px;
+    width: 30%;
     flex: 1;
     display: flex;
     flex-direction: column;
     /* border-left: 5px solid #0A345B; */
     padding: 20px;
     border: solid red;
-    margin-left : 50px;
+    align-items: center;
 }
 
 .profile div {
     padding: 10px;
-    border: 5px solid #022a54f0;
-    border-radius: 10px;
-    width: 500px;
+    /* border: 5px solid #022a54f0; */
+    /* border-radius: 10px; */
+    width: 200px;
     height: 25px;
-    font-size: 20px;
+    /* font-size: 20px; */
+    text-align: center;
     font-weight: bold;
     color: #022a54f0;
     border: solid red;
-    margin-left: 0;
 }
 
 .fade-in {
     animation: fadeIn ease 1s;
     animation-fill-mode: forwards;
     opacity: 0;
+}
+
+.profile-label {
+    width: 10%;
+    border: solid red;
 }
 
 @keyframes fadeIn {
