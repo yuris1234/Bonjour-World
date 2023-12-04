@@ -70,6 +70,7 @@ export const createEvent = (data) => async (dispatch) => {
     });
     const event = await res.json();
     dispatch(receiveNewEvent(event));
+    return res;
   } catch (err) {
     const resBody = await err.json();
     if (resBody.statusCode === 400) {

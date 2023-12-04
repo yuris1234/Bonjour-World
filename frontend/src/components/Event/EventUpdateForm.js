@@ -44,6 +44,7 @@ const EventUpdateForm = ({ eventId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    debugger
 
     const updatedEvent = {
       ...event,
