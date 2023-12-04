@@ -62,12 +62,9 @@ const UserProfile = () => {
                             </label>
                         </div>
                             
-                        <div className="profile">
-                            <div className="profile-details">{user?.email}</div>
-                            <div className="profile-details">{user?.username}</div>
-                            {/* <div className="profile-age">{user?.age}</div> */}
-                            <div className="profile-details">{user?.firstName}</div>
-                            <div className="profile-details">{user?.lastName}</div>
+                        <div className="profile-details">
+                            <div className="profile-label">{user?.firstName} {user?.lastName}</div>
+                            <div className="profile-label">{user?.username}</div>
                         </div>
                     </div>
 
