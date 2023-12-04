@@ -55,8 +55,8 @@ const EventForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formattedDate = formatDate(date);
 
+    debugger
     const updatedEvent = {
       title,
       description,
@@ -65,7 +65,7 @@ const EventForm = () => {
       city,
       address,
       zipcode,
-      date: formattedDate,
+      date,
       time,
     };
 
@@ -110,6 +110,7 @@ const EventForm = () => {
       }
     };
   };
+
 
   const states = [
     "Alabama",
@@ -166,13 +167,6 @@ const EventForm = () => {
 
   const languages = ["German", "Spanish", "English", "French"];
 
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
-    return `${year}-${month}-${day}`;
-  };
-
   const generateTimeOptions = () => {
     const timeOptions = [];
     const interval = 15;
@@ -192,6 +186,13 @@ const EventForm = () => {
 
     return timeOptions;
   };
+
+  const formatDate = (e) => {
+    const updatedDate = date.toISOString().substring(0, 10),
+    field = document.querySelector('#date');
+    setDate(updatedDate);
+    field.value = updatedDate;
+  }
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
@@ -245,12 +246,10 @@ const EventForm = () => {
 
           <div className="errors">{errors?.date}</div>
           <input
+            id="date"
             type="date"
-            value={formatDate(date)}
-            onChange={(e) => {
-              setDate(new Date(e.target.value));
-              update("date");
-            }}
+            value={date}
+            onChange={(e) => setDate(new Date(e.target.value))}
           />
         </div>
 
