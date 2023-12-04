@@ -1,7 +1,7 @@
 import { useDebugValue, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEvent, fetchEvent } from '../../store/events';
+import { getEvent, fetchEvent, setCenter } from '../../store/events';
 import NavBar from '../NavBar';
 import "./EventShow.css"
 import { addEventJoin, fetchUsers, removeEventJoin } from '../../store/users';
@@ -19,14 +19,18 @@ const EventShow = () => {
     const [subscribed, setSubscribed] = useState(false);
     const [hostShow, setHostShow] = useState(false);
     const [host, setHost] = useState("");
+    const [mapOptions, setMapOptions] = useState({});
+    
 
     useEffect(() => {
         dispatch(getCurrentUser());
         dispatch(fetchUsers());
         dispatch(fetchEvent(eventId));
+        debugger
     },[eventId])
 
     useEffect(() => {
+        debugger
         if (user?.events) {
             if (subscribed === false) {
                 setSubscribed(user.events.includes(eventId) ? true : false)
@@ -65,13 +69,55 @@ const EventShow = () => {
         dispatch(updateEvent("updateEvent", eventId));
     }
 
+    const getAddressCoordinates = async (address) => {
+        debugger
+        try {
+            const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${process.env.REACT_APP_MAPS_API_KEY}`;
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            if (data.results.length > 0) {
+                const location = data.results[0].geometry.location;
+                const latitude = location.lat;
+                const longitude = location.lng;
+                return new window.google.maps.LatLng(latitude, longitude);
+            } else {
+                throw new Error('No results found for the provided address.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+          throw error; // Re-throw the error to handle it in the calling code
+        }
+    };
+
+    useEffect(() => {
+        debugger
+        const fetchMapData = async () => {
+            try {
+                const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
+                const coordinates = await getAddressCoordinates(formattedAddress);
+                const centered = {
+                    zoom: 11, // Set the initial zoom level as needed
+                    center: { lat: coordinates.lat(), lng: coordinates.lng() }
+                }
+                setMapOptions(centered);
+                // dispatch(setCenter(centered))
+            } catch (error) {
+                console.error('Error fetching map data:', error);
+                // Handle error as needed
+            }
+        };
+        
+        fetchMapData();
+    }, [event]);
+
     return (
         <>
             <NavBar />
             <div className="event-show-index">
                 {event && (
                 
-                    <EventsMapWrapper events={event}/>
+                    <EventsMapWrapper events={[event]} mapOptions={mapOptions}/>
                 
                 )}
 
