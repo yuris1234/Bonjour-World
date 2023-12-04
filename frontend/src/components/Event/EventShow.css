@@ -8,15 +8,19 @@ body {
 .event-show-index {
     display: flex;
     width: 100vw;
-    background: linear-gradient(to bottom, #FBE1B5, white);
+    /* background: linear-gradient(to bottom, #FBE1B5, white); */
+    background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
 }
 
 .display-one-event {
     display: flex;
-    width: 900px;
-    height: 100vh;
-    border-left: 3px solid black;
-    border-top: 3px solid black;
+    flex-direction: column;
+    /* justify-content: center; */
+    width: 800px;
+    height: 745px;
+    border: 3px solid black;
+    margin-top: 20px;
+    margin-right: 20px;
     overflow: hidden;
 }
 
@@ -30,27 +34,25 @@ body {
     padding: 5px;
 }
 
-.google-maps-show-container {
-    border-top: 3px solid #FBE1B5;
+/* .google-maps-show-container {
     padding: 20px;
     pointer-events: none;
     height: 100vh;
     width: 596px;
-}
+} */
 
 .event-info-list .event-title {
     position: relative;
     height: 100px;
-    width: 820px;
+    width: 800px;
     font-weight: bolder;
     font-size: 30px;
     text-align: center;
+    /* Center the text horizontally */
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 10px;
-}
-
-.event-title-hosted-by {
-    font-weight: 600;
-    font-size: 20px;
+    /* Adjust the top margin as needed */
 }
 
 .event-title-host {
@@ -58,9 +60,18 @@ body {
     font-size: 10px;
 }
 
+.event-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+    height: 600px;
+}
+
 .event-description-div {
     font-weight: bolder;
     margin-left: 10px;
+    max-width: 700px;
 }
 
 .event-description {
@@ -123,22 +134,14 @@ body {
 
 .event-language {
     margin-left: 10px;
-    height: auto;
-    width: auto;
-    padding: 5px 10px;
-    display: inline-block;
-    background-color: black;
-    color: white;
-    border-radius: 30px;
-    text-align: center;
-    line-height: 1.5;
-    border: none;
+    color: #9CC0F9;
+    font-weight: bold;
 }
 
 .edit-event {
     margin-left: 10px;
     height: auto;
-    width: auto;
+    width: 100px;
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
@@ -153,7 +156,7 @@ body {
 .join-event {
     margin-left: 10px;
     height: auto;
-    width: auto;
+    width: 100px;
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
@@ -168,7 +171,7 @@ body {
 .unjoin-event {
     margin-left: 10px;
     height: auto;
-    width: auto;
+    width: 100px;
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
