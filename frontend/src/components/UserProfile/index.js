@@ -3,15 +3,21 @@ import { getCurrentUser } from '../../store/session';
 import NavBar from '../NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import EmptyUser from '../Images/EmptyUser.jpeg';
 import './index.css';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import EmptyUser from '../Images/EmptyUser.png';
+
+// import empty-user from '../Images/empty-user.jpeg';
 
 const UserProfile = () => {
-    const user = getCurrentUser();
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
     const [uploadedImage, setUploadedImage] = useState(null);
     const [fadeIn, setFadeIn] = useState(false);
 
     useEffect(() => {
+        dispatch(getCurrentUser());
         setFadeIn(true);
     }, []);
 
@@ -33,7 +39,7 @@ const UserProfile = () => {
         <div className={`app-container ${fadeIn ? 'fade-in' : ''}`}>
             <NavBar />
             <div className={`profile-container ${fadeIn ? 'fade-in' : ''}`}>
-                <div className={`profile-greeting ${fadeIn ? 'fade-in' : ''}`}>Greetings, {user?.username ? user?.username : 'Guest'}</div>
+                {/* <div className={`profile-greeting ${fadeIn ? 'fade-in' : ''}`}>Greetings, {user?.username ? user?.username : 'Guest'}</div> */}
                 <div className={`profile-details-div ${fadeIn ? 'fade-in' : ''}`}>
                     <div className="profile-img-div">
                         <div className="profile-back-to-main-div">
@@ -43,10 +49,7 @@ const UserProfile = () => {
                         </div>
 
                         <div className="profile-img-container">
-                            <img className="profile-img" alt="uploaded-user" src={uploadedImage || EmptyUser} />
-                        </div>
-                            
-                        <div className="upload-label-container">
+                            <img className="profile-img" alt="uploaded-user" src={EmptyUser} />
                             <label htmlFor="imageInput" className="upload-label">
                                 Upload Image
                                 <input
@@ -58,15 +61,16 @@ const UserProfile = () => {
                                 />
                             </label>
                         </div>
+                            
+                        <div className="profile-details">
+                            <div className="profile-email">{user?.email}</div><button>Edit</button>
+                            <div className="profile-username">{user?.username}</div><button>Edit</button>
+                            {/* <div className="profile-age">{user?.age}</div><button>Edit</button> */}
+                            <div className="profile-first">{user?.firstName}</div><button>Edit</button>
+                            <div className="profile-last">{user?.lastName}</div><button>Edit</button>
+                        </div>
                     </div>
 
-                    <div className="profile-details">
-                        <div className="profile-email">Email: {user?.email}</div><button>Edit</button>
-                        <div className="profile-username">Username: {user?.username}</div><button>Edit</button>
-                        <div className="profile-age">Age: {user?.age}</div><button>Edit</button>
-                        <div className="profile-first">First Name: {user?.firstName}</div><button>Edit</button>
-                        <div className="profile-last">Last Name: {user?.lastName}</div><button>Edit</button>
-                    </div>
                 </div>
             </div>
         </div>

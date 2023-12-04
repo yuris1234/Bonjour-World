@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
   background-position: center;
   height: 40%;
-  width: 30%;
+  width: 27%;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -20,22 +20,22 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #0A345B;
-  border-radius: 5px;
+  /* padding: 20px; */
+  background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
+  border-radius: 15px;
   width: 100%;
   height: 100%;
+  z-index: 1000;
 }
 
 .signup-form h2 {
-  color: white;
+  color: black;
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
 .signup-form .inputs {
   width: 45%;
-  padding-right: 12px;
 }
 
 .signup-form .row-1, .signup-form .row-2, .signup-form .row-3 {
@@ -44,20 +44,31 @@
   gap: 10px;
 }
 
-.signup-form label {
-  color: white;
+.signup-form .input-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form .confirm-div {
+  margin-top: 10px;
+}
+
+/* .signup-form label {
+  color: black;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
-}
+} */
 
 .signup-form input {
   padding: 8px;
-  margin-top: 8px;
-  border-radius: 5px;
-  background-color: #0A345B;
-  color: white;
-  border: 1px solid gray;
+  /* margin-top: 4px; */
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: .9rem;
+  outline: none;
 }
 
 .signup-form input::placeholder {
@@ -66,20 +77,24 @@
 
 .signup-form .errors {
   color: red;
-  margin-bottom: 10px;
+  margin-top: 10px;
   font-size: .7rem;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .signup-form input[type="submit"] {
-  background-color: white;
-  color: #0A345B;
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  border: none;
   cursor: pointer;
   width: 50%;
   border-radius: 10px;
 }
 
 .signup-form input[type="submit"]:disabled {
-  /* background-color: red; */
+  background-color: #ccc;
   cursor: not-allowed;
   width: 50%;
   border-radius: 10px;
