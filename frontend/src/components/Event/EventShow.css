@@ -14,8 +14,7 @@ body {
 .display-one-event {
     display: flex;
     width: 800px;
-    height: 100vh;
-    /* border-left: 3px solid black; */
+    height: 745px;
     border: 3px solid black;
     margin-top: 20px;
     margin-right: 20px;
@@ -42,17 +41,13 @@ body {
 .event-info-list .event-title {
     position: relative;
     height: 100px;
-    width: 820px;
+    width: 800px;
     font-weight: bolder;
     font-size: 30px;
     /* text-align: center; */
+    margin-left: 140px;
     margin-top: 10px;
-    
-}
 
-.event-title-hosted-by {
-    font-weight: 600;
-    font-size: 20px;
 }
 
 .event-title-host {

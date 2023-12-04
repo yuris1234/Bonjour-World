@@ -123,8 +123,7 @@ const EventShow = () => {
                 <div className="display-one-event">
                     <ul className="event-info-list">
                         <div className="event-title">{event?.title}
-                            <div className="event-title-hosted-by">Hosted By:
-                                <div className="event-title-host">{host}</div>
+                            <div className="event-title-host">Hosted By: {host}
                             </div>
                         </div>
 
