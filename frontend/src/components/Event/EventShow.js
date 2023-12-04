@@ -127,37 +127,39 @@ const EventShow = () => {
                             </div>
                         </div>
 
-                        <span className="event-language">{event?.language}</span>
+                        <div className='event-details'>
+                            <span className="event-language">{event?.language}</span>
 
-                        <div className="event-description-div">Description
-                            <div className="event-description">{event?.description}</div>
-                        </div>
-
-                        <div className="event-date-div">Date
-                            <div className="event-date">{event?.date}</div>
-                        </div>
-
-                        <div className="event-time-div">Time
-                            <div className="event-time">{event?.time}</div>
-                        </div>
-                        
-                        <div className="event-location-div">Location
-                            <div className="event-location">
-                                {event?.city}, {event?.state} {event?.zipcode}
+                            <div className="event-description-div">Description
+                                <div className="event-description">{event?.description}</div>
                             </div>
+
+                            <div className="event-date-div">Date
+                                <div className="event-date">{event?.date}</div>
+                            </div>
+
+                            <div className="event-time-div">Time
+                                <div className="event-time">{event?.time}</div>
+                            </div>
+                            
+                            <div className="event-location-div">Location
+                                <div className="event-location">
+                                    {event?.city}, {event?.state} {event?.zipcode}
+                                </div>
+                            </div>
+        
+                            <div className="event-address-div">Address
+                                <div className="event-address">{event?.address}</div>
+                            </div>
+                            
+                            {hostShow && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
+                            {!subscribed && user &&
+                                <button className="join-event" onClick={handleJoin}>+ Join </button>
+                            }
+                            {subscribed && user &&
+                                <button class="unjoin-event" onClick={handleUnjoin}>Joined</button>
+                            }
                         </div>
-    
-                        <div className="event-address-div">Address
-                            <div className="event-address">{event?.address}</div>
-                        </div>
-                        
-                        {hostShow && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
-                        {!subscribed && user &&
-                            <button className="join-event" onClick={handleJoin}>+ Join </button>
-                        }
-                        {subscribed && user &&
-                            <button class="unjoin-event" onClick={handleUnjoin}>Joined</button>
-                        }
                     </ul>
                 </div>
             </div>
