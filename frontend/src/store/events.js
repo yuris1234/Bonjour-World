@@ -5,6 +5,8 @@ export const RECEIVE_EVENTS = "events/RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "events/RECEIVE_EVENT";
 export const REMOVE_EVENT = "events/REMOVE_EVENT";
 
+export const SET_CENTER = "events/SET_CENTER";
+
 export const RECEIVE_EVENT_ERRORS = "events/RECEIVE_EVENT_ERRORS";
 export const RECEIVE_NEW_EVENT = "events/RECEIVE_NEW_EVENT";
 export const CLEAR_EVENT_ERRORS = "events/CLEAR_EVENT_ERRORS";
@@ -38,6 +40,11 @@ export const clearEventErrors = (errors) => ({
   type: CLEAR_EVENT_ERRORS,
   errors,
 });
+
+export const setCenter = (center) => ({
+  type: SET_CENTER, 
+  center
+})
 
 export const getEvent = (eventId) => (state) =>
   state.events ? state.events[eventId] : null;
@@ -131,6 +138,8 @@ const eventsReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_EVENT_JOIN:
       return {...state, [action.eventJoin.event._id]: action.eventJoin.event}
+    case SET_CENTER: 
+      return {...state, center: action.center}  
     default:
       return state;
   }
