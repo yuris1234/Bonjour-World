@@ -51,6 +51,19 @@ export const getEvent = (eventId) => (state) =>
 export const getEvents = (state) =>
   state.events ? state.events : [];
 
+export const getRelevantEvents = (userId) => (state) => {
+  const holder = [];
+  if (userId) {
+    Object.values(state.events).filter((event) => {
+      if (event.attendees.includes(userId)) {
+        holder.push(event)
+      }
+    }) 
+    return holder
+
+  }
+}
+
 export const fetchEvents = () => async (dispatch) => {
   const res = await jwtFetch(`/api/events`);
 
