@@ -13,10 +13,12 @@ body {
 
 .display-one-event {
     display: flex;
-    width: 900px;
+    width: 800px;
     height: 100vh;
-    border-left: 3px solid black;
-    border-top: 3px solid black;
+    /* border-left: 3px solid black; */
+    border: 3px solid black;
+    margin-top: 20px;
+    margin-right: 20px;
     overflow: hidden;
 }
 
@@ -30,13 +32,12 @@ body {
     padding: 5px;
 }
 
-.google-maps-show-container {
-    border-top: 3px solid #FBE1B5;
+/* .google-maps-show-container {
     padding: 20px;
     pointer-events: none;
     height: 100vh;
     width: 596px;
-}
+} */
 
 .event-info-list .event-title {
     position: relative;
@@ -44,8 +45,9 @@ body {
     width: 820px;
     font-weight: bolder;
     font-size: 30px;
-    text-align: center;
+    /* text-align: center; */
     margin-top: 10px;
+    
 }
 
 .event-title-hosted-by {
@@ -61,6 +63,7 @@ body {
 .event-description-div {
     font-weight: bolder;
     margin-left: 10px;
+    max-width: 700px;
 }
 
 .event-description {
