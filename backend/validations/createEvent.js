@@ -50,14 +50,14 @@ const validateEventCreation = [
     check('host') 
         .exists({checkFalsy: true})
         .withMessage('Host is required'),
-    check('lat')
-        .exists({checkFalsy: true})
-        .isNumeric()
-        .withMessage('Latitude is invalid'),
-    check('long') 
-        .exists({checkFalsy: true})
-        .isNumeric()
-        .withMessage('Longitude is invalid'),
+    // check('lat')
+    //     .exists({checkFalsy: true})
+    //     .isNumeric()
+    //     .withMessage('Latitude is invalid'),
+    // check('long') 
+    //     .exists({checkFalsy: true})
+    //     .isNumeric()
+    //     .withMessage('Longitude is invalid'),
     handleValidationErrors
 ]
 

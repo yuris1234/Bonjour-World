@@ -117,8 +117,8 @@ export const eventErrorsReducer = (state = nullErrors, action) => {
   switch (action.type) {
     case RECEIVE_EVENT_ERRORS:
       return action.errors;
-    case RECEIVE_NEW_EVENT:
-      return { ...state, new: action.event };
+    // case RECEIVE_NEW_EVENT:
+    //   return { ...state, new: action.event };
     case CLEAR_EVENT_ERRORS:
       return nullErrors;
     default:
@@ -132,6 +132,8 @@ const eventsReducer = (state = {}, action) => {
       return { ...action.events };
     case RECEIVE_EVENT:
       return { ...state, [action.event._id]: action.event };
+      case RECEIVE_NEW_EVENT:
+        return { ...state, new: action.event };
     case REMOVE_EVENT:
       const newState = { ...state };
       delete newState[action.eventId];

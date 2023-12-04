@@ -42,19 +42,17 @@ router.post('/', validateEventCreation, async (req, res, next) => {
             city: req.body.city,
             address: req.body.address,
             zipcode: req.body.zipcode,
-            lat: req.body.lat,
-            long: req.body.long,
             date: req.body.date,
             time: req.body.time,
             host: req.body.host,
-            attendees: req.body.attendees
+            // attendees: req.body.attendees
         })
         let event = await newEvent.save();
 
         let user = await User.findOne({_id: req.body.host})
         user.events.push(event._id);
         user.hostedEvents = event._id
-        event.attendees.push(user._id)
+        // event.attendees.push(user._id)
         await user.save();  
         await event.save();
     
