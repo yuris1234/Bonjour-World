@@ -124,7 +124,6 @@ router.patch('/:id', validateUserInput, async (req, res, next) => {
   try {
     let user = await User.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
     user = await user.populate('events');
-    // console.log(user)
     return res.json(user);
   } catch {
     res.json({message: 'error updating user'});

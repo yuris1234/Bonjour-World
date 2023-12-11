@@ -53,8 +53,9 @@ router.post('/', validateEventCreation, async (req, res, next) => {
 
         let user = await User.findOne({_id: req.body.host})
         user.events.push(event._id);
-        user.hostedEvents = event._id
+        user.hostedEvents.push(event._id)
         event.attendees.push(user._id)
+        event.host = user._id;
         await user.save();  
         await event.save();
     
@@ -69,10 +70,21 @@ router.delete('/:id', async (req, res, next) => {
     try {
         const event = await Event.findByIdAndDelete(req.params.id)
         if (event) {
+            let attendees = await event.attendees.populate();
+            attendees.forEach((user) => {
+                let i = user.events.indexOf(event._id);
+                if (i !== -1) {
+                    user.events.splice(i, 1);
+                }
+            })
+            let host = User.findById(event.host)
+            let j = host.hostedEvents.indexOf(event._id);
+            host.hostedEvents.splice(j, 1);
             return res.json(event);
         } else {
             return res.json({message: 'event not found'})
         }
+        
     } catch {
         res.json({message: 'error deleting event'});
     }
