@@ -6,28 +6,33 @@ import './EventIndex.css';
 import NavBar from '../NavBar'
 import EventsMapWrapper, { EventMap } from '../EventMap'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import FilterForm from '../EventMap/FilterForm';
 
 const EventIndex = () => {
     const dispatch = useDispatch();
     const events = useSelector(getEvents);
     const history = useHistory();
     const [highlightedEvent, setHighlightedEvent] = useState();
+    const [language, setLanguage] = useState("")
 
     useEffect(() => {
-        dispatch(fetchEvents());
-    }, [dispatch]);
+        const filters = {
+            language: language
+        };
+        dispatch(fetchEvents(filters));
+    }, [dispatch, language]);
 
     const markerEventHandlers = {
         click: (event) => {
           // Navigate to the event's show page
             history.push(`/events/${event._id}`);
-        },
-        mouseover: (event) => {
-            setHighlightedEvent(event);
-        },
-        mouseout: () => {
-            setHighlightedEvent(null);
-        },
+        }
+        // mouseover: (event) => {
+        //     setHighlightedEvent(event);
+        // },
+        // mouseout: () => {
+        //     setHighlightedEvent(null);
+        // },
     };
 
 
@@ -35,7 +40,8 @@ const EventIndex = () => {
         <>
             <NavBar />
             <div className="event-index">
-                    <EventsMapWrapper events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} />
+                    <EventsMapWrapper events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} langauge={language} />
+                    <FilterForm language={language} setLanguage={setLanguage}/>
                 <div className="display-all-events">
                     {Object.values(events).map((event) => (
                         <EventIndexItem

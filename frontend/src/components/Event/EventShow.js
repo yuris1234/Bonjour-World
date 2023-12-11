@@ -25,8 +25,7 @@ const EventShow = () => {
     useEffect(() => {
         dispatch(getCurrentUser());
         dispatch(fetchUsers());
-        dispatch(fetchEvent(eventId));
-        debugger
+        dispatch(fetchEvent(eventId));        
     },[eventId])
 
     useEffect(() => {
@@ -76,7 +75,7 @@ const EventShow = () => {
     }
 
     const getAddressCoordinates = async (address) => {
-        debugger
+
         try {
             const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${process.env.REACT_APP_MAPS_API_KEY}`;
             const response = await fetch(apiUrl);
