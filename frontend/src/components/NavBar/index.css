@@ -5,13 +5,13 @@
     padding: 0 10px;
     align-items: center;
     position: relative;
-    background-color: transparent;
+    background-color: #0A345B;
 }
 
 .nav-bar-header {
     font-size: 2rem;
     margin: 0px;
-    color: #0A345B;
+    color: #FBE1B5;
     font-family: 'BrandierTrial-SemiBoldItalic';
     margin-left: 15px;
 }
@@ -35,8 +35,8 @@
     font-weight: bold;
     border: none;
     border-radius: 3ch;
-    background-color: #0A345B;;
-    color: white;;
+    background-color: #FBE1B5;
+    color: #0A345B;
     cursor: pointer;
 }
 
@@ -48,7 +48,7 @@
  .logged-out-links a {
      margin-left: 10px;
      border: none;
-     color: #0A345B;;
+     color: #FBE1B5;
      cursor: pointer;
      text-decoration: none;
      white-space: nowrap;
@@ -72,7 +72,7 @@
 
 #all-events {
     font-size: 1rem;
-    color: #0A345B;
+    color: #FBE1B5;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -80,7 +80,7 @@
 
 #about-us {
     font-size: 1rem;
-    color: #0A345B;
+    color: #FBE1B5;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -88,7 +88,7 @@
 
 #create-event-button {
     border: none;
-    color: #0A345B;
+    color: #FBE1B5;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
