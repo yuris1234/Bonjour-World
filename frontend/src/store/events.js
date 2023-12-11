@@ -64,12 +64,27 @@ export const getRelevantEvents = (userId) => (state) => {
   }
 }
 
-export const fetchEvents = () => async (dispatch) => {
-  const res = await jwtFetch(`/api/events`);
+export const fetchEvents = (filters = {}) => async (dispatch) => {
+  try {
+    // Convert filters object to query string
+    const queryString = new URLSearchParams(filters).toString();
 
-  if (res.ok) {
-    const events = await res.json();
-    dispatch(recieveEvents(events));
+    // Append the query string to the request URL
+    const url = `/api/events${queryString ? `?${queryString}` : ''}`;
+
+    // Make the GET request
+    const res = await jwtFetch(url);
+
+    if (res.ok) {
+      const events = await res.json();
+      dispatch(recieveEvents(events));
+    } else {
+      // Handle non-ok response
+      console.error('Error fetching events:', res.statusText);
+    }
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching events:', error);
   }
 };
 
