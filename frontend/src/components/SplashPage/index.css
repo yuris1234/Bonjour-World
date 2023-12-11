@@ -22,7 +22,7 @@
   font-size: 500%;
   color: #0A345B;
   white-space: nowrap;
-  height: 100%;
+  height: 90%;
   position: fixed;
   font-family: 'BrandierTrial-SemiBoldItalic';
 }
@@ -92,5 +92,5 @@
   width: 100%;
   text-align: center;
   padding: 10px;
-  color: #0A345B;;
+  color: #0A345B;
 }
