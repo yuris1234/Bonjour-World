@@ -143,23 +143,23 @@ events.push(
   })
 )
 
-for (let i = 0; i < NUM_SEED_EVENTS; i++) {
-  events.push(
-    new Event ({
-      title: faker.company.name(),
-      description: faker.lorem.sentences(),
-      language: ['English','Spanish','French','German'][Math.floor(Math.random() * 4)],
-      state: faker.location.state(),
-      city: faker.location.city(),
-      address: faker.location.streetAddress(),
-      zipcode: parseInt(faker.location.zipCode()),
-      date: faker.date.future(),
-      time: "00:00",
-      attendees: [],
-      host: "65663fdc660cf7f22d333445"
-    })
-  )
-}
+// for (let i = 0; i < NUM_SEED_EVENTS; i++) {
+  // events.push(
+  //   new Event ({
+  //     title: faker.company.name(),
+  //     description: faker.lorem.sentences(),
+  //     language: ['English','Spanish','French','German'][Math.floor(Math.random() * 4)],
+  //     state: faker.location.state(),
+  //     city: faker.location.city(),
+  //     address: faker.location.streetAddress(),
+  //     zipcode: parseInt(faker.location.zipCode()),
+  //     date: faker.date.future(),
+  //     time: "00:00",
+  //     attendees: [],
+  //     host: "65663fdc660cf7f22d333445"
+//     })
+//   )
+// }
 
 
 mongoose
