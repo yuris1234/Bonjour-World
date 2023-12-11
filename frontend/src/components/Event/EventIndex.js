@@ -6,12 +6,14 @@ import './EventIndex.css';
 import NavBar from '../NavBar'
 import EventsMapWrapper, { EventMap } from '../EventMap'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import FilterForm from '../EventMap/FilterForm';
 
 const EventIndex = () => {
     const dispatch = useDispatch();
     const events = useSelector(getEvents);
     const history = useHistory();
     const [highlightedEvent, setHighlightedEvent] = useState();
+    const [language, setLanguage] = useState()
 
     useEffect(() => {
         dispatch(fetchEvents());
@@ -36,6 +38,7 @@ const EventIndex = () => {
             <NavBar />
             <div className="event-index">
                     <EventsMapWrapper events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} />
+                    <FilterForm language={language} setLanguage={setLanguage}/>
                 <div className="display-all-events">
                     {Object.values(events).map((event) => (
                         <EventIndexItem
