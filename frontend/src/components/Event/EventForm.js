@@ -15,6 +15,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 const EventForm = () => {
   const history = useHistory();
   const errors = useSelector((state) => state.errors.event);
+  const currentUser = useSelector((state) => state.session.user)
 
   const { eventId } = useParams();
   const eventType = eventId ? "Update Event" : "Create Event";
@@ -69,6 +70,8 @@ const EventForm = () => {
       zipcode,
       date,
       time,
+      host: currentUser._id,
+      attendees: [currentUser._id]
     };
 
     const res = await dispatch(createEvent(updatedEvent));

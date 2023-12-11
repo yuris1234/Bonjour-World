@@ -90,7 +90,6 @@ const EventShow = () => {
     };
 
     useEffect(() => {
-        debugger
         const fetchMapData = async () => {
             try {
                 const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
