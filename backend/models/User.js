@@ -22,10 +22,10 @@ const userSchema = new Schema({
       type: String,
       required: true
     },
-    hostedEvents: {
+    hostedEvents: [{
       type: Schema.Types.ObjectId,
       ref: 'Event'
-    },
+    }],
     events: [{
       type: Schema.Types.ObjectId,
       ref: 'Event'
