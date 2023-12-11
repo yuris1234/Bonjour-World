@@ -22,12 +22,13 @@
   font-size: 500%;
   color: #0A345B;
   white-space: nowrap;
-  height: 90%;
+  height: 100%;
   position: fixed;
   font-family: 'BrandierTrial-SemiBoldItalic';
 }
 
 @keyframes fade {
+
   0%,
   100% {
     opacity: 0;
@@ -93,4 +94,5 @@
   text-align: center;
   padding: 10px;
   color: #0A345B;
+  ;
 }

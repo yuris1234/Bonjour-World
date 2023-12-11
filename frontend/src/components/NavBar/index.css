@@ -6,6 +6,9 @@
     align-items: center;
     position: relative;
     background-color: #0A345B;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
 }
 
 .nav-bar-header {
