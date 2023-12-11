@@ -27,7 +27,7 @@ router.get('/', async (req, res, next) => {
     if (language) {
         filter.language = language;
     }
-    const events = await Event.find();
+    const events = await Event.find(filter);
     const newState = {}
     const eventVals = Object.values(events);
     eventVals.forEach((event) => {
