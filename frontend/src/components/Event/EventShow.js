@@ -1,7 +1,7 @@
 import { useDebugValue, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getEvent, fetchEvent, setCenter } from '../../store/events';
+import { getEvent, fetchEvent, setCenter, deleteEvent } from '../../store/events';
 import NavBar from '../NavBar';
 import "./EventShow.css"
 import { addEventJoin, fetchUsers, removeEventJoin } from '../../store/users';
@@ -66,6 +66,13 @@ const EventShow = () => {
 
     const handleModal = (e) => {
         dispatch(updateEvent("updateEvent", eventId));
+    }
+
+    const history = useHistory()
+
+    const handleDeleteEvent = () => {
+        dispatch(deleteEvent(eventId))
+        history.push("/events")
     }
 
     const getAddressCoordinates = async (address) => {
@@ -152,6 +159,7 @@ const EventShow = () => {
                             </div>
                             
                             {hostShow && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
+                            {hostShow && <button class="delete-event" onClick={handleDeleteEvent}>Delete Event</button>}
                             {!subscribed && user &&
                                 <button className="join-event" onClick={handleJoin}>+ Join </button>
                             }
