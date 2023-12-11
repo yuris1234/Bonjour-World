@@ -102,7 +102,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
             }
             // Update the markers ref with the new set of markers
             markersRef.current = newMarkers;
-        }, [events, markerEventHandlers, map, mapOptions]);
+        }, [events, map, mapOptions]);
         
         return <div ref={mapRef} style={{ margin: "20px", height: '750px', width: '50%' }}>Map</div>
     }
