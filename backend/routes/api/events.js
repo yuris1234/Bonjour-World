@@ -113,3 +113,62 @@ router.patch('/:id', validateEventCreation, async (req, res, next) => {
     }
 })
 module.exports = router
+
+// POST /api/events/:id/users/:id (create a join request)
+
+router.post('/:eventId/users/:userId', async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.userId);
+        const event = await Event.findById(req.params.eventId);
+        // const host = await User.findById(event._id);
+        if (!user || !event) {
+            return res.json({message: 'User or Event not found'});
+        }
+        if (!user.requestedEvents.includes(event._id) && !event.pendingAttendees.includes(user._id)) {
+            user.requestedEvents.push(req.params.eventId);
+            event.pendingAttendees.push(req.params.userId);
+            await user.save();
+            await event.save();
+        } else { 
+            const error = new Error('User has already requested to join this event');
+            error.statusCode = 400;
+            error.errors = {message: 'User has already requested to join this event'};
+            return next(error);
+        }
+        return res.json({user: user, event: event});
+    } catch {
+        const error = new Error('Event or User not found');
+        error.statusCode = 404;
+        error.errors = { message: "No event or user found with that id" };
+        return next(error);
+    }
+})
+
+// DELETE /api/users/:id/events/:id (delete a join requeset)
+router.delete('/:eventId/users/:userId', async (req, res, next) => {
+    try {
+      const user = await User.findById(req.params.userId);
+      const event = await Event.findById(req.params.eventId);
+      if (!user || !event) {
+        return res.json({message: 'User or Event not found'});
+      }
+      if (user.requestedEvents.includes(event._id) && event.pendingAttendees.includes(user._id)) {
+        // get rid of the association between event and attendee
+        user.requestedEvents.pull(req.params.eventId);
+        event.pendingAttendees.pull(req.params.userId);  
+        await user.save();
+        await event.save();
+      } else {
+        const error = new Error('User has not requested to join this event');
+        error.statusCode = 400;
+        error.errors = {message: 'User has not requested to join this event'};
+        return next(error);
+      }
+      return res.json({user: user, event: event});
+    } catch {
+      const error = new Error('Event or User not found');
+      error.statusCode = 404;
+      error.errors = { message: "No event or user found with that id" };
+      return next(error);
+    }
+  })

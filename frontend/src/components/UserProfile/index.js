@@ -12,6 +12,8 @@ import EventIndexItem from '../Event/EventIndexItem';
 import { fetchEvents, getRelevantEvents } from '../../store/events';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import S3 from './aws.js';
+import { getHostedEvents } from '../../store/events';
+import Notifications from './Notifications/index.js';
 
 const UserProfile = () => {
   const history = useHistory();
@@ -20,6 +22,7 @@ const UserProfile = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
   const events = useSelector(getRelevantEvents(user?._id));
+  const hostedEvents = useSelector(getHostedEvents(user?._id));
   const [highlightedEvent, setHighlightedEvent] = useState();
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -129,6 +132,11 @@ const UserProfile = () => {
                 {user?.firstName} {user?.lastName}
               </div>
               <div className="profile-label">{user?.username}</div>
+              <ul>
+                <div>{hostedEvents.map((event) => {
+                  return <Notifications event={event} user={user}/>
+                })}</div>
+              </ul>
             </div>
           </div>
 
