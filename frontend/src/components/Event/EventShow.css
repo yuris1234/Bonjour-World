@@ -8,6 +8,7 @@ body {
 .event-show-index {
     display: flex;
     width: 100vw;
+    padding-top: 40px;
     /* background: linear-gradient(to bottom, #FBE1B5, white); */
     background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
 }
