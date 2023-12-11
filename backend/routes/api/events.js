@@ -22,7 +22,12 @@ router.get('/:id', async (req, res, next) => {
 
 // GET /api/events
 router.get('/', async (req, res, next) => {
-    const events = await Event.find();
+    const { language } = req.query
+    let filter = {}
+    if (language) {
+        filter.language = language;
+    }
+    const events = await Event.find(filter);
     const newState = {}
     const eventVals = Object.values(events);
     eventVals.forEach((event) => {

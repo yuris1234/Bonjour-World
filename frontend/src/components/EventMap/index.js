@@ -2,13 +2,12 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOptions}) => {
+export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
     const [map, setMap] = useState(null);
     const mapRef = useRef(null);
     const markersRef = useRef(null);
     const center = useSelector(state => state.events.center)
-
-    
+    // console.log(language)
 
     const getAddressCoordinates = async (address) => {
         try {
@@ -33,7 +32,6 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
 
     useEffect(() => {
         if (!map) {
-            debugger
             const defaultMapOptions = {
                 zoom: 11,
                 center: { lat: 40.7128, lng: -74.0060 }, // New York as an example
@@ -43,7 +41,6 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 ...defaultMapOptions, 
                 ...mapOptions
             });
-            debugger
             setMap(newMap);
         } else if (mapOptions){
             // If map already exists, update its options
@@ -52,13 +49,16 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 zoom: 17
             });
         }
-    }, [map, mapOptions]);
+    }, [map, mapOptions, language]);
 
     useEffect(() => {
         const newMarkers = {};
             Object.values(events).forEach(async (event) => {
+                if (language && event.language !== language) {
+                    return;
+                }
+                // console.log(language)
                 try {
-                    // const { _id } = event;
                     const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
                     const position = await getAddressCoordinates(formattedAddress);
                     if (!markersRef.current || !markersRef.current[event._id]) {
@@ -80,37 +80,41 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 } catch (error) {
                     console.error('Error fetching coordinates:', error);
                 }
-                Object.values(markersRef.current).forEach((marker) => {
-                    const eventId = marker.get('eventId');
-                    if (eventId === highlightedEvent?._id) {
-                      // Apply custom styling for highlighted event
-                      marker.setIcon(null); // Reset icon
-                      marker.setOptions({ backgroundColor: 'yellow' }); // Set background color
-                    } else {
-                      // Apply standard styling for other events
-                      marker.setOptions({ backgroundColor: 'red' }); // Set standard background color
-                    }
-                });
+                // Object.values(markersRef.current).forEach((marker) => {
+                //     const eventId = marker.get('eventId');
+                //     if (eventId === highlightedEvent?._id) {
+                //       // Apply custom styling for highlighted event
+                //       marker.setIcon(null); // Reset icon
+                //       marker.setOptions({ backgroundColor: 'yellow' }); // Set background color
+                //     } else {
+                //       // Apply standard styling for other events
+                //       marker.setOptions({ backgroundColor: 'red' }); // Set standard background color
+                //     }
+                // });
         });
             // Remove markers for events that no longer exist
             if (markersRef.current) {
                 Object.keys(markersRef.current).forEach((id) => {
-                    if (!newMarkers[id]) {
+                    debugger
+                    if (!newMarkers[id] || (language && events[id].language !== language)) {
                         markersRef.current[id].setMap(null);
                     }
                 });
             }
             // Update the markers ref with the new set of markers
             markersRef.current = newMarkers;
-        }, [events, markerEventHandlers, map, mapOptions]);
+
+        }, [events, map, mapOptions, language]);
+     
+
         
         return <div ref={mapRef} style={{ margin: "20px", height: '750px', width: '50%' }}>Map</div>
     }
     
-    const EventsMapWrapper = ({ events, markerEventHandlers, highlightedEvent, mapOptions}) => {
+    const EventsMapWrapper = ({ events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
     return (
         <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}  >
-            <EventMap events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} mapOptions={mapOptions}/>
+            <EventMap events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} mapOptions={mapOptions} language={language}/>
         </Wrapper>
     );
 };
