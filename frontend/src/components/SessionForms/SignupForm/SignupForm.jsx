@@ -60,7 +60,7 @@ const SignupForm = () => {
     };
 
     const res = await dispatch(signup(user)); 
-    debugger
+
     if (res.ok) {
       dispatch(closeModal())
     }

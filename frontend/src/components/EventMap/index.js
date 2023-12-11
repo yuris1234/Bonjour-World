@@ -32,7 +32,6 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
 
     useEffect(() => {
         if (!map) {
-            debugger
             const defaultMapOptions = {
                 zoom: 11,
                 center: { lat: 40.7128, lng: -74.0060 }, // New York as an example
@@ -42,7 +41,6 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 ...defaultMapOptions, 
                 ...mapOptions
             });
-            debugger
             setMap(newMap);
         } else if (mapOptions){
             // If map already exists, update its options
@@ -107,7 +105,8 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
             markersRef.current = newMarkers;
 
         }, [events, map, mapOptions, language]);
-      
+     
+
         
         return <div ref={mapRef} style={{ margin: "20px", height: '750px', width: '50%' }}>Map</div>
     }
