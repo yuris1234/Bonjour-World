@@ -2,9 +2,8 @@
     height: 50px;
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
     align-items: center;
-    position: relative;
+    /* position: relative; */
     background-color: #0A345B;
     position: fixed;
     width: 100%;
@@ -16,7 +15,7 @@
     margin: 0px;
     color: #FBE1B5;
     font-family: 'BrandierTrial-SemiBoldItalic';
-    margin-left: 15px;
+    margin-left: 25px;
 }
 
 .no-underline {
@@ -28,7 +27,8 @@
 .logged-out-links {
     display: flex;
     align-items: center;
-    margin-right: 15px;
+    margin-right: 25px;
+    gap: 5px;
 }
 
 .logged-out-links .signup-button, .login-button {
@@ -70,7 +70,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-right: 15px;
+    margin-right: 25px;
 }
 
 #all-events {
