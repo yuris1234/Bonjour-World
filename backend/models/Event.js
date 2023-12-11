@@ -62,6 +62,10 @@ const eventSchema = new Schema({
     attendees: [{
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
+    }],
+    pendingAttendees: [{
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User'
     }]
 }, {
     timestampes: true

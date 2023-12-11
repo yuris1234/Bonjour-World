@@ -60,8 +60,19 @@ export const getRelevantEvents = (userId) => (state) => {
       }
     }) 
     return holder
-
   }
+}
+
+export const getHostedEvents = (userId) => (state) => {
+  const holder = [];
+  if (userId) {
+    Object.values(state.events).filter((event) => {
+      if (event.host === userId) {
+        holder.push(event)
+      }
+    }) 
+  }
+  return holder
 }
 
 export const fetchEvents = (filters = {}) => async (dispatch) => {
