@@ -138,7 +138,8 @@ router.post('/:userId/events/:eventId', async(req, res, next) => {
     if (!user || !event) {
       return res.json({message: 'User or Event not found'});
     }
-    if (!user.events.includes(req.params.eventId && !event.attendees.includes(user._id))) {
+    if (!user.events.includes(event._id) && !event.attendees.includes(user._id)) {
+      // add events and users to each other if not yet associated
       user.events.push(req.params.eventId);
       event.attendees.push(req.params.userId);
       await user.save();
@@ -166,7 +167,8 @@ router.delete('/:userId/events/:eventId', async (req, res, next) => {
     if (!user || !event) {
       return res.json({message: 'User or Event not found'});
     }
-    if (user.events.includes(req.params.eventId)) {
+    if (user.events.includes(event._id)) {
+      // get rid of the association between event and attendee
       user.events.pull(req.params.eventId);
       event.attendees.pull(req.params.userId);  
       await user.save();
