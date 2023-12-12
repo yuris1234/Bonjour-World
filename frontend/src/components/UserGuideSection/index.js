@@ -1,6 +1,7 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import "./index.css";
+import { Icon } from "@iconify/react";
 
 const Instruction = ({ children, index, colorClass }) => {
   const [ref, inView] = useInView({
@@ -24,6 +25,12 @@ const Instruction = ({ children, index, colorClass }) => {
 const UserGuideSection = () => {
   return (
     <div className="user-guide-section">
+      <button className="profile-btn">
+        <Icon
+          icon="bx:up-arrow-alt"
+          className="profile-btn-icon fixed"
+        />
+      </button>
       <p>
         Welcome to Bonjour World, your gateway to language exchange and cultural
         understanding. Follow these steps to get started:
