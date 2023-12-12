@@ -1,4 +1,38 @@
 .user-guide-section {
-  height: 100vh;
+  height: 1000px;
   width: 100vw;
+  background: linear-gradient(to bottom, white, #b5cffb, #fbe1b5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.user-guide-section .instruction {
+  padding: 50px;
+  height: 100px;
+  width: 100%;
+  width: 700px;
+  border-radius: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.user-guide-section .auth {
+  background-color: pink;
+}
+
+.user-guide-section .event {
+  background-color: green;
+}
+
+.user-guide-section .host-or-join {
+  background-color: gray;
+}
+
+.user-guide-section .customize-profile {
+  background-color: orange;
 }
