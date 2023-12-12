@@ -1,0 +1,176 @@
+import { useDebugValue, useEffect, useState } from 'react';
+import { Link, useParams, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { getEvent, fetchEvent, setCenter, deleteEvent } from '../../store/events';
+import NavBar from '../NavBar';
+import "./EventShow.css"
+import { addEventJoin, fetchUsers, removeEventJoin } from '../../store/users';
+import { getCurrentUser } from '../../store/session';
+import { openModal, updateEvent } from '../../store/modal';
+import { getUsers } from '../../store/users';
+import EventsMapWrapper from '../EventMap';
+
+const EventShow = () => {
+    const dispatch = useDispatch();
+    const { eventId } = useParams();
+    const event = useSelector(getEvent(eventId))
+    const user = useSelector((state) => state.session.user);
+    const users = useSelector(getUsers(event));
+    const [subscribed, setSubscribed] = useState(false);
+    const [hostShow, setHostShow] = useState(false);
+    const [host, setHost] = useState("");
+    const [mapOptions, setMapOptions] = useState({});
+    
+
+    useEffect(() => {
+        dispatch(getCurrentUser());
+        dispatch(fetchUsers());
+        dispatch(fetchEvent(eventId));        
+    },[eventId])
+
+    useEffect(() => {
+        if (user && event?.attendees) {
+            if (subscribed === false) {
+                setSubscribed(event.attendees.includes(user._id) ? true : false)
+            }
+        }
+        if (event) {
+            if (user && user?._id === event.host) {
+                setHostShow(true)
+            }
+        }
+        
+        if (event && users?.length > 0) {    
+            users.forEach((user) => {
+                if (user._id === event.host) {
+                    setHost(user.username)
+                }
+            })
+        }
+    },[user, event])
+
+    const handleJoin = async (e) => {
+        e.preventDefault();
+        setSubscribed(true);
+        await dispatch(addEventJoin(user._id, eventId));
+    }
+
+    const handleUnjoin = async (e) => {
+        e.preventDefault();
+        if (user.username !== host) {
+            setSubscribed(false);
+            await dispatch(removeEventJoin(user._id, eventId));
+        }
+    }
+
+    const handleModal = (e) => {
+        dispatch(updateEvent("updateEvent", eventId));
+    }
+
+    const history = useHistory()
+
+    const handleDeleteEvent = () => {
+        dispatch(deleteEvent(eventId))
+        history.push("/events")
+    }
+
+    const getAddressCoordinates = async (address) => {
+
+        try {
+            const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${process.env.REACT_APP_MAPS_API_KEY}`;
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            if (data.results.length > 0) {
+                const location = data.results[0].geometry.location;
+                const latitude = location.lat;
+                const longitude = location.lng;
+                return new window.google.maps.LatLng(latitude, longitude);
+            } else {
+                throw new Error('No results found for the provided address.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+          throw error; // Re-throw the error to handle it in the calling code
+        }
+    };
+
+    useEffect(() => {
+        const fetchMapData = async () => {
+            try {
+                const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
+                const coordinates = await getAddressCoordinates(formattedAddress);
+                const centered = {
+                    zoom: 11, // Set the initial zoom level as needed
+                    center: { lat: coordinates.lat(), lng: coordinates.lng() }
+                }
+                setMapOptions(centered);
+                // dispatch(setCenter(centered))
+            } catch (error) {
+                console.error('Error fetching map data:', error);
+                // Handle error as needed
+            }
+        };
+        
+        fetchMapData();
+    }, [event]);
+
+    return (
+        <>
+            <NavBar />
+            <div className="event-show-index">
+                {event && (
+                
+                    <EventsMapWrapper events={[event]} mapOptions={mapOptions}/>
+                
+                )}
+
+                <div className="display-one-event">
+                    <ul className="event-info-list">
+                        <div className="event-title">{event?.title}
+                            <div className="event-title-host">Hosted By: {host}
+                            </div>
+                        </div>
+
+                        <div className='event-details'>
+                            <span className="event-language">{event?.language}</span>
+
+                            <div className="event-description-div">Description
+                                <div className="event-description">{event?.description}</div>
+                            </div>
+
+                            <div className="event-date-div">Date
+                                <div className="event-date">{event?.date}</div>
+                            </div>
+
+                            <div className="event-time-div">Time
+                                <div className="event-time">{event?.time}</div>
+                            </div>
+                            
+                            <div className="event-location-div">Location
+                                <div className="event-location">
+                                    {event?.city}, {event?.state} {event?.zipcode}
+                                </div>
+                            </div>
+        
+                            <div className="event-address-div">Address
+                                <div className="event-address">{event?.address}</div>
+                            </div>
+                            
+                            {hostShow && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
+                            {hostShow && <button class="delete-event" onClick={handleDeleteEvent}>Delete Event</button>}
+                            {!subscribed && user &&
+                                <button className="join-event" onClick={handleJoin}>+ Join </button>
+                            }
+                            {subscribed && user &&
+                                <button class="unjoin-event" onClick={handleUnjoin}>Joined</button>
+                            }
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default EventShow;

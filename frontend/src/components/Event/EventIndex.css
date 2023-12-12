@@ -1,0 +1,41 @@
+.event-index {
+  display: flex;
+  width: 100%;
+  background: linear-gradient(to bottom, #FBE1B5, white);
+  height: 100%;
+  padding-top: 45px;
+}
+
+.display-all-events {
+  display: flex;
+  width: 50vw;
+  padding: 10px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  height: 91vh;
+  justify-content: center;
+} 
+
+#filter-form {
+  /* position: fixed; */
+  margin-top: 20px;
+}
+
+#filter-form select {
+  background-color: transparent;
+  text-align: center;
+}
+
+/* 
+.google-maps-container {
+  flex: 1;
+  padding: 20px;
+  border-top: 3px solid #0A345B;;
+  pointer-events: none; 
+  height: 100vh;
+} */
+
+/* .google-maps-container,
+.display-all-events {
+  height: calc(90vh - 20px); 
+} */
