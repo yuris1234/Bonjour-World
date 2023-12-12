@@ -12,6 +12,7 @@ import EventForm from "./components/Event/EventForm";
 import EventShow from "./components/Event/EventShow";
 import UserProfile from "./components/UserProfile";
 import AboutUs from "./components/AboutUs";
+import MainPage from "./components/MainPage";
 
 const App = () => {
   const [loaded, setLoaded] = useState(false);
@@ -25,7 +26,7 @@ const App = () => {
       {loaded && (
         <>
           <Switch>
-            <Route exact path="/" component={SplashPage}></Route>
+            <Route exact path="/" component={MainPage}></Route>
             <Route exact path="/aboutus" component={AboutUs}></Route>
             <Route exact path="/events" component={EventIndex}></Route>
             {/* <Route exact path="/events/new" component={EventForm}></Route> */}
