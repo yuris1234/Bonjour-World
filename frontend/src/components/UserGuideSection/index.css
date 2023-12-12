@@ -1,7 +1,7 @@
 .user-guide-section .instruction {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.5s ease, transform 2s ease;
+  transform: translateX(-250px);
+  transition: opacity 0.9s ease, transform 2s ease;
 }
 
 .user-guide-section .slide-in {
@@ -10,11 +10,11 @@
 }
 
 .user-guide-section .slide-left {
-  transform: translateX(-50px);
+  transform: translateX(-250px);
 }
 
 .user-guide-section .slide-right {
-  transform: translateX(50px);
+  transform: translateX(250px);
 }
 
 .user-guide-section .instruction.slide-left.slide-in,
