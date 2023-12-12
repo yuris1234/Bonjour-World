@@ -39,6 +39,7 @@ router.get('/current', restoreUser, (req, res) => {
     email: req.user.email,
     events: req.user.events,
     hostedEvents: req.user.hostedEvents,
+    requestedEvents: req.user.requestedEvents,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
     age: req.user.age
