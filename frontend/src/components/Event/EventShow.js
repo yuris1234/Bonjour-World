@@ -57,8 +57,15 @@ const EventShow = () => {
     const handleUnjoin = async (e) => {
         e.preventDefault();
         if (user._id !== host._id) {
+            if (subscribed) {
+                // delete join request
+                await dispatch(deleteJoinRequest(eventId, user._id));
+            } else {
+                // delete event attendance
+                await dispatch(removeEventJoin(user._id, eventId));
+            }
             setSubscribed(false);
-            await dispatch(deleteJoinRequest(eventId, user._id));
+            setJoined(false);
         }
     }
 
@@ -148,10 +155,13 @@ const EventShow = () => {
                             <div className="event-address-div">Address
                                 <div className="event-address">{event?.address}</div>
                             </div>
+
                             {isHost && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
+        
                             {user && (joined || subscribed) && (
                                 <button class="unjoin-event" onClick={handleUnjoin}>{joined ? "Joined" : (subscribed ? "Request Sent" : "")}</button>
                             )}
+                            
                             {/* create a request to join button if a user is logged in and current status is neither subscribed or joined */}
                             {user && !subscribed && !joined && (<button className="join-event" onClick={handleJoin}>+ Request to Join </button>)}
                         </div>
