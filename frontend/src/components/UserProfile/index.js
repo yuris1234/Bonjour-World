@@ -13,7 +13,8 @@ import { fetchEvents, getRelevantEvents } from '../../store/events';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import S3 from './aws.js';
 import { getHostedEvents } from '../../store/events';
-import Notifications from './Notifications/index.js';
+// import Notification from './Notification/index.js';
+import Notification from './Notification/index.js';
 
 const UserProfile = () => {
   const history = useHistory();
@@ -134,7 +135,7 @@ const UserProfile = () => {
               <div className="profile-label">{user?.username}</div>
               <ul>
                 <div>{hostedEvents.map((event) => {
-                  return <Notifications event={event} user={user}/>
+                  return <Notification event={event}/>
                 })}</div>
               </ul>
             </div>

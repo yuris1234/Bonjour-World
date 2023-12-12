@@ -124,7 +124,7 @@ router.post('/:eventId/users/:userId', async (req, res, next) => {
         if (!user || !event) {
             return res.json({message: 'User or Event not found'});
         }
-        if (!user.requestedEvents.includes(event._id) && !event.pendingAttendees.includes(user._id)) {
+        if (!user.requestedEvents.includes(event._id) && !event.pendingAttendees.includes(user._id) && !user.events.includes(event._id) && !event.attendees.includes(user._id)) {
             user.requestedEvents.push(req.params.eventId);
             event.pendingAttendees.push(req.params.userId);
             await user.save();
