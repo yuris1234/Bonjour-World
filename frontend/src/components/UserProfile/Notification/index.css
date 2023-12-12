@@ -1,0 +1,33 @@
+.pending-btns {
+  margin-bottom: 10px;
+}
+
+.handle-delete {
+  margin-left: 10px;
+  height: auto;
+  width: 100px;
+  padding: 5px 10px;
+  display: inline-block;
+  border: 1px;
+  background-color: red;
+  color: white;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 2;
+  cursor: pointer;
+}
+
+.handle-accept {
+  margin-left: 10px;
+  height: auto;
+  width: 100px;
+  padding: 5px 10px;
+  display: inline-block;
+  border: 1px;
+  background-color: green;
+  color: white;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 2;
+  cursor: pointer;
+}
