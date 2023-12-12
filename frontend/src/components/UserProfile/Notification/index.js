@@ -19,30 +19,30 @@ export default function ({ event }) {
   };
 
   return (
-    <li>
+    <>
       {event.pendingAttendees.map((pendingUser) => {
         const user = useSelector(getUser(pendingUser))
 
         return (
-            <div className="pending-btns">
-                <h1>{user?.username}</h1>
-                <button
-                value={pendingUser}
-                onClick={handleAccept}
-                className="handle-accept"
-                >
-                Accept
-                </button>
-                <button
-                value={pendingUser}
-                onClick={handleDelete}
-                className="handle-delete"
-                >
-                Deny
-                </button>
-            </div>
+            <div>
+                <span className="pending-user">{user?.username}</span>
+                    <button
+                    value={pendingUser}
+                    onClick={handleAccept}
+                    className="handle-accept"
+                    >
+                    Accept
+                    </button>
+                    <button
+                    value={pendingUser}
+                    onClick={handleDelete}
+                    className="handle-delete"
+                    >
+                    Deny
+                    </button>
+</div>
         );
       })}
-    </li>
+    </>
   );
 }
