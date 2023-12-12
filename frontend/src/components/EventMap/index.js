@@ -29,7 +29,6 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
         }
     };
 
-
     useEffect(() => {
         if (!map) {
             const defaultMapOptions = {
