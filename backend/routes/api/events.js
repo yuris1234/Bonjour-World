@@ -68,35 +68,6 @@ router.post('/', validateEventCreation, async (req, res, next) => {
     }
 })
 
-// DELETE /api/events/:id
-router.delete('/:id', async (req, res, next) => {
-    try {
-        const event = await Event.findByIdAndDelete(req.params.id);
-        let holder = []
-        if (event) {
-            let newEvent = await event.populate('attendees');
-            for (const user of newEvent.attendees) {
-                let i = user.events.indexOf(event._id);
-                if (i !== -1) {
-                    user.events.splice(i, 1);
-                }
-                await user.save()
-                console.log('hi')
-            }
-            let host = await User.findById(event.host);
-            let j = host.hostedEvents.indexOf(event._id);
-            host.hostedEvents.splice(j, 1);
-            await host.save();
-            console.log(host);
-            return res.json(event);
-        } else {
-            return res.json({message: 'event not found'})
-        }
-        
-    } catch {
-        res.json({message: 'error deleting event'});
-    }
-})
 
 // UPDATE /api/events/:id
 
@@ -144,7 +115,7 @@ router.post('/:eventId/users/:userId', async (req, res, next) => {
     }
 })
 
-// DELETE /api/users/:id/events/:id (delete a join requeset)
+// DELETE /api/events/:id/users/:id (delete a join requeset)
 router.delete('/:eventId/users/:userId', async (req, res, next) => {
     try {
       const user = await User.findById(req.params.userId);
@@ -152,6 +123,7 @@ router.delete('/:eventId/users/:userId', async (req, res, next) => {
       if (!user || !event) {
         return res.json({message: 'User or Event not found'});
       }
+      // check if the join request exists on both ends
       if (user.requestedEvents.includes(event._id) && event.pendingAttendees.includes(user._id)) {
         // get rid of the association between event and attendee
         user.requestedEvents.pull(req.params.eventId);
@@ -172,3 +144,33 @@ router.delete('/:eventId/users/:userId', async (req, res, next) => {
       return next(error);
     }
   })
+
+// DELETE /api/events/:id
+router.delete('/:id', async (req, res, next) => {
+    try {
+        const event = await Event.findByIdAndDelete(req.params.id);
+        let holder = []
+        if (event) {
+            let newEvent = await event.populate('attendees');
+            for (const user of newEvent.attendees) {
+                let i = user.events.indexOf(event._id);
+                if (i !== -1) {
+                    user.events.splice(i, 1);
+                }
+                await user.save()
+                console.log('hi')
+            }
+            let host = await User.findById(event.host);
+            let j = host.hostedEvents.indexOf(event._id);
+            host.hostedEvents.splice(j, 1);
+            await host.save();
+            console.log(host);
+            return res.json(event);
+        } else {
+            return res.json({message: 'event not found'})
+        }
+        
+    } catch {
+        res.json({message: 'error deleting event'});
+    }
+})

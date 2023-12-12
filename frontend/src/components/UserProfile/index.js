@@ -19,11 +19,20 @@ import Notification from './Notification/index.js';
 const UserProfile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  // get current user
   const user = useSelector((state) => state.session.user);
+  
   const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
+
+  // get all events user is attending
   const events = useSelector(getRelevantEvents(user?._id));
+
+  // get all hosted events for current user
   const hostedEvents = useSelector(getHostedEvents(user?._id));
+
+
   const [highlightedEvent, setHighlightedEvent] = useState();
   const [imageLoaded, setImageLoaded] = useState(false);
 

@@ -1,24 +1,28 @@
 import { useDispatch } from "react-redux"
 import { createJoinRequest } from "../../../store/events";
 import { deleteJoinRequest } from "../../../store/events";
+import { addEventJoin } from "../../../store/users";
 
 export default function ({event}) {
     const dispatch = useDispatch();
 
     const handleAccept = (e) => {
-        dispatch(createJoinRequest(event._id, e.target.value.user._id))
+        // deleting join request, adding user to event
+        dispatch(addEventJoin(e.target.value, event._id));
+        dispatch(deleteJoinRequest(event._id, e.target.value))
     }
 
     const handleDelete = (e) => {
-        dispatch(deleteJoinRequest(event._id, e.target.value._id))
+        // deleting join request
+        dispatch(deleteJoinRequest(event._id, e.target.value))
     }
 
     return (
         <li>
-            {event.pendingAttendees.map((user) => {
+            {event.pendingAttendees.map((pendingUser) => {
                 return (<>
-                    <button value={user} onClick={handleAccept}>Accept</button>
-                    <button value={user} onClick={handleDelete}>Deny</button>
+                    <button value={pendingUser} onClick={handleAccept}>Accept</button>
+                    <button value={pendingUser} onClick={handleDelete}>Deny</button>
                 </>)
             })}
         </li>
