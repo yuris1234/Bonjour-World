@@ -1,0 +1,191 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(to bottom, #FBE1B5, white);
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.profile-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  padding-top: 45px;
+    /* border   : solid red; */
+}
+
+.profile-greeting {
+    border-top: 5px solid #0A345B;
+    border-left: 5px solid #0A345B;
+    border-right    : 5px solid #0A345B;
+    font-size: 60px;
+    text-align: center;
+    color: #0A345B;
+    /* background-color: whitesmoke; */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: sol  id red; */
+}
+
+.profile-details-div {
+    display: flex;
+    /* border: 5px s   olid #0A345B; */
+    height: 100%;
+    /* border: solid red; */
+}
+
+.profile-img-div {
+    flex: 1;
+    overflow: hidden;
+    /* border: solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.profile-back-to-main-div {
+    position: relative;
+    height: 56px;
+    width: 56px;
+    border: 5px solid #0A345B;
+    border-radius: 30px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    /* border: solid red; */
+}
+
+.profile-back-to-main-button {
+    cursor: pointer;
+    height: 35px;
+    width: 40px;
+    /* background-color: white; */
+    border: none;
+    position: relative;
+    bottom: 3px;
+    color: #0A345B;
+    background-color: transparent;
+    /* border: solid red; */
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    /* margin-left: 50px; */
+    margin-top: 100px;
+    transform: scale(1.1);
+    border: 10px white; 
+    border-radius: 50%;
+    /* background-color: white; */
+    /* border: solid red; */
+}
+
+.upload-label {
+    border-radius: 10px;
+    background-color: white;
+    padding: 5px;
+    font-weight: bolder;
+    cursor: pointer;
+    text-align: center; 
+    margin-left: 5px;
+    width: 115px;
+    /* border: solid red; */
+    /* margin-left: 55px; */
+    margin-top: 10px;
+}
+
+.profile-img-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    object-fit: cover;
+    position: relative;
+    margin-left: 20%;
+    /* bottom: 60px; */
+    /* border: solid red; */
+    width: 50%;
+    padding: 20px;
+    /* justify-content; */
+}
+
+.profile-details {
+    margin-left: 20%;
+    margin-bottom: 50px;
+    width: 50%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* border-left: 5px solid #0A345B; */
+    padding: 20px;
+    /* border: solid red; */
+    align-items: center;
+}
+
+.profile div {
+    padding: 10px;
+    /* border: 5px solid #022a54f0; */
+    /* border-radius: 10px; */
+    width: 200px;
+    height: 25px;
+    /* font-size: 20px; */
+    text-align: center;
+    font-weight: bold;
+    color: #022a54f0;
+    /* border: solid red; */
+}
+
+.fade-in {
+    animation: fadeIn ease 1s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.profile-label {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+    /* border: solid red; */
+}
+
+.event-container {
+    width: 50%;
+    overflow-y: scroll;
+    height: 96vh;
+    /* border: solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event-header {
+    /* width: 50%; */
+    text-align: center;
+    margin-top: 25px;
+    position: fixed;
+    margin-bottom: 25px;
+}
+
+.event-container .display-all-events {
+    margin-top: 70px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

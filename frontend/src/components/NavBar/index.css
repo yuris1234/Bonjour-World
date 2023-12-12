@@ -1,0 +1,114 @@
+.nav-bar {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* position: relative; */
+    background-color: #0A345B;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav-bar-header {
+    font-size: 2rem;
+    margin: 0px;
+    color: #FBE1B5;
+    font-family: 'BrandierTrial-SemiBoldItalic';
+    margin-left: 25px;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+/* logged out links */
+
+.logged-out-links {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+    gap: 5px;
+}
+
+.logged-out-links .signup-button, .login-button {
+    height: 30px;
+    width: 90px;
+    margin-left: 15px;
+    font-weight: bold;
+    border: none;
+    border-radius: 3ch;
+    background-color: #FBE1B5;
+    color: #0A345B;
+    cursor: pointer;
+}
+
+ .signup-button:hover,
+ .login-button:hover {
+     transform: scale(1.05);
+ }
+
+ .logged-out-links a {
+     margin-left: 10px;
+     border: none;
+     color: #FBE1B5;
+     cursor: pointer;
+     text-decoration: none;
+     white-space: nowrap;
+     display: inline-block;
+     text-align: center;
+     font-size: 1rem;
+ }
+
+ .logged-out-links a:hover {
+     text-decoration: underline;
+ }
+
+/* logged in links */
+
+.logged-in-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 25px;
+}
+
+#all-events {
+    font-size: 1rem;
+    color: #FBE1B5;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+#about-us {
+    font-size: 1rem;
+    color: #FBE1B5;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+#create-event-button {
+    border: none;
+    color: #FBE1B5;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    text-align: center;
+    background: transparent;
+    font-size: 1rem;
+    margin-top: 1px;
+    padding: 0;
+}
+
+#create-event-button:hover, #all-events:hover, #about-us:hover {
+    text-decoration: underline;
+}
+
+#all-events.active, #about-us.active,
+.logged-out-links .active {
+    color: #9CC0F9;
+    text-decoration: underline;
+}
