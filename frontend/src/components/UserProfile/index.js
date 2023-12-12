@@ -13,7 +13,6 @@ import { fetchEvents, getRelevantEvents } from '../../store/events';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import S3 from './aws.js';
 import { getHostedEvents } from '../../store/events';
-// import Notification from './Notification/index.js';
 import Notification from './Notification/index.js';
 
 const UserProfile = () => {

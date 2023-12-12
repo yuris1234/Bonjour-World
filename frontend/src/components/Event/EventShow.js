@@ -75,10 +75,10 @@ const EventShow = () => {
 
     const history = useHistory()
 
-    const handleDeleteEvent = () => {
-        dispatch(deleteEvent(eventId))
-        history.push("/events")
-    }
+    // const handleDeleteEvent = () => {
+    //     dispatch(deleteEvent(eventId))
+    //     history.push("/events")
+    // }
 
     const getAddressCoordinates = async (address) => {
 
