@@ -18,6 +18,7 @@
 
 #filter-form {
   /* position: fixed; */
+  margin-top: 20px;
 }
 
 #filter-form select {
