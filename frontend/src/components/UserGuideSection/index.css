@@ -1,7 +1,7 @@
 .user-guide-section .instruction {
   opacity: 0;
-  transform: translateX(-50px);
-  transition: opacity 0.5s ease, transform 2s ease;
+  transform: translateX(-250px);
+  transition: opacity 0.9s ease, transform 2s ease;
 }
 
 .user-guide-section .slide-in {
@@ -10,11 +10,11 @@
 }
 
 .user-guide-section .slide-left {
-  transform: translateX(-50px);
+  transform: translateX(-250px);
 }
 
 .user-guide-section .slide-right {
-  transform: translateX(50px);
+  transform: translateX(250px);
 }
 
 .user-guide-section .instruction.slide-left.slide-in,
@@ -60,3 +60,29 @@
 .user-guide-section .customize-profile {
   background-color: orange;
 }
+
+.back-to-top {
+  position: fixed;
+  background-color: transparent;
+  z-index: 1000;
+  bottom: 20px;
+  right: 20px;
+  /* border: none; */
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.back-to-top-icon {
+  color: white;
+  font-size: 50px;
+}
+
+/* .back-to-top:hover {
+  border: 1px solid #0A345B;
+}
+
+.back-to-top-icon:hover {
+  color: #0A345B;
+} */
