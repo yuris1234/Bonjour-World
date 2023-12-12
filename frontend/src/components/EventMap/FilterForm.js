@@ -8,17 +8,14 @@ const FilterForm = ({language, setLanguage}) => {
         setLanguage(e.target.value)
     }
 
-
     return (
             <Input 
-                label="Language"
+                label="Language: "
                 options={languageOptions}
                 value={language}
                 onChange={handleChange}
             />
     )
-    
-    
-    }
-    
-    export default FilterForm;
+}
+
+export default FilterForm;

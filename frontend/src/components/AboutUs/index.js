@@ -69,7 +69,7 @@ const AboutUs = () => {
     <>
       <NavBar />
       <div className="about-us-container">
-        <div className="currentlanguage">{displayMeetTheTeam()}</div>
+        <div className="display-meet-the-team">{displayMeetTheTeam()}</div>
 
         {teamMembers.map((member, index) => (
           <div key={index} className="team-member">
