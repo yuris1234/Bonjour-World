@@ -16,12 +16,21 @@ const EventShow = () => {
     const { eventId } = useParams();
 
     const event = useSelector(getEvent(eventId))
+
+    // grabs current user
     const user = useSelector((state) => state.session.user);
+
+    // grabs the host (user) of the event
     const host = useSelector(getHost(event));
+
+    // grabs the array of attendees for this event
     const attendees = useSelector(getAttendees(event));
 
+    // subscribed = sent a join request
     const [subscribed, setSubscribed] = useState(false);
+    // joined = actually joined event, host has accepted it
     const [joined, setJoined] = useState(false);
+    // isHost = true if current user is the host of the event
     const [isHost, setIsHost] = useState(false);
 
     const [mapOptions, setMapOptions] = useState({});
@@ -44,6 +53,7 @@ const EventShow = () => {
         }
 
         if (host?._id === user?._id) {
+            // sets isHost to true if current user is the host, can edit or delete event
             setIsHost(true);
         }
     },[user, event, host])
