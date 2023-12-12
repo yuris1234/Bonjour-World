@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import { RECEIVE_JOIN_REQUEST } from "./events";
 
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const RECEIVE_USERS = "users/RECEIVE_USERS";
@@ -19,7 +20,7 @@ export const receiveEventJoin = (eventJoin) => ({
   eventJoin
 })
 
-export const getUsers = (event) => (state) => {
+export const getAttendees = (event) => (state) => {
   const holder = [];
   if (event) {
     Object.values(state.users).filter((user) => {
@@ -28,7 +29,12 @@ export const getUsers = (event) => (state) => {
       }
     }) 
     return holder
+  }
+}
 
+export const getHost = (event) => (state) => {
+  if (event?.host) {
+    return state.users[event.host]
   }
 }
 
@@ -72,9 +78,16 @@ const usersReducer = (state = {}, action) => {
         case RECEIVE_USER:
           return { ...state, [action.user._id]: action.user };
         case RECEIVE_USERS:
-          return {...action.users};
+          const newState = {}
+          Object.values(action.users).forEach((user) => {
+            newState[user._id] = user;
+          })
+          // console.log(newState);
+          return newState;
         case RECEIVE_EVENT_JOIN:
-            return {...state, [action.eventJoin.user._id]: action.eventJoin.user}
+          return {...state, [action.eventJoin.user._id]: action.eventJoin.user}
+        case RECEIVE_JOIN_REQUEST:
+          return {...state, [action.joinRequest.user._id]: action.joinRequest.user}
         default: 
           return state;
     }
