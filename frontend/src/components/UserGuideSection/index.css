@@ -1,5 +1,30 @@
+.user-guide-section .instruction {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.5s ease, transform 2s ease;
+}
+
+.user-guide-section .slide-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.user-guide-section .slide-left {
+  transform: translateX(-50px);
+}
+
+.user-guide-section .slide-right {
+  transform: translateX(50px);
+}
+
+.user-guide-section .instruction.slide-left.slide-in,
+.user-guide-section .instruction.slide-right.slide-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .user-guide-section {
-  height: 1000px;
+  height: 1500px;
   width: 100vw;
   background: linear-gradient(to bottom, white, #b5cffb, #fbe1b5);
   text-align: center;
@@ -9,10 +34,9 @@
   justify-content: space-around;
 }
 
-.user-guide-section .instruction {
+.user-guide-section .instruction-div {
   padding: 50px;
   height: 100px;
-  width: 100%;
   width: 700px;
   border-radius: 40%;
   display: flex;

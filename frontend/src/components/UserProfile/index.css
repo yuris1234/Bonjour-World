@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow-y: auto;
+    width: 100vw;
+    overflow-y: scroll;
     background: linear-gradient(to bottom, #FBE1B5, white);
 }
 
@@ -14,6 +15,7 @@ h1 {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+  padding-top: 45px;
     /* border   : solid red; */
 }
 
