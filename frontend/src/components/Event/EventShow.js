@@ -1,5 +1,5 @@
 import { useDebugValue, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getEvent, fetchEvent, setCenter, createJoinRequest, deleteJoinRequest } from '../../store/events';
 import NavBar from '../NavBar';
@@ -71,6 +71,13 @@ const EventShow = () => {
 
     const handleModal = (e) => {
         dispatch(updateEvent("updateEvent", eventId));
+    }
+
+    const history = useHistory()
+
+    const handleDeleteEvent = () => {
+        dispatch(deleteEvent(eventId))
+        history.push("/events")
     }
 
     const getAddressCoordinates = async (address) => {
@@ -161,7 +168,7 @@ const EventShow = () => {
                             {user && (joined || subscribed) && (
                                 <button class="unjoin-event" onClick={handleUnjoin}>{joined ? "Joined" : (subscribed ? "Request Sent" : "")}</button>
                             )}
-                            
+                       
                             {/* create a request to join button if a user is logged in and current status is neither subscribed or joined */}
                             {user && !subscribed && !joined && (<button className="join-event" onClick={handleJoin}>+ Request to Join </button>)}
                         </div>
