@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./EventForm.css";
@@ -11,6 +11,11 @@ import {
 } from "../../store/events";
 import { closeModal } from "../../store/modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
+
 
 const EventForm = () => {
   const history = useHistory();
@@ -46,6 +51,8 @@ const EventForm = () => {
   );
   const [time, setTime] = useState(event.time);
   const dispatch = useDispatch();
+  const [addressSuggestions, setAddressSuggestions] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState("");
 
   useEffect(() => {
     if (eventId) {
@@ -81,6 +88,36 @@ const EventForm = () => {
     }
   };
 
+  const handleAddressChange = (address) => {
+    setAddressSuggestions([]);
+    setSelectedAddress(address);
+  };
+
+  const handleSelect = async (address) => {
+    try {
+      const results = await geocodeByAddress(address);
+      const latLng = await getLatLng(results[0]);
+      console.log("Coordinates:", latLng);
+      console.log("Formatted Address:", address);
+
+      setSelectedAddress(address);
+
+      const streetAddress = results[0]?.formatted_address.split(",")[0].trim();
+      setAddress(streetAddress);
+    } catch (error) {
+      console.error("Error selecting address:", error);
+    }
+  };  
+
+  
+  const fetchPlaceDetails = async (placeId) => {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=AIzaSyBU1Ohi_1mEab05gBabRw_hghulEKR_ee8`
+    );
+    const data = await response.json();
+    return data.result;
+  };
+  
   const update = (field) => {
     return (e) => {
       switch (field) {
@@ -269,21 +306,54 @@ const EventForm = () => {
             onChange={update("city")}
           />
 
-          <div className="errors">{errors?.address}</div>
-          <input
-            type="text"
-            placeholder="Address"
-            value={address}
-            onChange={update("address")}
-          />
+        <div className="errors">{errors?.address}</div>
 
-          <div className="errors">{errors?.zipcode}</div>
-          <input
-            type="text"
-            placeholder="Zipcode"
-            value={zipcode}
-            onChange={update("zipcode")}
-          />
+        <PlacesAutocomplete
+        value={selectedAddress}
+        onChange={handleAddressChange}
+        onSelect={handleSelect}
+        >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div>
+            <input
+              {...getInputProps({
+                placeholder: "Type your address",
+              })}
+            />
+            <div className="autocomplete-dropdown-container">
+              {loading && <div>Loading...</div>}
+              {suggestions.map((suggestion, index) => {
+                const style = {
+                  backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                };
+
+                // Extract street name from structured_formatting or use description
+                const streetName =
+                  suggestion.structured_formatting?.name || suggestion.description;
+
+                return (
+                  <div
+                    {...getSuggestionItemProps(suggestion, {
+                      style,
+                    })}
+                    key={index}
+                  >
+                    <strong>{streetName}</strong>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </PlacesAutocomplete>
+
+      <div className="errors">{errors?.zipcode}</div>
+        <input
+          type="text"
+          placeholder="Zipcode"
+          value={zipcode}
+          onChange={update("zipcode")}
+        />
         </div>
       </div>
 
