@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createJoinRequest } from "../../../store/events";
 import { deleteJoinRequest } from "../../../store/events";
-import { addEventJoin } from "../../../store/users";
+import { addEventJoin, fetchUser, getUser, receiveUser } from "../../../store/users";
 import "./index.css";
 
 export default function ({ event }) {
@@ -21,8 +21,11 @@ export default function ({ event }) {
   return (
     <li>
       {event.pendingAttendees.map((pendingUser) => {
+        const user = useSelector(getUser(pendingUser))
+
         return (
             <div className="pending-btns">
+                <h1>{user?.username}</h1>
                 <button
                 value={pendingUser}
                 onClick={handleAccept}

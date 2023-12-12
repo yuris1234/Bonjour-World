@@ -141,11 +141,14 @@ const UserProfile = () => {
                 {user?.firstName} {user?.lastName}
               </div>
               <div className="profile-label">{user?.username}</div>
-              <ul>
-                <div>{hostedEvents.map((event) => {
-                  return <Notification event={event}/>
-                })}</div>
-              </ul>
+              <div className='notifications-div'>
+                <h2>Notifications</h2>
+                <ul>
+                  <div>{hostedEvents.map((event) => {
+                    return <Notification event={event}/>
+                  })}</div>
+                </ul>
+              </div>
             </div>
           </div>
 
