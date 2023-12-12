@@ -11,6 +11,8 @@ export const RECEIVE_EVENT_ERRORS = "events/RECEIVE_EVENT_ERRORS";
 export const RECEIVE_NEW_EVENT = "events/RECEIVE_NEW_EVENT";
 export const CLEAR_EVENT_ERRORS = "events/CLEAR_EVENT_ERRORS";
 
+export const RECEIVE_JOIN_REQUEST = "users/RECEIVE_JOIN_REQUEST";
+
 export const recieveEvents = (events) => ({
   type: RECEIVE_EVENTS,
   events,
@@ -35,6 +37,11 @@ const receiveNewEvent = (errors) => ({
   type: RECEIVE_NEW_EVENT,
   errors,
 });
+
+const receiveJoinRequest = (joinRequest) => ({
+  type: RECEIVE_JOIN_REQUEST,
+  joinRequest
+})
 
 export const clearEventErrors = (errors) => ({
   type: CLEAR_EVENT_ERRORS,
@@ -151,6 +158,24 @@ export const deleteEvent = (eventId) => async (dispatch) => {
   }
 };
 
+export const createJoinRequest = (eventId, userId) => async (dispatch) => {
+  const res = await jwtFetch(`api/events${eventId}/users/${userId}`, {method: "POST"});
+  if (res.ok) {
+    let data = res.json();
+    dispatch(receiveJoinRequest(data));
+    return res;
+  }
+}
+
+export const deleteJoinRequest = (eventId, userId) => async (dispatch) => {
+  const res = await jwtFetch(`api/events${eventId}/users/${userId}`, {method: "DELETE"});
+  if (res.ok) {
+    let data = res.json();
+    dispatch(receiveJoinRequest(data));
+    return res;
+  }
+}
+
 const nullErrors = null;
 
 export const eventErrorsReducer = (state = nullErrors, action) => {
@@ -178,6 +203,8 @@ const eventsReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_EVENT_JOIN:
       return {...state, [action.eventJoin.event._id]: action.eventJoin.event}
+    case RECEIVE_JOIN_REQUEST:
+      return {...state, [action.joinRequest.event._id]: action.joinRequest.event}
     case SET_CENTER: 
       return {...state, center: action.center}  
     default:

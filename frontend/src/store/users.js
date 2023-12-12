@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import { RECEIVE_JOIN_REQUEST } from "./events";
 
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const RECEIVE_USERS = "users/RECEIVE_USERS";
@@ -74,7 +75,9 @@ const usersReducer = (state = {}, action) => {
         case RECEIVE_USERS:
           return {...action.users};
         case RECEIVE_EVENT_JOIN:
-            return {...state, [action.eventJoin.user._id]: action.eventJoin.user}
+          return {...state, [action.eventJoin.user._id]: action.eventJoin.user}
+        case RECEIVE_JOIN_REQUEST:
+          return {...state, [action.joinRequest.user._id]: action.joinRequest.user}
         default: 
           return state;
     }
