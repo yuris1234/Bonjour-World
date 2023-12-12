@@ -42,7 +42,7 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
     new User ({
       username: faker.internet.userName({firstName, lastName}),
       email: faker.internet.email({firstName, lastName}),
-      hashedPassword: bcrypt.hashSync(faker.internet.password(), 10),
+      hashedPassword: bcrypt.hashSync("password", 10),
       firstName: firstName,
       lastName: lastName
     })
