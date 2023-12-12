@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow-y: auto;
+    width: 100vw;
     background: linear-gradient(to bottom, #FBE1B5, white);
 }
 
@@ -14,6 +14,7 @@ h1 {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+  padding-top: 45px;
     /* border   : solid red; */
 }
 
@@ -160,13 +161,24 @@ h1 {
 
 .event-container {
     width: 50%;
+    overflow-y: scroll;
+    height: 96vh;
     /* border: solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .event-header {
     /* width: 50%; */
     text-align: center;
     margin-top: 25px;
+    position: fixed;
+    margin-bottom: 25px;
+}
+
+.event-container .display-all-events {
+    margin-top: 70px;
 }
 
 @keyframes fadeIn {
