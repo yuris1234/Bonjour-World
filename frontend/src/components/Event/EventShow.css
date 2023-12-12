@@ -142,7 +142,7 @@ body {
 .edit-event {
     margin-left: 10px;
     height: auto;
-    width: 100px;
+    width: 150px;
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
@@ -157,7 +157,7 @@ body {
 .delete-event {
     margin-left: 10px;
     height: auto;
-    width: 100px;
+    width: 150px;
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
@@ -172,7 +172,7 @@ body {
 .join-event {
     margin-left: 10px;
     height: auto;
-    width: 100px;
+    width: 150px;
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
@@ -187,7 +187,7 @@ body {
 .unjoin-event {
     margin-left: 10px;
     height: auto;
-    width: 100px;
+    width: 150px;
     padding: 5px 10px;
     display: inline-block;
     border: 1px;

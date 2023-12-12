@@ -196,7 +196,7 @@ const EventShow = () => {
                 </button>
               )}
 
-              {user && (joined || subscribed) && (
+              {!isHost && user && (joined || subscribed) && (
                 <button class="unjoin-event" onClick={handleUnjoin}>
                   {joined ? "Joined" : subscribed ? "Request Sent" : ""}
                 </button>
