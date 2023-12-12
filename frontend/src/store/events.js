@@ -159,20 +159,22 @@ export const deleteEvent = (eventId) => async (dispatch) => {
 };
 
 export const createJoinRequest = (eventId, userId) => async (dispatch) => {
-  const res = await jwtFetch(`api/events${eventId}/users/${userId}`, {method: "POST"});
+  const res = await jwtFetch(`/api/events/${eventId}/users/${userId}`, {method: "POST"});
   if (res.ok) {
-    let data = res.json();
+    let data = await res.json();
     dispatch(receiveJoinRequest(data));
     return res;
   }
 }
 
 export const deleteJoinRequest = (eventId, userId) => async (dispatch) => {
-  const res = await jwtFetch(`api/events${eventId}/users/${userId}`, {method: "DELETE"});
+  const res = await jwtFetch(`/api/events/${eventId}/users/${userId}`, {method: "DELETE"});
   if (res.ok) {
-    let data = res.json();
+    let data = await res.json();
     dispatch(receiveJoinRequest(data));
     return res;
+  } else {
+    return res.json();
   }
 }
 

@@ -1,26 +1,30 @@
 import { useDebugValue, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getEvent, fetchEvent, setCenter } from '../../store/events';
+import { getEvent, fetchEvent, setCenter, createJoinRequest, deleteJoinRequest } from '../../store/events';
 import NavBar from '../NavBar';
 import "./EventShow.css"
 import { addEventJoin, fetchUsers, removeEventJoin } from '../../store/users';
 import { getCurrentUser } from '../../store/session';
 import { openModal, updateEvent } from '../../store/modal';
-import { getUsers } from '../../store/users';
+import { getAttendees } from '../../store/users';
 import EventsMapWrapper from '../EventMap';
+import { getHost } from '../../store/users';
 
 const EventShow = () => {
     const dispatch = useDispatch();
     const { eventId } = useParams();
+
     const event = useSelector(getEvent(eventId))
     const user = useSelector((state) => state.session.user);
-    const users = useSelector(getUsers(event));
+    const host = useSelector(getHost(event));
+    const attendees = useSelector(getAttendees(event));
+
     const [subscribed, setSubscribed] = useState(false);
-    const [hostShow, setHostShow] = useState(false);
-    const [host, setHost] = useState("");
+    const [joined, setJoined] = useState(false);
+    const [isHost, setIsHost] = useState(false);
+
     const [mapOptions, setMapOptions] = useState({});
-    
 
     useEffect(() => {
         dispatch(getCurrentUser());
@@ -29,37 +33,32 @@ const EventShow = () => {
     },[eventId])
 
     useEffect(() => {
-        if (user && event?.attendees) {
-            if (subscribed === false) {
-                setSubscribed(event.attendees.includes(user._id) ? true : false)
-            }
+        if (event?.attendees.includes(user?._id)) {
+            // set current user's status to "requested to join"
+            setJoined(true);
         }
-        if (event) {
-            if (user && user?._id === event.host) {
-                setHostShow(true)
-            }
+    
+        if (event?.pendingAttendees.includes(user?._id)) {
+            // set current user's status to "joined"
+            setSubscribed(true);
         }
-        
-        if (event && users?.length > 0) {    
-            users.forEach((user) => {
-                if (user._id === event.host) {
-                    setHost(user.username)
-                }
-            })
+
+        if (host?._id === user?._id) {
+            setIsHost(true);
         }
-    },[user, event])
+    },[user, event, host])
 
     const handleJoin = async (e) => {
         e.preventDefault();
         setSubscribed(true);
-        await dispatch(addEventJoin(user._id, eventId));
+        await dispatch(createJoinRequest(eventId, user._id));
     }
 
     const handleUnjoin = async (e) => {
         e.preventDefault();
-        if (user.username !== host) {
+        if (user._id !== host._id) {
             setSubscribed(false);
-            await dispatch(removeEventJoin(user._id, eventId));
+            await dispatch(deleteJoinRequest(eventId, user._id));
         }
     }
 
@@ -121,7 +120,7 @@ const EventShow = () => {
                 <div className="display-one-event">
                     <ul className="event-info-list">
                         <div className="event-title">{event?.title}
-                            <div className="event-title-host">Hosted By: {host}
+                            <div className="event-title-host">Hosted By: {host?.username}
                             </div>
                         </div>
 
@@ -149,14 +148,12 @@ const EventShow = () => {
                             <div className="event-address-div">Address
                                 <div className="event-address">{event?.address}</div>
                             </div>
-                            
-                            {hostShow && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
-                            {!subscribed && user &&
-                                <button className="join-event" onClick={handleJoin}>+ Join </button>
-                            }
-                            {subscribed && user &&
-                                <button class="unjoin-event" onClick={handleUnjoin}>Joined</button>
-                            }
+                            {isHost && <button class="edit-event" onClick={handleModal}>Edit Event</button>}
+                            {user && (joined || subscribed) && (
+                                <button class="unjoin-event" onClick={handleUnjoin}>{joined ? "Joined" : (subscribed ? "Request Sent" : "")}</button>
+                            )}
+                            {/* create a request to join button if a user is logged in and current status is neither subscribed or joined */}
+                            {user && !subscribed && !joined && (<button className="join-event" onClick={handleJoin}>+ Request to Join </button>)}
                         </div>
                     </ul>
                 </div>
