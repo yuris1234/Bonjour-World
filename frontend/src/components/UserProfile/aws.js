@@ -1,9 +1,10 @@
 const AWS = require('aws-sdk');
+const config = require('./config');
 
 AWS.config.update({
-  accessKeyId: 'AKIASIXB3QQCEJCGOWBG',
-  secretAccessKey: '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',
-  region: 'us-east-1',
+  accessKeyId: config.accessKeyId,
+  secretAccessKey: config.secretAccessKey,
+  region: config.region,
 });
 
 module.exports = new AWS.S3();
