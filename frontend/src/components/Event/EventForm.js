@@ -53,6 +53,7 @@ const EventForm = () => {
   const dispatch = useDispatch();
   const [addressSuggestions, setAddressSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
+  const apiKey = process.env.REACT_APP_MAPS_API_KEY;
 
   useEffect(() => {
     if (eventId) {
@@ -112,7 +113,7 @@ const EventForm = () => {
   
   const fetchPlaceDetails = async (placeId) => {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=AIzaSyBU1Ohi_1mEab05gBabRw_hghulEKR_ee8`
+      `https://maps.googleapis.com/maps/api/place/details/json?key=${apiKey}`
     );
     const data = await response.json();
     return data.result;
