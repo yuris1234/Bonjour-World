@@ -82,9 +82,9 @@ const EventForm = () => {
     };
 
     const res = await dispatch(createEvent(updatedEvent));
-    if (res.ok) {
+    if (res?.title) {
       dispatch(closeModal()); 
-      history.push(`/events`);
+      history.push(`/events/${res._id}`);
     }
   };
 
