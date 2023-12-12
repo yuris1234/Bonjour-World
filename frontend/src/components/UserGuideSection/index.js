@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import "./index.css";
 import { Icon } from "@iconify/react";
@@ -23,61 +23,79 @@ const Instruction = ({ children, index, colorClass }) => {
 };
 
 const UserGuideSection = () => {
+  useEffect(() => {
+    const backToTop = document.querySelector(".back-to-top");
+    const splashPage = document.querySelector(".splash-page");
+
+    // debugger
+    backToTop.addEventListener("click", function () {
+      // scroll to splash page 
+      splashPage.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // clean up event listener on component unmount
+    return () => {
+      backToTop.removeEventListener("click", function () {
+        splashPage.scrollIntoView({ behavior: "smooth" });
+      });
+    };
+  }, []);
+
   return (
-    <div className="user-guide-section">
-      <button className="profile-btn">
-        <Icon
-          icon="bx:up-arrow-alt"
-          className="profile-btn-icon fixed"
-        />
+    <>
+      <button className="back-to-top">
+        <Icon icon="bx:up-arrow-alt" className="back-to-top-icon" />
       </button>
-      <p>
-        Welcome to Bonjour World, your gateway to language exchange and cultural
-        understanding. Follow these steps to get started:
-      </p>
+      <div className="user-guide-section">
+        <p>
+          Welcome to Bonjour World, your gateway to language exchange and
+          cultural understanding. Follow these steps to get started:
+        </p>
 
-      <Instruction index={0} colorClass="auth">
-        <div className="instruction-div">
-          <h3>1. Sign Up or Log In</h3>
-          <p>
-            Create a secure account or log in to start your language learning
-            journey.
-          </p>
-        </div>
-      </Instruction>
+        <Instruction index={0} colorClass="auth">
+          <div className="instruction-div">
+            <h3>1. Sign Up or Log In</h3>
+            <p>
+              Create a secure account or log in to start your language learning
+              journey.
+            </p>
+          </div>
+        </Instruction>
 
-      <Instruction index={1} colorClass="event">
-        <div className="instruction-div">
-          <h3>2. Explore Language Exchange Events</h3>
-          <p>
-            Use the interactive maps powered by Google Maps to discover language
-            exchange events near you.
-          </p>
-        </div>
-      </Instruction>
+        <Instruction index={1} colorClass="event">
+          <div className="instruction-div">
+            <h3>2. Explore Language Exchange Events</h3>
+            <p>
+              Use the interactive maps powered by Google Maps to discover
+              language exchange events near you.
+            </p>
+          </div>
+        </Instruction>
 
-      <Instruction index={2} colorClass="host-or-join">
-        <div className="instruction-div">
-          <h3>3. Host or Join Events</h3>
-          <p>
-            Host your own language exchange events or join existing ones. Manage
-            events with ease using our intuitive event management system.
-          </p>
-        </div>
-      </Instruction>
+        <Instruction index={2} colorClass="host-or-join">
+          <div className="instruction-div">
+            <h3>3. Host or Join Events</h3>
+            <p>
+              Host your own language exchange events or join existing ones.
+              Manage events with ease using our intuitive event management
+              system.
+            </p>
+          </div>
+        </Instruction>
 
-      <Instruction index={3} colorClass="customize-profile">
-        <div className="instruction-div">
-          <h3>4. Customize Your Profile</h3>
-          <p>
-            Personalize your user profile with information, preferences, and
-            track your language learning progress and event history.
-          </p>
-        </div>
-      </Instruction>
+        <Instruction index={3} colorClass="customize-profile">
+          <div className="instruction-div">
+            <h3>4. Customize Your Profile</h3>
+            <p>
+              Personalize your user profile with information, preferences, and
+              track your language learning progress and event history.
+            </p>
+          </div>
+        </Instruction>
 
-      <p>Get ready to embark on a linguistic adventure with Bonjour World!</p>
-    </div>
+        <p>Get ready to embark on a linguistic adventure with Bonjour World!</p>
+      </div>
+    </>
   );
 };
 
