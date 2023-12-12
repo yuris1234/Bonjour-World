@@ -12,14 +12,27 @@ import EventIndexItem from '../Event/EventIndexItem';
 import { fetchEvents, getRelevantEvents } from '../../store/events';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import S3 from './aws.js';
+import { getHostedEvents } from '../../store/events';
+// import Notification from './Notification/index.js';
+import Notification from './Notification/index.js';
 
 const UserProfile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+
+  // get current user
   const user = useSelector((state) => state.session.user);
+  
   const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
+
+  // get all events user is attending
   const events = useSelector(getRelevantEvents(user?._id));
+
+  // get all hosted events for current user
+  const hostedEvents = useSelector(getHostedEvents(user?._id));
+
+
   const [highlightedEvent, setHighlightedEvent] = useState();
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -129,6 +142,11 @@ const UserProfile = () => {
                 {user?.firstName} {user?.lastName}
               </div>
               <div className="profile-label">{user?.username}</div>
+              <ul>
+                <div>{hostedEvents.map((event) => {
+                  return <Notification event={event}/>
+                })}</div>
+              </ul>
             </div>
           </div>
 

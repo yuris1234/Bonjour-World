@@ -30,6 +30,10 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Event'
     }],
+    requestedEvents: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Event'
+    }],
     age: {
       type: Number
     }
