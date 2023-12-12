@@ -1,5 +1,5 @@
 const Input = ({ label, options, value, onChange }) => {
-  const enhancedOptions = ["Select Language", ...options];
+  const enhancedOptions = ["All Languages", ...options];
 
   return (
     <div id="filter-form">
@@ -7,11 +7,7 @@ const Input = ({ label, options, value, onChange }) => {
         {label}
         <select value={value} onChange={onChange}>
           {enhancedOptions.map((option) => (
-            <option
-              key={option}
-              value={option === "Select Language" ? "" : option}
-              disabled={option === "Select Language"}
-            >
+            <option key={option} value={option === "All Languages" ? "" : option}>
               {option}
             </option>
           ))}
