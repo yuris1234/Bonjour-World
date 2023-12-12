@@ -3,7 +3,7 @@
   width: 100%;
   background: linear-gradient(to bottom, #FBE1B5, white);
   height: 100%;
-    padding-top: 45px;
+  padding-top: 45px;
 }
 
 .display-all-events {
@@ -13,7 +13,16 @@
   flex-wrap: wrap;
   overflow-y: auto;
   height: 91vh;
+  justify-content: center;
 } 
+
+#filter-form {
+  /* position: fixed; */
+}
+
+#filter-form select {
+  background-color: transparent;
+}
 
 /* 
 .google-maps-container {
