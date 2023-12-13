@@ -24,8 +24,9 @@ export default function ({ event }) {
         const user = useSelector(getUser(pendingUser))
 
         return (
-            <div>
-                <span className="pending-user">{user?.username}</span>
+            <div className="notifications-container">
+                <div className="pending-user">{user?.username}</div>
+                <div className="btns-container">
                     <button
                     value={pendingUser}
                     onClick={handleAccept}
@@ -40,7 +41,8 @@ export default function ({ event }) {
                     >
                     Deny
                     </button>
-</div>
+                    </div>
+            </div>
         );
       })}
     </>
