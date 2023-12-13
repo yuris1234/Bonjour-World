@@ -3,7 +3,7 @@
     flex-direction: column;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(to bottom, #FBE1B5, white);
+background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
 }
 
 h1 {
@@ -162,8 +162,8 @@ h1 {
 .event-container {
     width: 50%;
     overflow-y: scroll;
-    height: 96vh;
-    /* border: solid red; */
+    height: 95vh;
+    /* border: 3px solid red; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -189,3 +189,14 @@ h1 {
         opacity: 1;
     }
 }
+
+.display-users-events {
+    /* border: 3px solid green; */
+    width: 60%;
+    height: 85%;
+    margin-top: 70px;
+    overflow-y: auto;
+    z-index: 100;
+    padding-right: 20px;
+}
+

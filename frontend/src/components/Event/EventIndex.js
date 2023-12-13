@@ -38,7 +38,7 @@ const EventIndex = () => {
 
     return (
       <>
-        <NavBar />
+        {/* <NavBar /> */}
         <div className="event-index">
           <EventsMapWrapper
             events={events}
