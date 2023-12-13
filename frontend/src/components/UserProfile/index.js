@@ -119,16 +119,11 @@ const UserProfile = () => {
         <div className={`profile-details-div ${fadeIn ? 'fade-in' : ''}`}>
           <div className="profile-img-div">
             <div className="profile-img-container">
-            <img
-                className={`profile-img ${imageLoaded ? 'visible' : 'hidden'}`}
-                alt="uploaded-user"
-                src={uploadedImage || EmptyUser}
-                onLoad={handleImageLoad}
-              />
-              {!imageLoaded && (
+            <img className={`profile-img visible`} src={user?.pfp}/>
+              {/* {!imageLoaded && (
                 <div className="loading-spinner">Loading...</div>
-              )}
-              <label htmlFor="imageInput" className="upload-label">
+              )} */}
+              {/* <label htmlFor="imageInput" className="upload-label">
                 Upload Image
                 <input
                   id="imageInput"
@@ -137,7 +132,7 @@ const UserProfile = () => {
                   onChange={handleImageChange}
                   style={{ display: 'none' }}
                 />
-              </label>
+              </label> */}
             </div>
 
             <div className="profile-details">
