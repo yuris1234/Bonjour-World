@@ -203,38 +203,46 @@ const EventUpdateForm = ({ eventId }) => {
       <div className="selects">
         <div className="select">
           <div className="errors">{errors?.time}</div>
-          <select value={time} onChange={update("time")}>
-            <option disabled value="">
-              Select Time
-            </option>
-            {generateTimeOptions()}
-          </select>
+          <div className="event-select-btn">
+            <select value={time} onChange={update("time")}>
+              <option disabled value="">
+                Select Time
+              </option>
+              {generateTimeOptions()}
+            </select>
+          </div>
         </div>
 
         <div className="select">
           <div className="errors">{errors?.language}</div>
-          <select value={language} onChange={update("language")}>
-            <option disabled value="">
-              Select Language
-            </option>
-            {languages.map((lang) => (
-              <option key={lang} value={lang}>
-                {lang}
+          <div className="event-select-btn">
+            <select value={language} onChange={update("language")}>
+              <option disabled value="">
+                Select Language
               </option>
-            ))}
-          </select>
+              {languages.map((lang) => (
+                <option key={lang} value={lang}>
+                  {lang}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="select">
           <div className="errors">{errors?.state}</div>
-          <select value={state} onChange={update("state")}>
-            <option disabled value="">Select State</option>
-            {states.map((stateOption) => (
-              <option key={stateOption} value={stateOption}>
-                {stateOption}
+          <div className="event-select-btn">
+            <select value={state} onChange={update("state")}>
+              <option disabled value="">
+                Select State
               </option>
-            ))}
-          </select>
+              {states.map((stateOption) => (
+                <option key={stateOption} value={stateOption}>
+                  {stateOption}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
       </div>
 
