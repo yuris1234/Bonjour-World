@@ -128,8 +128,8 @@ const UserProfile = () => {
               {!imageLoaded && (
                 <div className="loading-spinner">Loading...</div>
               )}
-              <label htmlFor="imageInput" className="upload-label">
-                Upload Image
+              {/* <label htmlFor="imageInput" className="upload-label"> */}
+                {/* Upload Image */}
                 <input
                   id="imageInput"
                   type="file"
@@ -137,7 +137,7 @@ const UserProfile = () => {
                   onChange={handleImageChange}
                   style={{ display: 'none' }}
                 />
-              </label>
+              {/* </label> */}
             </div>
 
             <div className="profile-details">
