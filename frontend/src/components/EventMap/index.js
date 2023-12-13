@@ -7,7 +7,6 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
     const mapRef = useRef(null);
     const markersRef = useRef(null);
     const center = useSelector(state => state.events.center)
-    // console.log(language)
 
     const getAddressCoordinates = async (address) => {
         try {
@@ -25,7 +24,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
             }
         } catch (error) {
             console.error('Error:', error);
-          throw error; // Re-throw the error to handle it in the calling code
+        throw error; 
         }
     };
 
@@ -33,7 +32,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
         if (!map) {
             const defaultMapOptions = {
                 zoom: 11,
-                center: { lat: 40.7128, lng: -74.0060 }, // New York as an example
+                center: { lat: 40.7128, lng: -74.0060 }, // New York 
             };
             // Create a new Google Map object with mapRef as its first argument
             let newMap = new window.google.maps.Map(mapRef.current, {
@@ -56,12 +55,12 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 if (language && event.language !== language) {
                     return;
                 }
-                // console.log(language)
                 try {
+                    // Generate position based on address using geocode API
                     const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
                     const position = await getAddressCoordinates(formattedAddress);
+                    // If no marker exists for the event, create one
                     if (!markersRef.current || !markersRef.current[event._id]) {
-                        // If no marker exists for the event, create one
                         const marker = new window.google.maps.Marker({
                             position,
                             map
@@ -104,9 +103,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
             markersRef.current = newMarkers;
 
         }, [events, map, mapOptions, language]);
-     
-
-        
+    
         return <div ref={mapRef} style={{ margin: "20px", height: '750px', width: '50%' }}>Map</div>
     }
     
