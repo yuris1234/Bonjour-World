@@ -39,7 +39,7 @@ const userSchema = new Schema({
     },
     pfp: {
       type: String,
-      default: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_Kitten_01.jpg"
+      default: "https://upload.wikimedia.org/wikipedia/commons/7/75/Cute_grey_kitten.jpg"
     }
   }, {
     timestamps: true

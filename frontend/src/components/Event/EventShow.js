@@ -44,9 +44,9 @@ const EventShow = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-    dispatch(fetchUsers());
+    // dispatch(fetchUsers());
     dispatch(fetchEvent(eventId));
-  }, [eventId]);
+  }, [eventId, dispatch]);
 
   useEffect(() => {
     if (event?.attendees.includes(user?._id)) {

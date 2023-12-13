@@ -9,8 +9,10 @@ const validateEventCreation = require('../../validations/event');
 // GET /api/events/:id
 router.get('/:id', async (req, res, next) => {
     try {
-        const event = await Event.findById(req.params.id)
-        return res.json(event)
+        const unpopulatedEvent = await Event.findById(req.params.id)
+        const event = JSON.parse(JSON.stringify(unpopulatedEvent));
+        const populatedEvent = await unpopulatedEvent.populate('attendees')
+        return res.json({event, attendees: populatedEvent.attendees})
     }
     catch(err) {
         const error = new Error('Event not found');
@@ -164,7 +166,6 @@ router.delete('/:id', async (req, res, next) => {
             let j = host.hostedEvents.indexOf(event._id);
             host.hostedEvents.splice(j, 1);
             await host.save();
-            console.log(host);
             return res.json(event);
         } else {
             return res.json({message: 'event not found'})
