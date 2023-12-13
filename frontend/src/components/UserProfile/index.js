@@ -152,7 +152,7 @@ const UserProfile = () => {
 
           <div className="event-container">
             <h1 className="event-header">{user?.firstName}'s Events</h1>
-            <div className="display-all-events">
+            <div className="display-users-events">
               {events?.map((event) => (
                 <EventIndexItem
                   key={event._id}
