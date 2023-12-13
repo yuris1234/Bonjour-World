@@ -107,7 +107,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
      
 
         
-        return <div ref={mapRef} style={{ margin: "20px", height: '750px', width: '50%' }}>Map</div>
+        return <div ref={mapRef} style={{ height: '750', width: '70%' }}>Map</div>
     }
     
     const EventsMapWrapper = ({ events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
