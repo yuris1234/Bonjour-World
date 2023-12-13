@@ -28,7 +28,7 @@ const EventForm = () => {
     event = {
       title: "",
       description: "",
-      language: "",
+      languages: "",
       state: "",
       city: "",
       address: "",
@@ -40,7 +40,7 @@ const EventForm = () => {
 
   const [title, setTitle] = useState(event.title);
   const [description, setDescription] = useState(event.description);
-  const [language, setLanguage] = useState(event.language);
+  const [languages, setLanguages] = useState(event.languages);
   const [state, setState] = useState(event.state);
   const [city, setCity] = useState(event.city);
   const [address, setAddress] = useState(event.address);
@@ -70,7 +70,7 @@ const EventForm = () => {
     const updatedEvent = {
       title,
       description,
-      language,
+      languages,
       state,
       city,
       address,
@@ -126,8 +126,8 @@ const EventForm = () => {
         case "description":
           setDescription(e.currentTarget.value);
           break;
-        case "language":
-          setLanguage(e.currentTarget.value);
+        case "languages":
+          setLanguages(e.currentTarget.value);
           break;
         case "state":
           setState(e.currentTarget.value);
@@ -207,7 +207,7 @@ const EventForm = () => {
     "Wyoming",
   ];
 
-  const languages = ["German", "Spanish", "English", "French"];
+  const allLanguages = ["German", "Spanish", "English", "French"];
 
   const generateTimeOptions = () => {
     const timeOptions = [];
@@ -236,6 +236,15 @@ const EventForm = () => {
   //   field.value = updatedDate;
   // }
 
+  const handleCheckbox = (e) => {
+    if (e.target.checked && !languages.includes(e.target.value)) {
+      setLanguages(prev => [...prev, e.target.value])
+    } else if (!e.target.checked && languages.includes(e.target.value)) {
+      setLanguages(prev => prev.pull(e.target.value))
+    }
+    console.log(languages);
+  }
+
   return (
     <form className="event-form" onSubmit={handleSubmit}>
       <h2>{eventType}</h2>
@@ -256,16 +265,14 @@ const EventForm = () => {
         <div className="select">
           <div className="errors">{errors?.language}</div>
           <div className="event-select-btn">
-            <select value={language} onChange={update("language")}>
+            {/* <select value={languages} onChange={update("languages")} multiple>
               <option disabled value="">
-                Select Language
-              </option>
-              {languages.map((lang) => (
-                <option key={lang} value={lang}>
-                  {lang}
-                </option>
+                Select Languages
+              </option> */}
+              {allLanguages.map((lang) => (
+                <input type="checkbox" onChange={handleCheckbox} key={lang} value={lang}/>
               ))}
-            </select>
+            {/* </select> */}
           </div>
         </div>
 
