@@ -1,0 +1,96 @@
+.notifications-div {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ gap: 10px;
+ margin-top: 40px;
+}
+
+.notifications-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-top: 10px; */
+  /* border: 1px solid brown; */
+  /* border-bottom: 1px solid black; */
+}
+
+.notifications-container:first-child {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+  margin-top: 10px;
+  /* border: 1px solid brown; */
+  /* border-bottom: 1px solid black; */
+}
+
+.pending-div {
+  border-top: 2px solid black;
+  /* margin-bottom: 10px; */
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: start;
+  /* width: 400px; */
+  gap: 10px;
+  /* border: 3px solid black; */
+    height: 300px;
+      width: 300px;
+      overflow-y: scroll;
+}
+
+#notifications-title {
+  /* border-bottom: 1px solid black; */
+}
+
+/* .pending-div {
+  border: 3px solid red;
+
+} */
+
+/* .pending-btns {
+  margin-left: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.btns-container {
+/* border: 1px solid red; */
+}
+
+.pending-user {
+  /* padding-right: 40px; */
+/* border: 1px solid blue; */
+}
+
+.handle-delete {
+  margin-left: 10px;
+  height: auto;
+  width: 100px;
+  padding: 5px 10px;
+  display: inline-block;
+  border: 1px;
+  background-color: red;
+  color: white;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 2;
+  cursor: pointer;
+}
+
+.handle-accept {
+  margin-left: 10px;
+  height: auto;
+  width: 100px;
+  padding: 5px 10px;
+  display: inline-block;
+  border: 1px;
+  background-color: green;
+  color: white;
+  border-radius: 30px;
+  text-align: center;
+  line-height: 2;
+  cursor: pointer;
+}

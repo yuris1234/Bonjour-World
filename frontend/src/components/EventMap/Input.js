@@ -3,16 +3,15 @@ const Input = ({ label, options, value, onChange }) => {
 
   return (
     <div id="filter-form">
-      <label className="">
-        {label}
-        <select value={value} onChange={onChange}>
+        <div className="select-btn">
+        <select value={value} onChange={onChange} >
           {enhancedOptions.map((option) => (
             <option key={option} value={option === "All Languages" ? "" : option}>
               {option}
             </option>
           ))}
         </select>
-      </label>
+        </div>
     </div>
   );
 };
