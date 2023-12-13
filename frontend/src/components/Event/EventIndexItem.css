@@ -14,9 +14,10 @@ display: flex;
     font-size: 20px;
     font-weight: 500;
     transition: transform 0.2s ease-in-out;
-    /* border: 3px solid #0A345B; */
+    border: 3px solid #0A345B;
     color: #0A345B;
-    border: 3px solid red;
+    /* border: 3px solid red; */
+    padding: 5px;
 
 }
 
@@ -40,24 +41,24 @@ display: flex;
 
 #event-item-title {
     text-align: center;
-    border: 3px solid pink;
+    /* border: 3px solid pink; */
 }
 
 #event-item-date {
-    /* padding-right: 12px; */
-    border: 3px solid green
+    padding-right: 12px;
+    /* border: 3px solid green */
 }
 
 #event-item-language {
-    border: 3px solid orange
+    /* border: 3px solid orange */
 }
 
 #event-item-time {
-    border: 3px solid blue
+    /* border: 3px solid blue */
 }
 
 #date-item-and-time {
     display: flex;
     /* align-self: end; */
-    margin-top: 100px;
+    margin-top: 98px;
 }
