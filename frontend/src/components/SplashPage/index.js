@@ -75,7 +75,7 @@ const SplashPage = () => {
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="splash-page">
         <div className="content-container">
           <div className="currentlanguage">{displayCurrentLanguage()}</div>

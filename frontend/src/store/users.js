@@ -33,6 +33,12 @@ export const getAttendees = (event) => (state) => {
   }
 }
 
+export const getUser = (userId) => (state) => {
+  if (state?.users) {
+    return state.users[userId];
+  }
+};
+
 export const getHost = (event) => (state) => {
   if (event?.host) {
     return state.users[event.host]

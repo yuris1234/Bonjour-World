@@ -26,14 +26,14 @@ const NavBar = () => {
             to={"/events"}
             activeClassName="active"
           >
-            All Events
+            Events
           </NavLink>
           <button
             className="logged-in-link"
             id="create-event-button"
             onClick={() => dispatch(openModal("createEvent"))}
           >
-            Create an Event
+            Create Event
           </button>
           <ProfileButton user={""} />
         </div>
