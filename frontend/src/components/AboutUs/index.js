@@ -67,7 +67,7 @@ const AboutUs = () => {
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="about-us-container">
         <div className="display-meet-the-team">{displayMeetTheTeam()}</div>
 

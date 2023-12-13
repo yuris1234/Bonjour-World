@@ -141,7 +141,7 @@ const EventShow = () => {
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="event-show-index">
         {event && <EventsMapWrapper events={[event]} mapOptions={mapOptions} />}
 
