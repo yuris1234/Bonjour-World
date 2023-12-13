@@ -14,13 +14,15 @@ const EventIndex = () => {
     const history = useHistory();
     const [highlightedEvent, setHighlightedEvent] = useState();
     const [language, setLanguage] = useState("")
+    const [state, setState] = useState("")
 
     useEffect(() => {
         const filters = {
-            language: language
+            language: language,
+            state: state
         };
         dispatch(fetchEvents(filters));
-    }, [dispatch, language]);
+    }, [dispatch, language, state]);
 
     const markerEventHandlers = {
         click: (event) => {
@@ -47,7 +49,7 @@ const EventIndex = () => {
             langauge={language}
           />
           <div className="display-all-events">
-            <FilterForm language={language} setLanguage={setLanguage} />
+            <FilterForm language={language} setLanguage={setLanguage} state={state} setState={setState} />
             {Object.values(events).map((event) => (
               <EventIndexItem
                 key={event._id}
