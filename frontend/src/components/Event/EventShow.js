@@ -139,9 +139,18 @@ const EventShow = () => {
     fetchMapData();
   }, [event]);
 
+    const formatDate = (originalDate) => {
+      const dateObject = new Date(originalDate);
+      const year = dateObject.getFullYear();
+      const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+      const day = String(dateObject.getDate()).padStart(2, "0");
+
+      return `${month}-${day}-${year}`;
+    };
+
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="event-show-index">
         {event && <EventsMapWrapper events={[event]} mapOptions={mapOptions} />}
 
@@ -164,7 +173,7 @@ const EventShow = () => {
 
               <div className="event-date-div">
                 Date
-                <div className="event-date">{event?.date}</div>
+                <div className="event-date">{formatDate(event?.date)}</div>
               </div>
 
               <div className="event-time-div">

@@ -25,7 +25,7 @@
 }
 
 .event-form h2 {
-  color: black;
+  color:  #0A345B;
   font-size: 2rem;
   text-align: center;
   margin-bottom: 30px;
@@ -36,12 +36,44 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  padding-right: 13px;
 }
 
 .event-form select {
-  background-color: transparent;
+  /* background-color: transparent;
+  border-radius: 5px; */
   text-align: center;
-  border-radius: 5px;
+    display: flex;
+      justify-content: center;
+      width: 150px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: white;
+      cursor: pointer;
+      height: 100%;
+      font-size: .8rem;
+}
+
+.event-select-btn {
+        cursor: pointer;
+          padding: 8px;
+          /* border-radius: 5px; */
+          /* margin-top: 8px; */
+          white-space: nowrap;
+          border: none;
+          border-radius: 20px;
+          width: 120px;
+          height: 20px;
+          border: none;
+          cursor: pointer;
+          background-color:  #0A345B;;
+          font-weight: bold;
+          z-index: 100;
+          padding: 10px;
+          display: flex;
+          justify-content: center;
+          margin-left: 10px;
 }
 
 .event-form .select {
@@ -72,9 +104,9 @@
   padding: 8px;
   margin-top: 8px;
   background-color: transparent;
-  color: black;
+  color:  #0A345B;;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid  #0A345B;;
   width: 200px;
   outline: none;
   font-size: 1rem;
@@ -96,7 +128,7 @@
 }
 
 .event-form input[type="submit"] {
-  background-color: black;
+  background-color:  #0A345B;;
   color: white;
   cursor: pointer;
   width: 50%;
