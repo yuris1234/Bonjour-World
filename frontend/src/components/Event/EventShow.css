@@ -202,3 +202,19 @@ body {
 .event-show-index button:hover {
     transform: scale(1.05);
 }
+
+.attendee-details {
+    align-items: center;
+}
+
+.attendee-pfp {
+    height: 40px;
+    width: 40px;
+    padding: 5px;
+}
+
+.attendee-username {
+    position: relative;
+    bottom: 15px;
+    left: 5px;
+}
