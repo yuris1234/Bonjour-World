@@ -110,7 +110,7 @@ const UserProfile = () => {
 
   return (
     <div className={`app-container ${fadeIn ? 'fade-in' : ''}`}>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className={`profile-container ${fadeIn ? 'fade-in' : ''}`}>
         <div className={`profile-details-div ${fadeIn ? 'fade-in' : ''}`}>
           <div className="profile-img-div">
