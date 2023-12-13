@@ -17,6 +17,7 @@ import { openModal, updateEvent } from "../../store/modal";
 import { getAttendees } from "../../store/users";
 import EventsMapWrapper from "../EventMap";
 import { getHost } from "../../store/users";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 const EventShow = () => {
   const dispatch = useDispatch();
@@ -170,6 +171,19 @@ const EventShow = () => {
                 Description
                 <div className="event-description">{event?.description}</div>
               </div>
+
+              <div className="event-attendees">
+                Attendees
+                {attendees.map((attendee) => (
+                  <div className="attendee-details" key={attendee._id}>
+                    <Link to={`users/${attendee._id}`}>
+                      <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
+                    </Link>
+                    <span className="attendee-username">{attendee.username}</span>
+                  </div>
+                ))}
+              </div>
+
 
               <div className="event-date-div">
                 Date
