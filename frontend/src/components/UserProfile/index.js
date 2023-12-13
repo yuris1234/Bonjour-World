@@ -36,6 +36,10 @@ const UserProfile = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
+    dispatch(getCurrentUser());
+  },[])
+
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
         const currentUserData = await getCurrentUser();

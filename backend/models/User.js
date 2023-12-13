@@ -36,6 +36,10 @@ const userSchema = new Schema({
     }],
     age: {
       type: Number
+    },
+    pfp: {
+      type: String,
+      default: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Red_Kitten_01.jpg"
     }
   }, {
     timestamps: true
