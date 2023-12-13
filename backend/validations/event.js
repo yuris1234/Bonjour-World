@@ -12,6 +12,11 @@ const isValidDate = (dateString) => {
     return d.toISOString().slice(0,10) === dateString;
 }
 
+const isValidLanguages = (array) => {
+    langs = ['English', 'French', 'Spanish', 'German']
+    return array.every(value => langs.includes(value))
+}
+
 const validateEventCreation = [
     check('title')
         .exists({checkFalsy: true})
@@ -21,10 +26,10 @@ const validateEventCreation = [
         .exists({checkFalsy: true})
         .isLength({min: 10, max: 200})
         .withMessage('Event description must be between 10 and 200 characters'),
-    check('language')
+    check('languages')
         .exists({checkFalsy: true})
-        .isIn(['English', 'Spanish', 'French', 'German'])
-        .withMessage('Language must be one of the supported languages'),
+        .custom(value => isValidLanguages(value))
+        .withMessage('Languages must be one of the supported languages'),
     check('state')
         .exists({checkFalsy: true})
         .isIn(['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'])

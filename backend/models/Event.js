@@ -26,10 +26,10 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
-    language: {
+    languages: [{
         type: String,
         required: true
-    },
+    }],
     state: {
         type: String,
         required: true
