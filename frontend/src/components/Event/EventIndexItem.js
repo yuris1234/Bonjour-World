@@ -35,9 +35,9 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
           <div id="event-item-time">{event.time}</div>
         </div>
         {/* <div id="event-item-time">{host}</div> */}
-        <br />
+        {/* <br /> */}
         {/* <div className="event-item-description">{event.description}</div> */}
-        <br />
+        {/* <br /> */}
         {/* <div className="event-item-location">{event.city}</div> */}
       </div>
     </>
