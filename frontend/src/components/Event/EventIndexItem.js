@@ -1,6 +1,11 @@
 import React from "react";
 import "./EventIndexItem.css";
 import { useHistory } from "react-router-dom";
+import { countries } from "country-flag-icons";
+import { US } from "country-flag-icons/react/3x2";
+import { FR } from "country-flag-icons/react/3x2";
+import { DE } from "country-flag-icons/react/3x2";
+import { ES } from "country-flag-icons/react/3x2";
 // import { useSelector } from "react-redux";
 // import { getUser } from '../../store/users';
 
@@ -93,20 +98,32 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <div id="event-item-title">{event.title}</div>
-      <div id="event-item-language">{event.language}</div>
+      <div id="event-item-title">
+        <div id="event-title">{event.title}</div>
+      </div>
+
+      <div className="attendees-flags">
+        <div id="event-item-attendees">
+          Number Of Attendees: {event.attendees.length}
+        </div>
+        {event.language === "English" && <US className="flag" />}
+        {event.language === "French" && <FR className="flag" />}
+        {event.language === "German" && <DE className="flag" />}
+        {event.language === "Spanish" && <ES className="flag" />}
+      </div>
+
+      <div id="item-location-div">
+        <div id="event-item-city">{event.city}</div>
+        <div id="event-item-state">{getStateAbbreviation(event.state)}</div>
+      </div>
+
       <div id="event-item-bottom">
         <div id="date-item-and-time">
           <div id="event-item-date">{formatDate(event.date)}</div>
           <div id="event-item-time">{event.time}</div>
-        </div>
-        <div id="item-location-div">
-          <div id="event-item-city">{event.city}</div>
-          <div id="event-item-state">{getStateAbbreviation(event.state)}</div>
           <div id="event-item-zipcode">{event.zipcode}</div>
         </div>
       </div>
-
       {/* <div id="event-item-time">{host}</div> */}
     </div>
   );

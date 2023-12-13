@@ -11,19 +11,43 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid brown;
+  /* margin-top: 10px; */
+  /* border: 1px solid brown; */
+  /* border-bottom: 1px solid black; */
+}
+
+.notifications-container:first-child {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+  margin-top: 10px;
+  /* border: 1px solid brown; */
+  /* border-bottom: 1px solid black; */
 }
 
 .pending-div {
-  margin-bottom: 10px;
+  border-top: 2px solid black;
+  /* margin-bottom: 10px; */
   display: flex;
   flex-direction: column;
   align-items: space-between;
-  justify-content: center;
-  width: 400px;
+  justify-content: start;
+  /* width: 400px; */
   gap: 10px;
-  border: 1px solid green;
+  /* border: 3px solid black; */
+    height: 300px;
+      width: 300px;
+      overflow-y: scroll;
 }
+
+#notifications-title {
+  /* border-bottom: 1px solid black; */
+}
+
+/* .pending-div {
+  border: 3px solid red;
+
+} */
 
 /* .pending-btns {
   margin-left: 30px;
@@ -33,12 +57,12 @@
 } */
 
 .btns-container {
-border: 1px solid red;
+/* border: 1px solid red; */
 }
 
 .pending-user {
   /* padding-right: 40px; */
-border: 1px solid blue;
+/* border: 1px solid blue; */
 }
 
 .handle-delete {
