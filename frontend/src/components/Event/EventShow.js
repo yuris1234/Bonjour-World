@@ -140,14 +140,19 @@ const EventShow = () => {
     fetchMapData();
   }, [event]);
 
-    const formatDate = (originalDate) => {
-      const dateObject = new Date(originalDate);
-      const year = dateObject.getFullYear();
-      const month = String(dateObject.getMonth() + 1).padStart(2, "0");
-      const day = String(dateObject.getDate()).padStart(2, "0");
+    // const formatDate = (originalDate) => {
+    //   const dateObject = new Date(originalDate);
+    //   const year = dateObject.getFullYear();
+    //   const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+    //   const day = String(dateObject.getDate()).padStart(2, "0");
 
-      return `${month}-${day}-${year}`;
-    };
+    //   return `${month}-${day}-${year}`;
+    // };
+
+    function formatDate(originalDate) {
+      const options = { month: 'long', day: 'numeric', year: 'numeric' };
+      return new Date(originalDate).toLocaleDateString(undefined, options);
+    }
 
   return (
     <>
@@ -160,39 +165,32 @@ const EventShow = () => {
             <div className="event-title">
               {event?.title}
               <div className="event-title-host">
-                Hosted By: {host?.username}
+                hosted by: {host?.firstName}
               </div>
+            </div>
+            <div className="event-date-time">
+                <div className="event-time">{event?.time}</div>
+                <div className="event-date">{formatDate(event?.date)}</div>
             </div>
 
             <div className="event-details">
-              <span className="event-language">{event?.languages.map((lang) => {return <li>{lang}</li>})}</span>
+              {/* <span className="event-language">{event?.languages.map((lang) => {return <li>{lang}</li>})}</span> */}
 
+                <div id="event-item-title">About</div>
               <div className="event-description-div">
-                Description
                 <div className="event-description">{event?.description}</div>
               </div>
 
               <div className="event-attendees">
-                Attendees
+                <div id="event-item-title">Attendees</div>
                 {attendees?.map((attendee) => (
                   <div className="attendee-details" key={attendee._id}>
                     <Link to={`users/${attendee._id}`}>
                       <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
                     </Link>
-                    <span className="attendee-username">{attendee.username}</span>
+                    <span className="attendee-username">{attendee.firstName}</span>
                   </div>
                 ))}
-              </div>
-
-
-              <div className="event-date-div">
-                Date
-                <div className="event-date">{formatDate(event?.date)}</div>
-              </div>
-
-              <div className="event-time-div">
-                Time
-                <div className="event-time">{event?.time}</div>
               </div>
 
               <div className="event-location-div">
