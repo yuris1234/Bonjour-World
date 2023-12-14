@@ -1,7 +1,13 @@
 .event-index {
   display: flex;
   width: 100%;
-  background: linear-gradient(to bottom, #FBE1B5, white);
+  /* background: radial-gradient(592px at 48.2% 50%, rgba(255, 255, 249, 0.6) 0%, rgb(160, 199, 254) 74.6%); */
+  /* background: linear-gradient(to bottom, rgb(175, 237, 255) 10.9%, rgb(255, 163, 252) 63.8%); */
+  /* background: linear-gradient(to top, rgb(251, 194, 235) 0%, rgb(166, 193, 238) 100%); */
+  background: white;
+  /* background: linear-gradient(179.7deg, rgb(248, 126, 126) -0.5%, rgb(251, 206, 143) 35.3%, rgb(184, 252, 233) 67.2%, rgb(118, 162, 229) 92.3%); */
+
+  /* background: linear-gradient(to bottom, #EEE4D4, #FCEFD2); */
   height: 100vh;
   padding-top: 45px;
   /* margin-top: 45px; */
@@ -51,7 +57,7 @@
     height: 20px;
     border: none;
   cursor: pointer;
-    background-color: #0A345B;
+    background-color: black;
     font-weight: bold;
     z-index: 100;
     padding: 10px;
