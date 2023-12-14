@@ -165,7 +165,7 @@ const EventShow = () => {
             </div>
 
             <div className="event-details">
-              <span className="event-language">{event?.language}</span>
+              <span className="event-language">{event?.languages.map((lang) => {return <li>{lang}</li>})}</span>
 
               <div className="event-description-div">
                 Description

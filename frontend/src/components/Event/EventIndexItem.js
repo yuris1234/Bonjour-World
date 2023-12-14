@@ -106,10 +106,12 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
         <div id="event-item-attendees">
           Number Of Attendees: {event.attendees.length}
         </div>
-        {event.language === "English" && <US className="flag" />}
-        {event.language === "French" && <FR className="flag" />}
-        {event.language === "German" && <DE className="flag" />}
-        {event.language === "Spanish" && <ES className="flag" />}
+        <div className="flags">
+          {event.languages?.includes("English") && <US className="flag" />}
+          {event.languages?.includes("French") && <FR className="flag" />}
+          {event.languages?.includes("German") && <DE className="flag" />}
+          {event.languages?.includes("Spanish") && <ES className="flag" />}
+        </div>
       </div>
 
       <div id="item-location-div">
