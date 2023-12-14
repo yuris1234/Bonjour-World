@@ -25,10 +25,10 @@ const EventForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState("");
   const [languages, setLanguages] = useState([]);
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
+  // const [state, setState] = useState("");
+  // const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
-  const [zipcode, setZipcode] = useState("");
+  // const [zipcode, setZipcode] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
   const dispatch = useDispatch();
@@ -68,10 +68,10 @@ const EventForm = () => {
       title,
       description,
       languages,
-      state,
-      city,
+      // state,
+      // city,
       address,
-      zipcode,
+      // zipcode,
       date,
       time,
       endTime,
@@ -144,18 +144,18 @@ const EventForm = () => {
         case "languages":
           setLanguages(e.currentTarget.value);
           break;
-        case "state":
-          setState(e.currentTarget.value);
-          break;
-        case "city":
-          setCity(e.currentTarget.value);
-          break;
+        // case "state":
+        //   setState(e.currentTarget.value);
+        //   break;
+        // case "city":
+        //   setCity(e.currentTarget.value);
+        //   break;
         case "address":
           setAddress(e.currentTarget.value);
           break;
-        case "zipcode":
-          setZipcode(e.currentTarget.value);
-          break;
+        // case "zipcode":
+        //   setZipcode(e.currentTarget.value);
+        //   break;
         case "date":
           setDate(new Date(e.target.value));
           break;
@@ -289,7 +289,7 @@ const EventForm = () => {
         </div>
 
 
-        <div className="select">
+        {/* <div className="select">
           <div className="errors">{errors?.state}</div>
           <div className="event-select-btn">
             <select value={state} onChange={update("state")}>
@@ -303,7 +303,7 @@ const EventForm = () => {
               ))}
             </select>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="select">
@@ -343,13 +343,13 @@ const EventForm = () => {
         </div>
 
         <div className="right-column">
-          <div className="errors">{errors?.city}</div>
+          {/* <div className="errors">{errors?.city}</div>
           <input
             type="text"
             placeholder="City"
             value={city}
             onChange={update("city")}
-          />
+          /> */}
 
           <div className="errors">{errors?.address}</div>
 
@@ -389,14 +389,14 @@ const EventForm = () => {
               )}
             </PlacesAutocomplete>
           )}
-
+{/* 
           <div className="errors">{errors?.zipcode}</div>
           <input
             type="text"
             placeholder="Zipcode"
             value={zipcode}
             onChange={update("zipcode")}
-          />
+          /> */}
         </div>
       </div>
 

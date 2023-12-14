@@ -19,10 +19,10 @@ const EventUpdateForm = ({ eventId }) => {
   const [title, setTitle] = useState(event?.title);
   const [description, setDescription] = useState(event?.description);
   const [languages, setLanguages] = useState(event?.languages);
-  const [state, setState] = useState(event?.state);
-  const [city, setCity] = useState(event?.city);
+  // const [state, setState] = useState(event?.state);
+  // const [city, setCity] = useState(event?.city);
   const [address, setAddress] = useState(event?.address);
-  const [zipcode, setZipcode] = useState(event?.zipcode);
+  // const [zipcode, setZipcode] = useState(event?.zipcode);
   const [date, setDate] = useState(event?.date);
   const [time, setTime] = useState(event?.time);
 
@@ -50,10 +50,9 @@ const EventUpdateForm = ({ eventId }) => {
       title,
       description,
       languages,
-      state,
-      city,
+      // state,
+      // city,
       address,
-      zipcode,
       date,
       time,
     };
@@ -84,18 +83,18 @@ const EventUpdateForm = ({ eventId }) => {
         case "language":
           setLanguages(e.currentTarget.value);
           break;
-        case "state":
-          setState(e.currentTarget.value);
-          break;
-        case "city":
-          setCity(e.currentTarget.value);
-          break;
+        // case "state":
+        //   setState(e.currentTarget.value);
+        //   break;
+        // case "city":
+        //   setCity(e.currentTarget.value);
+        //   break;
         case "address":
           setAddress(e.currentTarget.value);
           break;
-        case "zipcode":
-          setZipcode(e.currentTarget.value);
-          break;
+        // case "zipcode":
+        //   setZipcode(e.currentTarget.value);
+        //   break;
         case "date":
           setDate(new Date(e.target.value));
           break;
@@ -222,7 +221,7 @@ const EventUpdateForm = ({ eventId }) => {
         </div>
 
       <div className="select">
-        <div className="errors">{errors?.state}</div>
+        {/* <div className="errors">{errors?.state}</div>
         <div className="event-select-btn">
           <select value={state} onChange={update("state")}>
             <option disabled value="">
@@ -234,7 +233,7 @@ const EventUpdateForm = ({ eventId }) => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
       </div>
     </div>
 
@@ -276,13 +275,13 @@ const EventUpdateForm = ({ eventId }) => {
         </div>
 
         <div className="right-column">
-          <div className="errors">{errors?.city}</div>
+          {/* <div className="errors">{errors?.city}</div>
           <input
             type="text"
             placeholder="City"
             value={city}
             onChange={update("city")}
-          />
+          /> */}
 
           <div className="errors">{errors?.address}</div>
           <input
@@ -292,13 +291,13 @@ const EventUpdateForm = ({ eventId }) => {
             onChange={update("address")}
           />
 
-          <div className="errors">{errors?.zipcode}</div>
+          {/* <div className="errors">{errors?.zipcode}</div>
           <input
             type="text"
             placeholder="Zipcode"
             value={zipcode}
             onChange={update("zipcode")}
-          />
+          /> */}
         </div>
       </div>
 
