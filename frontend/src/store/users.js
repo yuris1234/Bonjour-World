@@ -24,11 +24,24 @@ export const receiveEventJoin = (eventJoin) => ({
 export const getAttendees = (event) => (state) => {
   const holder = [];
   if (event) {
-    Object.values(state.users).filter((user) => {
+    Object.values(state.users).forEach((user) => {
       if (event.attendees.includes(user._id)) {
         holder.push(user)
       }
     }) 
+    return holder
+  }
+}
+
+export const getPendingAttendees = (event) => (state) => {
+  const holder = [];
+  if (event) {
+    Object.values(state.users).forEach((user) => {
+      if (event.pendingAttendees.includes(user._id)) {
+        holder.push(user)
+      }
+    }) 
+    console.log(holder)
     return holder
   }
 }

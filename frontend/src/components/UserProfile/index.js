@@ -135,16 +135,17 @@ const UserProfile = () => {
             </div>
 
             <div className="profile-details">
-              <div className="profile-label">
-                {user?.firstName} {user?.lastName}
+              <div id="profile-details-banner">
+                Hello, {user?.firstName} {user?.lastName}
               </div>
-              <div className="profile-label">{user?.username}</div>
-              {/* <div className='notifications-div'>
-                <h2 id='notifications-title'>Join Requests</h2>
-                  <div className='pending-div'>{hostedEvents.map((event) => {
-                    return <Notification event={event}/>
-                  })}</div>
-              </div> */}
+              {/* <h2 id="profile-details-banner">Username</h2> */}
+              <div className="profile-detail">{user?.username}</div>
+              {/* <h2 id="profile-details-banner">Email</h2>
+              <div className="profile-detail">{user?.email}</div> */}
+              <h2 id="profile-details-banner">Bio</h2>
+              <div className="profile-detail">{user?.bio}</div>
+              <h2 id="profile-details-banner">Languages</h2>
+              <div className="profile-detail">{user?.languages}</div>
             </div>
           </div>
 
