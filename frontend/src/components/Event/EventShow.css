@@ -5,6 +5,11 @@ body {
     overflow: hidden;
 }
 
+.map-container {
+    height: 900px;
+    width: 50%;
+}
+
 .event-show-index {
     display: flex;
     width: 100vw;
