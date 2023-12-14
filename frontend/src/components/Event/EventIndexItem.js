@@ -25,14 +25,19 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
     setHighlightedEvent(null);
   };
 
-  const formatDate = (originalDate) => {
-    const dateObject = new Date(originalDate);
-    const year = dateObject.getFullYear();
-    const month = String(dateObject.getMonth() + 1).padStart(2, "0");
-    const day = String(dateObject.getDate()).padStart(2, "0");
+  // const formatDate = (originalDate) => {
+  //   const dateObject = new Date(originalDate);
+  //   const year = dateObject.getFullYear();
+  //   const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+  //   const day = String(dateObject.getDate()).padStart(2, "0");
 
-    return `${month}-${day}-${year}`;
-  };
+  //   return `${month}-${day}-${year}`;
+  // };
+
+  function formatDate(originalDate) {
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    return new Date(originalDate).toLocaleDateString(undefined, options);
+  }
 
   const getStateAbbreviation = (stateFullName) => {
     const stateMap = {
