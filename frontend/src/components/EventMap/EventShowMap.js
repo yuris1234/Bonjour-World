@@ -1,8 +1,9 @@
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import "./ShowMap.css"
 
-export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
+export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
     const [map, setMap] = useState(null);
     const mapRef = useRef(null);
     const markersRef = useRef(null);
@@ -30,45 +31,131 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
     };
 
     useEffect(() => {
-        const customStyle = [
+        const customStyle =
+            
+        [
             {
-                "featureType": "landscape.man_made",
+                "featureType": "administrative",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#444444"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative.country",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#e7d5ba"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative.locality",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#615439"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative.land_parcel",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#e7d5ba"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#f2f2f2"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
                 "elementType": "geometry",
                 "stylers": [
                     {
-                        "color": "#f7f1df"
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#e7d5ba"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.man_made",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#eee4d4"
+                    },
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.man_made",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#eee4d4"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.man_made",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#eee4d4"
                     }
                 ]
             },
             {
                 "featureType": "landscape.natural",
-                "elementType": "geometry",
+                "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "color": "#d0e3b4"
+                        "visibility": "on"
                     }
                 ]
             },
             {
                 "featureType": "landscape.natural.terrain",
-                "elementType": "geometry",
+                "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "visibility": "off"
+                        "saturation": "0"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.natural.terrain",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#eee4d4"
                     }
                 ]
             },
             {
                 "featureType": "poi",
-                "elementType": "labels",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.business",
                 "elementType": "all",
                 "stylers": [
                     {
@@ -77,38 +164,32 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 ]
             },
             {
-                "featureType": "poi.medical",
-                "elementType": "geometry",
+                "featureType": "road",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "color": "#fbd3da"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [
+                        "saturation": -100
+                    },
                     {
-                        "color": "#bde6ab"
+                        "lightness": 45
                     }
                 ]
             },
             {
                 "featureType": "road",
-                "elementType": "geometry.stroke",
+                "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "visibility": "off"
+                        "color": "#fcefd2"
                     }
                 ]
             },
             {
-                "featureType": "road",
-                "elementType": "labels",
+                "featureType": "road.highway",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "visibility": "off"
+                        "visibility": "simplified"
                     }
                 ]
             },
@@ -117,7 +198,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "color": "#ffe15f"
+                        "color": "#fcefd2"
                     }
                 ]
             },
@@ -126,7 +207,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 "elementType": "geometry.stroke",
                 "stylers": [
                     {
-                        "color": "#efd151"
+                        "color": "#fcefd2"
                     }
                 ]
             },
@@ -135,34 +216,46 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 "elementType": "geometry.fill",
                 "stylers": [
                     {
-                        "color": "#ffffff"
+                        "hue": "#ffb000"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
                     }
                 ]
             },
             {
                 "featureType": "road.local",
-                "elementType": "geometry.fill",
+                "elementType": "geometry.stroke",
                 "stylers": [
                     {
-                        "color": "black"
+                        "color": "#fcefd2"
                     }
                 ]
             },
             {
-                "featureType": "transit.station.airport",
-                "elementType": "geometry.fill",
+                "featureType": "transit",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "color": "#cfb2db"
+                        "visibility": "off"
                     }
                 ]
             },
             {
                 "featureType": "water",
-                "elementType": "geometry",
+                "elementType": "all",
                 "stylers": [
                     {
-                        "color": "#a2daf2"
+                        "color": "#7dacbc"
+                    },
+                    {
+                        "visibility": "on"
                     }
                 ]
             }
@@ -177,8 +270,8 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 ...defaultMapOptions, 
                 ...mapOptions
             });
-            setMap(newMap);
             newMap.setOptions({styles: customStyle})
+            setMap(newMap);
         } else if (mapOptions){
             // If map already exists, update its options
             map.setOptions({
@@ -245,15 +338,17 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
      
 
         
-        return <div ref={mapRef} style={{ paddingTop: "50px", borderRadius: "18px", height: '90%', width: '70%' }}>Map</div>
+        return <div className="event-show-map" ref={mapRef} style={{ paddingTop: "50px", borderRadius: "18px", height: '100%', width: '70%',  }}>Map</div>
     }
     
-    const EventsMapWrapper = ({ events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
+    const EventShowMapWrapper = ({ events, markerEventHandlers, mapOptions, language}) => {
+        
+        
     return (
-        <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}  >
-            <EventMap events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} mapOptions={mapOptions} language={language}/>
+        <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY} >
+            <EventShowMap events={events} markerEventHandlers={markerEventHandlers} mapOptions={mapOptions} language={language}/>
         </Wrapper>
     );
 };
 
-export default EventsMapWrapper;
+export default EventShowMapWrapper;
