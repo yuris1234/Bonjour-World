@@ -22,43 +22,41 @@ const EventForm = () => {
   const currentUser = useSelector((state) => state.session.user);
 
   const { eventId } = useParams();
-  const eventType = eventId ? "Update Event" : "Create Event";
-  let event = useSelector(getEvent(eventId));
-  if (eventType === "Create Event")
-    event = {
-      title: "",
-      description: "",
-      language: "",
-      state: "",
-      city: "",
-      address: "",
-      zipcode: "",
-      date: "",
-      time: "",
-      host: "",
-    };
+  // const eventType = eventId ? "Update Event" : "Create Event";
+  // let event = useSelector(getEvent(eventId));
+  // if (eventType === "Create Event")
+  //   event = {
+  //     title: "",
+  //     description: "",
+  //     languages: [],
+  //     state: "",
+  //     city: "",
+  //     address: "",
+  //     zipcode: "",
+  //     date: "",
+  //     time: "",
+  //     host: "",
+  //   };
 
-  const [title, setTitle] = useState(event.title);
-  const [description, setDescription] = useState(event.description);
-  const [language, setLanguage] = useState(event.language);
-  const [state, setState] = useState(event.state);
-  const [city, setCity] = useState(event.city);
-  const [address, setAddress] = useState(event.address);
-  const [zipcode, setZipcode] = useState(event.zipcode);
-  const [date, setDate] = useState(
-    event.date ? new Date(event.date) : new Date()
-  );
-  const [time, setTime] = useState(event.time);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState("");
+  const [languages, setLanguages] = useState([]);
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [address, setAddress] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState("");
   const dispatch = useDispatch();
   const [addressSuggestions, setAddressSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const apiKey = process.env.REACT_APP_MAPS_API_KEY;
 
-  useEffect(() => {
-    if (eventId) {
-      dispatch(fetchEvent(eventId));
-    }
-  }, [dispatch, eventId]);
+  // useEffect(() => {
+  //   if (eventId) {
+  //     dispatch(fetchEvent(eventId));
+  //   }
+  // }, [dispatch, eventId]);
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
@@ -70,7 +68,7 @@ const EventForm = () => {
     const updatedEvent = {
       title,
       description,
-      language,
+      languages,
       state,
       city,
       address,
@@ -126,8 +124,8 @@ const EventForm = () => {
         case "description":
           setDescription(e.currentTarget.value);
           break;
-        case "language":
-          setLanguage(e.currentTarget.value);
+        case "languages":
+          setLanguages(e.currentTarget.value);
           break;
         case "state":
           setState(e.currentTarget.value);
@@ -207,7 +205,7 @@ const EventForm = () => {
     "Wyoming",
   ];
 
-  const languages = ["German", "Spanish", "English", "French"];
+  const allLanguages = ["German", "Spanish", "English", "French"];
 
   const generateTimeOptions = () => {
     const timeOptions = [];
@@ -236,9 +234,17 @@ const EventForm = () => {
   //   field.value = updatedDate;
   // }
 
+  const addLanguage = (lang) => (e) => {
+    setLanguages([...languages, lang])
+  }
+
+  const removeLanguage = (lang) => (e) => {
+    setLanguages(languages.filter(val => val !== lang))
+  }
+
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>{eventType}</h2>
+      <h2>Create Event</h2>
 
       <div className="selects">
         <div className="select">
@@ -253,21 +259,6 @@ const EventForm = () => {
           </div>
         </div>
 
-        <div className="select">
-          <div className="errors">{errors?.language}</div>
-          <div className="event-select-btn">
-            <select value={language} onChange={update("language")}>
-              <option disabled value="">
-                Select Language
-              </option>
-              {languages.map((lang) => (
-                <option key={lang} value={lang}>
-                  {lang}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
 
         <div className="select">
           <div className="errors">{errors?.state}</div>
@@ -285,6 +276,23 @@ const EventForm = () => {
           </div>
         </div>
       </div>
+
+      <div className="select">
+          <div className="errors">{errors?.language}</div>
+          <div>
+              {allLanguages.map((lang) => {
+                return (languages?.includes(lang) ? 
+                <div className="event-unselect-btn">
+                  <span>{lang}</span>
+                  <span className="x-button" onClick={removeLanguage(lang)}> &times; </span>
+                </div>
+                :
+                <div className="event-select-btn lang">
+                  <span onClick={addLanguage(lang)}>{lang}</span>
+                </div>)
+})}
+          </div>
+        </div>
 
       <div className="inputs">
         <div className="left-column">
@@ -378,7 +386,7 @@ const EventForm = () => {
         onChange={update("description")}
       />
 
-      <input type="submit" value={eventType} />
+      <input type="submit" value="Create Event" />
     </form>
   );
 };

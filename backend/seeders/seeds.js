@@ -6,21 +6,20 @@ const bcrypt = require('bcryptjs');
 const { faker } = require('@faker-js/faker');
 
 const NUM_SEED_USERS = 10;
-const NUM_SEED_EVENTS = 30;
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+// function formatDate(date) {
+//     var d = new Date(date),
+//         month = '' + (d.getMonth() + 1),
+//         day = '' + d.getDate(),
+//         year = d.getFullYear();
 
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
+//     if (month.length < 2) 
+//         month = '0' + month;
+//     if (day.length < 2) 
+//         day = '0' + day;
 
-    return [year, month, day].join('-');
-}
+//     return [year, month, day].join('-');
+// }
 
 // Create users
 const users = [];
@@ -58,7 +57,7 @@ events.push(
   new Event ({
     title: faker.company.name(),
     description: "Lingo rendezvous: where words collide and cultures converge. Transform your language journey with us!",
-    language: ['English','Spanish','French','German'][Math.floor(Math.random() * 4)],
+    languages: ['English','Spanish'],
     state: 'New York',
     city: 'New York',
     address: '620 West 153rd Street',
@@ -74,7 +73,7 @@ events.push(
   new Event ({
     title: faker.company.name(),
     description: "Diverse tongues unite! Join our language exchange soirée for global connections and fluent friendships.",
-    language: ['English','Spanish','French','German'][Math.floor(Math.random() * 4)],
+    languages: ['French','German'],
     state: 'New York',
     city: 'New York',
     address: '120 Riverside Dr',
@@ -90,7 +89,7 @@ events.push(
   new Event ({
     title: faker.company.name(),
     description: "Polyglot paradise awaits! Swap languages, share stories, and break linguistic barriers with us.",
-    language: ['English','Spanish','French','German'][Math.floor(Math.random() * 4)],
+    languages: ['Spanish','French'],
     state: 'New York',
     city: 'New York',
     address: '255 West 84th Street',
@@ -106,7 +105,7 @@ events.push(
   new Event ({
     title: faker.company.name(),
     description: "Speak the world: our meetup bridges cultures. Connect, converse, and cultivate language skills together!",
-    language: ['English','Spanish','French','German'][Math.floor(Math.random() * 4)],
+    languages: ['French','German'],
     state: 'New York',
     city: 'Brooklyn',
     address: '238 Bedford Ave',
@@ -122,7 +121,7 @@ events.push(
   new Event ({
     title: faker.company.name(),
     description: "Tongue-twisting Tuesday! Elevate your language game at our vibrant exchange—learn, laugh, and linguify.",
-    language: ['English','Spanish','French','German'][Math.floor(Math.random() * 4)],
+    languages: ['Spanish','French'],
     state: 'New York',
     city: 'New York',
     address: '570 2nd Ave',
