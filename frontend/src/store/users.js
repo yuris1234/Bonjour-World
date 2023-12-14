@@ -95,10 +95,12 @@ const usersReducer = (state = {}, action) => {
         case RECEIVE_JOIN_REQUEST:
           return {...state, [action.joinRequest.user._id]: action.joinRequest.user}
         case RECEIVE_EVENT:
-          Object.values(action.event.attendees).forEach((user) => {
-            newState[user._id] = user;
-          })
-          return {...state, ...newState}
+          if (action.event.attendees) {
+            Object.values(action.event.attendees).forEach((user) => {
+              newState[user._id] = user;
+            })
+            return {...state, ...newState}
+          }
         default: 
           return state;
     }

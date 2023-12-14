@@ -165,7 +165,7 @@ const EventShow = () => {
             </div>
 
             <div className="event-details">
-              <span className="event-language">{event?.language}</span>
+              <span className="event-language">{event?.languages.map((lang) => {return <li>{lang}</li>})}</span>
 
               <div className="event-description-div">
                 Description
@@ -174,7 +174,7 @@ const EventShow = () => {
 
               <div className="event-attendees">
                 Attendees
-                {attendees.map((attendee) => (
+                {attendees?.map((attendee) => (
                   <div className="attendee-details" key={attendee._id}>
                     <Link to={`users/${attendee._id}`}>
                       <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />

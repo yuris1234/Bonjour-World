@@ -3,16 +3,29 @@ const handleValidationErrors = require('./handleValidationErrors');
 
 const timeRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
-const isValidDate = (dateString) => {
+function isValidFutureDate(dateString) {
     var regEx = /^\d{4}-\d{2}-\d{2}$/;
-    if(!dateString.match(regEx)) return false;  // Invalid format
-    var d = new Date(dateString);
-    var dNum = d.getTime();
-    if(!dNum && dNum !== 0) return false; // NaN value, Invalid date
-    return d.toISOString().slice(0,10) === dateString;
-}
+    
+    // Check if the format is valid
+    if (!dateString.match(regEx)) return false;
+  
+    var inputDate = new Date(dateString);
+  
+    // Check if the Date object is valid
+    var inputDateNum = inputDate.getTime();
+    if (!inputDateNum && inputDateNum !== 0) return false;
+  
+    // Check if the date is in the future from today
+    var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 for accurate comparison
+  
+    if (inputDate <= currentDate) return false;
+  
+    return true;
+  }
 
 const isValidLanguages = (array) => {
+    if (array.length === 0) return false;
     langs = ['English', 'French', 'Spanish', 'German']
     return array.every(value => langs.includes(value))
 }
@@ -29,7 +42,7 @@ const validateEventCreation = [
     check('languages')
         .exists({checkFalsy: true})
         .custom(value => isValidLanguages(value))
-        .withMessage('Languages must be one of the supported languages'),
+        .withMessage('Languages must be one of the supported languages, must not be empty'),
     check('state')
         .exists({checkFalsy: true})
         .isIn(['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'])
@@ -46,7 +59,7 @@ const validateEventCreation = [
         .withMessage('Zipcode is invalid'),
     check('date') 
         .exists({checkFalsy: true})
-        .custom(value => isValidDate(value))
+        .custom(value => isValidFutureDate(value))
         .withMessage('Date is invalid'),
     check('time')
         .exists({checkFalsy: true})

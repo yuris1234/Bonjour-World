@@ -63,7 +63,7 @@ events.push(
     address: '620 West 153rd Street',
     zipcode: 10031,
     date: faker.date.future(),
-    time: "00:00",
+    time: "22:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -95,7 +95,7 @@ events.push(
     address: '255 West 84th Street',
     zipcode: 10024,
     date: faker.date.future(),
-    time: "00:00",
+    time: "17:30",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -111,7 +111,7 @@ events.push(
     address: '238 Bedford Ave',
     zipcode: 11249,
     date: faker.date.future(),
-    time: "00:00",
+    time: "20:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -127,7 +127,7 @@ events.push(
     address: '570 2nd Ave',
     zipcode: 10016,
     date: faker.date.future(),
-    time: "00:00",
+    time: "19:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
