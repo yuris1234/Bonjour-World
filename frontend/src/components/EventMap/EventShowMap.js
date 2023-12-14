@@ -3,7 +3,7 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-export const EventMap = ({ events, markerEventHandlers, highlightedEvent, mapOptions, language }) => {
+export const EventShowMap = ({ event, markerEventHandlers, highlightedEvent, mapOptions, language }) => {
     const [map, setMap] = useState(null);
     const mapRef = useRef(null);
     const markersRef = useRef({});
@@ -66,62 +66,62 @@ export const EventMap = ({ events, markerEventHandlers, highlightedEvent, mapOpt
         };
     }, [mapOptions]);
 
-  useEffect(() => {
-    const newMarkers = {};
-    Object.values(events).forEach(async (event) => {
-      if (language && event.language !== language) {
-        return;
-      }
+    useEffect(() => {
+        const updateMap = async () => {
+            const newMarkers = {};
+        
+            try {
+            const formattedAddress = `${event?.address}, ${event?.city}, ${event?.state} ${event?.zipcode}`;
+            const position = await getAddressCoordinates(formattedAddress);
+            
 
-      try {
-        const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
-        const position = await getAddressCoordinates(formattedAddress);
-        if (!markersRef.current || !markersRef.current[event._id]) {
-          // If no marker exists for the event, create one
-          const marker = new window.google.maps.Marker({
-            position,
-            map,
-          });
-          // Attach marker event handlers
-          Object.entries(markerEventHandlers).forEach(([eventType, handler]) => {
-            marker.addListener(eventType, () => handler(event));
-          });
-
-          newMarkers[event._id] = marker;
-        } else {
-          // If a marker already exists for the event, reuse it
-          newMarkers[event._id] = markersRef.current[event._id];
-        }
-      } catch (error) {
-        console.error("Error fetching coordinates:", error);
-      }
-    });
-
-    // Remove markers for events that no longer exist
-    if (markersRef.current) {
-        Object.keys(markersRef.current).forEach((id) => {
-        debugger;
-        if (!newMarkers[id] || (language && events[id].language !== language)) {
-            markersRef.current[id].setMap(null);
-        }
-        });
-    }
-
-    // Update the markers ref with the new set of markers
-    markersRef.current = newMarkers;
-}, [events, map, mapOptions, language]);
+            if (!markersRef.current || !markersRef.current[event._id]) {
+                // If no marker exists for the event, create one
+                const marker = new window.google.maps.Marker({
+                position: mapOptions.center,
+                map: mapRef.current,
+                });
+                // Attach marker event handlers
+                Object.entries(markerEventHandlers).forEach(([eventType, handler]) => {
+                marker.addListener(eventType, () => handler(event));
+                });
+        
+                newMarkers[event._id] = marker;
+            } else {
+                // If a marker already exists for the event, reuse it
+                newMarkers[event._id] = markersRef.current[event._id];
+            }
+            } catch (error) {
+            console.error("Error fetching coordinates:", error);
+            }
+        
+            // Remove markers for events that no longer exist
+            // if (markersRef.current) {
+            // Object.keys(markersRef.current).forEach((id) => {
+            //     if (!newMarkers[id] || (language && event.language !== language)) {
+            //     markersRef.current[id].setMap(null);
+            //     }
+            // });
+            // }
+        
+            // Update the markers ref with the new set of markers
+            markersRef.current = newMarkers;
+        };
+        
+        updateMap();
+        }, [event, mapRef, map, language]);
 
     return <div ref={mapRef} style={{ margin: "20px", height: "750px", width: "50%" }}>Map</div>;
 };
 
-const EventsMapWrapper = ({ events, markerEventHandlers, highlightedEvent, mapOptions, language }) => {
+const EventShowMapWrapper = ({ event, markerEventHandlers, mapOptions, language }) => {
     const apiKey = process.env.REACT_APP_MAPS_API_KEY;
 
     return (
-    <Wrapper apiKey={apiKey}>
-        <EventMap events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} mapOptions={mapOptions} language={language} />
-    </Wrapper>
+        <Wrapper apiKey={apiKey}>
+            <EventShowMap event={event} markerEventHandlers={markerEventHandlers} mapOptions={mapOptions} language={language} />
+        </Wrapper>
     );
 };
 
-export default EventsMapWrapper;
+export default EventShowMapWrapper;
