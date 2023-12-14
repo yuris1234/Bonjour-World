@@ -45,7 +45,7 @@ body {
 .event-info-list .event-title {
     position: relative;
     height: 100px;
-    width: 800px;
+    width: 100%;
     font-weight: bolder;
     font-size: 30px;
     text-align: center;
