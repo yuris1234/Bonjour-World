@@ -77,7 +77,7 @@ router.patch('/:id', validateEventCreation, async (req, res, next) => {
     try {
         const updatedEvent = await Event.findByIdAndUpdate(req.params.id, req.body, {new: true});
         if (updatedEvent) {
-            return res.json(updatedEvent);
+            return res.json({event: updatedEvent});
         } else {
             return res.json({message: 'event not found'});
         }

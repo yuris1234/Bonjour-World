@@ -133,6 +133,7 @@ export const createEvent = (data) => async (dispatch) => {
 };
 
 export const updateEvent = (event) => async (dispatch) => {
+  console.log('hello')
   const res = await jwtFetch(`/api/events/${event._id}`, {
     method: "PATCH",
     headers: {
@@ -140,7 +141,6 @@ export const updateEvent = (event) => async (dispatch) => {
     },
     body: JSON.stringify(event),
   });
-
   if (res.ok) {
     const event = await res.json();
     dispatch(recieveEvent(event));
