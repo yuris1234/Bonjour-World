@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { getCurrentUser } from '../../store/session';
-import NavBar from '../NavBar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import './index.css';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import EmptyUser from '../Images/EmptyUser.png';
-import EventsMapWrapper from '../EventMap';
-import EventIndexItem from '../Event/EventIndexItem';
-import { fetchEvents, getRelevantEvents } from '../../store/events';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import S3 from './aws.js';
-import { getHostedEvents } from '../../store/events';
-import Notification from './Notification/index.js';
+import React, { useState, useEffect } from "react";
+import { getCurrentUser } from "../../store/session";
+import NavBar from "../NavBar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import "./index.css";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import EmptyUser from "../Images/EmptyUser.png";
+import EventsMapWrapper from "../EventMap";
+import EventIndexItem from "../Event/EventIndexItem";
+import { fetchEvents, getRelevantEvents } from "../../store/events";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import S3 from "./aws.js";
+import { getHostedEvents } from "../../store/events";
+import Notification from "./Notification/index.js";
 
 const UserProfile = () => {
   const history = useHistory();
@@ -21,7 +21,7 @@ const UserProfile = () => {
 
   // get current user
   const user = useSelector((state) => state.session.user);
-  
+
   const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
@@ -31,13 +31,12 @@ const UserProfile = () => {
   // get all hosted events for current user
   const hostedEvents = useSelector(getHostedEvents(user?._id));
 
-
   const [highlightedEvent, setHighlightedEvent] = useState();
   const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(getCurrentUser());
-  },[])
+  }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -47,7 +46,7 @@ const UserProfile = () => {
 
         if (!profileImageUrl) {
           const params = {
-            Bucket: 'bonjour-world',
+            Bucket: "bonjour-world",
             Prefix: `user/${user?._id}/`,
           };
 
@@ -56,8 +55,8 @@ const UserProfile = () => {
           const mostRecentImage = data.Contents[0];
 
           if (mostRecentImage) {
-            profileImageUrl = S3.getSignedUrl('getObject', {
-              Bucket: 'bonjour-world',
+            profileImageUrl = S3.getSignedUrl("getObject", {
+              Bucket: "bonjour-world",
               Key: mostRecentImage.Key,
             });
           }
@@ -65,7 +64,7 @@ const UserProfile = () => {
 
         setUploadedImage(profileImageUrl || EmptyUser);
       } catch (error) {
-        console.error('Error fetching user data', error);
+        console.error("Error fetching user data", error);
       }
     };
 
@@ -79,19 +78,19 @@ const UserProfile = () => {
 
     if (selectedImage) {
       const params = {
-        Bucket: 'bonjour-world',
+        Bucket: "bonjour-world",
         Key: `user/${user?._id}/${selectedImage.name}`,
         Body: selectedImage,
-        ACL: 'public-read',
+        ACL: "public-read",
       };
 
       try {
-        console.log('Upload params:', params);
+        console.log("Upload params:", params);
         const data = await S3.upload(params).promise();
-        console.log('Upload successful:', data);
+        console.log("Upload successful:", data);
         setUploadedImage(data.Location);
       } catch (error) {
-        console.error('Error uploading image to S3:', error);
+        console.error("Error uploading image to S3:", error);
       }
     }
   };
@@ -115,51 +114,58 @@ const UserProfile = () => {
   return (
     <div className={`app-container ${fadeIn ? "fade-in" : ""}`}>
       <div className={`profile-container ${fadeIn ? "fade-in" : ""}`}>
-        <div className={`profile-details-div ${fadeIn ? "fade-in" : ""}`}>
-          <div className="profile-img-div">
-            <div className="profile-img-container">
-              <img className={`profile-img visible`} src={user?.pfp} />
-              {/* {!imageLoaded && (
-                <div className="loading-spinner">Loading...</div>
-              )} */}
-              {/* <label htmlFor="imageInput" className="upload-label">
-                Upload Image
-                <input
-                  id="imageInput"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  style={{ display: 'none' }}
-                />
-              </label> */}
-            </div>
-
-            <div className="profile-details">
+        <div className={`actual-profile-container ${fadeIn ? "fade-in" : ""}`}>
+          <div id="left-side">
+            {/* <div className="profile-div"> */}
+            <div id="left-side-top">
               <div id="profile-details-banner">
                 Hello, {user?.firstName} {user?.lastName}
               </div>
+            </div>
+            {/* <div> */}
+            <div id="left-side-bottom">
+            <div className="profile-img-container">
+              <img className={`profile-img visible`} src={user?.pfp} alt=""/>
+              {/* {!imageLoaded && (
+                      <div className="loading-spinner">Loading...</div>
+                    )} */}
+              {/* <label htmlFor="imageInput" className="upload-label">
+                      Upload Image
+                      <input
+                        id="imageInput"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        style={{ display: 'none' }}
+                      />
+                    </label> */}
+            </div>
+
+            <div className="profile-details">
               {/* <h2 id="profile-details-banner">Username</h2> */}
               <div className="profile-detail">{user?.username}</div>
               {/* <h2 id="profile-details-banner">Email</h2>
-              <div className="profile-detail">{user?.email}</div> */}
+                  <div className="profile-detail">{user?.email}</div> */}
               <h2 id="profile-details-banner">Bio</h2>
               <div className="profile-detail">{user?.bio}</div>
               <h2 id="profile-details-banner">Languages</h2>
               <div className="profile-detail">{user?.languages}</div>
             </div>
-          </div>
+            {/* </div> */}
 
-          <div className="notifications-div">
-            <h2 id="notifications-title">Join Requests</h2>
-            <div className="pending-div">
-              {hostedEvents.map((event) => {
-                return <Notification event={event} />;
-              })}
+            <div className="notifications-div">
+              <h2 id="notifications-title">Join Requests</h2>
+              <div className="pending-div">
+                {hostedEvents.map((event) => {
+                  return <Notification event={event} />;
+                })}
+              </div>
+            </div>
             </div>
           </div>
 
           <div className="event-container">
-            <h1 className="event-header">Your Events</h1>
+            <h2 className="event-header">Your Events</h2>
             {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
               {events?.map((event) => (
