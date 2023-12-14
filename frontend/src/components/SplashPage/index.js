@@ -41,6 +41,14 @@ const SplashPage = () => {
   //   },
   // ];
 
+  const handleScroll = () => {
+    const userGuideSection = document.querySelector(".user-guide-section");
+
+    if (userGuideSection) {
+      userGuideSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentLanguageIndex(
@@ -101,7 +109,7 @@ const SplashPage = () => {
               style={{ animationDelay: "1.5s" }}
             />
           </div>
-          <button className="down-arrow">
+          <button className="down-arrow" onClick={handleScroll}>
             <Icon icon="bx:down-arrow-alt" className="down-arrow-icon" />
           </button>
 
