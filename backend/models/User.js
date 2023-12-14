@@ -40,7 +40,13 @@ const userSchema = new Schema({
     pfp: {
       type: String,
       default: "https://upload.wikimedia.org/wikipedia/commons/7/75/Cute_grey_kitten.jpg"
-    }
+    },
+    bio: {
+      type: String
+    },
+    languages: [{
+      type: String,
+  }]
   }, {
     timestamps: true
   });
