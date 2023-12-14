@@ -10,35 +10,35 @@ const SplashPage = () => {
   const changingLanguages = ["en", "ch", "sp", "fr", "ar"];
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0);
 
-  const reviews = [
-    {
-      text: "Bonjour World is a game-changer! Seamless platform, diverse events, and genuine connections. My language learning soared, and I made friends worldwide. 5/5 stars! 🌐 #LanguageRevolution - Tabitha",
-    },
-    {
-      text: "Incredible language exchange experience! Bonjour World has made learning languages feel like an exciting adventure. Highly recommend to all language enthusiasts! 🌍 #PolyglotParadise - Alex",
-    },
-    {
-      text: "Unleash the polyglot in you with Bonjour World! This platform has revolutionized the way I learn languages. The diversity of events and the opportunity to connect with language enthusiasts from around the globe make it an invaluable tool for language learners. 10/10! 🌏 #PolyglotPioneer - Jake",
-    },
-    {
-      text: "Bonjour World opened up a whole new world of linguistic possibilities for me! The platform's user-friendly interface and engaging events have turned my language learning journey into a global expedition. A must-try for anyone passionate about breaking language barriers! 🚀 #GlobalLingoExplorer - Emily",
-    },
-    {
-      text: "Language learning meets innovation with Bonjour World! The platform's commitment to fostering global connections through language exchange is truly commendable. My language skills have flourished, and I've found a community of like-minded individuals. A game-changer in the world of language learning! 🌐 #InnovativePolyglot - Liam",
-    },
-    {
-      text: "Bonjour World is like a passport to linguistic adventures! The platform's events are not just about learning languages but immersing yourself in diverse cultures. The connections I've made and the languages I've learned have enriched my life. Join the revolution! 🗺️ #LingoVoyager - Isabella",
-    },
-    {
-      text: "I never knew language learning could be this fun and enriching until I discovered Bonjour World! The platform's events are a perfect blend of education and entertainment. My language skills have skyrocketed, and I've gained friends from every corner of the world. Bravo, Bonjour World! 👏 #LanguageLiberator - Allon",
-    },
-    {
-      text: "Bonjour World is the key to unlocking a multilingual paradise! The platform's events are well-organized, diverse, and filled with passionate language learners. My journey with Bonjour World has been nothing short of amazing. If you're serious about languages, don't miss out! 🌐 #PolyglotUtopia - Emma",
-    },
-    {
-      text: "Elevate your language learning experience with Bonjour World! The platform's innovative approach to language exchange events has redefined the way I learn and connect with others. Seamless, enjoyable, and effective – it's a game-changer for language enthusiasts. Sign up now and embark on a linguistic journey like never before! 🌍 #LingoElevation - Nathan",
-    },
-  ];
+  // const reviews = [
+  //   {
+  //     text: "Bonjour World is a game-changer! Seamless platform, diverse events, and genuine connections. My language learning soared, and I made friends worldwide. 5/5 stars! 🌐 #LanguageRevolution - Tabitha",
+  //   },
+  //   {
+  //     text: "Incredible language exchange experience! Bonjour World has made learning languages feel like an exciting adventure. Highly recommend to all language enthusiasts! 🌍 #PolyglotParadise - Alex",
+  //   },
+  //   {
+  //     text: "Unleash the polyglot in you with Bonjour World! This platform has revolutionized the way I learn languages. The diversity of events and the opportunity to connect with language enthusiasts from around the globe make it an invaluable tool for language learners. 10/10! 🌏 #PolyglotPioneer - Jake",
+  //   },
+  //   {
+  //     text: "Bonjour World opened up a whole new world of linguistic possibilities for me! The platform's user-friendly interface and engaging events have turned my language learning journey into a global expedition. A must-try for anyone passionate about breaking language barriers! 🚀 #GlobalLingoExplorer - Emily",
+  //   },
+  //   {
+  //     text: "Language learning meets innovation with Bonjour World! The platform's commitment to fostering global connections through language exchange is truly commendable. My language skills have flourished, and I've found a community of like-minded individuals. A game-changer in the world of language learning! 🌐 #InnovativePolyglot - Liam",
+  //   },
+  //   {
+  //     text: "Bonjour World is like a passport to linguistic adventures! The platform's events are not just about learning languages but immersing yourself in diverse cultures. The connections I've made and the languages I've learned have enriched my life. Join the revolution! 🗺️ #LingoVoyager - Isabella",
+  //   },
+  //   {
+  //     text: "I never knew language learning could be this fun and enriching until I discovered Bonjour World! The platform's events are a perfect blend of education and entertainment. My language skills have skyrocketed, and I've gained friends from every corner of the world. Bravo, Bonjour World! 👏 #LanguageLiberator - Allon",
+  //   },
+  //   {
+  //     text: "Bonjour World is the key to unlocking a multilingual paradise! The platform's events are well-organized, diverse, and filled with passionate language learners. My journey with Bonjour World has been nothing short of amazing. If you're serious about languages, don't miss out! 🌐 #PolyglotUtopia - Emma",
+  //   },
+  //   {
+  //     text: "Elevate your language learning experience with Bonjour World! The platform's innovative approach to language exchange events has redefined the way I learn and connect with others. Seamless, enjoyable, and effective – it's a game-changer for language enthusiasts. Sign up now and embark on a linguistic journey like never before! 🌍 #LingoElevation - Nathan",
+  //   },
+  // ];
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -68,10 +68,10 @@ const SplashPage = () => {
     }
   }
 
-  function getRandomReview() {
-    const randomIndex = Math.floor(Math.random() * reviews.length);
-    return reviews[randomIndex];
-  }
+  // function getRandomReview() {
+  //   const randomIndex = Math.floor(Math.random() * reviews.length);
+  //   return reviews[randomIndex];
+  // }
 
   return (
     <>
@@ -101,7 +101,7 @@ const SplashPage = () => {
             />
           </div>
 
-          <div className="review">🌍 "{getRandomReview().text}"</div>
+          {/* <div className="review">🌍 "{getRandomReview().text}"</div> */}
         </div>
           <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
       </div>
