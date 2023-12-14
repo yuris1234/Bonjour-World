@@ -4,7 +4,8 @@
     justify-content: space-between;
     align-items: center;
     /* position: relative; */
-    background-color: #0A345B;
+    /* background-color: #558292; */
+    background-color: black;
     position: fixed;
     width: 100%;
     z-index: 100;
@@ -13,7 +14,7 @@
 .nav-bar-header {
     font-size: 2rem;
     margin: 0px;
-    color: #FBE1B5;
+    color: white;
     font-family: 'BrandierTrial-SemiBoldItalic';
     margin-left: 25px;
 }
@@ -38,7 +39,7 @@
     font-weight: bold;
     border: none;
     border-radius: 3ch;
-    background-color: #FBE1B5;
+    background-color: white;
     color: #0A345B;
     cursor: pointer;
 }
@@ -51,7 +52,7 @@
  .logged-out-links a {
      margin-left: 10px;
      border: none;
-     color: #FBE1B5;
+     color: white;
      cursor: pointer;
      text-decoration: none;
      white-space: nowrap;
@@ -75,7 +76,7 @@
 
 #all-events {
     font-size: 1rem;
-    color: #FBE1B5;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -83,7 +84,7 @@
 
 #about-us {
     font-size: 1rem;
-    color: #FBE1B5;
+    color: ;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -91,7 +92,7 @@
 
 #create-event-button {
     border: none;
-    color: #FBE1B5;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     white-space: nowrap;
@@ -109,6 +110,6 @@
 
 #all-events.active, #about-us.active,
 .logged-out-links .active {
-    color: #9CC0F9;
+    color: #bde6aa;
     text-decoration: underline;
 }

@@ -18,6 +18,7 @@ import { getAttendees } from "../../store/users";
 import EventsMapWrapper from "../EventMap";
 import { getHost } from "../../store/users";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import EventShowMapWrapper from "../EventMap/EventShowMap";
 
 const EventShow = () => {
   const dispatch = useDispatch();
@@ -153,7 +154,9 @@ const EventShow = () => {
     <>
       {/* <NavBar /> */}
       <div className="event-show-index">
-        {event && <EventsMapWrapper events={[event]} mapOptions={mapOptions} />}
+        <div className="map-container">
+          {event && <EventShowMapWrapper events={[event]} mapOptions={mapOptions} />}
+        </div>
 
         <div className="display-one-event">
           <ul className="event-info-list">
