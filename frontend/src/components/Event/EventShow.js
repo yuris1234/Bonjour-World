@@ -18,6 +18,8 @@ import { getAttendees } from "../../store/users";
 import EventsMapWrapper from "../EventMap";
 import { getHost } from "../../store/users";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Icon } from "@iconify/react";
+
 
 const EventShow = () => {
   const dispatch = useDispatch();
@@ -45,7 +47,6 @@ const EventShow = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-    // dispatch(fetchUsers());
     dispatch(fetchEvent(eventId));
   }, [eventId, dispatch]);
 
@@ -60,11 +61,11 @@ const EventShow = () => {
       setSubscribed(true);
     }
 
-    if (host?._id === user?._id) {
+    if (user && host && host?._id === user?._id) {
       // sets isHost to true if current user is the host, can edit or delete event
       setIsHost(true);
     }
-  }, [user, event, host]);
+  }, [user, event, host, dispatch]);
 
   const handleJoin = async (e) => {
     e.preventDefault();
@@ -169,8 +170,8 @@ const EventShow = () => {
               </div>
             </div>
             <div className="event-date-time">
-                <div className="event-time">{event?.time}</div>
-                <div className="event-date">{formatDate(event?.date)}</div>
+                <div className="event-date">🗓️ {formatDate(event?.date)}</div>
+                <div className="event-time">⏰ {event?.time}</div>
             </div>
 
             <div className="event-details">
@@ -182,7 +183,7 @@ const EventShow = () => {
               </div>
 
               <div className="event-attendees">
-                <div id="event-item-title">Attendees</div>
+                <div id="event-item-title"><Icon icon="mdi:user" className="event-icon" />Attendees</div>
                 {attendees?.map((attendee) => (
                   <div className="attendee-details" key={attendee._id}>
                     <Link to={`users/${attendee._id}`}>

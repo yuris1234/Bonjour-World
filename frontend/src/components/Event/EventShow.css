@@ -44,7 +44,7 @@ body {
 
 .event-info-list .event-title {
     position: relative;
-    height: 100px;
+    /* height: 100px; */
     width: 100%;
     font-weight: bolder;
     font-size: 30px;
@@ -85,6 +85,8 @@ body {
 
 .event-date {
     font-weight: 100;
+    display: flex;
+    align-items: center;
 }
 
 .event-time-div {
@@ -216,8 +218,15 @@ body {
 
 .event-date-time {
     display: flex;
+    flex-direction: column;
+    border: solid #b5cffb;
+    background-color: #b5cffb;
 }
 
 .event-section {
     
+}
+
+.event-icon {
+    margin-right: 5px;
 }
