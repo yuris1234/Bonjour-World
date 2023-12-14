@@ -11,8 +11,8 @@ const teamMembers = [
   {
     name: "Eltion",
     role: "Team Lead",
-    github: "",
-    linkedin: "",
+    github: "https://github.com/EltionBehrami",
+    linkedin: "https://www.linkedin.com/in/eltion-behrami-5b9367271/",
   },
   {
     name: "Yuri",
@@ -23,14 +23,14 @@ const teamMembers = [
   {
     name: "Claudia",
     role: "Frontend Lead",
-    github: "",
-    linkedin: "",
+    github: "https://github.com/claudiaaziz",
+    linkedin: "https://www.linkedin.com/in/claudiaaziz/",
   },
   {
     name: "Jason",
     role: "Flex Lead",
-    github: "",
-    linkedin: "",
+    github: "https://github.com/Helionster",
+    linkedin: "https://www.linkedin.com/in/jason-zhang-344777184/",
   },
 ];
 
