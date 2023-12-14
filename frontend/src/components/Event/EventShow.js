@@ -124,7 +124,7 @@ const EventShow = () => {
   useEffect(() => {
     const fetchMapData = async () => {
       try {
-        const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
+        const formattedAddress = `${event?.address}, ${event?.city}, ${event?.state} ${event?.zipcode}`;
         const coordinates = await getAddressCoordinates(formattedAddress);
         const centered = {
           zoom: 11, // Set the initial zoom level as needed
@@ -178,8 +178,8 @@ const EventShow = () => {
               <div className="event-attendees">
                 Attendees
                 {attendees?.map((attendee) => (
-                  <div className="attendee-details" key={attendee._id}>
-                    <Link to={`users/${attendee._id}`}>
+                  <div className="attendee-details">
+                    <Link to={`profile/${attendee._id}`} key={attendee.id}>
                       <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
                     </Link>
                     <span className="attendee-username">{attendee.username}</span>
