@@ -198,12 +198,12 @@ const EventShow = () => {
                 <div className="event-time">{event?.time}</div>
               </div>
 
-              <div className="event-location-div">
+              {/* <div className="event-location-div">
                 Location
                 <div className="event-location">
                   {event?.city}, {event?.state} {event?.zipcode}
                 </div>
-              </div>
+              </div> */}
 
               <div className="event-address-div">
                 Address
