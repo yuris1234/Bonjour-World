@@ -123,6 +123,19 @@ const UserProfile = () => {
               <div className="profile-details">
                 <div className="profile-img-container">
                   <img className={`profile-img visible`} src={user?.pfp} alt=""/>
+                    {/* {!imageLoaded && (
+                      <div className="loading-spinner">Loading...</div>
+                    )} */}
+                    {/* <label htmlFor="imageInput" className="upload-label">
+                      Upload Image
+                      <input
+                      id="imageInput"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      style={{ display: 'none' }}
+                      />
+                    </label> */}
                 </div>
                 <div className="profile-detail">{user?.username}</div>
                 <h2 id="profile-details-banner">Bio</h2>
