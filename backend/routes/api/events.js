@@ -24,10 +24,10 @@ router.get('/:id', async (req, res, next) => {
 
 // GET /api/events
 router.get('/', async (req, res, next) => {
-    const { language } = req.query
+    const { languages } = req.query
     let filter = {}
-    if (language) {
-        filter.language = language;
+    if (languages) {
+        filter.languages = languages;
     }
     const events = await Event.find(filter);
     const newState = {}
@@ -44,7 +44,7 @@ router.post('/', validateEventCreation, async (req, res, next) => {
         const newEvent = new Event({
             title: req.body.title,
             description: req.body.description,
-            language: req.body.language,
+            languages: req.body.languages,
             state: req.body.state,
             city: req.body.city,
             address: req.body.address,
