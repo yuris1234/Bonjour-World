@@ -53,6 +53,7 @@ router.post('/', validateEventCreation, async (req, res, next) => {
             long: req.body.long,
             date: req.body.date,
             time: req.body.time,
+            endTime: req.body.endTime,
             host: req.body.host,
             attendees: req.body.attendees
         })

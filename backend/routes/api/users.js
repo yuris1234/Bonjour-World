@@ -43,7 +43,9 @@ router.get('/current', restoreUser, (req, res) => {
     firstName: req.user.firstName,
     lastName: req.user.lastName,
     age: req.user.age,
-    pfp: req.user.pfp
+    pfp: req.user.pfp,
+    bio: req.user.bio,
+    languages: req.user.languages
   });
 });
 
