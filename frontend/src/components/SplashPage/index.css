@@ -85,6 +85,18 @@
   text-align: center;
 }
 
+.down-arrow {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.down-arrow-icon {
+  color: #0A345B;
+  font-size: 120px;
+}
+
 .footer {
   color: #0A345B;
   text-align: center;

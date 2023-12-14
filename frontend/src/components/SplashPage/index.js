@@ -5,6 +5,7 @@ import NavBar from "../NavBar/index.js";
 import image1 from "../../static/images/img1.png";
 import image2 from "../../static/images/img2.png";
 import image3 from "../../static/images/img3.png";
+import { Icon } from "@iconify/react";
 
 const SplashPage = () => {
   const changingLanguages = ["en", "ch", "sp", "fr", "ar"];
@@ -100,10 +101,13 @@ const SplashPage = () => {
               style={{ animationDelay: "1.5s" }}
             />
           </div>
+          <button className="down-arrow">
+            <Icon icon="bx:down-arrow-alt" className="down-arrow-icon" />
+          </button>
 
           {/* <div className="review">🌍 "{getRandomReview().text}"</div> */}
         </div>
-          <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
+        <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
       </div>
     </>
   );
