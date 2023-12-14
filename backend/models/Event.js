@@ -55,6 +55,10 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
+    endTime: {
+        type: String,
+        required: true
+    },
     host: {
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User'
