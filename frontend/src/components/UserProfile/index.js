@@ -116,57 +116,34 @@ const UserProfile = () => {
       <div className={`profile-container ${fadeIn ? "fade-in" : ""}`}>
         <div className={`actual-profile-container ${fadeIn ? "fade-in" : ""}`}>
           <div id="left-side">
-            {/* <div className="profile-div"> */}
             <div id="left-side-top">
-              <div id="profile-details-banner">
                 Hello, {user?.firstName} {user?.lastName}
-              </div>
             </div>
-            {/* <div> */}
             <div id="left-side-bottom">
-            <div className="profile-img-container">
-              <img className={`profile-img visible`} src={user?.pfp} alt=""/>
-              {/* {!imageLoaded && (
-                      <div className="loading-spinner">Loading...</div>
-                    )} */}
-              {/* <label htmlFor="imageInput" className="upload-label">
-                      Upload Image
-                      <input
-                        id="imageInput"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        style={{ display: 'none' }}
-                      />
-                    </label> */}
-            </div>
-
-            <div className="profile-details">
-              {/* <h2 id="profile-details-banner">Username</h2> */}
-              <div className="profile-detail">{user?.username}</div>
-              {/* <h2 id="profile-details-banner">Email</h2>
-                  <div className="profile-detail">{user?.email}</div> */}
-              <h2 id="profile-details-banner">Bio</h2>
-              <div className="profile-detail">{user?.bio}</div>
-              <h2 id="profile-details-banner">Languages</h2>
-              <div className="profile-detail">{user?.languages}</div>
-            </div>
-            {/* </div> */}
-
-            <div className="notifications-div">
-              <h2 id="notifications-title">Join Requests</h2>
-              <div className="pending-div">
-                {hostedEvents.map((event) => {
-                  return <Notification event={event} />;
-                })}
+              <div className="profile-details">
+                <div className="profile-img-container">
+                  <img className={`profile-img visible`} src={user?.pfp} alt=""/>
+                </div>
+                <div className="profile-detail">{user?.username}</div>
+                <h2 id="profile-details-banner">Bio</h2>
+                <div className="profile-detail">{user?.bio}</div>
+                <h2 id="profile-details-banner">Languages</h2>
+                <div className="profile-detail">{user?.languages}</div>
               </div>
-            </div>
+
+              <div className="notifications-div">
+                <h2 id="notifications-title">Join Requests</h2>
+                <div className="pending-div">
+                  {hostedEvents.map((event) => {
+                    return <Notification event={event} />;
+                  })}
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="event-container">
             <h2 className="event-header">Your Events</h2>
-            {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
               {events?.map((event) => (
                 <EventIndexItem
