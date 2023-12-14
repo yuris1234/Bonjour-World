@@ -290,7 +290,7 @@ const EventForm = () => {
                 <div className="event-select-btn lang">
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>)
-})}
+              })}
           </div>
         </div>
 

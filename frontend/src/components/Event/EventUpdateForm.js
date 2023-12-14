@@ -18,7 +18,7 @@ const EventUpdateForm = ({ eventId }) => {
 
   const [title, setTitle] = useState(event?.title);
   const [description, setDescription] = useState(event?.description);
-  const [language, setLanguage] = useState(event?.language);
+  const [languages, setLanguages] = useState(event?.languages);
   const [state, setState] = useState(event?.state);
   const [city, setCity] = useState(event?.city);
   const [address, setAddress] = useState(event?.address);
@@ -49,7 +49,7 @@ const EventUpdateForm = ({ eventId }) => {
       ...event,
       title,
       description,
-      language,
+      languages,
       state,
       city,
       address,
@@ -82,7 +82,7 @@ const EventUpdateForm = ({ eventId }) => {
           setDescription(e.currentTarget.value);
           break;
         case "language":
-          setLanguage(e.currentTarget.value);
+          setLanguages(e.currentTarget.value);
           break;
         case "state":
           setState(e.currentTarget.value);
@@ -162,7 +162,15 @@ const EventUpdateForm = ({ eventId }) => {
     "Wyoming",
   ];
 
-  const languages = ["German", "Spanish", "English", "French"];
+  const allLanguages = ["German", "Spanish", "English", "French"];
+
+  const addLanguage = (lang) => (e) => {
+    setLanguages([...languages, lang])
+  }
+
+  const removeLanguage = (lang) => (e) => {
+    setLanguages(languages.filter(val => val !== lang))
+  }
 
   // const formatDate = (e) => {
   //   const updatedDate = date.toISOString().substring(0, 10),
@@ -213,38 +221,39 @@ const EventUpdateForm = ({ eventId }) => {
           </div>
         </div>
 
-        <div className="select">
-          <div className="errors">{errors?.language}</div>
-          <div className="event-select-btn">
-            <select value={language} onChange={update("language")}>
-              <option disabled value="">
-                Select Language
+      <div className="select">
+        <div className="errors">{errors?.state}</div>
+        <div className="event-select-btn">
+          <select value={state} onChange={update("state")}>
+            <option disabled value="">
+              Select State
+            </option>
+            {states.map((stateOption) => (
+              <option key={stateOption} value={stateOption}>
+                {stateOption}
               </option>
-              {languages.map((lang) => (
-                <option key={lang} value={lang}>
-                  {lang}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="select">
-          <div className="errors">{errors?.state}</div>
-          <div className="event-select-btn">
-            <select value={state} onChange={update("state")}>
-              <option disabled value="">
-                Select State
-              </option>
-              {states.map((stateOption) => (
-                <option key={stateOption} value={stateOption}>
-                  {stateOption}
-                </option>
-              ))}
-            </select>
-          </div>
+            ))}
+          </select>
         </div>
       </div>
+            </div>
+
+      <div className="select">
+          <div className="errors">{errors?.language}</div>
+          <div>
+              {allLanguages.map((lang) => {
+                return (languages?.includes(lang) ? 
+                <div className="event-unselect-btn">
+                  <span>{lang}</span>
+                  <span className="x-button" onClick={removeLanguage(lang)}> &times; </span>
+                </div>
+                :
+                <div className="event-select-btn lang">
+                  <span onClick={addLanguage(lang)}>{lang}</span>
+                </div>)
+              })}
+          </div>
+        </div>
 
       <div className="inputs">
         <div className="left-column">
