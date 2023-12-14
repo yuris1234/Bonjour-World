@@ -196,7 +196,8 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                 }
                 // console.log(language)
                 try {
-                    const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
+                    // const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
+                    const formattedAddress = event.address
                     const position = await getAddressCoordinates(formattedAddress);
                     if (!markersRef.current || !markersRef.current[event._id]) {
                         // If no marker exists for the event, create one
