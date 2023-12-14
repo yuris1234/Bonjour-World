@@ -35,6 +35,7 @@ const EventForm = () => {
   const [addressSuggestions, setAddressSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const apiKey = process.env.REACT_APP_MAPS_API_KEY;
+  const [endTime,setEndTime] = useState("");
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
@@ -58,7 +59,7 @@ const EventForm = () => {
     if (!googleMapsLoaded) {
       loadGoogleMapsScript();
     }
-  }, [googleMapsLoaded]);
+  },);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,10 +74,12 @@ const EventForm = () => {
       zipcode,
       date,
       time,
+      endTime,
       host: currentUser._id,
       attendees: [currentUser._id],
     };
 
+    console.log(updatedEvent)
     const res = await dispatch(createEvent(updatedEvent));
     if (res?.title) {
       dispatch(closeModal());
@@ -123,7 +126,7 @@ const EventForm = () => {
 
   const fetchPlaceDetails = async (placeId) => {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?key=${apiKey}&placeid=${placeId}`
+      `https://maps.googleapis.com/maps/api/place/details/json?key=${apiKey}&placeid=${placeId}&libraries=places`
     );
     const data = await response.json();
     return data.result;
@@ -158,6 +161,9 @@ const EventForm = () => {
           break;
         case "time":
           setTime(e.currentTarget.value);
+          break;
+        case "endTime":
+          setEndTime(e.currentTarget.value);
           break;
         default:
           console.error("Field name error");
@@ -266,11 +272,20 @@ const EventForm = () => {
           <div className="event-select-btn">
             <select value={time} onChange={update("time")}>
               <option disabled value="">
-                Select Time
+                Select Start Time
               </option>
               {generateTimeOptions()}
             </select>
           </div>
+
+          <div className="event-select-btn">
+            <select value={endTime} onChange={update("endTime")}>
+                <option disabled value="">
+                  Select End Time
+                </option>
+                {generateTimeOptions()}
+              </select>
+            </div>
         </div>
 
 
@@ -338,40 +353,42 @@ const EventForm = () => {
 
           <div className="errors">{errors?.address}</div>
 
-          <PlacesAutocomplete
-            value={address}
-            onChange={handleAddressChange}
-            onSelect={handleSelect}
-          >
-            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-              <div>
-                <input
-                  {...getInputProps({
-                    placeholder: "Type your address",
-                  })}
-                />
-                <div className="autocomplete-dropdown-container">
-                  {loading && <div>Loading...</div>}
-                  {suggestions.map((suggestion, index) => {
-                    const style = {
-                      backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                    };
+          {googleMapsLoaded && (
+            <PlacesAutocomplete
+              value={address}
+              onChange={handleAddressChange}
+              onSelect={handleSelect}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                <div>
+                  <input
+                    {...getInputProps({
+                      placeholder: "Type your address",
+                    })}
+                  />
+                  <div className="autocomplete-dropdown-container">
+                    {loading && <div>Loading...</div>}
+                    {suggestions.map((suggestion, index) => {
+                      const style = {
+                        backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                      };
 
-                    return (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          style,
-                        })}
-                        key={index}
-                      >
-                        {suggestion.description}
-                      </div>
-                    );
-                  })}
+                      return (
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            style,
+                          })}
+                          key={index}
+                        >
+                          {suggestion.description}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
-          </PlacesAutocomplete>
+              )}
+            </PlacesAutocomplete>
+          )}
 
           <div className="errors">{errors?.zipcode}</div>
           <input
