@@ -236,7 +236,7 @@ const EventUpdateForm = ({ eventId }) => {
           </select>
         </div>
       </div>
-            </div>
+    </div>
 
       <div className="select">
           <div className="errors">{errors?.language}</div>

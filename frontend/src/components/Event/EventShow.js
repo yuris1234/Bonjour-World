@@ -174,7 +174,7 @@ const EventShow = () => {
 
               <div className="event-attendees">
                 Attendees
-                {attendees.map((attendee) => (
+                {attendees?.map((attendee) => (
                   <div className="attendee-details" key={attendee._id}>
                     <Link to={`users/${attendee._id}`}>
                       <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
