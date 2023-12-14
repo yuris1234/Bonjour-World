@@ -30,7 +30,10 @@ users.push(
     email: 'demo@demo.com',
     hashedPassword: bcrypt.hashSync('password', 10),
     firstName: "Demo",
-    lastName: "Lition"
+    lastName: "Lition",
+    languages: ["English"],
+    bio: "Hi everyone! My name is Demo and I love speaking English haha!",
+    age: 20
   })
 )
 
@@ -64,6 +67,7 @@ events.push(
     zipcode: 10031,
     date: faker.date.future(),
     time: "22:00",
+    endTime: "23:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -80,6 +84,7 @@ events.push(
     zipcode: 10024,
     date: faker.date.future(),
     time: "00:00",
+    endTime: "01:00", 
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -96,6 +101,7 @@ events.push(
     zipcode: 10024,
     date: faker.date.future(),
     time: "17:30",
+    endTime: "19:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -112,6 +118,7 @@ events.push(
     zipcode: 11249,
     date: faker.date.future(),
     time: "20:00",
+    endTime: "22:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -128,6 +135,7 @@ events.push(
     zipcode: 10016,
     date: faker.date.future(),
     time: "19:00",
+    endTime: "20:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
