@@ -113,13 +113,12 @@ const UserProfile = () => {
   };
 
   return (
-    <div className={`app-container ${fadeIn ? 'fade-in' : ''}`}>
-      {/* <NavBar /> */}
-      <div className={`profile-container ${fadeIn ? 'fade-in' : ''}`}>
-        <div className={`profile-details-div ${fadeIn ? 'fade-in' : ''}`}>
+    <div className={`app-container ${fadeIn ? "fade-in" : ""}`}>
+      <div className={`profile-container ${fadeIn ? "fade-in" : ""}`}>
+        <div className={`profile-details-div ${fadeIn ? "fade-in" : ""}`}>
           <div className="profile-img-div">
             <div className="profile-img-container">
-            <img className={`profile-img visible`} src={user?.pfp}/>
+              <img className={`profile-img visible`} src={user?.pfp} />
               {/* {!imageLoaded && (
                 <div className="loading-spinner">Loading...</div>
               )} */}
@@ -140,17 +139,27 @@ const UserProfile = () => {
                 {user?.firstName} {user?.lastName}
               </div>
               <div className="profile-label">{user?.username}</div>
-              <div className='notifications-div'>
+              {/* <div className='notifications-div'>
                 <h2 id='notifications-title'>Join Requests</h2>
                   <div className='pending-div'>{hostedEvents.map((event) => {
                     return <Notification event={event}/>
                   })}</div>
-              </div>
+              </div> */}
+            </div>
+          </div>
+
+          <div className="notifications-div">
+            <h2 id="notifications-title">Join Requests</h2>
+            <div className="pending-div">
+              {hostedEvents.map((event) => {
+                return <Notification event={event} />;
+              })}
             </div>
           </div>
 
           <div className="event-container">
-            <h1 className="event-header">{user?.firstName}'s Events</h1>
+            <h1 className="event-header">Your Events</h1>
+            {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
               {events?.map((event) => (
                 <EventIndexItem
