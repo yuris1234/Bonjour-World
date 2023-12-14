@@ -97,6 +97,10 @@
   font-size: 120px;
 }
 
+.down-arrow-icon:hover {
+  color: #b5cffb;
+}
+
 .footer {
   color: #0A345B;
   text-align: center;
