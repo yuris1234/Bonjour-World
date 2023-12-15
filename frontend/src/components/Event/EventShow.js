@@ -18,6 +18,7 @@ import { getAttendees } from "../../store/users";
 import EventsMapWrapper from "../EventMap";
 import { getHost } from "../../store/users";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import EventShowMapWrapper from "../EventMap/EventShowMap";
 
 const EventShow = () => {
   const dispatch = useDispatch();
@@ -123,7 +124,7 @@ const EventShow = () => {
   useEffect(() => {
     const fetchMapData = async () => {
       try {
-        const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
+        const formattedAddress = `${event?.address}, ${event?.city}, ${event?.state} ${event?.zipcode}`;
         const coordinates = await getAddressCoordinates(formattedAddress);
         const centered = {
           zoom: 11, // Set the initial zoom level as needed
@@ -153,7 +154,9 @@ const EventShow = () => {
     <>
       {/* <NavBar /> */}
       <div className="event-show-index">
-        {event && <EventsMapWrapper events={[event]} mapOptions={mapOptions} />}
+        <div className="map-container">
+          {event && <EventShowMapWrapper events={[event]} mapOptions={mapOptions} />}
+        </div>
 
         <div className="display-one-event">
           <ul className="event-info-list">
@@ -175,8 +178,8 @@ const EventShow = () => {
               <div className="event-attendees">
                 Attendees
                 {attendees?.map((attendee) => (
-                  <div className="attendee-details" key={attendee._id}>
-                    <Link to={`users/${attendee._id}`}>
+                  <div className="attendee-details">
+                    <Link to={`profile/${attendee._id}`} key={attendee.id}>
                       <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
                     </Link>
                     <span className="attendee-username">{attendee.username}</span>
@@ -195,12 +198,12 @@ const EventShow = () => {
                 <div className="event-time">{event?.time}</div>
               </div>
 
-              <div className="event-location-div">
+              {/* <div className="event-location-div">
                 Location
                 <div className="event-location">
                   {event?.city}, {event?.state} {event?.zipcode}
                 </div>
-              </div>
+              </div> */}
 
               <div className="event-address-div">
                 Address

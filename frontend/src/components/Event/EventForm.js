@@ -16,51 +16,50 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
+
 const EventForm = () => {
+  const [googleMapsLoaded, setGoogleMapsLoaded] = useState(false);
   const history = useHistory();
   const errors = useSelector((state) => state.errors.event);
   const currentUser = useSelector((state) => state.session.user);
-
-  const { eventId } = useParams();
-  // const eventType = eventId ? "Update Event" : "Create Event";
-  // let event = useSelector(getEvent(eventId));
-  // if (eventType === "Create Event")
-  //   event = {
-  //     title: "",
-  //     description: "",
-  //     languages: [],
-  //     state: "",
-  //     city: "",
-  //     address: "",
-  //     zipcode: "",
-  //     date: "",
-  //     time: "",
-  //     host: "",
-  //   };
-
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState("");
   const [languages, setLanguages] = useState([]);
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
+  // const [state, setState] = useState("");
+  // const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
-  const [zipcode, setZipcode] = useState("");
+  // const [zipcode, setZipcode] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
   const dispatch = useDispatch();
   const [addressSuggestions, setAddressSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const apiKey = process.env.REACT_APP_MAPS_API_KEY;
-
-  // useEffect(() => {
-  //   if (eventId) {
-  //     dispatch(fetchEvent(eventId));
-  //   }
-  // }, [dispatch, eventId]);
+  const [endTime,setEndTime] = useState("");
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
   }, [dispatch]);
+
+  useEffect(() => {
+    const loadGoogleMapsScript = () => {
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      script.addEventListener("load", () => {
+        setGoogleMapsLoaded(true);
+      });
+      script.addEventListener("error", () => {
+        console.error("Error loading Google Maps script");
+      });
+      document.head.appendChild(script);
+    };
+
+    if (!googleMapsLoaded) {
+      loadGoogleMapsScript();
+    }
+  },);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,16 +68,18 @@ const EventForm = () => {
       title,
       description,
       languages,
-      state,
-      city,
+      // state,
+      // city,
       address,
-      zipcode,
+      // zipcode,
       date,
       time,
+      endTime,
       host: currentUser._id,
       attendees: [currentUser._id],
     };
 
+    console.log(updatedEvent)
     const res = await dispatch(createEvent(updatedEvent));
     if (res?.title) {
       dispatch(closeModal());
@@ -87,9 +88,25 @@ const EventForm = () => {
   };
 
   const handleAddressChange = (address) => {
-    setAddressSuggestions([]);
-    setSelectedAddress(address);
+    setAddress(address);
+    setAddressSuggestions([]); 
+  
+    if (address.trim() === "") {
+      return;
+    }
+
+    const requestOptions = {
+      input: address,
+    };
+  
+    const service = new window.google.maps.places.AutocompleteService();
+    service.getPlacePredictions(requestOptions, (predictions, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        setAddressSuggestions(predictions);
+      }
+    });
   };
+  
 
   const handleSelect = async (address) => {
     try {
@@ -109,11 +126,11 @@ const EventForm = () => {
 
   const fetchPlaceDetails = async (placeId) => {
     const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?key=${apiKey}`
+      `https://maps.googleapis.com/maps/api/place/details/json?key=${apiKey}&placeid=${placeId}&libraries=places`
     );
     const data = await response.json();
     return data.result;
-  };
+  };  
 
   const update = (field) => {
     return (e) => {
@@ -127,23 +144,26 @@ const EventForm = () => {
         case "languages":
           setLanguages(e.currentTarget.value);
           break;
-        case "state":
-          setState(e.currentTarget.value);
-          break;
-        case "city":
-          setCity(e.currentTarget.value);
-          break;
+        // case "state":
+        //   setState(e.currentTarget.value);
+        //   break;
+        // case "city":
+        //   setCity(e.currentTarget.value);
+        //   break;
         case "address":
           setAddress(e.currentTarget.value);
           break;
-        case "zipcode":
-          setZipcode(e.currentTarget.value);
-          break;
+        // case "zipcode":
+        //   setZipcode(e.currentTarget.value);
+        //   break;
         case "date":
           setDate(new Date(e.target.value));
           break;
         case "time":
           setTime(e.currentTarget.value);
+          break;
+        case "endTime":
+          setEndTime(e.currentTarget.value);
           break;
         default:
           console.error("Field name error");
@@ -252,15 +272,24 @@ const EventForm = () => {
           <div className="event-select-btn">
             <select value={time} onChange={update("time")}>
               <option disabled value="">
-                Select Time
+                Select Start Time
               </option>
               {generateTimeOptions()}
             </select>
           </div>
+
+          <div className="event-select-btn">
+            <select value={endTime} onChange={update("endTime")}>
+                <option disabled value="">
+                  Select End Time
+                </option>
+                {generateTimeOptions()}
+              </select>
+            </div>
         </div>
 
 
-        <div className="select">
+        {/* <div className="select">
           <div className="errors">{errors?.state}</div>
           <div className="event-select-btn">
             <select value={state} onChange={update("state")}>
@@ -274,7 +303,7 @@ const EventForm = () => {
               ))}
             </select>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="select">
@@ -314,68 +343,60 @@ const EventForm = () => {
         </div>
 
         <div className="right-column">
-          <div className="errors">{errors?.city}</div>
+          {/* <div className="errors">{errors?.city}</div>
           <input
             type="text"
             placeholder="City"
             value={city}
             onChange={update("city")}
-          />
+          /> */}
 
           <div className="errors">{errors?.address}</div>
 
-          <PlacesAutocomplete
-            value={selectedAddress}
-            onChange={handleAddressChange}
-            onSelect={handleSelect}
-          >
-            {({
-              getInputProps,
-              suggestions,
-              getSuggestionItemProps,
-              loading,
-            }) => (
-              <div>
-                <input
-                  {...getInputProps({
-                    placeholder: "Type your address",
-                  })}
-                />
-                <div className="autocomplete-dropdown-container">
-                  {loading && <div>Loading...</div>}
-                  {suggestions.map((suggestion, index) => {
-                    const style = {
-                      backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                    };
+          {googleMapsLoaded && (
+            <PlacesAutocomplete
+              value={address}
+              onChange={handleAddressChange}
+              onSelect={handleSelect}
+            >
+              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                <div>
+                  <input
+                    {...getInputProps({
+                      placeholder: "Type your address",
+                    })}
+                  />
+                  <div className="autocomplete-dropdown-container">
+                    {loading && <div>Loading...</div>}
+                    {suggestions.map((suggestion, index) => {
+                      const style = {
+                        backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
+                      };
 
-                    // Extract street name from structured_formatting or use description
-                    const streetName =
-                      suggestion.structured_formatting?.name ||
-                      suggestion.description;
-
-                    return (
-                      <div
-                        {...getSuggestionItemProps(suggestion, {
-                          style,
-                        })}
-                        key={index}
-                      >
-                        <strong>{streetName}</strong>
-                      </div>
-                    );
-                  })}
+                      return (
+                        <div
+                          {...getSuggestionItemProps(suggestion, {
+                            style,
+                          })}
+                          key={index}
+                        >
+                          {suggestion.description}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
-          </PlacesAutocomplete>
-
+              )}
+            </PlacesAutocomplete>
+          )}
+{/* 
           <div className="errors">{errors?.zipcode}</div>
           <input
             type="text"
             placeholder="Zipcode"
             value={zipcode}
             onChange={update("zipcode")}
-          />
+          /> */}
         </div>
       </div>
 
