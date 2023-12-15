@@ -12,7 +12,8 @@ router.get('/:id', async (req, res, next) => {
         const unpopulatedEvent = await Event.findById(req.params.id)
         const event = JSON.parse(JSON.stringify(unpopulatedEvent));
         const populatedEvent = await unpopulatedEvent.populate('attendees')
-        return res.json({event, attendees: populatedEvent.attendees})
+        await populatedEvent.populate("pendingAttendees")
+        return res.json({event, attendees: populatedEvent.attendees, pendingAttendees: populatedEvent.pendingAttendees})
     }
     catch(err) {
         const error = new Error('Event not found');

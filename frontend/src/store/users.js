@@ -36,6 +36,8 @@ export const getAttendees = (event) => (state) => {
 export const getPendingAttendees = (event) => (state) => {
   const holder = [];
   if (event) {
+        console.log(event);
+        console.log(state.users);
     Object.values(state.users).forEach((user) => {
       if (event.pendingAttendees.includes(user._id)) {
         holder.push(user)
@@ -111,9 +113,14 @@ const usersReducer = (state = {}, action) => {
           if (action.event.attendees) {
             Object.values(action.event.attendees).forEach((user) => {
               newState[user._id] = user;
-            })
-            return {...state, ...newState}
-          }
+          })}
+
+        if (action.event.pendingAttendees) {
+            Object.values(action.event.pendingAttendees).forEach((user) => {
+            newState[user._id] = user;
+        })}
+
+        return {...state, ...newState}
         default: 
           return state;
     }
