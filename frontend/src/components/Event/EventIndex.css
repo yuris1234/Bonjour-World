@@ -57,7 +57,7 @@
     height: 20px;
     border: none;
   cursor: pointer;
-    background-color: black;
+    background-color: #0A345B;
     font-weight: bold;
     z-index: 100;
     padding: 10px;
@@ -70,7 +70,7 @@
 .google-maps-container {
   flex: 1;
   padding: 20px;
-  border-top: 3px solid #bde6aa;;
+  border-top: 3px solid #0A345B;;
   pointer-events: none; 
   height: 100vh;
 } */

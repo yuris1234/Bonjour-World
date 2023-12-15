@@ -22,7 +22,7 @@
   opacity: 0;
   text-align: center;
   font-size: 500%;
-  color: #bde6aa;
+  color: #0A345B;
   white-space: nowrap;
   font-family: 'BrandierTrial-SemiBoldItalic';
   z-index: 100;
@@ -77,7 +77,7 @@
 }
 
 .review {
-  color: #bde6aa;
+  color: #0A345B;
   font-size: 1.3rem;
   width: 70%;
   letter-spacing: 2px;
@@ -93,7 +93,7 @@
 }
 
 .down-arrow-icon {
-  color: #bde6aa;
+  color: #0A345B;
   font-size: 120px;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .footer {
-  color: #bde6aa;
+  color: #0A345B;
   text-align: center;
 }
 
