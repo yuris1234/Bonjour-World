@@ -2,6 +2,11 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import "../../static/images/noun-language-2511286.png"
+import { US } from "country-flag-icons/react/3x2";
+import { FR } from "country-flag-icons/react/3x2";
+import { DE } from "country-flag-icons/react/3x2";
+import { ES } from "country-flag-icons/react/3x2";
+import ReactDOMServer from 'react-dom/server';
 
 
 export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
@@ -11,7 +16,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
     const center = useSelector(state => state.events.center)
     // console.log(language)
 
-    const customMarker = process.env.PUBLIC_URL + '/story-map-svgrepo-com.png';
+    const customMarker = "../../../public/story-map-svgrepo-com.png"
 
     const getAddressCoordinates = async (address) => {
         try {
@@ -173,7 +178,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
         ]
         if (!map) {
             const defaultMapOptions = {
-                zoom: 11,
+                zoom: 13,
                 center: { lat: 40.7128, lng: -74.0060 }, // New York as an example
             };
             // Create a new Google Map object with mapRef as its first argument
@@ -194,7 +199,7 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
 
     useEffect(() => {
         const image =
-    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+    "https://www.svgrepo.com/show/399293/story-map.svg";
         const newMarkers = {};
             Object.values(events).forEach(async (event) => {
                 if (language && !event.language.includes(language)) {
@@ -210,15 +215,39 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                         const marker = new window.google.maps.Marker({
                             position,
                             map,
+                            // icon: image,
                             icon: {
                                 url: image, 
-                                scaledSize: new window.google.maps.Size(64, 64)
+                                scaledSize: new window.google.maps.Size(40, 40)
                             },
                             animation: window.google.maps.Animation.DROP
                         });
-                        console.log(event.language)
+                        
+                        const flags = event.languages && event.languages.map(language => {
+                            switch (language) {
+                                case "English":
+                                    return ReactDOMServer.renderToString(<US className="flag" />);
+                                case "French":
+                                    return ReactDOMServer.renderToString(<FR className="flag" />);
+                                case "German":
+                                    return ReactDOMServer.renderToString(<DE className="flag" />);
+                                case "Spanish":
+                                    return ReactDOMServer.renderToString(<ES className="flag" />);
+                                default:
+                                    return null;
+                            }
+                        }).join('');
+                        
+                        const infoWindowContent = `
+                            <div display="flex" justify-content="flex-start" style="padding: 10px; background-color: #ffffff; border: 2px solid #333333; border-radius: 5px;">
+                                <h1 style="color: #333333; font-size: 16px; margin-bottom: 10px;">${event.title}</h1>
+                                <div style="color: #666666; font-size: 14px;">${flags}</div>
+                                <div style="color: #666666; font-size: 10px;">Number Of Attendees: ${event.attendees.length}</div>
+                            </div>
+                        `;
                         const infoWindow = new window.google.maps.InfoWindow({
-                            content: event.languages.join(' ')
+                            // content: 
+                            content: infoWindowContent
                         })
                 
                         marker.addListener("mouseover", () => {
