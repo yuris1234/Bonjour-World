@@ -168,13 +168,13 @@ const EventUpdateForm = ({ eventId }) => {
 
   const allLanguages = [
     'Arabic',           'English',
-    'French',           'German',
+    'French',         
     'German',           'Hindi',
     'Japanese',         'Korean',
     'Mandarin', 'Portugese',
     'Russian',          'Spanish',
     'Swahili'
-  ];
+  ]
 
   const addLanguage = (lang) => (e) => {
     setLanguages([...languages, lang])

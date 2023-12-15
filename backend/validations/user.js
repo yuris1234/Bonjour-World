@@ -5,7 +5,7 @@ const isValidLanguages = (array) => {
   if (array.length === 0) return false;
   langs = [
     'Arabic',           'English',
-    'French',           'German',
+    'French',         
     'German',           'Hindi',
     'Japanese',         'Korean',
     'Mandarin', 'Portugese',
