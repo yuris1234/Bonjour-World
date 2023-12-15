@@ -27,12 +27,6 @@ const EventIndex = () => {
           // Navigate to the event's show page
             history.push(`/events/${event._id}`);
         }
-        // mouseover: (event) => {
-        //     setHighlightedEvent(event);
-        // },
-        // mouseout: () => {
-        //     setHighlightedEvent(null);
-        // },
     };
 
 

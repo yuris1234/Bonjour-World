@@ -1,6 +1,8 @@
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import "../../static/images/noun-language-2511286.png"
+
 
 export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
     const [map, setMap] = useState(null);
@@ -8,6 +10,8 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
     const markersRef = useRef(null);
     const center = useSelector(state => state.events.center)
     // console.log(language)
+
+    const customMarker = process.env.PUBLIC_URL + '/story-map-svgrepo-com.png';
 
     const getAddressCoordinates = async (address) => {
         try {
@@ -189,6 +193,8 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
     }, [map, mapOptions, language]);
 
     useEffect(() => {
+        const image =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
         const newMarkers = {};
             Object.values(events).forEach(async (event) => {
                 if (language && !event.language.includes(language)) {
@@ -203,8 +209,25 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
                         // If no marker exists for the event, create one
                         const marker = new window.google.maps.Marker({
                             position,
-                            map
+                            map,
+                            icon: {
+                                url: image, 
+                                scaledSize: new window.google.maps.Size(64, 64)
+                            },
+                            animation: window.google.maps.Animation.DROP
                         });
+                        console.log(event.language)
+                        const infoWindow = new window.google.maps.InfoWindow({
+                            content: event.languages.join(' ')
+                        })
+                
+                        marker.addListener("mouseover", () => {
+                            infoWindow.open(map, marker)
+                        })
+                        marker.addListener("mouseout", () => {
+                            infoWindow.close(map, marker)
+                        })
+                    
                         // Attach marker event handlers
                         Object.entries(markerEventHandlers).forEach(([eventType, handler]) => {
                             marker.addListener(eventType, () => handler(event));
@@ -233,7 +256,6 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
             // Remove markers for events that no longer exist
             if (markersRef.current) {
                 Object.keys(markersRef.current).forEach((id) => {
-                    debugger
                     if (!newMarkers[id] || (language && events[id].language !== language)) {
                         markersRef.current[id].setMap(null);
                     }
@@ -249,10 +271,10 @@ export const EventMap = ({events, markerEventHandlers, highlightedEvent, mapOpti
         return <div ref={mapRef} style={{ paddingTop: "50px", borderRadius: "18px", height: '90%', width: '70%' }}>Map</div>
     }
     
-    const EventsMapWrapper = ({ events, markerEventHandlers, highlightedEvent, mapOptions, language}) => {
+    const EventsMapWrapper = ({ events, markerEventHandlers, mapOptions, language}) => {
     return (
         <Wrapper apiKey={process.env.REACT_APP_MAPS_API_KEY}  >
-            <EventMap events={events} markerEventHandlers={markerEventHandlers} highlightedEvent={highlightedEvent} mapOptions={mapOptions} language={language}/>
+            <EventMap events={events} markerEventHandlers={markerEventHandlers} mapOptions={mapOptions} language={language}/>
         </Wrapper>
     );
 };
