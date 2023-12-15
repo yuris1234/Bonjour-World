@@ -76,9 +76,13 @@ const NavBar = () => {
   return (
     <>
       <nav className="nav-bar">
+        {/* <div id="google_translate_element"></div> */}
+
         <NavLink to="/" className="no-underline">
           <h1 className="nav-bar-header">Bonjour World</h1>
         </NavLink>
+
+        {/* <Translator /> */}
         <div className="nav-links">{getLinks()}</div>
       </nav>
     </>
