@@ -14,14 +14,19 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min
 import S3 from "./aws.js";
 import { getHostedEvents } from "../../store/events";
 import Notification from "./Notification/index.js";
+import { getUser } from "../../store/users.js";
+import { fetchUser } from "../../store/users.js";
 
 const UserProfile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // get current user
-  const user = useSelector((state) => state.session.user);
+  // get profile user
   const {id} = useParams()
+  const user = useSelector(getUser(id))
+
+  // get current user
+  const currentUser = useSelector((state) => state.session.user);
 
   const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
@@ -33,84 +38,85 @@ const UserProfile = () => {
   const hostedEvents = useSelector(getHostedEvents(user?._id));
 
   const [highlightedEvent, setHighlightedEvent] = useState();
-  const [imageLoaded, setImageLoaded] = useState(false);
+  // const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(getCurrentUser());
-  }, [dispatch]);
+    // dispatch(getCurrentUser());
+    dispatch(fetchUser(id));
+  }, [dispatch, id]);
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const currentUserData = await getCurrentUser();
-        let profileImageUrl = currentUserData.profileImageUrl;
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     try {
+  //       const currentUserData = await getCurrentUser();
+  //       let profileImageUrl = currentUserData.profileImageUrl;
 
-        if (!profileImageUrl) {
-          const params = {
-            Bucket: "bonjour-world",
-            Prefix: `user/${user?._id}/`,
-          };
+  //       if (!profileImageUrl) {
+  //         const params = {
+  //           Bucket: "bonjour-world",
+  //           Prefix: `user/${user?._id}/`,
+  //         };
 
-          const data = await S3.listObjectsV2(params).promise();
+  //         const data = await S3.listObjectsV2(params).promise();
 
-          const mostRecentImage = data.Contents[0];
+  //         const mostRecentImage = data.Contents[0];
 
-          if (mostRecentImage) {
-            profileImageUrl = S3.getSignedUrl("getObject", {
-              Bucket: "bonjour-world",
-              Key: mostRecentImage.Key,
-            });
-          }
-        }
+  //         if (mostRecentImage) {
+  //           profileImageUrl = S3.getSignedUrl("getObject", {
+  //             Bucket: "bonjour-world",
+  //             Key: mostRecentImage.Key,
+  //           });
+  //         }
+  //       }
 
-        setUploadedImage(profileImageUrl || EmptyUser);
-      } catch (error) {
-        console.error("Error fetching user data", error);
-      }
-    };
+  //       setUploadedImage(profileImageUrl || EmptyUser);
+  //     } catch (error) {
+  //       console.error("Error fetching user data", error);
+  //     }
+  //   };
 
-    dispatch(fetchEvents());
-    fetchUserData();
-    setFadeIn(true);
-  }, []);
+  //   dispatch(fetchEvents());
+  //   fetchUserData();
+  //   setFadeIn(true);
+  // }, []);
 
-  const handleImageChange = async (event) => {
-    const selectedImage = event.target.files[0];
+  // const handleImageChange = async (event) => {
+  //   const selectedImage = event.target.files[0];
 
-    if (selectedImage) {
-      const params = {
-        Bucket: "bonjour-world",
-        Key: `user/${user?._id}/${selectedImage.name}`,
-        Body: selectedImage,
-        ACL: "public-read",
-      };
+  //   if (selectedImage) {
+  //     const params = {
+  //       Bucket: "bonjour-world",
+  //       Key: `user/${user?._id}/${selectedImage.name}`,
+  //       Body: selectedImage,
+  //       ACL: "public-read",
+  //     };
 
-      try {
-        console.log("Upload params:", params);
-        const data = await S3.upload(params).promise();
-        console.log("Upload successful:", data);
-        setUploadedImage(data.Location);
-      } catch (error) {
-        console.error("Error uploading image to S3:", error);
-      }
-    }
-  };
+  //     try {
+  //       console.log("Upload params:", params);
+  //       const data = await S3.upload(params).promise();
+  //       console.log("Upload successful:", data);
+  //       setUploadedImage(data.Location);
+  //     } catch (error) {
+  //       console.error("Error uploading image to S3:", error);
+  //     }
+  //   }
+  // };
 
-  const handleImageLoad = () => {
-    setImageLoaded(true);
-  };
+  // const handleImageLoad = () => {
+  //   setImageLoaded(true);
+  // };
 
-  const markerEventHandlers = {
-    click: (event) => {
-      history.push(`/events/${event._id}`);
-    },
-    mouseover: (event) => {
-      setHighlightedEvent(event);
-    },
-    mouseout: () => {
-      setHighlightedEvent(null);
-    },
-  };
+  // const markerEventHandlers = {
+  //   click: (event) => {
+  //     history.push(`/events/${event._id}`);
+  //   },
+  //   mouseover: (event) => {
+  //     setHighlightedEvent(event);
+  //   },
+  //   mouseout: () => {
+  //     setHighlightedEvent(null);
+  //   },
+  // };
 
   return (
     <div className={`app-container ${fadeIn ? "fade-in" : ""}`}>
@@ -118,7 +124,7 @@ const UserProfile = () => {
         <div className={`actual-profile-container ${fadeIn ? "fade-in" : ""}`}>
           <div id="left-side">
             <div id="left-side-top">
-              Hello, {user?.firstName} {user?.lastName}
+              {user?._id === currentUser?._id ? `Hello, ${user?.firstName} ${user?.lastName}` : `${user?.firstName} ${user?.lastName}` }
             </div>
             <div id="left-side-bottom">
               <div className="profile-details">
@@ -150,7 +156,7 @@ const UserProfile = () => {
               </div>
 
               <div className="notifications-div">
-                {id === user._id && (
+                {user?._id === currentUser?._id && (
                   <div>
                     <h2 id="notifications-title">Join Requests</h2>
                     <div className="pending-div">
@@ -166,7 +172,7 @@ const UserProfile = () => {
 
           <div className="event-container">
             <h2 className="event-header">
-              {id === user._id ? "Your Events" : `${id?.firstName}'s Events`}
+              {user?._id === currentUser?._id ? "Your Events" : `${user?.firstName}'s Events`}
             </h2>
             {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
