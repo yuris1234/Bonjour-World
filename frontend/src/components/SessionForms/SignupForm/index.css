@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   /* padding: 20px; */
-  background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
+background-color: #93c4a0;
   border-radius: 15px;
   width: 100%;
   height: 100%;
@@ -85,7 +85,7 @@
 
 .signup-form input[type="submit"] {
   margin-top: 20px;
-  background-color: black;
+  background-color: #0A345B;
   color: white;
   border: none;
   cursor: pointer;

@@ -19,12 +19,13 @@ const EventUpdateForm = ({ eventId }) => {
   const [title, setTitle] = useState(event?.title);
   const [description, setDescription] = useState(event?.description);
   const [languages, setLanguages] = useState(event?.languages);
-  const [state, setState] = useState(event?.state);
-  const [city, setCity] = useState(event?.city);
+  // const [state, setState] = useState(event?.state);
+  // const [city, setCity] = useState(event?.city);
   const [address, setAddress] = useState(event?.address);
-  const [zipcode, setZipcode] = useState(event?.zipcode);
+  // const [zipcode, setZipcode] = useState(event?.zipcode);
   const [date, setDate] = useState(event?.date);
   const [time, setTime] = useState(event?.time);
+  const [endTime, setEndTime] = useState(event?.endTime);
 
   const dispatch = useDispatch();
 
@@ -50,12 +51,12 @@ const EventUpdateForm = ({ eventId }) => {
       title,
       description,
       languages,
-      state,
-      city,
+      // state,
+      // city,
       address,
-      zipcode,
       date,
       time,
+      endTime
     };
     const res = await dispatch(updateEvent(updatedEvent));
     if (res.ok) {
@@ -84,23 +85,26 @@ const EventUpdateForm = ({ eventId }) => {
         case "language":
           setLanguages(e.currentTarget.value);
           break;
-        case "state":
-          setState(e.currentTarget.value);
-          break;
-        case "city":
-          setCity(e.currentTarget.value);
-          break;
+        // case "state":
+        //   setState(e.currentTarget.value);
+        //   break;
+        // case "city":
+        //   setCity(e.currentTarget.value);
+        //   break;
         case "address":
           setAddress(e.currentTarget.value);
           break;
-        case "zipcode":
-          setZipcode(e.currentTarget.value);
-          break;
+        // case "zipcode":
+        //   setZipcode(e.currentTarget.value);
+        //   break;
         case "date":
           setDate(new Date(e.target.value));
           break;
         case "time":
           setTime(e.currentTarget.value);
+          break;
+        case "endTime":
+          setEndTime(e.currentTarget.value);
           break;
         default:
           console.error("Field name error");
@@ -206,7 +210,7 @@ const EventUpdateForm = ({ eventId }) => {
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>Edit Event</h2>
+      <h2>Edit Your Exchange</h2>
 
       <div className="selects">
         <div className="select">
@@ -214,15 +218,24 @@ const EventUpdateForm = ({ eventId }) => {
           <div className="event-select-btn">
             <select value={time} onChange={update("time")}>
               <option disabled value="">
-                Select Time
+                Start Time
               </option>
               {generateTimeOptions()}
             </select>
           </div>
         </div>
 
-      <div className="select">
-        <div className="errors">{errors?.state}</div>
+        <div className="event-select-btn">
+          <select value={endTime} onChange={update("endTime")}>
+            <option disabled value="">
+              End Time
+            </option>
+            {generateTimeOptions()}
+          </select>
+        </div>
+
+        {/* <div className="select"> */}
+        {/* <div className="errors">{errors?.state}</div>
         <div className="event-select-btn">
           <select value={state} onChange={update("state")}>
             <option disabled value="">
@@ -234,26 +247,30 @@ const EventUpdateForm = ({ eventId }) => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
+        {/* </div> */}
       </div>
-    </div>
 
       <div className="select">
-          <div className="errors">{errors?.language}</div>
-          <div>
-              {allLanguages.map((lang) => {
-                return (languages?.includes(lang) ? 
-                <div className="event-unselect-btn">
-                  <span>{lang}</span>
-                  <span className="x-button" onClick={removeLanguage(lang)}> &times; </span>
-                </div>
-                :
-                <div className="event-select-btn lang">
-                  <span onClick={addLanguage(lang)}>{lang}</span>
-                </div>)
-              })}
-          </div>
+        <div className="errors">{errors?.language}</div>
+        <div className="languages-container">
+          {allLanguages.map((lang) => {
+            return languages?.includes(lang) ? (
+              <div className="event-unselect-btn">
+                <span>{lang}</span>
+                <span className="x-button" onClick={removeLanguage(lang)}>
+                  {" "}
+                  &times;{" "}
+                </span>
+              </div>
+            ) : (
+              <div className="event-select-btn lang">
+                <span onClick={addLanguage(lang)}>{lang}</span>
+              </div>
+            );
+          })}
         </div>
+      </div>
 
       <div className="inputs">
         <div className="left-column">
@@ -273,16 +290,6 @@ const EventUpdateForm = ({ eventId }) => {
               setDate(e.target.value);
             }}
           />
-        </div>
-
-        <div className="right-column">
-          <div className="errors">{errors?.city}</div>
-          <input
-            type="text"
-            placeholder="City"
-            value={city}
-            onChange={update("city")}
-          />
 
           <div className="errors">{errors?.address}</div>
           <input
@@ -291,15 +298,25 @@ const EventUpdateForm = ({ eventId }) => {
             value={address}
             onChange={update("address")}
           />
+        </div>
 
-          <div className="errors">{errors?.zipcode}</div>
+        {/* <div className="right-column"> */}
+        {/* <div className="errors">{errors?.city}</div>
+          <input
+            type="text"
+            placeholder="City"
+            value={city}
+            onChange={update("city")}
+          /> */}
+
+        {/* <div className="errors">{errors?.zipcode}</div>
           <input
             type="text"
             placeholder="Zipcode"
             value={zipcode}
             onChange={update("zipcode")}
-          />
-        </div>
+          /> */}
+        {/* </div> */}
       </div>
 
       <div className="errors">{errors?.description}</div>
@@ -309,7 +326,7 @@ const EventUpdateForm = ({ eventId }) => {
         onChange={update("description")}
       />
 
-      <input type="submit" value="Update Event" />
+      <input type="submit" value="Update Exchange" />
     </form>
   );
 };

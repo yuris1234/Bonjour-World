@@ -2,7 +2,7 @@
     /* padding: 20px; */
     /* height: 22%; */
     all: unset;
-display: flex;
+    display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
     box-sizing: border-box;
@@ -14,19 +14,18 @@ display: flex;
     font-size: 15px;
     font-weight: 500;
     transition: transform 0.2s ease-in-out;
-    border: 3px solid #0A345B;
-    color: #0A345B;
+    border: 2px solid black;
+    color: black;
     /* border: 3px solid red; */
     /* padding: 5px; */
     padding-bottom: 5px;
     position: relative;
-
+    background-color: #F7F1DF;
+box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 #event-item:hover {
-    border: 3px solid #9CC0F9;
     /* box-shadow: -8px 0px 10px -6px rgba(0, 0, 0, 0.75); */
-    color: #9CC0F9;
     transform: scale(1.02);
     border-radius: 10px;
     animation: backgroundGlow 2s ease-in-out infinite alternate;
@@ -38,7 +37,7 @@ display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    background-color: #9CC0F9;
+    background-color: #93c4a0;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     height: 40px;
@@ -112,7 +111,7 @@ bottom: 2px;
     /* border: 3px solid purple; */
     position: absolute;
     right: 0;
-    top: 70%;
+    top: 72%;
     /* justify-content: flex-end; */
 }
 
@@ -130,6 +129,7 @@ bottom: 2px;
             /* padding-bottom: 20px; */
             /* position: absolute; */
             padding-left: 5px;
+            /* padding-top: 2px; */
 /* border: 3px solid green; */
 /* padding-top: 20px; */
             /* right: 10px; */
@@ -141,17 +141,20 @@ bottom: 2px;
     display: flex;
     /* border: 3px solid green; */
     justify-content: space-between;
-    align-items: center;
-    height: 50%;
+    align-items: start;
+    height: 40%;
+    width: 101%;
+    padding-top: 2px;
 }
 
 .flags {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 100%;
+    /* flex-direction: column; */
+    /* justify-content: space-evenly; */
+    /* height: 100%; */
 }
 
 .flag {
-    height: 25px;
+    height: 30px;
+    margin-bottom: 2px;
 }

@@ -38,7 +38,7 @@ const App = () => {
                 path="/events/:eventId"
                 component={EventShow}
               ></Route>
-              <Route exact path="/profile" component={UserProfile}></Route>
+              <Route exact path="/profile/:id" component={UserProfile}></Route>
               <AuthRoute exact path="/login" component={LoginForm} />
               <AuthRoute exact path="/signup" component={SignupForm} />
             </Switch>

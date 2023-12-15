@@ -6,6 +6,7 @@ import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
   const loggedIn = useSelector((state) => !!state.session.user);
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const getLinks = () => {
@@ -26,16 +27,16 @@ const NavBar = () => {
             to={"/events"}
             activeClassName="active"
           >
-            Events
+            Exchanges
           </NavLink>
           <button
             className="logged-in-link"
             id="create-event-button"
             onClick={() => dispatch(openModal("createEvent"))}
           >
-            Create Event
+            Host an Exchange
           </button>
-          <ProfileButton user={""} />
+          <ProfileButton user={user} />
         </div>
       );
     } else {

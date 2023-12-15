@@ -2,7 +2,7 @@
   height: 92vh;
   width: 100vw;
   padding-top: 70px;
-  background: linear-gradient(to bottom, #FBE1B5, white);
+  background: white;
     display: flex;
       flex-direction: column;
       align-items: center;
@@ -22,11 +22,11 @@
   opacity: 0;
   text-align: center;
   font-size: 500%;
-  color: #0A345B;
+  color: #93c4a0;
   white-space: nowrap;
   font-family: 'BrandierTrial-SemiBoldItalic';
   z-index: 100;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
 }
 
 @keyframes fade {
@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 }
 
 .image {
@@ -77,7 +77,7 @@
 }
 
 .review {
-  color: #0A345B;
+  color: #93c4a0;
   font-size: 1.3rem;
   width: 70%;
   letter-spacing: 2px;
@@ -85,8 +85,24 @@
   text-align: center;
 }
 
-.footer {
+.down-arrow {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.down-arrow-icon {
+  color: #93c4a0;
+  font-size: 120px;
+}
+
+.down-arrow-icon:hover {
   color: #0A345B;
+}
+
+.footer {
+  color: #93c4a0;
   text-align: center;
 }
 

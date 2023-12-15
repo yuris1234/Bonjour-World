@@ -30,7 +30,10 @@ users.push(
     email: 'demo@demo.com',
     hashedPassword: bcrypt.hashSync('password', 10),
     firstName: "Demo",
-    lastName: "Lition"
+    lastName: "Lition",
+    languages: ["English"],
+    bio: "Hi everyone! My name is Demo and I love speaking English haha!",
+    age: 20
   })
 )
 
@@ -58,12 +61,10 @@ events.push(
     title: faker.company.name(),
     description: "Lingo rendezvous: where words collide and cultures converge. Transform your language journey with us!",
     languages: ['English','Spanish'],
-    state: 'New York',
-    city: 'New York',
     address: '620 West 153rd Street',
-    zipcode: 10031,
     date: faker.date.future(),
     time: "22:00",
+    endTime: "23:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -74,12 +75,10 @@ events.push(
     title: faker.company.name(),
     description: "Diverse tongues unite! Join our language exchange soirée for global connections and fluent friendships.",
     languages: ['French','German'],
-    state: 'New York',
-    city: 'New York',
     address: '120 Riverside Dr',
-    zipcode: 10024,
     date: faker.date.future(),
     time: "00:00",
+    endTime: "01:00", 
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -90,12 +89,10 @@ events.push(
     title: faker.company.name(),
     description: "Polyglot paradise awaits! Swap languages, share stories, and break linguistic barriers with us.",
     languages: ['Spanish','French'],
-    state: 'New York',
-    city: 'New York',
     address: '255 West 84th Street',
-    zipcode: 10024,
     date: faker.date.future(),
     time: "17:30",
+    endTime: "19:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -106,12 +103,10 @@ events.push(
     title: faker.company.name(),
     description: "Speak the world: our meetup bridges cultures. Connect, converse, and cultivate language skills together!",
     languages: ['French','German'],
-    state: 'New York',
-    city: 'Brooklyn',
     address: '238 Bedford Ave',
-    zipcode: 11249,
     date: faker.date.future(),
     time: "20:00",
+    endTime: "22:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
@@ -122,12 +117,10 @@ events.push(
     title: faker.company.name(),
     description: "Tongue-twisting Tuesday! Elevate your language game at our vibrant exchange—learn, laugh, and linguify.",
     languages: ['Spanish','French'],
-    state: 'New York',
-    city: 'New York',
     address: '570 2nd Ave',
-    zipcode: 10016,
     date: faker.date.future(),
     time: "19:00",
+    endTime: "20:00",
     attendees: [],
     host: "65663fdc660cf7f22d333445"
   })
