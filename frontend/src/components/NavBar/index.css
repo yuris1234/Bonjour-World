@@ -40,7 +40,7 @@
     border: none;
     border-radius: 3ch;
     background-color: white;
-    color: #0A345B;
+    color: #bde6aa;
     cursor: pointer;
 }
 
@@ -84,7 +84,7 @@
 
 #about-us {
     font-size: 1rem;
-    color: ;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
