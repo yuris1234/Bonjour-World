@@ -37,7 +37,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const fetchUserData = async () => {

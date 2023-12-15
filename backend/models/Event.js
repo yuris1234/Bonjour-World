@@ -15,8 +15,6 @@ const Schema = mongoose.Schema;
 //     return [year, month, day].join('-');
 // }
 
-today = new Date();
-
 const eventSchema = new Schema({
     title: {
         type: String,
@@ -36,8 +34,7 @@ const eventSchema = new Schema({
     },
     date: {
         type: Date,
-        required: true,
-        min: today
+        required: true
     },
     time: {
         type: String,
@@ -60,7 +57,7 @@ const eventSchema = new Schema({
         ref: 'User'
     }]
 }, {
-    timestampes: true
+    timestamps: true
 });
 
 module.exports = mongoose.model('Event', eventSchema)

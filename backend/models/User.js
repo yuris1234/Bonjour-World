@@ -45,8 +45,8 @@ const userSchema = new Schema({
       type: String
     },
     languages: [{
-      type: String,
-  }]
+        type: String
+    }]
   }, {
     timestamps: true
   });
