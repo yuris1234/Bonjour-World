@@ -1,36 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Eltion from "../../static/images/img1.png";
-import Yuri from "../../static/images/img3.png";
+import Yuri from "../Images/TeamImgs/YuriPfp.png";
 import Claudia from "../../static/images/img3.png";
 import Jason from "../../static/images/img1.png";
 import "./index.css";
 import Globe from "../Globe/Globe";
 import NavBar from "../NavBar";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const teamMembers = [
   {
-    name: "Eltion",
+    name: "Eltion Behrami",
     role: "Team Lead",
     github: "https://github.com/EltionBehrami",
     linkedin: "https://www.linkedin.com/in/eltion-behrami-5b9367271/",
+    img: "",
   },
   {
-    name: "Yuri",
+    name: "Yuri Sugihara",
     role: "Backend Lead",
-    github: "",
-    linkedin: "",
+    github: "https://github.com/yuris1234",
+    linkedin: "https://www.linkedin.com/in/yuri-sugihara/",
+    img: "",
   },
   {
-    name: "Claudia",
+    name: "Claudia Aziz",
     role: "Frontend Lead",
     github: "https://github.com/claudiaaziz",
     linkedin: "https://www.linkedin.com/in/claudiaaziz/",
+    img: "",
   },
   {
-    name: "Jason",
+    name: "Jason Zhang",
     role: "Flex Lead",
     github: "https://github.com/Helionster",
     linkedin: "https://www.linkedin.com/in/jason-zhang-344777184/",
+    img: "",
   },
 ];
 
@@ -71,42 +77,36 @@ const AboutUs = () => {
       <div className="about-us-container">
         <div className="display-meet-the-team">{displayMeetTheTeam()}</div>
 
-        {teamMembers.map((member, index) => (
-          <div key={index} className="team-member">
-            <img
-              src={
-                member.name === "Jason"
-                  ? Jason
-                  : member.name === "Claudia"
-                  ? Claudia
-                  : member.name === "Yuri"
-                  ? Yuri
-                  : Eltion
-              }
-              alt={`${member.name} - ${member.role}`}
-            />
-            <div className="member-details">
-              <p>{`${member.name} - ${member.role}`}</p>
-              <div className="social-links">
-                <a
-                  href={member.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={member.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LinkedIn
-                </a>
+        <div className="team-members-container">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="team-member">
+              <img className="team-member-img"
+                src={
+                  member.name === "Jason Zhang"
+                    ? Jason
+                    : member.name === "Claudia Aziz"
+                    ? Claudia
+                    : member.name === "Yuri Sugihara"
+                    ? Yuri
+                    : Eltion
+                }
+                alt={`${member.name} - ${member.role}`}
+              />
+              <div className="member-details">
+                <p>{`${member.name}`}</p>
+                <p>{`${member.role}`}</p>
+                <div className="social-links">
+                  <a href={member.github} target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-github"></i>
+                  </a>
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                    <i className="fab fa-linkedin"></i>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-        {/* <Globe /> */}
+          ))}
+        </div>
       </div>
     </>
   );
