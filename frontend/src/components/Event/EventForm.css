@@ -68,14 +68,14 @@ background-color: #93c4a0;
           white-space: nowrap;
           border: none;
           border-radius: 20px;
-          width: 120px;
+          width: 100px;
           height: 20px;
           border: none;
           cursor: pointer;
           background-color:  #0A345B;
           color: white;
           /* font-weight: bold; */
-      font-size: .95rem;
+      font-size: .9rem;
           z-index: 100;
           padding: 10px;
           display: flex;
@@ -108,7 +108,6 @@ display: flex;
   width: 60px;
   /* text-align: center; */
   margin: 5px;
-
 }
 
 .event-select-btn.lang {
@@ -123,12 +122,12 @@ display: flex;
     height: 20px;
     width: 20px;
     /* background-color: rgb(48, 48, 48); */
-    color: #fff;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: .5em;
+    /* color: #fff; */
+    /* border-radius: 50%; */
+    /* display: inline-flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin-left: .3em;
     font-size: 18px;
     cursor: pointer;
 }
