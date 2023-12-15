@@ -165,12 +165,23 @@ const EventShow = () => {
         </div>
 
         <div className="display-one-event">
+          {user && (joined || subscribed) ? "" : <div className="event-request">
+            Sign up and request to join for more details!
+          </div>}
           <ul className="event-info-list">
+            <div className="event-languages">
+              {event?.languages.map((lang) => {
+                return (
+                    <div className="event-lang">{lang}</div>
+                )
+              })}
+            </div>
             <div className="event-title">
               {event?.title}
               <div className="event-date-time">
                   <div className="event-date">🗓️ {formatDate(event?.date)}</div>
                   <div className="event-time">⏰ {event?.time}</div>
+                  {user && (joined || subscribed) ? <div className="event-address">📍 {event?.address}</div> : <div className="event-address">📍 <em>hidden</em></div>}
               </div>
               <div className="event-title-host">
                 {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
@@ -184,41 +195,41 @@ const EventShow = () => {
             <div className="event-details">
               {/* <span className="event-language">{event?.languages.map((lang) => {return <li>{lang}</li>})}</span> */}
 
-                <div id="event-item-title" className="event-show">About</div>
+              {/* <div id="event-item-title" className="event-show">About</div> */}
               <div className="event-description-div">
                 <div className="event-description">{event?.description}</div>
               </div>
 
               <div className="event-attendees">
-                <div id="event-item-title" className="event-show">
-                  <Icon icon="mdi:user" className="event-icon" />Attendees
-                </div>
-                <div className="attendees">
-                  {attendees?.map((attendee) => (
-                  <div className="attendee-details" key={attendee._id}>
-                    <Link to={`users/${attendee._id}`}>
-                      <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
-                    </Link>
-                    <span className="attendee-username">{attendee.firstName}</span>
+                {user && (joined || subscribed) &&
+                  (
+                  <>
+                  <div className="event-show">
+                    Polyglots Attending
                   </div>
-                  ))}
-                </div>
-              </div> */}
-
-              <div className="event-address-div">
-                Address
-                <div className="event-address">{event?.address}</div>
-              </div>
-
+                  <div className="attendees">
+                    {attendees?.map((attendee) => (
+                    <div className="attendee-details" key={attendee._id}>
+                      <Link to={`/profile/${attendee._id}`}>
+                        <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
+                      </Link>
+                      <span className="attendee-username">{attendee.firstName}</span>
+                    </div>
+                    ))}
+                  </div>
+                  </>
+                  )}
+              </div> 
+            <div className="event-buttons">
               {isHost && (
                 <button class="edit-event" onClick={handleModal}>
-                  Edit Event
+                  <Icon className="event-icon" icon="tdesign:edit"/> Edit
                 </button>
               )}
 
               {isHost && (
                 <button class="delete-event" onClick={handleDeleteEvent}>
-                  Delete Event
+                  <Icon className="event-icon" icon="material-symbols:delete"/> Delete
                 </button>
               )}
 
@@ -234,6 +245,7 @@ const EventShow = () => {
                   + Request to Join{" "}
                 </button>
               )}
+            </div>
             </div>
           </ul>
         </div>
