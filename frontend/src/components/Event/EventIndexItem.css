@@ -8,7 +8,7 @@
     box-sizing: border-box;
     /* align-items: center; */
     width: 100%;
-    height: 23%;
+    height: 20%;
     margin: 10px;
     border-radius: 10px;
     font-size: 15px;
@@ -22,6 +22,7 @@
     position: relative;
     background-color: #F7F1DF;
 box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
+z-index: 1000;
 }
 
 #event-item:hover {
@@ -158,3 +159,11 @@ bottom: 2px;
     height: 30px;
     margin-bottom: 2px;
 }
+
+.map-flag {
+width: 40px;
+
+margin-right: 7px;
+    height: auto;
+    /* align-self: end; */
+}   

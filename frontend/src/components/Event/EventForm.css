@@ -1,4 +1,5 @@
-.create-event-modal, .update-event-modal {
+.create-event-modal,
+.update-event-modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -14,7 +15,7 @@
 
 .event-form {
   padding: 20px;
-background-color: #93c4a0;
+  background-color: #93c4a0;
   border-radius: 15px;
   width: 100%;
   height: 100%;
@@ -22,16 +23,16 @@ background-color: #93c4a0;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-    /* border: 6px solid black; */
+  /* border: 6px solid black; */
 }
 
 .event-form h2 {
-  color:  black;
+  color: black;
   font-size: 2.5rem;
   text-align: center;
   /* margin-bottom: 20px; */
   margin-top: 10px;
-    font-family: 'BrandierTrial-SemiBoldItalic';
+  font-family: 'BrandierTrial-SemiBoldItalic';
 }
 
 .event-form .selects {
@@ -57,44 +58,45 @@ background-color: #93c4a0;
   /* background-color: transparent;
   border-radius: 5px; */
   text-align: center;
-    display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 150px;
-      background-color: transparent;
-      border: none;
-      outline: none;
-          color: white;
-      cursor: pointer;
-      height: 100%;
-      font-size: .95rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  height: 100%;
+  font-size: .95rem;
 }
 
 .languages-container {
   display: flex;
 }
 
-.event-select-btn, .event-unselect-btn {
-        cursor: pointer;
-        display: inline-block;
-          margin-top: 8px; 
-          white-space: nowrap;
-          border: none;
-          border-radius: 20px;
-          width: 100px;
-          height: 20px;
-          border: none;
-          cursor: pointer;
-          background-color:  #0A345B;
-          color: white;
-          /* font-weight: bold; */
-      font-size: .9rem;
-          z-index: 100;
-          padding: 10px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-left: 10px; 
+.event-select-btn,
+.event-unselect-btn {
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 8px;
+  white-space: nowrap;
+  border: none;
+  border-radius: 20px;
+  width: 100px;
+  height: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #0A345B;
+  color: white;
+  /* font-weight: bold; */
+  font-size: .9rem;
+  z-index: 100;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
   /* border: 1px solid green; */
 }
 
@@ -122,24 +124,24 @@ background-color: #93c4a0;
 
 .event-select-btn.lang {
   background-color: #F7F1DF;
-    color: black;
-    /* display: inline-block; */
-    padding: .5em .75em;
-    border-radius: 20px;
+  color: black;
+  /* display: inline-block; */
+  padding: .5em .75em;
+  border-radius: 20px;
 }
 
 .x-button {
-    height: 20px;
-    width: 20px;
-    /* background-color: rgb(48, 48, 48); */
-    /* color: #fff; */
-    /* border-radius: 50%; */
-    /* display: inline-flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    margin-left: .3em;
-    font-size: 18px;
-    cursor: pointer;
+  height: 20px;
+  width: 20px;
+  /* background-color: rgb(48, 48, 48); */
+  /* color: #fff; */
+  /* border-radius: 50%; */
+  /* display: inline-flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin-left: .3em;
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .event-form .inputs {
@@ -161,16 +163,16 @@ background-color: #93c4a0;
   padding: 8px;
   margin-top: 8px;
   background-color: transparent;
-  color:  black;
+  color: black;
   border: none;
-  border-bottom: 2px solid  black;
+  border-bottom: 2px solid black;
   width: 200px;
   outline: none;
   font-size: 1rem;
 }
 
 .event-form input::placeholder {
-          color: gray;
+  color: gray;
   font-size: 1rem;
 }
 
@@ -186,9 +188,9 @@ background-color: #93c4a0;
 }
 
 .event-form input[type="submit"] {
-  background-color:  #0A345B;
-          color: white;
-          border: none;
+  background-color: #0A345B;
+  color: white;
+  border: none;
   cursor: pointer;
   width: 50%;
   height: 7%;
@@ -218,7 +220,7 @@ background-color: #93c4a0;
   /* Adjust the width as needed */
 }
 
-input {
+.autocomplete-container input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
