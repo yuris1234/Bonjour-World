@@ -34,7 +34,7 @@ const NavBar = () => {
             id="create-event-button"
             onClick={() => dispatch(openModal("createEvent"))}
           >
-            Create Event
+            Host Exchange
           </button>
           <ProfileButton user={user} />
         </div>
