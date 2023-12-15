@@ -166,7 +166,15 @@ const EventUpdateForm = ({ eventId }) => {
     "Wyoming",
   ];
 
-  const allLanguages = ["German", "Spanish", "English", "French"];
+  const allLanguages = [
+    'Arabic',           'English',
+    'French',           'German',
+    'German',           'Hindi',
+    'Japanese',         'Korean',
+    'Mandarin', 'Portugese',
+    'Russian',          'Spanish',
+    'Swahili'
+  ];
 
   const addLanguage = (lang) => (e) => {
     setLanguages([...languages, lang])
