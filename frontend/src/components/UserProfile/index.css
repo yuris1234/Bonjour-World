@@ -3,7 +3,7 @@
     /* flex-direction: column; */
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
+    background: linear-gradient(to bottom, white, #bde6aa);
     /* justify-content: center; */
     /* align-items: space-evenly; */
     /* border: 3px solid green; */
@@ -169,7 +169,7 @@ width: 33%;
 
 #profile-details-banner {
     font-size: 1.5rem;
-    background-color: #b5cffb;
+    background-color: #0A345B;
     border-radius: 10px;
     width: 100%;
     height: 40px;

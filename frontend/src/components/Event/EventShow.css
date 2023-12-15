@@ -24,7 +24,7 @@ body {
     /* justify-content: center; */
     width: 800px;
     height: 745px;
-    border: 3px solid black;
+    border: 3px solid #0A345B;
     margin-top: 20px;
     margin-right: 20px;
     overflow: hidden;
@@ -36,7 +36,7 @@ body {
 
 .event-info-list div {
     font-size: 20px;
-    color: black;
+    color: #0A345B;
     padding: 5px;
 }
 
@@ -151,7 +151,7 @@ body {
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
-    background-color: black;
+    background-color: #0A345B;
     color: white;
     border-radius: 30px;
     text-align: center;
@@ -181,7 +181,7 @@ body {
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
-    background-color: black;
+    background-color: #0A345B;
     color: white;
     border-radius: 30px;
     text-align: center;
@@ -197,7 +197,7 @@ body {
     display: inline-block;
     border: 1px;
     background-color: green;
-    color: black;
+    color: #0A345B;
     border-radius: 30px;
     text-align: center;
     line-height: 2;
