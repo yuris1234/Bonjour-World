@@ -175,7 +175,7 @@ const UserProfile = () => {
                 ) : 
                   <div>
                     <h2 id="notifications-title">Exchange Connections</h2>
-                    <div className="pending-div">
+                    <div className="exchange-connections-div">
                       {connections.map((attendee) => {
                             return (attendee._id !== user._id && attendee._id !== currentUser._id ? (
                             <div className="attendee-details">
