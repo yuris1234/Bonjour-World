@@ -25,7 +25,7 @@ export default function ({ event }) {
 
   useEffect(() => {
     dispatch(fetchEvent(event?._id))
-  }, [])
+  }, [dispatch])
 
   return (
     <>
