@@ -73,6 +73,9 @@
 
 .languages-container {
   display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  /* border: 3px solid blue; */
 }
 
 
@@ -91,7 +94,7 @@
   background-color: #0A345B;
   color: white;
   /* font-weight: bold; */
-  font-size: .9rem;
+  font-size: .75rem;
   z-index: 100;
   padding: 10px;
   display: flex;
@@ -104,7 +107,7 @@
 .event-unselect-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   color: white;
   width: 70px;
   padding: 0 9px;
@@ -250,4 +253,14 @@
 .suggestion-item:hover {
   background-color: #002ca770;
   color: black;
+}
+
+.top-language-container {
+  display: flex;
+  /* border: 3px solid green; */
+}
+
+.bottom-language-container {
+  display: flex;
+  /* border: 3px solid red; */
 }

@@ -16,13 +16,12 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
-
 const EventForm = () => {
   const [googleMapsLoaded, setGoogleMapsLoaded] = useState(false);
   const history = useHistory();
   const errors = useSelector((state) => state.errors.event);
   const currentUser = useSelector((state) => state.session.user);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [languages, setLanguages] = useState([]);
   // const [state, setState] = useState("");
@@ -35,7 +34,7 @@ const EventForm = () => {
   const [addressSuggestions, setAddressSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const apiKey = process.env.REACT_APP_MAPS_API_KEY;
-  const [endTime,setEndTime] = useState("");
+  const [endTime, setEndTime] = useState("");
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
@@ -59,7 +58,7 @@ const EventForm = () => {
     if (!googleMapsLoaded) {
       loadGoogleMapsScript();
     }
-  },);
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,7 +78,7 @@ const EventForm = () => {
       attendees: [currentUser._id],
     };
 
-    console.log(updatedEvent)
+    console.log(updatedEvent);
     const res = await dispatch(createEvent(updatedEvent));
     if (res?.title) {
       dispatch(closeModal());
@@ -89,8 +88,8 @@ const EventForm = () => {
 
   const handleAddressChange = (address) => {
     setAddress(address);
-    setAddressSuggestions([]); 
-  
+    setAddressSuggestions([]);
+
     if (address.trim() === "") {
       return;
     }
@@ -98,7 +97,7 @@ const EventForm = () => {
     const requestOptions = {
       input: address,
     };
-  
+
     const service = new window.google.maps.places.AutocompleteService();
     service.getPlacePredictions(requestOptions, (predictions, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
@@ -106,7 +105,6 @@ const EventForm = () => {
       }
     });
   };
-  
 
   const handleSelect = async (address) => {
     try {
@@ -130,7 +128,7 @@ const EventForm = () => {
     );
     const data = await response.json();
     return data.result;
-  };  
+  };
 
   const update = (field) => {
     return (e) => {
@@ -225,14 +223,22 @@ const EventForm = () => {
     "Wyoming",
   ];
 
-  const allLanguages = [
-    'Arabic',           'English',
-    'French',           'German',
-    'German',           'Hindi',
-    'Japanese',         'Korean',
-    'Mandarin', 'Portugese',
-    'Russian',          'Spanish',
-    'Swahili'
+  const firstSix = [
+    "Arabic",
+    "English",
+    "French",
+    "German",
+    "Hindi",
+    "Japanese",
+  ];
+
+  const lastSix = [
+    "Korean",
+    "Mandarin",
+    "Portugese",
+    "Russian",
+    "Spanish",
+    "Swahili",
   ];
 
   const generateTimeOptions = () => {
@@ -263,12 +269,12 @@ const EventForm = () => {
   // }
 
   const addLanguage = (lang) => (e) => {
-    setLanguages([...languages, lang])
-  }
+    setLanguages([...languages, lang]);
+  };
 
   const removeLanguage = (lang) => (e) => {
-    setLanguages(languages.filter(val => val !== lang))
-  }
+    setLanguages(languages.filter((val) => val !== lang));
+  };
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
@@ -316,21 +322,40 @@ const EventForm = () => {
       <div className="select">
         <div className="errors">{errors?.language}</div>
         <div className="languages-container">
-          {allLanguages.map((lang) => {
-            return languages?.includes(lang) ? (
-              <div className="event-unselect-btn">
-                <div>{lang}</div>
-                <div className="x-button" onClick={removeLanguage(lang)}>
-                  {" "}
-                  &times;{" "}
+          <div className="top-language-container">
+            {firstSix.map((lang) => {
+              return languages?.includes(lang) ? (
+                <div className="event-unselect-btn">
+                  <div>{lang}</div>
+                  <div className="x-button" onClick={removeLanguage(lang)}>
+                    {" "}
+                    &times;{" "}
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="event-select-btn lang">
-                <span onClick={addLanguage(lang)}>{lang}</span>
-              </div>
-            );
-          })}
+              ) : (
+                <div className="event-select-btn lang">
+                  <span onClick={addLanguage(lang)}>{lang}</span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="bottom-language-container">
+            {lastSix.map((lang) => {
+              return languages?.includes(lang) ? (
+                <div className="event-unselect-btn">
+                  <div>{lang}</div>
+                  <div className="x-button" onClick={removeLanguage(lang)}>
+                    {" "}
+                    &times;{" "}
+                  </div>
+                </div>
+              ) : (
+                <div className="event-select-btn lang">
+                  <span onClick={addLanguage(lang)}>{lang}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
