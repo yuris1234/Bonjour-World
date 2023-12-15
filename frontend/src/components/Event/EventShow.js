@@ -165,8 +165,8 @@ const EventShow = () => {
         </div>
 
         <div className="display-one-event">
-          {user && (joined || subscribed) ? "" : <div className="event-request">
-            Sign up and request to join for more details!
+          {user && joined ? "" : <div className="event-request">
+            Sign up or request to join for more details!
           </div>}
           <ul className="event-info-list">
             <div className="event-languages">
@@ -181,7 +181,7 @@ const EventShow = () => {
               <div className="event-date-time">
                   <div className="event-date">🗓️ {formatDate(event?.date)}</div>
                   <div className="event-time">⏰ {event?.time}</div>
-                  {user && (joined || subscribed) ? <div className="event-address">📍 {event?.address}</div> : <div className="event-address">📍 <em>hidden</em></div>}
+                  {user && joined ? <div className="event-address">📍 {event?.address}</div> : <div className="event-address">📍 <em>hidden</em></div>}
               </div>
               <div className="event-title-host">
                 {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
@@ -201,7 +201,7 @@ const EventShow = () => {
               </div>
 
               <div className="event-attendees">
-                {user && (joined || subscribed) &&
+                {user && joined &&
                   (
                   <>
                   <div className="event-show">
@@ -235,14 +235,14 @@ const EventShow = () => {
 
               {!isHost && user && (joined || subscribed) && (
                 <button class="unjoin-event" onClick={handleUnjoin}>
-                  {joined ? "Joined" : subscribed ? "Request Sent" : ""}
+                  {joined ? "Joined" : subscribed ? "Request Sent!" : ""}
                 </button>
               )}
 
               {/* create a request to join button if a user is logged in and current status is neither subscribed or joined */}
               {user && !subscribed && !joined && (
                 <button className="join-event" onClick={handleJoin}>
-                  + Request to Join{" "}
+                  <Icon icon="gg:add" className="event-icon"/> Request to Join{" "}
                 </button>
               )}
             </div>

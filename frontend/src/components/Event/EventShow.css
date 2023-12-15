@@ -173,13 +173,13 @@ body {
 }
 
 .join-event {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     height: auto;
-    width: 150px;
-    padding: 5px 10px;
+    width: 140px;
+    padding: 5px;
     display: inline-block;
     border: 1px;
-    background-color: #A2D5C6;
+    background-color: #00573F;
     color: white;
     border-radius: 30px;
     text-align: center;
@@ -190,12 +190,12 @@ body {
 .unjoin-event {
     /* margin-left: 10px; */
     height: auto;
-    width: 150px;
+    width: 110px;
     padding: 5px 10px;
     display: inline-block;
     border: 1px;
-    background-color: green;
-    color: #A2D5C6;
+    background-color: #00573F;
+    color: white;
     border-radius: 30px;
     text-align: center;
     line-height: 2;
