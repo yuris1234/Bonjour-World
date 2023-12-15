@@ -31,235 +31,143 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
     };
 
     useEffect(() => {
-        const customStyle =
-            
-        [
+        const customStyle = [
             {
-                "featureType": "administrative",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#444444"
-                    }
-                ]
+              featureType: "landscape.man_made",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#f7f1df",
+                },
+              ],
             },
             {
-                "featureType": "administrative.country",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#e7d5ba"
-                    }
-                ]
+              featureType: "landscape.natural",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#d0e3b4",
+                },
+              ],
             },
             {
-                "featureType": "administrative.locality",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#615439"
-                    }
-                ]
+              featureType: "landscape.natural.terrain",
+              elementType: "geometry",
+              stylers: [
+                {
+                  visibility: "off",
+                },
+              ],
             },
             {
-                "featureType": "administrative.land_parcel",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#e7d5ba"
-                    }
-                ]
+              featureType: "poi",
+              elementType: "labels",
+              stylers: [
+                {
+                  visibility: "off",
+                },
+              ],
             },
             {
-                "featureType": "landscape",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "color": "#f2f2f2"
-                    }
-                ]
+              featureType: "poi.business",
+              elementType: "all",
+              stylers: [
+                {
+                  visibility: "off",
+                },
+              ],
             },
             {
-                "featureType": "landscape",
-                "elementType": "geometry",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    }
-                ]
+              featureType: "poi.medical",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#fbd3da",
+                },
+              ],
             },
             {
-                "featureType": "landscape",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#e7d5ba"
-                    }
-                ]
+              featureType: "poi.park",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#bde6ab",
+                },
+              ],
             },
             {
-                "featureType": "landscape.man_made",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#eee4d4"
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
+              featureType: "road",
+              elementType: "geometry.stroke",
+              stylers: [
+                {
+                  visibility: "off",
+                },
+              ],
             },
             {
-                "featureType": "landscape.man_made",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "color": "#eee4d4"
-                    }
-                ]
+              featureType: "road",
+              elementType: "labels",
+              stylers: [
+                {
+                  visibility: "off",
+                },
+              ],
             },
             {
-                "featureType": "landscape.man_made",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#eee4d4"
-                    }
-                ]
+              featureType: "road.highway",
+              elementType: "geometry.fill",
+              stylers: [
+                {
+                  color: "#ffe15f",
+                },
+              ],
             },
             {
-                "featureType": "landscape.natural",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "visibility": "on"
-                    }
-                ]
+              featureType: "road.highway",
+              elementType: "geometry.stroke",
+              stylers: [
+                {
+                  color: "#efd151",
+                },
+              ],
             },
             {
-                "featureType": "landscape.natural.terrain",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "saturation": "0"
-                    }
-                ]
+              featureType: "road.arterial",
+              elementType: "geometry.fill",
+              stylers: [
+                {
+                  color: "#ffffff",
+                },
+              ],
             },
             {
-                "featureType": "landscape.natural.terrain",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#eee4d4"
-                    }
-                ]
+              featureType: "road.local",
+              elementType: "geometry.fill",
+              stylers: [
+                {
+                  color: "black",
+                },
+              ],
             },
             {
-                "featureType": "poi",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
+              featureType: "transit.station.airport",
+              elementType: "geometry.fill",
+              stylers: [
+                {
+                  color: "#cfb2db",
+                },
+              ],
             },
             {
-                "featureType": "road",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": -100
-                    },
-                    {
-                        "lightness": 45
-                    }
-                ]
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#a2daf2",
+                },
+              ],
             },
-            {
-                "featureType": "road",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#fcefd2"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "simplified"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "color": "#fcefd2"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "color": "#fcefd2"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "geometry.fill",
-                "stylers": [
-                    {
-                        "hue": "#ffb000"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "labels.icon",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "road.local",
-                "elementType": "geometry.stroke",
-                "stylers": [
-                    {
-                        "color": "#fcefd2"
-                    }
-                ]
-            },
-            {
-                "featureType": "transit",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "color": "#7dacbc"
-                    },
-                    {
-                        "visibility": "on"
-                    }
-                ]
-            }
-        ]
+          ];
         if (!map) {
             const defaultMapOptions = {
                 zoom: 11,
@@ -276,12 +184,13 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
             // If map already exists, update its options
             map.setOptions({
                 center: mapOptions.center,
-                zoom: 17
+                zoom: 16
             });
         }
     }, [map, mapOptions, language]);
 
     useEffect(() => {
+    const image = "https://www.svgrepo.com/show/399293/story-map.svg";
         const newMarkers = {};
             Object.values(events).forEach(async (event) => {
                 if (language && !event.language.includes(language)) {
@@ -296,12 +205,13 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
                         // If no marker exists for the event, create one
                         const marker = new window.google.maps.Marker({
                             position,
-                            map
-                        });
-                        // Attach marker event handlers
-                        Object.entries(markerEventHandlers).forEach(([eventType, handler]) => {
-                            marker.addListener(eventType, () => handler(event));
-                        });
+                            map,
+                            icon: {
+                              url: image,
+                              scaledSize: new window.google.maps.Size(40, 40),
+                            },
+                            animation: window.google.maps.Animation.DROP,
+                          });
                         
                         newMarkers[event._id] = marker;
                     } else {
@@ -339,7 +249,7 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
      
 
         
-        return <div className="event-show-map" ref={mapRef} style={{ paddingTop: "50px", borderRadius: "18px", height: '100%', width: '100%',  }}>Map</div>
+        return <div className="event-show-map" ref={mapRef} style={{ paddingTop: "50px", borderTopRightRadius: "18px",  borderBottomRightRadius: "18px", height: '94.25%', width: '100%',  }}>Map</div>
     }
     
     const EventShowMapWrapper = ({ events, markerEventHandlers, mapOptions, language}) => {
