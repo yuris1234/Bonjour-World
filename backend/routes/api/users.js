@@ -137,12 +137,12 @@ router.patch('/:id', validateUserInput, async (req, res, next) => {
 // POST /api/users/:id/events/:id (post a many to many relationship)
 router.post('/:userId/events/:eventId', async(req, res, next) => {
   try {
-  console.log(req.params.userId)
-  console.log(req.params.eventId)
+  // console.log(req.params.userId)
+  // console.log(req.params.eventId)
     const user = await User.findById(req.params.userId);
-    console.log(user)
+    // console.log(user)
     const event = await Event.findById(req.params.eventId);
-    console.log(event);
+    // console.log(event);
 
     if (!user || !event) {
       return res.json({message: 'User or Event not found'});
@@ -152,7 +152,9 @@ router.post('/:userId/events/:eventId', async(req, res, next) => {
       user.events.push(req.params.eventId);
       event.attendees.push(req.params.userId);
       await user.save();
+      // console.log("user saved from users")
       await event.save();
+      // console.log("event saved from users");
     } else {
       const error = new Error('User has already joined this event');
       error.statusCode = 400;
