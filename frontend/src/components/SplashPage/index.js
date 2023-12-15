@@ -88,7 +88,6 @@ const SplashPage = () => {
       <div className="splash-page">
         <div className="content-container">
           <div className="currentlanguage">{displayCurrentLanguage()}</div>
-
           <div className="image-div">
             <img
               src={image2}
@@ -112,7 +111,6 @@ const SplashPage = () => {
           <button className="down-arrow" onClick={handleScroll}>
             <Icon icon="bx:down-arrow-alt" className="down-arrow-icon" />
           </button>
-
           {/* <div className="review">🌍 "{getRandomReview().text}"</div> */}
         </div>
         <footer className="footer">Copyright &copy; 2023 Bonjour World</footer>
