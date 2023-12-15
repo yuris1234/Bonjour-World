@@ -187,21 +187,18 @@ const EventShow = () => {
               </div>
 
               <div className="event-attendees">
-                <div id="event-item-title"><Icon icon="mdi:user" className="event-icon" />Attendees</div>
-                {attendees?.map((attendee) => (
+                <div id="event-item-title">
+                  <Icon icon="mdi:user" className="event-icon" />Attendees
+                </div>
+                <div className="attendees">
+                  {attendees?.map((attendee) => (
                   <div className="attendee-details" key={attendee._id}>
                     <Link to={`users/${attendee._id}`}>
                       <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
                     </Link>
                     <span className="attendee-username">{attendee.firstName}</span>
                   </div>
-                ))}
-              </div>
-
-              <div className="event-location-div">
-                Location
-                <div className="event-location">
-                  {event?.city}, {event?.state} {event?.zipcode}
+                  ))}
                 </div>
               </div>
 
