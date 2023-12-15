@@ -263,6 +263,7 @@ body {
 .attendees {
     display: flex;
     justify-content: space-between;
+    width: fit-content
     /* font-size: 10px; */
 }
 
