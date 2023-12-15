@@ -25,7 +25,7 @@
 }
 
 .event-form h2 {
-  color:  #bde6aa;
+  color:  #0A345B;
   font-size: 2rem;
   text-align: center;
   margin-bottom: 30px;
@@ -67,7 +67,7 @@
           height: 20px;
           border: none;
           cursor: pointer;
-          background-color:  #bde6aa;
+          background-color:  #0A345B;
           font-weight: bold;
           z-index: 100;
           padding: 10px;
@@ -146,9 +146,9 @@
   padding: 8px;
   margin-top: 8px;
   background-color: transparent;
-  color:  #bde6aa;;
+  color:  #0A345B;;
   border: none;
-  border-bottom: 1px solid  #bde6aa;;
+  border-bottom: 1px solid  #0A345B;;
   width: 200px;
   outline: none;
   font-size: 1rem;
@@ -170,7 +170,7 @@
 }
 
 .event-form input[type="submit"] {
-  background-color:  #bde6aa;;
+  background-color:  #0A345B;;
   color: white;
   cursor: pointer;
   width: 50%;

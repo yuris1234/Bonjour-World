@@ -28,13 +28,13 @@
 }
 
 .login-form h2 {
-  color: black;
+  color: #0A345B;
   font-size: 2rem;
   /* margin-bottom: 10px; */
 }
 
 /* .login-form label {
-  color: black;
+  color: #0A345B;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
@@ -44,9 +44,9 @@
   padding: 8px;
   margin-top: 8px;
   background-color: transparent;
-  color: black;
+  color: #0A345B;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #0A345B;
   font-size: 1rem;
   outline: none;
 }
@@ -87,13 +87,13 @@
 }
 
 .login-form .login-button {
-  background-color: black;
+  background-color: #0A345B;
   margin: 0;
 }
 
 .login-form .login-as-guest-button {
   border: none;
-  background-color: #bde6aa;
+  background-color: #0A345B;
   font-weight: bold;
 }
 
