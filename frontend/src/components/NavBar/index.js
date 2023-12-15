@@ -6,6 +6,7 @@ import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
   const loggedIn = useSelector((state) => !!state.session.user);
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const getLinks = () => {
@@ -35,7 +36,7 @@ const NavBar = () => {
           >
             Create Event
           </button>
-          <ProfileButton user={""} />
+          <ProfileButton user={user} />
         </div>
       );
     } else {

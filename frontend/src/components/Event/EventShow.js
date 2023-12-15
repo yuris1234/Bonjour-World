@@ -19,6 +19,7 @@ import EventsMapWrapper from "../EventMap";
 import { getHost } from "../../store/users";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import EventShowMapWrapper from "../EventMap/EventShowMap";
+import EventShowMap from "../EventMap/EventShowMap"
 
 const EventShow = () => {
   const dispatch = useDispatch();
