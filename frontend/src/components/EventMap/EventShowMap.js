@@ -339,7 +339,7 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
      
 
         
-        return <div className="event-show-map" ref={mapRef} style={{ paddingTop: "50px", borderRadius: "18px", height: '100%', width: '70%',  }}>Map</div>
+        return <div className="event-show-map" ref={mapRef} style={{ paddingTop: "50px", borderRadius: "18px", height: '100%', width: '100%',  }}>Map</div>
     }
     
     const EventShowMapWrapper = ({ events, markerEventHandlers, mapOptions, language}) => {
