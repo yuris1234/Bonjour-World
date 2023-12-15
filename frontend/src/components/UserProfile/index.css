@@ -3,26 +3,28 @@
     /* flex-direction: column; */
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(to bottom, white, #bde6aa);
     /* justify-content: center; */
     /* align-items: space-evenly; */
     /* border: 3px solid green; */
   padding-top: 45px;
 }
 
-/* .profile-container {
-    flex-grow: 1;
+.profile-container {
+    /* flex-grow: 1;
     display: flex;
-    flex-direction: column;
-} */
+    flex-direction: column; */
+    /* height: 100%;
+    width: 100%; */
+    /* border: 3px solid red; */
+}
 
 /* .profile-greeting {
-    border-top: 5px solid #0A345B;
-    border-left: 5px solid #0A345B;
-    border-right: 5px solid #0A345B;
+    border-top: 5px solid #A2D5C6;
+    border-left: 5px solid #A2D5C6;
+    border-right: 5px solid #A2D5C6;
     font-size: 60px;
     text-align: center;
-    color: #0A345B;
+    color: #A2D5C6;
     height: 100px;
     display: flex;
     align-items: center;
@@ -33,7 +35,7 @@
 .actual-profile-container {
     display: flex;
     /* height: 100%; */
-    border: 3px solid pink;
+    /* border: 3px solid pink; */
 }
 
 .app-container h2 {
@@ -55,7 +57,7 @@ width: 33%;
     position: relative;
     height: 56px;
     width: 56px;
-    border: 5px solid #0A345B;
+    border: 5px solid #A2D5C6;
     border-radius: 30px;
     margin: 10px;
     display: flex;
@@ -71,7 +73,7 @@ width: 33%;
     border: none;
     position: relative;
     bottom: 3px;
-    color: #0A345B;
+    color: #A2D5C6;
     background-color: transparent;
 } */
 
@@ -80,25 +82,35 @@ width: 33%;
     flex-direction: column;
     width: 66%;
     justify-content: space-evenly;
-    border: 3px solid brown;
+    height: 93vh;
+    margin-left: 10px;
+    /* border: 3px solid blue; */
 }
 
 #left-side-top {
-    border: 3px solid orange;
+    background-color: #93c4a0;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    /* border: 3px solid orange; */
     /* width: 100%; */
     height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 4rem;
+    border: 3px solid black;
 }
 
 
 #left-side-bottom {
     display: flex;
-    border: 3px solid pink;
+    /* border: 3px solid pink; */
     /* width: 100%; */
     height: 70%;
+    /* background-color: #F7F1DF; */
+    border-radius: 10px;
+    justify-content: space-between;
 }
 
 .profile-img {
@@ -135,7 +147,7 @@ width: 33%;
     /* bottom: 60px; */
     /* width: 50%; */
     padding: 20px;
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
 }
 
 .profile-details {
@@ -147,9 +159,12 @@ width: 33%;
     flex-direction: column;
     /* padding: 20px; */
     align-items: center;
-    border: 3px solid purple;
+    /* border: 3px solid purple; */
     gap: 10px;
-    width: 50%;
+    width: 49%;
+    border-radius: 10px;
+    border: 3px solid black;
+    background-color: #F7F1DF;
 }
 
 /* .profile div {
@@ -169,7 +184,7 @@ width: 33%;
 
 #profile-details-banner {
     font-size: 1.5rem;
-    background-color: #0A345B;
+    background-color: #93c4a0;
     border-radius: 10px;
     width: 100%;
     height: 40px;
@@ -193,7 +208,8 @@ width: 33%;
     flex-direction: column;
     align-items: center;
     width: 33%;
-    border: 3px solid pink;
+    /* border: 3px solid pink; */
+    background-color: white;
 }
 
 .event-header {
@@ -218,7 +234,7 @@ width: 33%;
 }
 
 .display-users-events {
-    border: 3px solid green;
+    /* border: 3px solid green; */
     width: 80%;
     height: 100%;
     margin-top: 70px;
