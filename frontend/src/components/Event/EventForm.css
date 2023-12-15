@@ -82,7 +82,7 @@ background-color: #93c4a0;
           border: none;
           border-radius: 20px;
           width: 100px;
-          height: 20px;
+          /* height: 20px;/ */
           border: none;
           cursor: pointer;
           background-color:  #0A345B;
