@@ -1,6 +1,7 @@
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+// import "../../static/images/noun-language-2511286.png";
 
 export const EventMap = ({
   events,
@@ -197,6 +198,8 @@ export const EventMap = ({
   }, [map, mapOptions, language]);
 
   useEffect(() => {
+    const image =
+      "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
     const newMarkers = {};
     Object.values(events).forEach(async (event) => {
       if (language && !event.language.includes(language)) {
@@ -212,7 +215,21 @@ export const EventMap = ({
           const marker = new window.google.maps.Marker({
             position,
             map,
+            icon: image,
+            animation: window.google.maps.Animation.DROP,
           });
+          console.log(event.language);
+          const infoWindow = new window.google.maps.InfoWindow({
+            content: event.languages[0],
+          });
+
+          marker.addListener("mouseover", () => {
+            infoWindow.open(map, marker);
+          });
+          marker.addListener("mouseout", () => {
+            infoWindow.close(map, marker);
+          });
+
           // Attach marker event handlers
           Object.entries(markerEventHandlers).forEach(
             ([eventType, handler]) => {
@@ -243,7 +260,6 @@ export const EventMap = ({
     // Remove markers for events that no longer exist
     if (markersRef.current) {
       Object.keys(markersRef.current).forEach((id) => {
-        debugger;
         if (!newMarkers[id] || (language && events[id].language !== language)) {
           markersRef.current[id].setMap(null);
         }
@@ -271,7 +287,6 @@ export const EventMap = ({
 const EventsMapWrapper = ({
   events,
   markerEventHandlers,
-  highlightedEvent,
   mapOptions,
   language,
 }) => {
@@ -280,7 +295,6 @@ const EventsMapWrapper = ({
       <EventMap
         events={events}
         markerEventHandlers={markerEventHandlers}
-        highlightedEvent={highlightedEvent}
         mapOptions={mapOptions}
         language={language}
       />
