@@ -44,12 +44,22 @@ background-color: #93c4a0;
   /* border: 1px solid blue; */
 }
 
+.event-form .select {
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: center;
+  align-items: center; */
+  /* gap: 5px; */
+  font-size: 1rem;
+}
+
 .event-form select {
   /* background-color: transparent;
   border-radius: 5px; */
   text-align: center;
     display: flex;
       justify-content: center;
+      align-items: center;
       width: 150px;
       background-color: transparent;
       border: none;
@@ -60,10 +70,13 @@ background-color: #93c4a0;
       font-size: .95rem;
 }
 
+.languages-container {
+  display: flex;
+}
+
 .event-select-btn, .event-unselect-btn {
         cursor: pointer;
         display: inline-block;
-          border-radius: 5px; 
           margin-top: 8px; 
           white-space: nowrap;
           border: none;
@@ -80,22 +93,19 @@ background-color: #93c4a0;
           padding: 10px;
           display: flex;
           justify-content: center;
+          align-items: center;
           margin-left: 10px; 
   /* border: 1px solid green; */
-}
-
-.languages-container {
-display: flex;
 }
 
 .event-unselect-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: white;
-  width: 100px;
-  padding: 0;
-  height: 35px;
+  width: 70px;
+  padding: 0 9px;
+  height: 30px;
   text-align: center;
   margin: 5px;
 }
@@ -111,7 +121,7 @@ display: flex;
 }
 
 .event-select-btn.lang {
-  background-color: #ccc;
+  background-color: #F7F1DF;
     color: black;
     /* display: inline-block; */
     padding: .5em .75em;
@@ -130,15 +140,6 @@ display: flex;
     margin-left: .3em;
     font-size: 18px;
     cursor: pointer;
-}
-
-.event-form .select {
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  font-size: 1rem;
 }
 
 .event-form .inputs {
@@ -199,4 +200,51 @@ display: flex;
 
 .event-form input[type="submit"]:hover {
   transform: scale(1.05);
+}
+
+/* .autocomplete-dropdown-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* Add your global styles or import a stylesheet */
+
+.autocomplete-container {
+  position: relative;
+  width: 300px;
+  /* Adjust the width as needed */
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.autocomplete-dropdown-container {
+  position: absolute;
+  top: 56.15%;
+  left: 25%;
+  /* text-align: center; */
+  width: 50%;
+  /* border: 1px solid #ccc; */
+  background-color: #F7F1DF;
+  backdrop-filter: blur 40px;
+  max-height: 200px;
+  overflow-y: auto;
+  color: black;
+  border-radius: 10px;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #002ca770;
+  color: black;
 }
