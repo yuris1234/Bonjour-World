@@ -26,7 +26,15 @@ function isValidFutureDate(dateString) {
 
 const isValidLanguages = (array) => {
     if (array.length === 0) return false;
-    langs = ['English', 'French', 'Spanish', 'German']
+    langs = [
+        'Arabic',           'English',
+        'French',           'German',
+        'German',           'Hindi',
+        'Japanese',         'Korean',
+        'Mandarin', 'Portugese',
+        'Russian',          'Spanish',
+        'Swahili'
+      ]
     return array.every(value => langs.includes(value))
 }
 

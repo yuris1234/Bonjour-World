@@ -3,7 +3,15 @@ const handleValidationErrors = require('./handleValidationErrors');
 
 const isValidLanguages = (array) => {
   if (array.length === 0) return false;
-  langs = ['English', 'French', 'Spanish', 'German']
+  langs = [
+    'Arabic',           'English',
+    'French',           'German',
+    'German',           'Hindi',
+    'Japanese',         'Korean',
+    'Mandarin', 'Portugese',
+    'Russian',          'Spanish',
+    'Swahili'
+  ]
   return array.every(value => langs.includes(value))
 }
 
@@ -24,10 +32,10 @@ const validateUserInput = [
     check('lastName')
       .isLength({min: 1, max: 30})
       .withMessage('Last name is invalid'),
-    // check('languages')
-    //   .optional()
-    //   .custom(value => isValidLanguages(value))
-    //   .withMessage('Languages must be one of the supported languages'),
+    check('languages')
+      .optional()
+      .custom(value => isValidLanguages(value))
+      .withMessage('Languages must be one of the supported languages'),
     handleValidationErrors
   ];
 
