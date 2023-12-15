@@ -137,8 +137,13 @@ router.patch('/:id', validateUserInput, async (req, res, next) => {
 // POST /api/users/:id/events/:id (post a many to many relationship)
 router.post('/:userId/events/:eventId', async(req, res, next) => {
   try {
+  console.log(req.params.userId)
+  console.log(req.params.eventId)
     const user = await User.findById(req.params.userId);
+    console.log(user)
     const event = await Event.findById(req.params.eventId);
+    console.log(event);
+
     if (!user || !event) {
       return res.json({message: 'User or Event not found'});
     }

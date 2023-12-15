@@ -157,6 +157,7 @@ const UserProfile = () => {
 
           <div className="event-container">
             <h2 className="event-header">Your Events</h2>
+            {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
               {events?.map((event) => (
                 <EventIndexItem
