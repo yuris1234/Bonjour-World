@@ -45,6 +45,23 @@ export const getPendingAttendees = (event) => (state) => {
   }
 }
 
+export const getConnections = (events) => (state) => {
+  const holder = [];
+  const idHolder = [];
+  if (events) {
+    events.forEach((event) => {
+      Object.values(state.users).forEach((user) => {
+        if (event.attendees.includes(user._id) && !idHolder.includes(user)) {
+          holder.push(user);
+          idHolder.push(user._id);
+        }
+      })
+    })
+  }
+  console.log(holder)
+  return holder;
+}
+
 export const getUser = (userId) => (state) => {
   if (state?.users) {
     return state.users[userId];
