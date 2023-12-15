@@ -133,7 +133,6 @@ export const createEvent = (data) => async (dispatch) => {
 };
 
 export const updateEvent = (event) => async (dispatch) => {
-  console.log('hello')
   const res = await jwtFetch(`/api/events/${event._id}`, {
     method: "PATCH",
     headers: {

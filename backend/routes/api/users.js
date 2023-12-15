@@ -135,7 +135,7 @@ router.patch('/:id', validateUserInput, async (req, res, next) => {
 })
 
 // POST /api/users/:id/events/:id (post a many to many relationship)
-router.post('/:userId/events/:eventId', async(req, res, next) => {
+router.post('/:userId/events/:eventId', async (req, res, next) => {
   try {
   // console.log(req.params.userId)
   // console.log(req.params.eventId)
