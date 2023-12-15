@@ -374,7 +374,7 @@ const EventForm = () => {
                       return (
                         <div
                           {...getSuggestionItemProps(suggestion, {
-                            style,
+                            className: "suggestion-item",
                           })}
                           key={index}
                         >

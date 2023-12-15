@@ -23,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 1000;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 /* .profile-dropdown hr {
@@ -43,7 +43,7 @@ border: 1px solid black;
   display: inline-block;
   text-align: center;
   background: transparent;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 #profile-link:hover {
@@ -55,7 +55,7 @@ border: 1px solid black;
   border: none;
   cursor: pointer;
   background: transparent;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .profile-dropdown .logout-button:hover {

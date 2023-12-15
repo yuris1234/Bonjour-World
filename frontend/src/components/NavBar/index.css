@@ -75,7 +75,7 @@
 }
 
 #all-events {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: white;
     cursor: pointer;
     text-decoration: none;
@@ -83,7 +83,7 @@
 }
 
 #about-us {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: white;
     cursor: pointer;
     text-decoration: none;
@@ -99,7 +99,7 @@
     display: inline-block;
     text-align: center;
     background: transparent;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 1px;
     padding: 0;
 }
