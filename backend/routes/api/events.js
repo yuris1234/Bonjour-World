@@ -128,13 +128,9 @@ router.delete('/:eventId/users/:userId', async (req, res, next) => {
     if (user.requestedEvents.includes(event._id) && event.pendingAttendees.includes(user._id)) {
         // get rid of the association between event and attendee
         user.requestedEvents.pull(req.params.eventId);
-        console.log(user)
         event.pendingAttendees.pull(req.params.userId);  
-        console.log(event);
-        await user.save();
-        console.log("user saved")
         await event.save();
-        console.log("event saved");
+        await user.save();
     } else {
         const error = new Error('User has not requested to join this event');
         error.statusCode = 400;
@@ -143,9 +139,9 @@ router.delete('/:eventId/users/:userId', async (req, res, next) => {
     }
         return res.json({user: user, event: event});
     } catch {
-        const error = new Error('Event or User not found');
+        const error = new Error('error saving user or event');
         error.statusCode = 404;
-        error.errors = { message: "No event or user found with that id" };
+        error.errors = { message: "error saving user or event" };
         return next(error);
     }
 })
@@ -163,7 +159,6 @@ router.delete('/:id', async (req, res, next) => {
                     user.events.splice(i, 1);
                 }
                 await user.save()
-                console.log('hi')
             }
             let host = await User.findById(event.host);
             let j = host.hostedEvents.indexOf(event._id);

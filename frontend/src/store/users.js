@@ -36,14 +36,11 @@ export const getAttendees = (event) => (state) => {
 export const getPendingAttendees = (event) => (state) => {
   const holder = [];
   if (event) {
-        console.log(event);
-        console.log(state.users);
     Object.values(state.users).forEach((user) => {
       if (event.pendingAttendees.includes(user._id)) {
         holder.push(user)
       }
     }) 
-    console.log(holder)
     return holder
   }
 }
