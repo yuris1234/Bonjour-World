@@ -49,19 +49,23 @@ body {
 
 .event-info-list .event-title {
     position: relative;
-    height: 100px;
+    /* height: 100px; */
     width: 100%;
     font-weight: bolder;
     font-size: 30px;
-    text-align: center;
     /* Center the text horizontally */
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
     /* Adjust the top margin as needed */
 }
 
 .event-title-host {
+    display: flex;
+    align-items: center;
     font-weight: 100;
     font-size: 10px;
 }
@@ -69,15 +73,16 @@ body {
 .event-details {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: space-between;
     height: 600px;
+    margin-left: 10px;
 }
 
 .event-description-div {
     font-weight: bolder;
-    margin-left: 10px;
     max-width: 700px;
+    width: 60%;
 }
 
 .event-description {
@@ -86,16 +91,16 @@ body {
 
 .event-date-div {
     font-weight: bold;
-    margin-left: 10px;
 }
 
 .event-date {
     font-weight: 100;
+    display: flex;
+    align-items: center;
 }
 
 .event-time-div {
     font-weight: bold;
-    margin-left: 10px;
 }
 
 .event-time {
@@ -104,7 +109,6 @@ body {
 
 .event-location-div {
     font-weight: bold;
-    margin-left: 10px;
 }
 
 .event-location {
@@ -113,7 +117,6 @@ body {
 
 .event-address-div {
     font-weight: bold;
-    margin-left: 10px;
 }
 
 .event-address {
@@ -139,7 +142,6 @@ body {
 }
 
 .event-language {
-    margin-left: 10px;
     color: #9CC0F9;
     font-weight: bold;
 }
@@ -216,10 +218,44 @@ body {
     height: 40px;
     width: 40px;
     padding: 5px;
+    border-radius: 50%;
 }
 
 .attendee-username {
     position: relative;
     bottom: 15px;
     left: 5px;
+}
+
+.event-date-time {
+    display: flex;
+    flex-direction: column;
+    /* border: solid #b5cffb; */
+    /* background-color: #b5cffb; */
+    width: 100%;
+    margin-top: 10px;
+}
+
+.event-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-icon {
+    margin-right: 5px;
+    width: 5%;
+    height: 5%;
+}
+
+.event-attendees {
+    display: flex;
+    flex-direction: column;
+}
+
+.attendees {
+    display: flex;
+}
+
+.event-show {
+    width: 60%;
 }
