@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
+  background: linear-gradient(to bottom, white, #93c4a0);
   padding-top: 80px;
 }
 
@@ -14,7 +14,7 @@
       opacity: 0;
       text-align: center;
       font-size: 500%;
-      color: #0A345B;
+      color: #93c4a0;
       white-space: nowrap;
       height: 100%;
       position: fixed;

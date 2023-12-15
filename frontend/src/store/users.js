@@ -24,13 +24,42 @@ export const receiveEventJoin = (eventJoin) => ({
 export const getAttendees = (event) => (state) => {
   const holder = [];
   if (event) {
-    Object.values(state.users).filter((user) => {
+    Object.values(state.users).forEach((user) => {
       if (event.attendees.includes(user._id)) {
         holder.push(user)
       }
     }) 
     return holder
   }
+}
+
+export const getPendingAttendees = (event) => (state) => {
+  const holder = [];
+  if (event) {
+    Object.values(state.users).forEach((user) => {
+      if (event.pendingAttendees.includes(user._id)) {
+        holder.push(user)
+      }
+    }) 
+    return holder
+  }
+}
+
+export const getConnections = (events) => (state) => {
+  const holder = [];
+  const idHolder = [];
+  if (events) {
+    events.forEach((event) => {
+      Object.values(state.users).forEach((user) => {
+        if (event.attendees.includes(user._id) && !idHolder.includes(user)) {
+          holder.push(user);
+          idHolder.push(user._id);
+        }
+      })
+    })
+  }
+  console.log(holder)
+  return holder;
 }
 
 export const getUser = (userId) => (state) => {
@@ -98,9 +127,14 @@ const usersReducer = (state = {}, action) => {
           if (action.event.attendees) {
             Object.values(action.event.attendees).forEach((user) => {
               newState[user._id] = user;
-            })
-            return {...state, ...newState}
-          }
+          })}
+
+        if (action.event.pendingAttendees) {
+            Object.values(action.event.pendingAttendees).forEach((user) => {
+            newState[user._id] = user;
+        })}
+
+        return {...state, ...newState}
         default: 
           return state;
     }

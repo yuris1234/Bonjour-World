@@ -43,10 +43,11 @@ function ProfileButton({ user }) {
       {showMenu && (
         <ul className="profile-dropdown">
           <li>
-            <Link to={"/profile"} id="profile-link">
+            <Link to={`/profile/${user._id}`} id="profile-link">
               Profile
             </Link>
           </li>
+          {/* <hr/> */}
           <li>
             <button onClick={logoutUser} className="logout-button">
               Log Out

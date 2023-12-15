@@ -12,7 +12,8 @@ router.get('/:id', async (req, res, next) => {
         const unpopulatedEvent = await Event.findById(req.params.id)
         const event = JSON.parse(JSON.stringify(unpopulatedEvent));
         const populatedEvent = await unpopulatedEvent.populate('attendees')
-        return res.json({event, attendees: populatedEvent.attendees})
+        await populatedEvent.populate("pendingAttendees")
+        return res.json({event, attendees: populatedEvent.attendees, pendingAttendees: populatedEvent.pendingAttendees})
     }
     catch(err) {
         const error = new Error('Event not found');
@@ -45,14 +46,12 @@ router.post('/', validateEventCreation, async (req, res, next) => {
             title: req.body.title,
             description: req.body.description,
             languages: req.body.languages,
-            state: req.body.state,
-            city: req.body.city,
             address: req.body.address,
-            zipcode: req.body.zipcode,
             lat: req.body.lat,
             long: req.body.long,
             date: req.body.date,
             time: req.body.time,
+            endTime: req.body.endTime,
             host: req.body.host,
             attendees: req.body.attendees
         })
@@ -130,8 +129,8 @@ router.delete('/:eventId/users/:userId', async (req, res, next) => {
         // get rid of the association between event and attendee
         user.requestedEvents.pull(req.params.eventId);
         event.pendingAttendees.pull(req.params.userId);  
-        await user.save();
         await event.save();
+        await user.save();
     } else {
         const error = new Error('User has not requested to join this event');
         error.statusCode = 400;
@@ -140,9 +139,9 @@ router.delete('/:eventId/users/:userId', async (req, res, next) => {
     }
         return res.json({user: user, event: event});
     } catch {
-        const error = new Error('Event or User not found');
+        const error = new Error('error saving user or event');
         error.statusCode = 404;
-        error.errors = { message: "No event or user found with that id" };
+        error.errors = { message: "error saving user or event" };
         return next(error);
     }
 })
@@ -160,7 +159,6 @@ router.delete('/:id', async (req, res, next) => {
                     user.events.splice(i, 1);
                 }
                 await user.save()
-                console.log('hi')
             }
             let host = await User.findById(event.host);
             let j = host.hostedEvents.indexOf(event._id);

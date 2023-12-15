@@ -119,10 +119,10 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
         </div>
       </div>
 
-      <div id="item-location-div">
+      {/* <div id="item-location-div">
         <div id="event-item-city">{event.city}</div>
         <div id="event-item-state">{getStateAbbreviation(event.state)}</div>
-      </div>
+      </div> */}
 
       <div id="event-item-bottom">
         <div id="date-item-and-time">
