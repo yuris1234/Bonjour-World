@@ -12,7 +12,8 @@ router.get('/:id', async (req, res, next) => {
         const unpopulatedEvent = await Event.findById(req.params.id)
         const event = JSON.parse(JSON.stringify(unpopulatedEvent));
         const populatedEvent = await unpopulatedEvent.populate('attendees')
-        return res.json({event, attendees: populatedEvent.attendees})
+        await populatedEvent.populate("pendingAttendees")
+        return res.json({event, attendees: populatedEvent.attendees, pendingAttendees: populatedEvent.pendingAttendees})
     }
     catch(err) {
         const error = new Error('Event not found');
@@ -127,9 +128,13 @@ router.delete('/:eventId/users/:userId', async (req, res, next) => {
     if (user.requestedEvents.includes(event._id) && event.pendingAttendees.includes(user._id)) {
         // get rid of the association between event and attendee
         user.requestedEvents.pull(req.params.eventId);
+        console.log(user)
         event.pendingAttendees.pull(req.params.userId);  
+        console.log(event);
         await user.save();
+        console.log("user saved")
         await event.save();
+        console.log("event saved");
     } else {
         const error = new Error('User has not requested to join this event');
         error.statusCode = 400;
