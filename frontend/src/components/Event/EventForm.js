@@ -264,7 +264,7 @@ const EventForm = () => {
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>Create Exchange</h2>
+      <h2>Host an Exchange</h2>
 
       <div className="selects">
         <div className="select">

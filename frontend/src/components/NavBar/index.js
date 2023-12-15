@@ -27,14 +27,14 @@ const NavBar = () => {
             to={"/events"}
             activeClassName="active"
           >
-            Events
+            Exchanges
           </NavLink>
           <button
             className="logged-in-link"
             id="create-event-button"
             onClick={() => dispatch(openModal("createEvent"))}
           >
-            Host Exchange
+            Host an Exchange
           </button>
           <ProfileButton user={user} />
         </div>

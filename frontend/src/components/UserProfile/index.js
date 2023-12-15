@@ -172,7 +172,7 @@ const UserProfile = () => {
 
           <div className="event-container">
             <h2 className="event-header">
-              {user?._id === currentUser?._id ? "Your Events" : `${user?.firstName}'s Events`}
+              {user?._id === currentUser?._id ? "Your Exchanges" : `${user?.firstName}'s Exchanges`}
             </h2>
             {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">

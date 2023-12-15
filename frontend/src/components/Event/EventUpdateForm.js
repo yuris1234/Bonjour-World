@@ -210,7 +210,7 @@ const EventUpdateForm = ({ eventId }) => {
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>Edit Exchange</h2>
+      <h2>Edit Your Exchange</h2>
 
       <div className="selects">
         <div className="select">

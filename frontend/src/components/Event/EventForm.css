@@ -27,9 +27,11 @@ background-color: #93c4a0;
 
 .event-form h2 {
   color:  black;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 30px;
+  /* margin-bottom: 20px; */
+  margin-top: 10px;
+    font-family: 'BrandierTrial-SemiBoldItalic';
 }
 
 .event-form .selects {
