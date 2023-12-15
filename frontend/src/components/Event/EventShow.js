@@ -181,13 +181,13 @@ const EventShow = () => {
             <div className="event-details">
               {/* <span className="event-language">{event?.languages.map((lang) => {return <li>{lang}</li>})}</span> */}
 
-                <div id="event-item-title">About</div>
+                <div id="event-item-title" className="event-show">About</div>
               <div className="event-description-div">
                 <div className="event-description">{event?.description}</div>
               </div>
 
               <div className="event-attendees">
-                <div id="event-item-title">
+                <div id="event-item-title" className="event-show">
                   <Icon icon="mdi:user" className="event-icon" />Attendees
                 </div>
                 <div className="attendees">
