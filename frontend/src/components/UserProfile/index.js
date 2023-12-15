@@ -124,7 +124,7 @@ const UserProfile = () => {
         <div className={`actual-profile-container ${fadeIn ? "fade-in" : ""}`}>
           <div id="left-side">
             <div id="left-side-top">
-              Hello, {user?.firstName} {user?.lastName}
+              {user?._id === currentUser?._id ? `Hello, ${user?.firstName} ${user?.lastName}` : `${user?.firstName} ${user?.lastName}` }
             </div>
             <div id="left-side-bottom">
               <div className="profile-details">
@@ -172,7 +172,7 @@ const UserProfile = () => {
 
           <div className="event-container">
             <h2 className="event-header">
-              {user?._id === currentUser?._id ? "Your Events" : `${id?.firstName}'s Events`}
+              {user?._id === currentUser?._id ? "Your Events" : `${user?.firstName}'s Events`}
             </h2>
             {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
