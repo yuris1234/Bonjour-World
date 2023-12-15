@@ -1,7 +1,7 @@
 import React from "react";
 import "./EventIndexItem.css";
 import { useHistory } from "react-router-dom";
-import { countries } from "country-flag-icons";
+// import { countries } from "country-flag-icons";
 import { US } from "country-flag-icons/react/3x2";
 import { FR } from "country-flag-icons/react/3x2";
 import { DE } from "country-flag-icons/react/3x2";
