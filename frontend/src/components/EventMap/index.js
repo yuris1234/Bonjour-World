@@ -2,6 +2,11 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 // import "../../static/images/noun-language-2511286.png";
+import { US } from "country-flag-icons/react/3x2";
+import { FR } from "country-flag-icons/react/3x2";
+import { DE } from "country-flag-icons/react/3x2";
+import { ES } from "country-flag-icons/react/3x2";
+import ReactDOMServer from "react-dom/server";
 
 export const EventMap = ({
   events,
@@ -15,6 +20,8 @@ export const EventMap = ({
   const markersRef = useRef(null);
   const center = useSelector((state) => state.events.center);
   // console.log(language)
+
+  const customMarker = "../../../public/story-map-svgrepo-com.png";
 
   const getAddressCoordinates = async (address) => {
     try {
@@ -178,7 +185,7 @@ export const EventMap = ({
     ];
     if (!map) {
       const defaultMapOptions = {
-        zoom: 11,
+        zoom: 13,
         center: { lat: 40.7128, lng: -74.006 }, // New York as an example
       };
       // Create a new Google Map object with mapRef as its first argument
@@ -198,8 +205,7 @@ export const EventMap = ({
   }, [map, mapOptions, language]);
 
   useEffect(() => {
-    const image =
-      "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+    const image = "https://www.svgrepo.com/show/399293/story-map.svg";
     const newMarkers = {};
     Object.values(events).forEach(async (event) => {
       if (language && !event.language.includes(language)) {
@@ -215,12 +221,53 @@ export const EventMap = ({
           const marker = new window.google.maps.Marker({
             position,
             map,
-            icon: image,
+            // icon: image,
+            icon: {
+              url: image,
+              scaledSize: new window.google.maps.Size(40, 40),
+            },
             animation: window.google.maps.Animation.DROP,
           });
-          console.log(event.language);
+
+          const flags =
+            event.languages &&
+            event.languages
+              .map((language) => {
+                switch (language) {
+                  case "English":
+                    return ReactDOMServer.renderToString(
+                      <US className="map-flag" />
+                    );
+                  case "French":
+                    return ReactDOMServer.renderToString(
+                      <FR className="map-flag" />
+                    );
+                  case "German":
+                    return ReactDOMServer.renderToString(
+                      <DE className="map-flag" />
+                    );
+                  case "Spanish":
+                    return ReactDOMServer.renderToString(
+                      <ES className="map-flag" />
+                    );
+                  default:
+                    return null;
+                }
+              })
+              .join("");
+
+          const infoWindowContent = `
+                            <div style="display:flex; flex-direction: column; align-items:flex-start; padding: 10px; background-color: #ffffff; border: 2px solid #333333; border-radius: 5px;">
+                                <h1 style="color: #333333; font-size: 16px; margin-bottom: 10px;">${event.title}</h1>
+                                <div style="color: #666666; font-size: 14px;">${flags}</div>
+                                <div style="color: #666666; font-size: 10px;">Number Of Attendees: ${event.attendees.length}</div>
+                            </div>
+                        `;
           const infoWindow = new window.google.maps.InfoWindow({
-            content: event.languages[0],
+            // content:
+            content: infoWindowContent,
+            disableAutoPan: true,
+            closeBox: false
           });
 
           marker.addListener("mouseover", () => {
