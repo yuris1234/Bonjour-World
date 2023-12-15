@@ -16,6 +16,9 @@ import { getHostedEvents } from "../../store/events";
 import Notification from "./Notification/index.js";
 import { getUser } from "../../store/users.js";
 import { fetchUser } from "../../store/users.js";
+import { getConnections } from "../../store/users.js";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { fetchUsers } from "../../store/users.js";
 
 const UserProfile = () => {
   const history = useHistory();
@@ -27,21 +30,25 @@ const UserProfile = () => {
 
   // get current user
   const currentUser = useSelector((state) => state.session.user);
-
+  
   const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
-
+  
   // get all events user is attending
   const events = useSelector(getRelevantEvents(user?._id));
-
+  
   // get all hosted events for current user
   const hostedEvents = useSelector(getHostedEvents(user?._id));
+
+  // get user connections
+  const connections = useSelector(getConnections(events));
 
   const [highlightedEvent, setHighlightedEvent] = useState();
   // const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    // dispatch(getCurrentUser());
+    dispatch(fetchEvents());
+    dispatch(fetchUsers());
     dispatch(fetchUser(id));
   }, [dispatch, id]);
 
@@ -156,16 +163,34 @@ const UserProfile = () => {
               </div>
 
               <div className="notifications-div">
-                {user?._id === currentUser?._id && (
+                {user?._id === currentUser?._id ? (
                   <div>
-                    <h2 id="notifications-title">Join Requests</h2>
+                    <h2 id="notifications-title">Pending Requests</h2>
                     <div className="pending-div">
-                      {hostedEvents.map((event) => (
+                      {hostedEvents.length > 0 ? hostedEvents.map((event) => (
                         <Notification key={event._id} event={event} />
-                      ))}
+                      )) : <p>Nothing to see here... yet.</p>}
                     </div>
                   </div>
-                )}
+                ) : 
+                  <div>
+                    <h2 id="notifications-title">Exchange Connections</h2>
+                    <div className="pending-div">
+                      {connections.map((attendee) => {
+                            return (attendee._id !== user._id && attendee._id !== currentUser._id ? (
+                            <div className="attendee-details">
+                              <Link to={`/profile/${attendee?._id}`} key={attendee?.id}>
+                                <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
+                              </Link>
+                              <span className="attendee-username">{attendee.username}</span>
+                            </div>)
+                            :
+                            ""
+                            )}
+                      )}
+                    </div>
+                  </div>
+                }
               </div>
             </div>
           </div>
@@ -176,14 +201,14 @@ const UserProfile = () => {
             </h2>
             {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
-              {events?.map((event) => (
+              {events?.length > 0 ? events?.map((event) => (
                 <EventIndexItem
                   key={event._id}
                   event={event}
                   highlightedEvent={highlightedEvent}
                   setHighlightedEvent={setHighlightedEvent}
                 />
-              ))}
+              )) : <p className="no-events">Nothing to see here... yet.</p>}
             </div>
           </div>
         </div>

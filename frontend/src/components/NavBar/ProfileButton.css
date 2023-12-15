@@ -4,8 +4,12 @@
 }
 
 .profile-btn-icon {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   color: white;
+}
+
+.profile-btn-icon:hover {
+  cursor: pointer;  
 }
 
 .profile-dropdown {
@@ -19,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 1000;
-  font-size: .9rem;
+  font-size: 1.2rem;
 }
 
 /* .profile-dropdown hr {
@@ -39,7 +43,7 @@ border: 1px solid black;
   display: inline-block;
   text-align: center;
   background: transparent;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 #profile-link:hover {
@@ -51,7 +55,7 @@ border: 1px solid black;
   border: none;
   cursor: pointer;
   background: transparent;
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .profile-dropdown .logout-button:hover {
