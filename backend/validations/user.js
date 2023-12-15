@@ -24,14 +24,10 @@ const validateUserInput = [
     check('lastName')
       .isLength({min: 1, max: 30})
       .withMessage('Last name is invalid'),
-    check('languages')
-      .optional()
-      .custom(value => isValidLanguages(value))
-      .withMessage('Languages must be one of the supported languages'),
-    check('bio')
-      .optional()
-      .isString()
-      .withMessage('Bio must contain text only'),
+    // check('languages')
+    //   .optional()
+    //   .custom(value => isValidLanguages(value))
+    //   .withMessage('Languages must be one of the supported languages'),
     handleValidationErrors
   ];
 
