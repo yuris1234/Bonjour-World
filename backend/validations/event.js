@@ -28,7 +28,7 @@ const isValidLanguages = (array) => {
     if (array.length === 0) return false;
     langs = [
         'Arabic',           'English',
-        'French',           'German',
+        'French',         
         'German',           'Hindi',
         'Japanese',         'Korean',
         'Mandarin', 'Portugese',
@@ -45,7 +45,7 @@ const validateEventCreation = [
         .withMessage('Event title must be between 2 and 30 characters'),
     check('description')
         .exists({checkFalsy: true})
-        .isLength({min: 10, max: 200})
+        .isLength({min: 10, max: 10000})
         .withMessage('Event description must be between 10 and 200 characters'),
     check('languages')
         .exists({checkFalsy: true})
