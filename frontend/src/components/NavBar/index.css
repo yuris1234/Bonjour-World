@@ -5,7 +5,7 @@
     align-items: center;
     /* position: relative; */
     /* background-color: #558292; */
-    background-color: black;
+    background-color: #0A345B;
     position: fixed;
     width: 100%;
     z-index: 100;
@@ -84,7 +84,7 @@
 
 #about-us {
     font-size: 1rem;
-    color: ;
+    color: white;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -110,6 +110,6 @@
 
 #all-events.active, #about-us.active,
 .logged-out-links .active {
-    color: #bde6aa;
+    color: #0A345B;
     text-decoration: underline;
 }

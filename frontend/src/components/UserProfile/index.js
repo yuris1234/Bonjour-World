@@ -10,7 +10,7 @@ import EmptyUser from "../Images/EmptyUser.png";
 import EventsMapWrapper from "../EventMap";
 import EventIndexItem from "../Event/EventIndexItem";
 import { fetchEvents, getRelevantEvents } from "../../store/events";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import S3 from "./aws.js";
 import { getHostedEvents } from "../../store/events";
 import Notification from "./Notification/index.js";
@@ -21,6 +21,7 @@ const UserProfile = () => {
 
   // get current user
   const user = useSelector((state) => state.session.user);
+  const {id} = useParams()
 
   const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
@@ -117,16 +118,20 @@ const UserProfile = () => {
         <div className={`actual-profile-container ${fadeIn ? "fade-in" : ""}`}>
           <div id="left-side">
             <div id="left-side-top">
-                Hello, {user?.firstName} {user?.lastName}
+              Hello, {user?.firstName} {user?.lastName}
             </div>
             <div id="left-side-bottom">
               <div className="profile-details">
                 <div className="profile-img-container">
-                  <img className={`profile-img visible`} src={user?.pfp} alt=""/>
-                    {/* {!imageLoaded && (
+                  <img
+                    className={`profile-img visible`}
+                    src={user?.pfp}
+                    alt=""
+                  />
+                  {/* {!imageLoaded && (
                       <div className="loading-spinner">Loading...</div>
                     )} */}
-                    {/* <label htmlFor="imageInput" className="upload-label">
+                  {/* <label htmlFor="imageInput" className="upload-label">
                       Upload Image
                       <input
                       id="imageInput"
@@ -145,18 +150,24 @@ const UserProfile = () => {
               </div>
 
               <div className="notifications-div">
-                <h2 id="notifications-title">Join Requests</h2>
-                <div className="pending-div">
-                  {hostedEvents.map((event) => {
-                    return <Notification event={event} />;
-                  })}
-                </div>
+                {id === user._id && (
+                  <div>
+                    <h2 id="notifications-title">Join Requests</h2>
+                    <div className="pending-div">
+                      {hostedEvents.map((event) => (
+                        <Notification key={event._id} event={event} />
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
           <div className="event-container">
-            <h2 className="event-header">Your Events</h2>
+            <h2 className="event-header">
+              {id === user._id ? "Your Events" : `${id?.firstName}'s Events`}
+            </h2>
             {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
               {events?.map((event) => (
