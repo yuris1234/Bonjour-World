@@ -6,6 +6,13 @@ import { US } from "country-flag-icons/react/3x2";
 import { FR } from "country-flag-icons/react/3x2";
 import { DE } from "country-flag-icons/react/3x2";
 import { ES } from "country-flag-icons/react/3x2";
+import { IN } from "country-flag-icons/react/3x2";
+import { JP } from "country-flag-icons/react/3x2";
+import { KR } from "country-flag-icons/react/3x2";
+import { CN } from "country-flag-icons/react/3x2";
+import { BR } from "country-flag-icons/react/3x2";
+import { RU } from "country-flag-icons/react/3x2";
+import { TZ } from "country-flag-icons/react/3x2";
 // import { useSelector } from "react-redux";
 // import { getUser } from '../../store/users';
 
@@ -116,6 +123,13 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
           {event.languages?.includes("French") && <FR className="flag" />}
           {event.languages?.includes("German") && <DE className="flag" />}
           {event.languages?.includes("Spanish") && <ES className="flag" />}
+          {event.languages?.includes("Hindi") && <IN className="flag" />}
+          {event.languages?.includes("Japanese") && <JP className="flag" />}
+          {event.languages?.includes("Korean") && <KR className="flag" />}
+          {event.languages?.includes("Mandarin") && <CN className="flag" />}
+          {event.languages?.includes("Portugese") && <BR className="flag" />}
+          {event.languages?.includes("Russian") && <RU className="flag" />}
+          {event.languages?.includes("Swahili") && <TZ className="flag" />}
         </div>
       </div>
 
