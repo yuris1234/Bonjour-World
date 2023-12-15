@@ -8,15 +8,13 @@ import { useEffect } from "react";
 export default function ({ event }) {
   const dispatch = useDispatch();
 
-  const handleAccept = (e) => {
-    console.log(e.target.value)
+  const handleAccept = async (e) => {
     // deleting join request, adding user to event
-    dispatch(addEventJoin(e.target.value, event._id));
-    dispatch(deleteJoinRequest(event._id, e.target.value));
+    await dispatch(addEventJoin(e.target.value, event._id));
+    await dispatch(deleteJoinRequest(event._id, e.target.value));
   };
   
   const handleDelete = (e) => {
-    console.log(e.target.value);
     // deleting join request
     dispatch(deleteJoinRequest(event._id, e.target.value));
   };
