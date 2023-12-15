@@ -264,7 +264,7 @@ const EventForm = () => {
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>Create Event</h2>
+      <h2>Create Exchange</h2>
 
       <div className="selects">
         <div className="select">
@@ -272,7 +272,7 @@ const EventForm = () => {
           <div className="event-select-btn">
             <select value={time} onChange={update("time")}>
               <option disabled value="">
-                Select Start Time
+                Start Time
               </option>
               {generateTimeOptions()}
             </select>
@@ -280,16 +280,16 @@ const EventForm = () => {
 
           <div className="event-select-btn">
             <select value={endTime} onChange={update("endTime")}>
-                <option disabled value="">
-                  Select End Time
-                </option>
-                {generateTimeOptions()}
-              </select>
-            </div>
+              <option disabled value="">
+                End Time
+              </option>
+              {generateTimeOptions()}
+            </select>
+          </div>
         </div>
+      </div>
 
-
-        {/* <div className="select">
+      {/* <div className="select">
           <div className="errors">{errors?.state}</div>
           <div className="event-select-btn">
             <select value={state} onChange={update("state")}>
@@ -304,24 +304,27 @@ const EventForm = () => {
             </select>
           </div>
         </div> */}
-      </div>
 
       <div className="select">
-          <div className="errors">{errors?.language}</div>
-          <div>
-              {allLanguages.map((lang) => {
-                return (languages?.includes(lang) ? 
-                <div className="event-unselect-btn">
-                  <span>{lang}</span>
-                  <span className="x-button" onClick={removeLanguage(lang)}> &times; </span>
+        <div className="errors">{errors?.language}</div>
+        <div className="languages-container">
+          {allLanguages.map((lang) => {
+            return languages?.includes(lang) ? (
+              <div className="event-unselect-btn">
+                <div>{lang}</div>
+                <div className="x-button" onClick={removeLanguage(lang)}>
+                  {" "}
+                  &times;{" "}
                 </div>
-                :
-                <div className="event-select-btn lang">
-                  <span onClick={addLanguage(lang)}>{lang}</span>
-                </div>)
-              })}
-          </div>
+              </div>
+            ) : (
+              <div className="event-select-btn lang">
+                <span onClick={addLanguage(lang)}>{lang}</span>
+              </div>
+            );
+          })}
         </div>
+      </div>
 
       <div className="inputs">
         <div className="left-column">
@@ -340,16 +343,6 @@ const EventForm = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-        </div>
-
-        <div className="right-column">
-          {/* <div className="errors">{errors?.city}</div>
-          <input
-            type="text"
-            placeholder="City"
-            value={city}
-            onChange={update("city")}
-          /> */}
 
           <div className="errors">{errors?.address}</div>
 
@@ -359,7 +352,12 @@ const EventForm = () => {
               onChange={handleAddressChange}
               onSelect={handleSelect}
             >
-              {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              {({
+                getInputProps,
+                suggestions,
+                getSuggestionItemProps,
+                loading,
+              }) => (
                 <div>
                   <input
                     {...getInputProps({
@@ -389,7 +387,18 @@ const EventForm = () => {
               )}
             </PlacesAutocomplete>
           )}
-{/* 
+        </div>
+
+        {/* <div className="right-column"> */}
+        {/* <div className="errors">{errors?.city}</div>
+          <input
+            type="text"
+            placeholder="City"
+            value={city}
+            onChange={update("city")}
+          /> */}
+
+        {/* 
           <div className="errors">{errors?.zipcode}</div>
           <input
             type="text"
@@ -397,7 +406,7 @@ const EventForm = () => {
             value={zipcode}
             onChange={update("zipcode")}
           /> */}
-        </div>
+        {/* </div> */}
       </div>
 
       <div className="errors">{errors?.description}</div>
@@ -407,7 +416,7 @@ const EventForm = () => {
         onChange={update("description")}
       />
 
-      <input type="submit" value="Create Event" />
+      <input type="submit" value="Create Exchange" />
     </form>
   );
 };

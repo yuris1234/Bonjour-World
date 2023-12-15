@@ -21,20 +21,20 @@
   align-items: center;
   justify-content: space-around;
   padding: 20px;
-  background: linear-gradient(to bottom, #fbe1b5, #b5cffb);
+background-color: #93c4a0;
   border-radius: 15px;
   width: 100%;
   height: 100%;
 }
 
 .login-form h2 {
-  color: #0A345B;
+  color: black;
   font-size: 2rem;
   /* margin-bottom: 10px; */
 }
 
 /* .login-form label {
-  color: #0A345B;
+  color: #A2D5C6;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
@@ -44,9 +44,9 @@
   padding: 8px;
   margin-top: 8px;
   background-color: transparent;
-  color: #0A345B;
+  color: black;
   border: none;
-  border-bottom: 1px solid #0A345B;
+  border-bottom: 1px solid black;
   font-size: 1rem;
   outline: none;
 }
@@ -87,7 +87,7 @@
 }
 
 .login-form .login-button {
-  background-color: #0A345B;
+  background-color: black;
   margin: 0;
 }
 
@@ -100,6 +100,7 @@
 .login-form input[type="submit"]:disabled,
 .login-form button:disabled {
   background-color: #ccc;
+  color: black;
   cursor: not-allowed;
 }
 

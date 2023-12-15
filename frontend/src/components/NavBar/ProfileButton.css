@@ -13,7 +13,7 @@
   top: 80%;
   right: .5%;
   list-style: none;
-  background: #b5cffb;
+  background: #93c4a0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -22,12 +22,17 @@
   font-size: .9rem;
 }
 
+/* .profile-dropdown hr {
+  width: 95%;
+border: 1px solid black;
+} */
+
 .profile-dropdown li {
   padding: 5px;
 }
 
 #profile-link {
-  color: #0A345B;
+  color: black;
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;

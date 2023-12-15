@@ -39,8 +39,8 @@
     font-weight: bold;
     border: none;
     border-radius: 3ch;
-    background-color: white;
-    color: #0A345B;
+    background-color: #FBE1B5;
+    color: black;
     cursor: pointer;
 }
 
@@ -110,6 +110,6 @@
 
 #all-events.active, #about-us.active,
 .logged-out-links .active {
-    color: #0A345B;
+    color: #A2D5C6;
     text-decoration: underline;
 }
