@@ -48,15 +48,19 @@ body {
     width: 100%;
     font-weight: bolder;
     font-size: 30px;
-    text-align: center;
     /* Center the text horizontally */
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
     /* Adjust the top margin as needed */
 }
 
 .event-title-host {
+    display: flex;
+    align-items: center;
     font-weight: 100;
     font-size: 10px;
 }
@@ -208,6 +212,7 @@ body {
     height: 40px;
     width: 40px;
     padding: 5px;
+    border-radius: 50%;
 }
 
 .attendee-username {
@@ -219,8 +224,10 @@ body {
 .event-date-time {
     display: flex;
     flex-direction: column;
-    border: solid #b5cffb;
-    background-color: #b5cffb;
+    /* border: solid #b5cffb; */
+    /* background-color: #b5cffb; */
+    width: 100%;
+    margin-top: 10px;
 }
 
 .event-section {
@@ -229,4 +236,6 @@ body {
 
 .event-icon {
     margin-right: 5px;
+    width: 5%;
+    height: 5%;
 }

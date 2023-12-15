@@ -165,13 +165,17 @@ const EventShow = () => {
           <ul className="event-info-list">
             <div className="event-title">
               {event?.title}
-              <div className="event-title-host">
-                hosted by: {host?.firstName}
+              <div className="event-date-time">
+                  <div className="event-date">🗓️ {formatDate(event?.date)}</div>
+                  <div className="event-time">⏰ {event?.time}</div>
               </div>
-            </div>
-            <div className="event-date-time">
-                <div className="event-date">🗓️ {formatDate(event?.date)}</div>
-                <div className="event-time">⏰ {event?.time}</div>
+              <div className="event-title-host">
+                {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
+                <Link to={`users/${host?._id}`}>
+                  <img className="attendee-pfp" src={host?.pfp} alt={host?.username} />
+                </Link>
+                {host?.firstName}
+              </div>
             </div>
 
             <div className="event-details">
