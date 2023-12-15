@@ -18,6 +18,7 @@ import { getAttendees } from "../../store/users";
 import EventsMapWrapper from "../EventMap";
 import { getHost } from "../../store/users";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { Icon } from "@iconify/react";
 import EventShowMapWrapper from "../EventMap/EventShowMap";
 import EventShowMap from "../EventMap/EventShowMap"
 
@@ -47,7 +48,6 @@ const EventShow = () => {
 
   useEffect(() => {
     dispatch(getCurrentUser());
-    // dispatch(fetchUsers());
     dispatch(fetchEvent(eventId));
   }, [eventId, dispatch]);
 
@@ -62,11 +62,11 @@ const EventShow = () => {
       setSubscribed(true);
     }
 
-    if (host?._id === user?._id) {
+    if (user && host && host?._id === user?._id) {
       // sets isHost to true if current user is the host, can edit or delete event
       setIsHost(true);
     }
-  }, [user, event, host]);
+  }, [user, event, host, dispatch]);
 
   const handleJoin = async (e) => {
     e.preventDefault();
@@ -142,14 +142,19 @@ const EventShow = () => {
     fetchMapData();
   }, [event]);
 
-    const formatDate = (originalDate) => {
-      const dateObject = new Date(originalDate);
-      const year = dateObject.getFullYear();
-      const month = String(dateObject.getMonth() + 1).padStart(2, "0");
-      const day = String(dateObject.getDate()).padStart(2, "0");
+    // const formatDate = (originalDate) => {
+    //   const dateObject = new Date(originalDate);
+    //   const year = dateObject.getFullYear();
+    //   const month = String(dateObject.getMonth() + 1).padStart(2, "0");
+    //   const day = String(dateObject.getDate()).padStart(2, "0");
 
-      return `${month}-${day}-${year}`;
-    };
+    //   return `${month}-${day}-${year}`;
+    // };
+
+    function formatDate(originalDate) {
+      const options = { month: 'long', day: 'numeric', year: 'numeric' };
+      return new Date(originalDate).toLocaleDateString(undefined, options);
+    }
 
   return (
     <>
@@ -160,66 +165,71 @@ const EventShow = () => {
         </div>
 
         <div className="display-one-event">
+          {user && (joined || subscribed) ? "" : <div className="event-request">
+            Sign up and request to join for more details!
+          </div>}
           <ul className="event-info-list">
+            <div className="event-languages">
+              {event?.languages.map((lang) => {
+                return (
+                    <div className="event-lang">{lang}</div>
+                )
+              })}
+            </div>
             <div className="event-title">
               {event?.title}
+              <div className="event-date-time">
+                  <div className="event-date">🗓️ {formatDate(event?.date)}</div>
+                  <div className="event-time">⏰ {event?.time}</div>
+                  {user && (joined || subscribed) ? <div className="event-address">📍 {event?.address}</div> : <div className="event-address">📍 <em>hidden</em></div>}
+              </div>
               <div className="event-title-host">
-                Hosted By: {host?.username}
+                {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
+                <Link to={`users/${host?._id}`}>
+                  <img className="attendee-pfp" src={host?.pfp} alt={host?.username} />
+                </Link>
+                {host?.firstName}
               </div>
             </div>
 
             <div className="event-details">
-              <span className="event-language">{event?.languages.map((lang) => {return <li>{lang}</li>})}</span>
+              {/* <span className="event-language">{event?.languages.map((lang) => {return <li>{lang}</li>})}</span> */}
 
+              {/* <div id="event-item-title" className="event-show">About</div> */}
               <div className="event-description-div">
-                Description
                 <div className="event-description">{event?.description}</div>
               </div>
 
               <div className="event-attendees">
-                Attendees
-                {attendees?.map((attendee) => (
-                  <div className="attendee-details">
-                    <Link to={`/profile/${attendee?._id}`} key={attendee?.id}>
-                      <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
-                    </Link>
-                    <span className="attendee-username">{attendee.username}</span>
+                {user && (joined || subscribed) &&
+                  (
+                  <>
+                  <div className="event-show">
+                    Polyglots Attending
                   </div>
-                ))}
-              </div>
-
-
-              <div className="event-date-div">
-                Date
-                <div className="event-date">{formatDate(event?.date)}</div>
-              </div>
-
-              <div className="event-time-div">
-                Time
-                <div className="event-time">{event?.time}</div>
-              </div>
-
-              {/* <div className="event-location-div">
-                Location
-                <div className="event-location">
-                  {event?.city}, {event?.state} {event?.zipcode}
-                </div>
-              </div> */}
-
-              <div className="event-address-div">
-                Address
-                <div className="event-address">{event?.address}</div>
-              </div>
-
+                  <div className="attendees">
+                    {attendees?.map((attendee) => (
+                    <div className="attendee-details" key={attendee._id}>
+                      <Link to={`/profile/${attendee._id}`}>
+                        <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
+                      </Link>
+                      <span className="attendee-username">{attendee.firstName}</span>
+                    </div>
+                    ))}
+                  </div>
+                  </>
+                  )}
+              </div> 
+            <div className="event-buttons">
               {isHost && (
                 <button class="edit-event" onClick={handleModal}>
-                  Edit Event
+                  <Icon className="event-icon" icon="tdesign:edit"/> Edit
                 </button>
               )}
 
               {isHost && (
                 <button class="delete-event" onClick={handleDeleteEvent}>
-                  Delete Event
+                  <Icon className="event-icon" icon="material-symbols:delete"/> Delete
                 </button>
               )}
 
@@ -235,6 +245,7 @@ const EventShow = () => {
                   + Request to Join{" "}
                 </button>
               )}
+            </div>
             </div>
           </ul>
         </div>

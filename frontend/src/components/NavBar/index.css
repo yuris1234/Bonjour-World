@@ -1,5 +1,5 @@
 .nav-bar {
-    height: 60px;
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,7 +8,7 @@
     /* background-color: black; */
     position: fixed;
     width: 100%;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .nav-bar-header {
@@ -58,7 +58,7 @@
      white-space: nowrap;
      display: inline-block;
      text-align: center;
-     font-size: 1.2rem;
+     font-size: 1rem;
  }
 
  .logged-out-links a:hover {
