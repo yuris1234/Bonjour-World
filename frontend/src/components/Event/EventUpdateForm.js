@@ -166,14 +166,22 @@ const EventUpdateForm = ({ eventId }) => {
     "Wyoming",
   ];
 
-  const allLanguages = [
-    'Arabic',           'English',
-    'French',           'German',
-    'German',           'Hindi',
-    'Japanese',         'Korean',
-    'Mandarin', 'Portugese',
-    'Russian',          'Spanish',
-    'Swahili'
+  const firstSix = [
+    "Arabic",
+    "English",
+    "French",
+    "German",
+    "Hindi",
+    "Japanese",
+  ];
+
+  const lastSix = [
+    "Korean",
+    "Mandarin",
+    "Portugese",
+    "Russian",
+    "Spanish",
+    "Swahili",
   ];
 
   const addLanguage = (lang) => (e) => {
@@ -262,27 +270,46 @@ const EventUpdateForm = ({ eventId }) => {
       <div className="select">
         <div className="errors">{errors?.language}</div>
         <div className="languages-container">
-          {allLanguages.map((lang) => {
-            return languages?.includes(lang) ? (
-              <div className="event-unselect-btn">
-                <span>{lang}</span>
-                <span className="x-button" onClick={removeLanguage(lang)}>
-                  {" "}
-                  &times;{" "}
-                </span>
-              </div>
-            ) : (
-              <div className="event-select-btn lang">
-                <span onClick={addLanguage(lang)}>{lang}</span>
-              </div>
-            );
-          })}
+          <div className="top-language-container">
+            {firstSix.map((lang) => {
+              return languages?.includes(lang) ? (
+                <div className="event-unselect-btn">
+                  <div>{lang}</div>
+                  <div className="x-button" onClick={removeLanguage(lang)}>
+                    {" "}
+                    &times;{" "}
+                  </div>
+                </div>
+              ) : (
+                <div className="event-select-btn lang">
+                  <span onClick={addLanguage(lang)}>{lang}</span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="bottom-language-container">
+            {lastSix.map((lang) => {
+              return languages?.includes(lang) ? (
+                <div className="event-unselect-btn">
+                  <div>{lang}</div>
+                  <div className="x-button" onClick={removeLanguage(lang)}>
+                    {" "}
+                    &times;{" "}
+                  </div>
+                </div>
+              ) : (
+                <div className="event-select-btn lang">
+                  <span onClick={addLanguage(lang)}>{lang}</span>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       <div className="inputs">
         <div className="left-column">
-          <div className="errors">{errors?.title}</div>
+          <div className="title-error errors">{errors?.title}</div>
           <input
             type="text"
             value={title}
@@ -290,7 +317,7 @@ const EventUpdateForm = ({ eventId }) => {
             onChange={update("title")}
           />
 
-          <div className="errors">{errors?.date}</div>
+          <div className="date-error errors">{errors?.date}</div>
           <input
             type="date"
             value={date}
@@ -327,7 +354,7 @@ const EventUpdateForm = ({ eventId }) => {
         {/* </div> */}
       </div>
 
-      <div className="errors">{errors?.description}</div>
+      <div className="description-error errors">{errors?.description}</div>
       <textarea
         placeholder="Description"
         value={description}
