@@ -127,14 +127,28 @@
         justify-content: center;
         align-items: center;
         border: 1px solid green;
+    border: none;
 }
 
 #google_translate_element {
     /* margin-right: 10px; */
     /* height: 10px; */
     width: 35%;
+    border: none;
 }
 
 .VIpgJd-ZVi9od-xl07Ob-OEVmcd {
     background-color: red;
+}
+
+.VIpgJd-ZVi9od-xl07Ob-OEVmcd {
+    background-color: pink;
+}
+
+.VIpgJd-ZVi9od-vH1Gmf {
+    background-color: pink;
+}
+
+.goog-te-gadget-icon {
+    /* display: none; */
 }
