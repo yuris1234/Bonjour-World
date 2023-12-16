@@ -190,7 +190,8 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
     }, [map, mapOptions, language]);
 
     useEffect(() => {
-    const image = "https://www.svgrepo.com/show/399293/story-map.svg";
+    const image = "https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/earth-icon.png";
+
         const newMarkers = {};
             Object.values(events).forEach(async (event) => {
                 if (language && !event.language.includes(language)) {
