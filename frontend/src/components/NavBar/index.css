@@ -122,19 +122,19 @@
         /* width: 100%; */
         /* z-index: 100; */
         padding: 5px;
-        display: flex;
+        /* display: flex; */
         /* margin-right: 80px; */
-        justify-content: center;
-        align-items: center;
+        /* justify-content: center;
+        align-items: center; */
         /* border: 1px solid green; */
-    border: none;
+    /* border: none; */
 }
 
 #google_translate_element {
     /* margin-right: 10px; */
     /* height: 10px; */
-    width: 35%;
-    border: none;
+    /* width: 35%; */
+    /* border: none; */
 }
 
 /* .VIpgJd-ZVi9od-xl07Ob-OEVmcd {
@@ -152,3 +152,16 @@
 /* .goog-te-gadget-icon {
     display: none;
 } */
+
+.VIpgJd-ZVi9od-vH1Gmf {
+    /* background-color: pink;
+    width: 100%; */
+}
+
+
+
+
+
+
+
+
