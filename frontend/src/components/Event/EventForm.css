@@ -36,7 +36,7 @@
 }
 
 .event-form .selects {
-  all: unset;
+  /* all: unset; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,11 +47,47 @@
 
 .event-form .select {
   display: flex;
+  justify-content: center;
+  align-items: center;
   /* flex-direction: column; */
   /* justify-content: center;
   align-items: center; */
   /* gap: 5px; */
   font-size: 1rem;
+}
+
+.time-error {
+  /* margin-left: 5px; */
+  position: absolute;
+  right: 90px;
+}
+
+.title-error {
+      position: absolute;
+      top: 237px;
+  left: 420px;
+}
+
+.date-error {
+      position: absolute;
+  left: 420px;
+
+}
+
+.address-error {
+    position: absolute;
+  left: 420px;
+      top: 337px;
+}
+
+.description-error {
+    /* position: absolute; */
+      /* left: 250px;
+      top: 490px; */
+      position: absolute;
+      text-align: center;
+      /* left: 300px; */
+bottom: 100px;
 }
 
 .event-form select {
@@ -158,9 +194,9 @@
 
 .event-form .errors {
   color: red;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   font-size: 0.8rem;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .event-form input {
@@ -232,7 +268,7 @@
 
 .autocomplete-dropdown-container {
   position: absolute;
-  top: 56.15%;
+  top: 61%;
   left: 25%;
   /* text-align: center; */
   width: 50%;
@@ -263,4 +299,11 @@
 .bottom-language-container {
   display: flex;
   /* border: 3px solid red; */
+}
+
+.left-column {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }

@@ -282,7 +282,6 @@ const EventForm = () => {
 
       <div className="selects">
         <div className="select">
-          <div className="errors">{errors?.time}</div>
           <div className="event-select-btn">
             <select value={time} onChange={update("time")}>
               <option disabled value="">
@@ -300,6 +299,7 @@ const EventForm = () => {
               {generateTimeOptions()}
             </select>
           </div>
+          <div className="errors time-error">{errors?.time}</div>
         </div>
       </div>
 
@@ -361,7 +361,7 @@ const EventForm = () => {
 
       <div className="inputs">
         <div className="left-column">
-          <div className="errors">{errors?.title}</div>
+          <div className="title-error errors">{errors?.title}</div>
           <input
             type="text"
             placeholder="Title"
@@ -369,7 +369,7 @@ const EventForm = () => {
             onChange={update("title")}
           />
 
-          <div className="errors">{errors?.date}</div>
+          <div className="date-error errors">{errors?.date}</div>
           <input
             id="date"
             type="date"
@@ -377,7 +377,7 @@ const EventForm = () => {
             onChange={(e) => setDate(e.target.value)}
           />
 
-          <div className="errors">{errors?.address}</div>
+          <div className="address-error errors">{errors?.address}</div>
 
           {googleMapsLoaded && (
             <PlacesAutocomplete
@@ -442,12 +442,13 @@ const EventForm = () => {
         {/* </div> */}
       </div>
 
-      <div className="errors">{errors?.description}</div>
+      <div className="description-error errors">{errors?.description}</div>
       <textarea
         placeholder="Description"
         value={description}
         onChange={update("description")}
-      />
+        className="description-textarea"
+      ></textarea>
 
       <input type="submit" value="Create Exchange" />
     </form>
