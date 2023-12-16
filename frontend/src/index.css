@@ -16,11 +16,10 @@ body {
   height: 100vh;
 }
 
+/* hide banner for google translate */
+
 .VIpgJd-ZVi9od-ORHb-OEVmcd {
-  display: flex;
-  background-color: transparent;
-  margin-bottom: 800px;
-  z-index: -1000;
+  display: none;
 }
 
 .goog-te-banner-frame.skiptranslate {
@@ -31,3 +30,10 @@ body {
   top: 0px !important;
 }
 
+/* style select */
+
+.goog-te-gadget-simple {
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 5px;
+}
