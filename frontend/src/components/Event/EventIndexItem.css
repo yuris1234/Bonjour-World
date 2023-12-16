@@ -70,6 +70,10 @@ z-index: 1000;
     margin-right: auto;
 }
 
+#times-container {
+    display: flex;
+}
+
 #date-item-and-time {
     display: flex;
     /* align-self: end; */
@@ -77,8 +81,8 @@ z-index: 1000;
     margin-left: 10px;
     /* border: 3px solid orange; */
     width: 98%;
-    justify-content: space-between;
-    align-items: center;
+    /* justify-content: space-between; */
+    /* align-items: center; */
         position: absolute;
             /* right: 0; */
             /* left: 1px; */

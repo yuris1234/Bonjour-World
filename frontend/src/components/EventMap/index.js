@@ -205,7 +205,10 @@ export const EventMap = ({
   }, [map, mapOptions, language]);
 
   useEffect(() => {
-    const image = "https://www.svgrepo.com/show/399293/story-map.svg";
+    const image =
+      "https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/earth-icon.png";
+      // "https://cdn.pixabay.com/photo/2012/04/11/11/39/group-27618_960_720.png";
+    // const image = "https://www.svgrepo.com/show/399293/story-map.svg";
     const newMarkers = {};
     Object.values(events).forEach(async (event) => {
       if (language && !event.language.includes(language)) {
@@ -226,6 +229,8 @@ export const EventMap = ({
               url: image,
               scaledSize: new window.google.maps.Size(40, 40),
             },
+            optimized: false,
+            disableAutoPan: true,
             animation: window.google.maps.Animation.DROP,
           });
 

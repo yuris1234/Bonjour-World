@@ -1,17 +1,25 @@
 import React from "react";
 import "./EventIndexItem.css";
 import { useHistory } from "react-router-dom";
-import { countries } from "country-flag-icons";
-import { US } from "country-flag-icons/react/3x2";
+// import { countries } from "country-flag-icons";
+import { EG, US } from "country-flag-icons/react/3x2";
 import { FR } from "country-flag-icons/react/3x2";
 import { DE } from "country-flag-icons/react/3x2";
 import { ES } from "country-flag-icons/react/3x2";
-// import { useSelector } from "react-redux";
-// import { getUser } from '../../store/users';
+import { IN } from "country-flag-icons/react/3x2";
+import { JP } from "country-flag-icons/react/3x2";
+import { KR } from "country-flag-icons/react/3x2";
+import { CN } from "country-flag-icons/react/3x2";
+import { BR } from "country-flag-icons/react/3x2";
+import { RU } from "country-flag-icons/react/3x2";
+import { TZ } from "country-flag-icons/react/3x2";
+import { useSelector } from "react-redux";
+import { getHost, getUser } from "../../store/users";
 
 const EventIndexItem = ({ event, setHighlightedEvent }) => {
   const history = useHistory();
-  // const host = useSelector(getUser(event.host))
+  const host = useSelector(getHost(event));
+  console.log(host)
 
   const redirectShow = () => {
     history.push(`/events/${event._id}`);
@@ -35,7 +43,7 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
   // };
 
   function formatDate(originalDate) {
-    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    const options = { month: "long", day: "numeric", year: "numeric" };
     return new Date(originalDate).toLocaleDateString(undefined, options);
   }
 
@@ -116,6 +124,14 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
           {event.languages?.includes("French") && <FR className="flag" />}
           {event.languages?.includes("German") && <DE className="flag" />}
           {event.languages?.includes("Spanish") && <ES className="flag" />}
+          {event.languages?.includes("Hindi") && <IN className="flag" />}
+          {event.languages?.includes("Japanese") && <JP className="flag" />}
+          {event.languages?.includes("Korean") && <KR className="flag" />}
+          {event.languages?.includes("Mandarin") && <CN className="flag" />}
+          {event.languages?.includes("Portugese") && <BR className="flag" />}
+          {event.languages?.includes("Russian") && <RU className="flag" />}
+          {event.languages?.includes("Arabic") && <EG className="flag" />}
+          {event.languages?.includes("Swahili") && <TZ className="flag" />}
         </div>
       </div>
 
@@ -127,10 +143,13 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
       <div id="event-item-bottom">
         <div id="date-item-and-time">
           <div id="event-item-date">{formatDate(event.date)}</div>
-          <div id="event-item-time">{event.time}</div>
-          <div id="event-item-zipcode">{event.zipcode}</div>
+          <div id="times-container">
+            {event.time} - {event.endTime}
+          </div>
+          {/* <div id="event-item-zipcode">{event.zipcode}</div> */}
         </div>
       </div>
+          <div id="event-item-zipcode">{host}</div>
       {/* <div id="event-item-time">{host}</div> */}
     </div>
   );

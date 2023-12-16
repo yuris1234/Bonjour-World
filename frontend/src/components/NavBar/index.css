@@ -42,6 +42,7 @@
     background-color: #FBE1B5;
     color: black;
     cursor: pointer;
+    white-space: nowrap;
 }
 
  .signup-button:hover,
@@ -88,6 +89,7 @@
     cursor: pointer;
     text-decoration: none;
     text-align: center;
+    white-space: nowrap;
 }
 
 #create-event-button {
@@ -112,4 +114,41 @@
 .logged-out-links .active {
     color: #A2D5C6;
     text-decoration: underline;
+}
+
+.goog-te-gadget-simple {
+    cursor: pointer;
+        border-radius: 20px;
+        /* width: 100%; */
+        /* z-index: 100; */
+        padding: 5px;
+        display: flex;
+        /* margin-right: 80px; */
+        justify-content: center;
+        align-items: center;
+        border: 1px solid green;
+    border: none;
+}
+
+#google_translate_element {
+    /* margin-right: 10px; */
+    /* height: 10px; */
+    width: 35%;
+    border: none;
+}
+
+.VIpgJd-ZVi9od-xl07Ob-OEVmcd {
+    background-color: red;
+}
+
+.VIpgJd-ZVi9od-xl07Ob-OEVmcd {
+    background-color: pink;
+}
+
+.VIpgJd-ZVi9od-vH1Gmf {
+    background-color: pink;
+}
+
+.goog-te-gadget-icon {
+    /* display: none; */
 }
