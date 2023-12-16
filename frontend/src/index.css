@@ -16,7 +16,10 @@ body {
   height: 100vh;
 }
 
-/* .VIpgJd-ZVi9od-ORHb-OEVmcd {
-  display: none;
-} */
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: flex;
+  background-color: transparent;
+  margin-bottom: 800px;
+  z-index: -1000;
+}
 
