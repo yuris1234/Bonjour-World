@@ -11,7 +11,6 @@ import EventsMapWrapper from "../EventMap";
 import EventIndexItem from "../Event/EventIndexItem";
 import { fetchEvents, getRelevantEvents } from "../../store/events";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import S3 from "./aws.js";
 import { getHostedEvents } from "../../store/events";
 import Notification from "./Notification/index.js";
 import { getUser } from "../../store/users.js";
