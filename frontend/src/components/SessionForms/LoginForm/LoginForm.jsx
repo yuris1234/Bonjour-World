@@ -47,7 +47,7 @@ const LoginForm = () => {
         {/* <label>
           Email */}
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={update('email')}
             placeholder="Email"
