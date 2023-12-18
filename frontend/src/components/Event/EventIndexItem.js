@@ -19,7 +19,6 @@ import { getHost, getUser } from "../../store/users";
 const EventIndexItem = ({ event, setHighlightedEvent }) => {
   const history = useHistory();
   const host = useSelector(getHost(event));
-  console.log(host)
 
   const redirectShow = () => {
     history.push(`/events/${event._id}`);
