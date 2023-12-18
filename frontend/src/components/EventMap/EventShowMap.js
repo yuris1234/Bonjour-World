@@ -8,7 +8,6 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
     const mapRef = useRef(null);
     const markersRef = useRef(null);
     const center = useSelector(state => state.events.center)
-    // console.log(language)
 
     const getAddressCoordinates = async (address) => {
         try {
@@ -197,7 +196,6 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
                 if (language && !event.language.includes(language)) {
                     return;
                 }
-                // console.log(language)
                 try {
                     // const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
                     const formattedAddress = event.address
@@ -237,7 +235,6 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
             // Remove markers for events that no longer exist
             if (markersRef.current) {
                 Object.keys(markersRef.current).forEach((id) => {
-                    debugger
                     if (!newMarkers[id] || (language && events[id].language !== language)) {
                         markersRef.current[id].setMap(null);
                     }
