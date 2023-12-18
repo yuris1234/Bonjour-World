@@ -27,7 +27,6 @@ const UserGuideSection = () => {
     const backToTop = document.querySelector(".back-to-top");
     const splashPage = document.querySelector(".splash-page");
 
-    // debugger
     backToTop.addEventListener("click", function () {
       // scroll to splash page 
       splashPage.scrollIntoView({ behavior: "smooth" });

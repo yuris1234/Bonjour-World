@@ -19,7 +19,6 @@ export const EventMap = ({
   const mapRef = useRef(null);
   const markersRef = useRef(null);
   const center = useSelector((state) => state.events.center);
-  // console.log(language)
 
   const customMarker = "../../../public/story-map-svgrepo-com.png";
 
@@ -214,7 +213,6 @@ export const EventMap = ({
       if (language && !event.language.includes(language)) {
         return;
       }
-      // console.log(language)
       try {
         // const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
         const formattedAddress = event.address;

@@ -58,7 +58,6 @@ export const getConnections = (events) => (state) => {
       })
     })
   }
-  console.log(holder)
   return holder;
 }
 
