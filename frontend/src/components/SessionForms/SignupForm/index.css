@@ -50,7 +50,7 @@ background-color: #93c4a0;
 }
 
 .signup-form .confirm-div {
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 /* .signup-form label {
@@ -81,6 +81,7 @@ background-color: #93c4a0;
   font-size: .7rem;
   white-space: nowrap;
   text-align: center;
+  margin-left: -37px;
 }
 
 .signup-form input[type="submit"] {

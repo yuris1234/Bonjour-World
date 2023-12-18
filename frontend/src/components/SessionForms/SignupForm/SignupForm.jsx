@@ -105,7 +105,7 @@ const SignupForm = () => {
         <div className='input-div'>
           {/* <label>
             <span>Email</span> */}
-            <input type="text"
+            <input type="email"
               value={email}
               onChange={update('email')}
               placeholder="Email"
@@ -128,9 +128,9 @@ const SignupForm = () => {
       <div className="errors">
         {password !== passwordConfirmation && 'Confirm Password field must match'}
       </div>
+      <div className="errors">{errors?.password}</div>
       <div className='row-3'>
         <div className='input-div'>
-          <div className="errors">{errors?.password}</div>
           {/* <label>
             <span>Password</span> */}
             <input type="password"
