@@ -67,10 +67,7 @@ const EventForm = () => {
       title,
       description,
       languages,
-      // state,
-      // city,
       address,
-      // zipcode,
       date,
       time,
       endTime,
@@ -78,7 +75,6 @@ const EventForm = () => {
       attendees: [currentUser._id],
     };
 
-    console.log(updatedEvent);
     const res = await dispatch(createEvent(updatedEvent));
     if (res?.title) {
       dispatch(closeModal());
@@ -110,8 +106,6 @@ const EventForm = () => {
     try {
       const results = await geocodeByAddress(address);
       const latLng = await getLatLng(results[0]);
-      console.log("Coordinates:", latLng);
-      console.log("Formatted Address:", address);
 
       setSelectedAddress(address);
 
