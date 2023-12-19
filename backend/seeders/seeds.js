@@ -177,7 +177,7 @@ events.push(
   new Event ({
     title: "你好聚会 (Nǐ Hǎo Jùhuì)",
     description: "Experience the magic of Mandarin at 你好聚会! Join us for an evening filled with lively conversations, cultural connections, and the joy of learning Chinese. Whether you're a seasoned speaker or just getting started, this event provides a welcoming space to practice your language skills in a friendly and festive environment. Anticipate engaging discussions, delightful snacks, and the opportunity to make new friends who share your passion for the Chinese language. 一起来吧! (Come join us!)",
-    languages: ['English', 'Chinese'],
+    languages: ['English', 'Mandarin'],
     address: '234 Chambers Street',
     date: faker.date.future(),
     time: "05:00",
