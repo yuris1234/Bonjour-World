@@ -1,18 +1,7 @@
 import React from "react";
 import "./EventIndexItem.css";
 import { useHistory } from "react-router-dom";
-// import { countries } from "country-flag-icons";
-import { EG, US } from "country-flag-icons/react/3x2";
-import { FR } from "country-flag-icons/react/3x2";
-import { DE } from "country-flag-icons/react/3x2";
-import { ES } from "country-flag-icons/react/3x2";
-import { IN } from "country-flag-icons/react/3x2";
-import { JP } from "country-flag-icons/react/3x2";
-import { KR } from "country-flag-icons/react/3x2";
-import { CN } from "country-flag-icons/react/3x2";
-import { BR } from "country-flag-icons/react/3x2";
-import { RU } from "country-flag-icons/react/3x2";
-import { TZ } from "country-flag-icons/react/3x2";
+import { EG, US, FR, DE, ES, IN, JP, KR, CN, BR, RU, TZ } from "country-flag-icons/react/3x2";
 import { useSelector } from "react-redux";
 import { getHost, getUser } from "../../store/users";
 
