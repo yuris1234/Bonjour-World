@@ -27,6 +27,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Set the _csrf token and create req.csrfToken method to generate a hashed CSRF token
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true,
+    },
+  })
+);
+
 if (isProduction) {
   const path = require('path');
   // Serve the frontend's index.html file at the root route
@@ -54,16 +65,6 @@ if (!isProduction) {
   app.use(cors());
 }
 
-// Set the _csrf token and create req.csrfToken method to generate a hashed CSRF token
-app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true,
-    },
-  })
-);
 
 // Serve static files, including images
 app.use(
