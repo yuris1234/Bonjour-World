@@ -148,8 +148,6 @@ const EventIndexItem = ({ event, setHighlightedEvent }) => {
           {/* <div id="event-item-zipcode">{event.zipcode}</div> */}
         </div>
       </div>
-          <div id="event-item-zipcode">{host}</div>
-      {/* <div id="event-item-time">{host}</div> */}
     </div>
   );
 };
