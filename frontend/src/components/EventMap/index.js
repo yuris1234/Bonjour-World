@@ -2,10 +2,20 @@ import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 // import "../../static/images/noun-language-2511286.png";
-import { US } from "country-flag-icons/react/3x2";
-import { FR } from "country-flag-icons/react/3x2";
-import { DE } from "country-flag-icons/react/3x2";
-import { ES } from "country-flag-icons/react/3x2";
+import {
+  EG,
+  US,
+  FR,
+  DE,
+  ES,
+  IN,
+  JP,
+  KR,
+  CN,
+  BR,
+  RU,
+  TZ,
+} from "country-flag-icons/react/3x2";
 import ReactDOMServer from "react-dom/server";
 
 export const EventMap = ({
@@ -252,6 +262,38 @@ export const EventMap = ({
                   case "Spanish":
                     return ReactDOMServer.renderToString(
                       <ES className="map-flag" />
+                    );
+                  case "Arabic":
+                    return ReactDOMServer.renderToString(
+                      <EG className="map-flag" />
+                    );
+                  case "Hindi":
+                    return ReactDOMServer.renderToString(
+                      <IN className="map-flag" />
+                    );
+                  case "Japanese":
+                    return ReactDOMServer.renderToString(
+                      <JP className="map-flag" />
+                    );
+                  case "Korean":
+                    return ReactDOMServer.renderToString(
+                      <KR className="map-flag" />
+                    );
+                  case "Mandarin":
+                    return ReactDOMServer.renderToString(
+                      <CN className="map-flag" />
+                    );
+                  case "Portugese":
+                    return ReactDOMServer.renderToString(
+                      <BR className="map-flag" />
+                    );
+                  case "Russian":
+                    return ReactDOMServer.renderToString(
+                      <RU className="map-flag" />
+                    );
+                  case "Swahili":
+                    return ReactDOMServer.renderToString(
+                      <TZ className="map-flag" />
                     );
                   default:
                     return null;
