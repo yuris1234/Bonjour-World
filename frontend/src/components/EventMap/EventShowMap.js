@@ -209,7 +209,8 @@ export const EventShowMap = ({events, markerEventHandlers, highlightedEvent, map
                               url: image,
                               scaledSize: new window.google.maps.Size(40, 40),
                             },
-                            animation: window.google.maps.Animation.DROP,
+                            // animation: window.google.maps.Animation.DROP,
+                            // animation: window.google.maps.Animation.BOUNCE,
                           });
                         
                         newMarkers[event._id] = marker;
