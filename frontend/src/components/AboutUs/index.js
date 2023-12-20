@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Eltion from "../../static/images/img1.png";
+import Eltion from "../Images/TeamImgs/EltionPfp.jpg";
 import Yuri from "../Images/TeamImgs/YuriPfp.png";
-import Claudia from "../../static/images/img3.png";
-import Jason from "../../static/images/img1.png";
+import Claudia from "../Images/TeamImgs/ClaudiaPfp.jpeg";
+import Jason from "../Images/TeamImgs/Jason.jpeg";
 import "./index.css";
 import Globe from "../Globe/Globe";
 import NavBar from "../NavBar";
@@ -15,28 +15,24 @@ const teamMembers = [
     role: "Team Lead",
     github: "https://github.com/EltionBehrami",
     linkedin: "https://www.linkedin.com/in/eltion-behrami-5b9367271/",
-    img: "",
   },
   {
     name: "Yuri Sugihara",
     role: "Backend Lead",
     github: "https://github.com/yuris1234",
     linkedin: "https://www.linkedin.com/in/yuri-sugihara/",
-    img: "",
   },
   {
     name: "Claudia Aziz",
     role: "Frontend Lead",
     github: "https://github.com/claudiaaziz",
     linkedin: "https://www.linkedin.com/in/claudiaaziz/",
-    img: "",
   },
   {
     name: "Jason Zhang",
     role: "Flex Lead",
     github: "https://github.com/Helionster",
     linkedin: "https://www.linkedin.com/in/jason-zhang-344777184/",
-    img: "",
   },
 ];
 
