@@ -9,8 +9,8 @@ Welcome to Bonjour World, the ultimate language exchange hosting platform for la
 
 ## Live Site
 
-Visit our live site at [www.bonjourworld.com](https://www.bonjourworld.com) to explore the world of language exchange events.
-
+Visit our live site at [bonjourworld](https://bonjourworld.onrender.com/) to explore the world of language exchange events.
+https://bonjourworld.onrender.com/
 ## Technologies Used
 
 - **MERN Stack**
