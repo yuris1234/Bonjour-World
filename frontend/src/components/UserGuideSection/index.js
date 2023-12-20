@@ -53,45 +53,48 @@ const UserGuideSection = () => {
 
         <Instruction index={0} colorClass="auth">
           <div className="instruction-div">
-            <h3>1. Sign Up or Log In</h3>
+            <h3 style={{ marginBottom: "15px" }}> 1. Sign Up or Log In</h3>
             <p>
               Create a secure account or log in to start your language learning
               journey.
             </p>
+            <div className="instruction-sign-up-div"></div>
           </div>
         </Instruction>
 
         <Instruction index={1} colorClass="event">
           <div className="instruction-div">
-            <h3>2. Explore Language Exchange Events</h3>
+            <h3 style={{ marginBottom: "15px" }}>2. Explore Language Exchange Events</h3>
             <p>
               Use the interactive maps powered by Google Maps to discover
               language exchange events near you.
             </p>
+            <div className="instruction-event-div"></div>
           </div>
         </Instruction>
 
         <Instruction index={2} colorClass="host-or-join">
           <div className="instruction-div">
-            <h3>3. Host or Join Events</h3>
+            <h3 style={{ marginBottom: "15px" }}>3. Host or Join Events</h3>
             <p>
               Host your own language exchange events or join existing ones.
               Manage events with ease using our intuitive event management
               system.
             </p>
+            <div className="instruction-host-div"></div>
           </div>
         </Instruction>
 
         <Instruction index={3} colorClass="customize-profile">
           <div className="instruction-div">
-            <h3>4. Customize Your Profile</h3>
+            <h3 style={{ marginBottom: "15px" }}>4. Customize Your Profile</h3>
             <p>
               Personalize your user profile with information, preferences, and
               track your language learning progress and event history.
             </p>
+            <div className="instruction-profile-div"></div>
           </div>
         </Instruction>
-
         <p>Get ready to embark on a linguistic adventure with Bonjour World!</p>
       </div>
     </>

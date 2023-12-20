@@ -32,33 +32,38 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  color: #93c4a0;
 }
 
 .user-guide-section .instruction-div {
   padding: 50px;
-  height: 100px;
+  height: 400px;
   width: 700px;
   border-radius: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  color: white;
 }
 
 .user-guide-section .auth {
-  background-color: pink;
+  background-color: #93c4a0;
+  color: white;
 }
 
 .user-guide-section .event {
-  background-color: green;
+  background-color:#0A345B;
+  color: white;
 }
 
 .user-guide-section .host-or-join {
-  background-color: gray;
+  background-color: #93c4a0;
+  color: white;
 }
 
 .user-guide-section .customize-profile {
-  background-color: orange;
+  background-color: #0A345B;
+  color: white;
 }
 
 .back-to-top {
@@ -86,3 +91,34 @@
 .back-to-top-icon:hover {
   color: #A2D5C6;
 } */
+
+.user-guide-section .instruction-sign-up-div,
+.user-guide-section .instruction-event-div,
+.user-guide-section .instruction-host-div,
+.user-guide-section .instruction-profile-div {
+  margin-top: 30px;
+  height: 500px;
+  width: 500px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.user-guide-section .instruction-sign-up-div {
+  background-image: url("../Images/SplashPageImgs/SignUp.png");
+}
+
+.user-guide-section .instruction-event-div {
+  background-image: url("../Images/SplashPageImgs/ShowEvent.png");
+}
+
+.user-guide-section .instruction-host-div {
+  background-image: url("../Images/SplashPageImgs/HostEvent.png");
+}
+
+.user-guide-section .instruction-profile-div {
+  background-image: url("../Images/SplashPageImgs/Profile.png");
+}
