@@ -65,7 +65,6 @@ if (!isProduction) {
   app.use(cors());
 }
 
-
 // Serve static files, including images
 app.use(
   express.static(path.join(__dirname, "../frontend/src/components/Globe"))
