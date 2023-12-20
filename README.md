@@ -1,96 +1,58 @@
-# MERN-Group
 
-# Project Proposal: Bonjour World Language Exchange Platform
 
-## Background and Overview
 
-In a world increasingly interconnected, language learning is a gateway to cultural understanding. Our project, "Bonjour World," is a web platform designed to facilitate language exchange events for both language learners and polyglots. The platform empowers users to host and subscribe to language exchange events.
+# Bonjour World - Language Exchange Platform
 
-## Functionality and MVP
+## Introduction
 
-### Minimum Viable Product (MVP)
+Welcome to Bonjour World, the ultimate language exchange hosting platform for language enthusiasts. Our platform brings together people from diverse backgrounds who share a passion for learning and practicing new languages. Whether you're a seasoned polyglot or just starting your language-learning journey, Bonjour World is the place to connect, practice, and make new friends.
 
-1. **User Authentication:**
-   - Secure user registration and login system.
-   - Authentication mechanisms to protect user data and ensure secure access.
+## Live Site
 
-2. **Event Management (CRUD):**
-   - Creation, Read, Update, and Delete (CRUD) functionality for hosting and managing language exchange events.
-   - Intuitive event creation forms for hosts.
+Visit our live site at [bonjourworld](https://bonjourworld.onrender.com/) to explore the world of language exchange events.
+https://bonjourworld.onrender.com/
+## Technologies Used
 
-3. **User Profile:**
-   - User profiles with customizable information and preferences.
-   - Ability for users to track their language learning progress and event history.
+- **MERN Stack**
+  - MongoDB
+  - Express.js
+  - React
+  - Node.js
 
-4. **Google Maps Integration:**
-   - Utilization of the Google Maps API to display language exchange events geographically.
-   - Interactive maps for users to explore and discover language exchange opportunities.
+- **Google Maps API**
+- **Geocoding API**
+- **Places API**
+- **Google Translate API**
 
-### Bonus Features
+## Core Features
 
-1. **Real-time Messaging (Websockets):**
-   - Implementation of Websockets for real-time messaging between users.
-   - Users can choose language partners and engage in language-specific conversations.
+### 1. Customized Dynamic Maps with Google Maps API
 
-## Technologies
+We leverage the power of the Google Maps API along with the Geocoding and Places API to create an interactive and dynamic map that showcases language exchange events worldwide.
 
-The Bonjour World platform will be developed using the MERN (MongoDB, Express.js, React.js, Node.js) tech stack. The following technologies will be incorporated:
+**Challenges Faced:**
+- **Integration Complexity:** Integrating multiple Google APIs for a seamless map experience posed a challenge in terms of complexity and ensuring a smooth user experience.
+- **Real-time Updates:** Achieving real-time updates on the map for ongoing events required careful consideration of event handling and data synchronization.
 
-- **MongoDB:** A NoSQL database for storing user data, event information, and other relevant data.
-- **Express.js:** A web application framework for Node.js, used for building robust and scalable server-side applications.
-- **React.js:** A JavaScript library for building user interfaces, enabling dynamic and interactive frontend experiences.
-- **Node.js:** A JavaScript runtime environment that allows server-side execution of JavaScript code, powering the backend of the application.
-- **Google Maps API:** For geospatial representation of language exchange events.
-- **Websockets:** To enable real-time messaging features.
+### 2. Event Creation and Join Requests
 
-## Group Members and Work Breakdown
+#### Event Hosting and Joining Process
 
-Our team is composed of the following members, each contributing their expertise to ensure the success of the project:
+- **Host Events:** Users can easily host language exchange events, setting the location, time, and language preferences.
+- **Join Requests:** Language enthusiasts can send join requests to event hosts, and hosts can seamlessly accept or decline requests.
 
-1. **Team Lead (Eltion):**
+**Challenges Faced:**
+- **User Interaction Flow:** Designing an intuitive and user-friendly flow for event creation and join requests required careful consideration of user experience and platform usability.
+- **Real-time Notifications:** Implementing real-time notifications for hosts and participants regarding join requests and approvals demanded an efficient event-driven architecture.
 
-2. **Backend Engineer (Yuri):**
+## User Profiles
 
-3. **Frontend Engineer (Claudia):**
+### Personalized Profiles
 
-4. **Flex Engineer (Jason):**
+Every user has a dynamic profile that can be edited at any time. The profile showcases the user's past language exchange events and the connections they've made during these experiences.
 
-## Schedule
+## Conclusion
 
-### Monday:
+Explore the world of language exchange with Bonjour World. Join us on our journey to connect, practice, and make friends through the beauty of language.
 
-- **Yuri:**
-  - Implement backend CRUD routes for creating an event.
-
-- **Jason and Eltion:**
-  - Work on frontend CRUD tasks (reducers, action creators, thunk, forms, etc). Eltion will assist.
-
-- **Claudia:**
-  - Implement CSS for authentication sign-in, splash page.
-
-- **Eltion:**
-  - Set up Google Maps API.
-
-### Tuesday:
-
-- **Eltion:**
-  - Incorporate Google Maps API into CRUD functionalities.
-
-- **Claudia:**
-  - Implement CSS for forms, events index page, and show pages.
-
-- **Yuri:**
-  - Work on backend functionality for updating and deleting user.
-
-- **Jason:**
-  - Work on frontend functionality for updating and deleting user.
-
-### Wednesday:
-
-- Complete UI design for all show pages, edit forms, and index pages.
-- Start implementing Websockets.
-- Users can only see event details when attendance has been confirmed.
-
-### Thursday and Friday:
-
-- Style direct message (DM) pages.
+Feel free to contribute, provide feedback, or host your own language exchange event on Bonjour World!
