@@ -90,13 +90,13 @@ const SplashPage = () => {
           <div className="currentlanguage">{displayCurrentLanguage()}</div>
           <div className="image-div">
             <img
-              src={image1}
+              src={image2}
               className="image image1"
               alt=""
               style={{ animationDelay: "1s" }}
             />
             <img
-              src={image2}
+              src={image1}
               className="image "
               alt=""
               style={{ animationDelay: "0.5s" }}
