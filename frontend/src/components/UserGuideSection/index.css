@@ -108,7 +108,8 @@
 }
 
 .user-guide-section .instruction-sign-up-div {
-  background-image: url("../Images/SplashPageImgs/SignUp.png");
+  background-image: url("../Images/SplashPageImgs/signup-png.png");
+  object-fit: cover;
 }
 
 .user-guide-section .instruction-event-div {
