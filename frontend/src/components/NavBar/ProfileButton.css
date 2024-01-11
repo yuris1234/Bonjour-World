@@ -1,6 +1,7 @@
 .profile-btn {
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .profile-btn-icon {
