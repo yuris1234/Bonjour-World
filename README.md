@@ -1,24 +1,14 @@
-
-
-
 # Bonjour World - Language Exchange Platform
+
+Visit our live site at [Bonjour World](https://bonjourworld.onrender.com/) to explore the world of language exchange events.
 
 ## Introduction
 
 Welcome to Bonjour World, the ultimate language exchange hosting platform for language enthusiasts. Our platform brings together people from diverse backgrounds who share a passion for learning and practicing new languages. Whether you're a seasoned polyglot or just starting your language-learning journey, Bonjour World is the place to connect, practice, and make new friends.
 
-## Live Site
-
-Visit our live site at [Bonjour World](https://bonjourworld.onrender.com/) to explore the world of language exchange events.
-
 ## Technologies Used
 
 - **MERN Stack**
-  - MongoDB
-  - Express.js
-  - React
-  - Node.js
-
 - **Google Maps API**
 - **Geocoding API**
 - **Places API**
