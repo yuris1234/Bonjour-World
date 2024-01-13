@@ -156,38 +156,65 @@ const EventShow = () => {
       return new Date(originalDate).toLocaleDateString(undefined, options);
     }
 
+    const handleLoggedOutProfileClick = () => dispatch(openModal("signup"));
+
   return (
     <>
       {/* <NavBar /> */}
       <div className="event-show-index">
         <div className="map-container">
-          {event && <EventShowMapWrapper events={[event]} mapOptions={mapOptions} />}
+          {event && (
+            <EventShowMapWrapper events={[event]} mapOptions={mapOptions} />
+          )}
         </div>
 
         <div className="display-one-event">
-          {user && joined ? "" : <div className="event-request">
-            Sign up or request to join for more details!
-          </div>}
+          {user && joined ? (
+            ""
+          ) : (
+            <div className="event-request">
+              Sign up or request to join for more details!
+            </div>
+          )}
           <ul className="event-info-list">
             <div className="event-languages">
               {event?.languages.map((lang) => {
-                return (
-                    <div className="event-lang">{lang}</div>
-                )
+                return <div className="event-lang">{lang}</div>;
               })}
             </div>
             <div className="event-title">
               {event?.title}
               <div className="event-date-time">
-                  <div className="event-date">🗓️ {formatDate(event?.date)}</div>
-                  <div className="event-time">⏰ {event?.time}</div>
-                  {user && joined ? <div className="event-address">📍 {event?.address}</div> : <div className="event-address">📍 <em>hidden</em></div>}
+                <div className="event-date">🗓️ {formatDate(event?.date)}</div>
+                <div className="event-time">⏰ {event?.time}</div>
+                {user && joined ? (
+                  <div className="event-address">📍 {event?.address}</div>
+                ) : (
+                  <div className="event-address">
+                    📍 <em>hidden</em>
+                  </div>
+                )}
               </div>
               <div className="event-title-host">
                 {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
-                <Link to={`users/${host?._id}`}>
-                  <img className="attendee-pfp" src={host?.pfp} alt={host?.username} />
-                </Link>
+                {user ? (
+                  <Link to={`users/${host?._id}`}>
+                    <img
+                      className="attendee-pfp"
+                      src={host?.pfp}
+                      alt={host?.username}
+                    />
+                  </Link>
+                ) : (
+                  <Link to="/">
+                    <img
+                      className="attendee-pfp"
+                      src={host?.pfp}
+                      alt={host?.username}
+                      onClick={handleLoggedOutProfileClick}
+                    />
+                  </Link>
+                )}
                 {host?.firstName}
               </div>
             </div>
@@ -201,51 +228,59 @@ const EventShow = () => {
               </div>
 
               <div className="event-attendees">
-                {user && joined &&
-                  (
+                {user && joined && (
                   <>
-                  <div className="event-show">
-                    Polyglots Attending
-                  </div>
-                  <div className="attendees">
-                    {attendees?.map((attendee) => (
-                    <div className="attendee-details" key={attendee._id}>
-                      <Link to={`/profile/${attendee._id}`}>
-                        <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
-                      </Link>
-                      <span className="attendee-username">{attendee.firstName}</span>
+                    <div className="event-show">Polyglots Attending</div>
+                    <div className="attendees">
+                      {attendees?.map((attendee) => (
+                        <div className="attendee-details" key={attendee._id}>
+                          <Link to={`/profile/${attendee._id}`}>
+                            <img
+                              className="attendee-pfp"
+                              src={attendee.pfp}
+                              alt={attendee.username}
+                            />
+                          </Link>
+                          <span className="attendee-username">
+                            {attendee.firstName}
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                    ))}
-                  </div>
                   </>
-                  )}
-              </div> 
-            <div className="event-buttons">
-              {isHost && (
-                <button class="edit-event" onClick={handleModal}>
-                  <Icon className="event-icon" icon="tdesign:edit"/> Edit
-                </button>
-              )}
+                )}
+              </div>
+              <div className="event-buttons">
+                {isHost && (
+                  <button class="edit-event" onClick={handleModal}>
+                    <Icon className="event-icon" icon="tdesign:edit" /> Edit
+                  </button>
+                )}
 
-              {isHost && (
-                <button class="delete-event" onClick={handleDeleteEvent}>
-                  <Icon className="event-icon" icon="material-symbols:delete"/> Delete
-                </button>
-              )}
+                {isHost && (
+                  <button class="delete-event" onClick={handleDeleteEvent}>
+                    <Icon
+                      className="event-icon"
+                      icon="material-symbols:delete"
+                    />{" "}
+                    Delete
+                  </button>
+                )}
 
-              {!isHost && user && (joined || subscribed) && (
-                <button class="unjoin-event" onClick={handleUnjoin}>
-                  {joined ? "Joined" : subscribed ? "Request Sent!" : ""}
-                </button>
-              )}
+                {!isHost && user && (joined || subscribed) && (
+                  <button class="unjoin-event" onClick={handleUnjoin}>
+                    {joined ? "Joined" : subscribed ? "Request Sent!" : ""}
+                  </button>
+                )}
 
-              {/* create a request to join button if a user is logged in and current status is neither subscribed or joined */}
-              {user && !subscribed && !joined && (
-                <button className="join-event" onClick={handleJoin}>
-                  <Icon icon="gg:add" className="event-icon"/> Request to Join{" "}
-                </button>
-              )}
-            </div>
+                {/* create a request to join button if a user is logged in and current status is neither subscribed or joined */}
+                {user && !subscribed && !joined && (
+                  <button className="join-event" onClick={handleJoin}>
+                    <Icon icon="gg:add" className="event-icon" /> Request to
+                    Join{" "}
+                  </button>
+                )}
+              </div>
             </div>
           </ul>
         </div>
