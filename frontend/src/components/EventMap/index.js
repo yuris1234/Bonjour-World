@@ -21,7 +21,6 @@ import ReactDOMServer from "react-dom/server";
 export const EventMap = ({
   events,
   markerEventHandlers,
-  highlightedEvent,
   mapOptions,
   language,
 }) => {
@@ -217,14 +216,13 @@ export const EventMap = ({
     const image =
       "https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/earth-icon.png";
       // "https://cdn.pixabay.com/photo/2012/04/11/11/39/group-27618_960_720.png";
-    // const image = "https://www.svgrepo.com/show/399293/story-map.svg";
+      // const image = "https://www.svgrepo.com/show/399293/story-map.svg";
     const newMarkers = {};
     Object.values(events).forEach(async (event) => {
       if (language && !event.language.includes(language)) {
         return;
       }
       try {
-        // const formattedAddress = `${event.address}, ${event.city}, ${event.state} ${event.zipcode}`;
         const formattedAddress = event.address;
         const position = await getAddressCoordinates(formattedAddress);
         if (!markersRef.current || !markersRef.current[event._id]) {
@@ -337,17 +335,6 @@ export const EventMap = ({
       } catch (error) {
         console.error("Error fetching coordinates:", error);
       }
-      // Object.values(markersRef.current).forEach((marker) => {
-      //     const eventId = marker.get('eventId');
-      //     if (eventId === highlightedEvent?._id) {
-      //       // Apply custom styling for highlighted event
-      //       marker.setIcon(null); // Reset icon
-      //       marker.setOptions({ backgroundColor: 'yellow' }); // Set background color
-      //     } else {
-      //       // Apply standard styling for other events
-      //       marker.setOptions({ backgroundColor: 'red' }); // Set standard background color
-      //     }
-      // });
     });
     // Remove markers for events that no longer exist
     if (markersRef.current) {
