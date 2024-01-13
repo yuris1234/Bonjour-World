@@ -162,6 +162,12 @@ Every user has a dynamic profile that can be edited at any time. The profile sho
 
 ## Conclusion
 
-Explore the world of language exchange with Bonjour World. Join us on our journey to connect, practice, and make friends through the beauty of language.
+### Features in Development:
 
-Feel free to contribute, provide feedback, or host your own language exchange event on Bonjour World!
+* Our team is actively working on a live messaging interface. This upcoming feature will enable users to practice their chosen language with other profiles in real-time. Stay tuned for an even more engaging language learning experience!
+
+### Join us! 
+
+We appreciate your support and feedback as we continue to refine and expand the Bonjour World platform. Join us on this language-learning journey, where connecting with others is as easy as saying "Bonjour"!
+
+
