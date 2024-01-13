@@ -9,8 +9,8 @@ Welcome to Bonjour World, the ultimate language exchange hosting platform for la
 
 ## Live Site
 
-Visit our live site at [bonjourworld](https://bonjourworld.onrender.com/) to explore the world of language exchange events.
-https://bonjourworld.onrender.com/
+Visit our live site at [Bonjour World](https://bonjourworld.onrender.com/) to explore the world of language exchange events.
+
 ## Technologies Used
 
 - **MERN Stack**
@@ -31,7 +31,6 @@ https://bonjourworld.onrender.com/
 We leverage the power of the Google Maps API along with the Geocoding and Places API to create an interactive and dynamic map that showcases language exchange events worldwide.
 
 ### Geocoding with Google Maps API
-
 
 The `getAddressCoordinates` function in the Bonjour World project utilizes the Google Maps Geocoding API to convert a human-readable address into geographical coordinates (latitude and longitude). This function is particularly useful for plotting events on the map based on their addresses.
 
@@ -105,17 +104,66 @@ if (!markersRef.current || !markersRef.current[event._id]) {
 - **Integration Complexity:** Integrating multiple Google APIs for a seamless map experience posed a challenge in terms of complexity and ensuring a smooth user experience.
 - **Real-time Updates:** Achieving real-time updates on the map for ongoing events required careful consideration of event handling and data synchronization.
 
-### 2. Event Creation and Join Requests
+### 2. Event Hosting and Joining Process
+  #### Join Request API Endpoint
 
-#### Event Hosting and Joining Process
+  - **Host Events:** Users can easily host language exchange events, setting the location, time, and language preferences.
+  - **Join Requests:** Language enthusiasts can send join requests to event hosts, and hosts can seamlessly accept or decline requests.
 
-- **Host Events:** Users can easily host language exchange events, setting the location, time, and language preferences.
-- **Join Requests:** Language enthusiasts can send join requests to event hosts, and hosts can seamlessly accept or decline requests.
+```javascript
+// POST /api/events/:id/users/:id (create a join request)
+router.post('/:eventId/users/:userId', async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.userId);
+        const event = await Event.findById(req.params.eventId);
+
+        if (!user || !event) {
+            return res.json({ message: 'User or Event not found' });
+        }
+
+        // Check if the user has not already requested or joined the event
+        if (
+            !user.requestedEvents.includes(event._id) &&
+            !event.pendingAttendees.includes(user._id) &&
+            !user.events.includes(event._id) &&
+            !event.attendees.includes(user._id)
+        ) {
+            // Add the user to the requested events list and the event to the pending attendees list
+            user.requestedEvents.push(req.params.eventId);
+            event.pendingAttendees.push(req.params.userId);
+            await user.save();
+            await event.save();
+        } else {
+            // If the user has already requested or joined the event, return an error
+            const error = new Error('User has already requested to join this event');
+            error.statusCode = 400;
+            error.errors = { message: 'User has already requested to join this event' };
+            return next(error);
+        }
+
+        // Return the updated user and event information
+        return res.json({ user: user, event: event });
+    } catch (error) {
+        // Handle errors related to event or user not found
+        const error = new Error('Event or User not found');
+        error.statusCode = 404;
+        error.errors = { message: 'No event or user found with that id' };
+        return next(error);
+    }
+});
+```
+
+* The API endpoint is a ```POST``` request to  ```/api/events/:id/users/:id```, fetching the user and event based on provided IDs.
+* It checks if the user or event doesn't exist and returns a response if they are not found.
+* The code then ensures the user hasn't already requested or joined the event before proceeding.
+* If conditions are met, the user is added to the requested events list, and the event is added to the pending attendees list.
+* If the user has already requested or joined, an error is returned.
+* Finally, the updated user and event information are returned in the response.
+
 
 **Challenges Faced:**
 - **User Interaction Flow:** Designing an intuitive and user-friendly flow for event creation and join requests required careful consideration of user experience and platform usability.
-- **Real-time Notifications:** Implementing real-time notifications for hosts and participants regarding join requests and approvals demanded an efficient event-driven architecture.
-
+  
 ## User Profiles
 
 ### Personalized Profiles
