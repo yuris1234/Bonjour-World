@@ -30,6 +30,77 @@ https://bonjourworld.onrender.com/
 
 We leverage the power of the Google Maps API along with the Geocoding and Places API to create an interactive and dynamic map that showcases language exchange events worldwide.
 
+### Geocoding with Google Maps API
+
+
+The `getAddressCoordinates` function in the Bonjour World project utilizes the Google Maps Geocoding API to convert a human-readable address into geographical coordinates (latitude and longitude). This function is particularly useful for plotting events on the map based on their addresses.
+
+```javascript
+const getAddressCoordinates = async (address) => {
+  try {
+    // Construct the Geocoding API URL
+    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+      address
+    )}&key=${process.env.REACT_APP_MAPS_API_KEY}`;
+
+    // Fetch the Geocoding API data
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    // Extract latitude and longitude if results are found
+    if (data.results.length > 0) {
+      const location = data.results[0].geometry.location;
+      const latitude = location.lat;
+      const longitude = location.lng;
+      
+      // Return a LatLng object using the Google Maps API
+      return new window.google.maps.LatLng(latitude, longitude);
+    } else {
+      // Throw an error if no results are found
+      throw new Error("No results found for the provided address.");
+    }
+  } catch (error) {
+    // Log and re-throw the error to handle it in the calling code
+    console.error("Error:", error);
+    throw error;
+  }
+};
+```
+
+* The function takes an address as a parameter and constructs a URL for the Geocoding API request, including the address and the API key.
+* A fetch request is made to the API, and the response is parsed as JSON.
+* If the API returns results, the function extracts the latitude and longitude from the first result and creates a LatLng object using the Google Maps API.
+* If no results are found, an error is thrown with an appropriate message.
+
+### Creating a Marker for an Event
+
+The following code snippet demonstrates how the Bonjour World project creates markers on the map for events using the Google Maps API. The `getAddressCoordinates` function is utilized to obtain the geographical coordinates based on the event's address.
+
+```javascript
+const formattedAddress = event.address;
+const position = await getAddressCoordinates(formattedAddress);
+
+if (!markersRef.current || !markersRef.current[event._id]) {
+  // If no marker exists for the event, create one
+  const marker = new window.google.maps.Marker({
+    position,
+    map,
+    icon: {
+      url: image,
+      scaledSize: new window.google.maps.Size(40, 40),
+    },
+    optimized: false,
+    disableAutoPan: true,
+    animation: window.google.maps.Animation.DROP,
+  });
+}
+```
+* The formattedAddress variable holds the address of the event.
+* The getAddressCoordinates function is called to obtain the geographical coordinates (position) based on the formatted address.
+* If no marker exists for the event (based on its unique identifier), a new marker is created using the Google Maps API.
+* The marker is customized with an icon, size, animation, and other properties to enhance the visual representation on the map.
+
+
 **Challenges Faced:**
 - **Integration Complexity:** Integrating multiple Google APIs for a seamless map experience posed a challenge in terms of complexity and ensuring a smooth user experience.
 - **Real-time Updates:** Achieving real-time updates on the map for ongoing events required careful consideration of event handling and data synchronization.
