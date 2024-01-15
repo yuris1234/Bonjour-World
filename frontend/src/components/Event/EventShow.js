@@ -20,7 +20,7 @@ import { getHost } from "../../store/users";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import { Icon } from "@iconify/react";
 import EventShowMapWrapper from "../EventMap/EventShowMap";
-import EventShowMap from "../EventMap/EventShowMap"
+import EventShowMap from "../EventMap/EventShowMap";
 
 const EventShow = () => {
   const dispatch = useDispatch();
@@ -142,21 +142,12 @@ const EventShow = () => {
     fetchMapData();
   }, [event]);
 
-    // const formatDate = (originalDate) => {
-    //   const dateObject = new Date(originalDate);
-    //   const year = dateObject.getFullYear();
-    //   const month = String(dateObject.getMonth() + 1).padStart(2, "0");
-    //   const day = String(dateObject.getDate()).padStart(2, "0");
+  function formatDate(originalDate) {
+    const options = { month: "long", day: "numeric", year: "numeric" };
+    return new Date(originalDate).toLocaleDateString(undefined, options);
+  }
 
-    //   return `${month}-${day}-${year}`;
-    // };
-
-    function formatDate(originalDate) {
-      const options = { month: 'long', day: 'numeric', year: 'numeric' };
-      return new Date(originalDate).toLocaleDateString(undefined, options);
-    }
-
-    const handleLoggedOutProfileClick = () => dispatch(openModal("signup"));
+  const handleLoggedOutProfileClick = () => dispatch(openModal("signup"));
 
   return (
     <>
@@ -179,7 +170,7 @@ const EventShow = () => {
           <ul className="event-info-list">
             <div className="event-languages">
               {event?.languages.map((lang) => {
-                return <div className="event-lang">{lang}</div>;
+                return <div key={lang} className="event-lang">{lang}</div>;
               })}
             </div>
             <div className="event-title">
@@ -252,23 +243,23 @@ const EventShow = () => {
               </div>
               <div className="event-buttons">
                 {isHost && (
-                  <button class="edit-event" onClick={handleModal}>
+                  <button className="edit-event" onClick={handleModal}>
                     <Icon className="event-icon" icon="tdesign:edit" /> Edit
                   </button>
                 )}
 
                 {isHost && (
-                  <button class="delete-event" onClick={handleDeleteEvent}>
+                  <button className="delete-event" onClick={handleDeleteEvent}>
                     <Icon
                       className="event-icon"
                       icon="material-symbols:delete"
-                    />{" "}
+                    />
                     Delete
                   </button>
                 )}
 
                 {!isHost && user && (joined || subscribed) && (
-                  <button class="unjoin-event" onClick={handleUnjoin}>
+                  <button className="unjoin-event" onClick={handleUnjoin}>
                     {joined ? "Joined" : subscribed ? "Request Sent!" : ""}
                   </button>
                 )}
@@ -277,7 +268,7 @@ const EventShow = () => {
                 {user && !subscribed && !joined && (
                   <button className="join-event" onClick={handleJoin}>
                     <Icon icon="gg:add" className="event-icon" /> Request to
-                    Join{" "}
+                    Join
                   </button>
                 )}
               </div>
