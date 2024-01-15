@@ -39,7 +39,6 @@
   padding: 50px;
   height: 400px;
   width: 700px;
-  border-radius: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,21 +48,25 @@
 .user-guide-section .auth {
   background-color: #93c4a0;
   color: white;
+  border-radius: 5px;
 }
 
 .user-guide-section .event {
   background-color:#0A345B;
   color: white;
+  border-radius: 5px;
 }
 
 .user-guide-section .host-or-join {
   background-color: #93c4a0;
   color: white;
+  border-radius: 5px;
 }
 
 .user-guide-section .customize-profile {
   background-color: #0A345B;
   color: white;
+  border-radius: 5px;
 }
 
 .back-to-top {
@@ -99,7 +102,7 @@
   margin-top: 30px;
   height: 500px;
   width: 500px;
-  border: 1px solid black;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
