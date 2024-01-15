@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./EventForm.css";
-import {
-  getEvent,
-  fetchEvent,
-  createEvent,
-  updateEvent,
-  clearEventErrors,
-} from "../../store/events";
+import { createEvent, clearEventErrors } from "../../store/events";
 import { closeModal } from "../../store/modal";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -24,10 +17,7 @@ const EventForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [languages, setLanguages] = useState([]);
-  // const [state, setState] = useState("");
-  // const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
-  // const [zipcode, setZipcode] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
   const dispatch = useDispatch();
@@ -136,18 +126,9 @@ const EventForm = () => {
         case "languages":
           setLanguages(e.currentTarget.value);
           break;
-        // case "state":
-        //   setState(e.currentTarget.value);
-        //   break;
-        // case "city":
-        //   setCity(e.currentTarget.value);
-        //   break;
         case "address":
           setAddress(e.currentTarget.value);
           break;
-        // case "zipcode":
-        //   setZipcode(e.currentTarget.value);
-        //   break;
         case "date":
           setDate(new Date(e.target.value));
           break;
@@ -163,59 +144,6 @@ const EventForm = () => {
       }
     };
   };
-
-  const states = [
-    "Alabama",
-    "Alaska",
-    "Arizona",
-    "Arkansas",
-    "California",
-    "Colorado",
-    "Connecticut",
-    "Delaware",
-    "Florida",
-    "Georgia",
-    "Hawaii",
-    "Idaho",
-    "Illinois",
-    "Indiana",
-    "Iowa",
-    "Kansas",
-    "Kentucky",
-    "Louisiana",
-    "Maine",
-    "Maryland",
-    "Massachusetts",
-    "Michigan",
-    "Minnesota",
-    "Mississippi",
-    "Missouri",
-    "Montana",
-    "Nebraska",
-    "Nevada",
-    "New Hampshire",
-    "New Jersey",
-    "New Mexico",
-    "New York",
-    "North Carolina",
-    "North Dakota",
-    "Ohio",
-    "Oklahoma",
-    "Oregon",
-    "Pennsylvania",
-    "Rhode Island",
-    "South Carolina",
-    "South Dakota",
-    "Tennessee",
-    "Texas",
-    "Utah",
-    "Vermont",
-    "Virginia",
-    "Washington",
-    "West Virginia",
-    "Wisconsin",
-    "Wyoming",
-  ];
 
   const firstSix = [
     "Arabic",
@@ -255,13 +183,6 @@ const EventForm = () => {
     return timeOptions;
   };
 
-  // const formatDate = (e) => {
-  //   const updatedDate = date.toISOString().substring(0, 10),
-  //   field = document.querySelector('#date');
-  //   setDate(updatedDate);
-  //   field.value = updatedDate;
-  // }
-
   const addLanguage = (lang) => (e) => {
     setLanguages([...languages, lang]);
   };
@@ -296,22 +217,6 @@ const EventForm = () => {
           <div className="errors time-error">{errors?.time}</div>
         </div>
       </div>
-
-      {/* <div className="select">
-          <div className="errors">{errors?.state}</div>
-          <div className="event-select-btn">
-            <select value={state} onChange={update("state")}>
-              <option disabled value="">
-                Select State
-              </option>
-              {states.map((stateOption) => (
-                <option key={stateOption} value={stateOption}>
-                  {stateOption}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div> */}
 
       <div className="select">
         <div className="errors">{errors?.language}</div>
@@ -415,25 +320,6 @@ const EventForm = () => {
             </PlacesAutocomplete>
           )}
         </div>
-
-        {/* <div className="right-column"> */}
-        {/* <div className="errors">{errors?.city}</div>
-          <input
-            type="text"
-            placeholder="City"
-            value={city}
-            onChange={update("city")}
-          /> */}
-
-        {/* 
-          <div className="errors">{errors?.zipcode}</div>
-          <input
-            type="text"
-            placeholder="Zipcode"
-            value={zipcode}
-            onChange={update("zipcode")}
-          /> */}
-        {/* </div> */}
       </div>
 
       <div className="description-error errors">{errors?.description}</div>
