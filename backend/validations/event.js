@@ -42,7 +42,7 @@ const validateEventCreation = [
     check('title')
         .exists({checkFalsy: true})
         .isLength({min: 6, max: 30 })
-        .withMessage('Event title must be between 2 and 30 characters'),
+        .withMessage('Event title must be between 6 and 30 characters'),
     check('description')
         .exists({checkFalsy: true})
         .isLength({min: 10, max: 10000})
