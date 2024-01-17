@@ -53,7 +53,7 @@ const EventForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const updatedEvent = {
+    const createdEvent = {
       title,
       description,
       languages,
@@ -65,7 +65,7 @@ const EventForm = () => {
       attendees: [currentUser._id],
     };
 
-    const res = await dispatch(createEvent(updatedEvent));
+    const res = await dispatch(createEvent(createdEvent));
     if (res?.title) {
       dispatch(closeModal());
       history.push(`/events/${res._id}`);

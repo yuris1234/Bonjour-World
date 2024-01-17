@@ -182,7 +182,7 @@ const EventUpdateForm = ({ eventId }) => {
       </div>
 
       <div className="select">
-        <div className="errors">{errors?.language}</div>
+        <div className="errors">{errors?.languages}</div>
         <div className="languages-container">
           <div className="top-language-container">
             {firstSix.map((lang) => {
