@@ -53,10 +53,7 @@ const EventUpdateForm = ({ eventId }) => {
       time,
       endTime
     };
-    console.log("🦋🦋🦋 ~ updatedEvent:", updatedEvent);
-    console.log("🦋🦋🦋 ~ errors:", errors);
     const res = await dispatch(updateEvent(updatedEvent));
-    console.log('🦋🦋🦋 ~ res:', res);
     if (res.ok) {
       dispatch(closeModal());
       history.push(`/events/${eventId}`);

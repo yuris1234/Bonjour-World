@@ -219,7 +219,7 @@ const EventForm = () => {
       </div>
 
       <div className="select">
-        <div className="errors">{errors?.language}</div>
+        <div className="errors">{errors?.languages}</div>
         <div className="languages-container">
           <div className="top-language-container">
             {firstSix.map((lang) => {
@@ -227,13 +227,14 @@ const EventForm = () => {
                 <div className="event-unselect-btn">
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
-                    {" "}
-                    &times;{" "}
+                    &times;
                   </div>
                 </div>
               ) : (
                 <div className="event-select-btn lang">
-                  <span onClick={addLanguage(lang)}>{lang}</span>
+                  <span onClick={addLanguage(lang)}>
+                    {lang}
+                  </span>
                 </div>
               );
             })}
@@ -244,8 +245,7 @@ const EventForm = () => {
                 <div className="event-unselect-btn">
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
-                    {" "}
-                    &times;{" "}
+                    &times;
                   </div>
                 </div>
               ) : (
