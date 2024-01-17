@@ -141,9 +141,14 @@ export const updateEvent = (event) => async (dispatch) => {
     body: JSON.stringify(event),
   });
   if (res.ok) {
+    console.log("😃 ~ res:", res);
+
     const event = await res.json();
     dispatch(recieveEvent(event));
     return res;
+  } else {
+    console.log("🐰 ~ res:", res);
+
   }
 };
 
