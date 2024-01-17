@@ -262,6 +262,11 @@ width: 33%;
     align-items: center;
 }
 
+.pending-div p {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}
 
 .exchange-connections-div {
     /* border-top: 2px solid #93c4a0; */
