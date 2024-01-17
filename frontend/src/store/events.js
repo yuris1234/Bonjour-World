@@ -132,19 +132,33 @@ export const createEvent = (data) => async (dispatch) => {
   }
 };
 
-export const updateEvent = (event) => async (dispatch) => {
-  const res = await jwtFetch(`/api/events/${event._id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(event),
-  });
-  if (res.ok) {
+export const updateEvent = (data) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/events/${data._id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+    });
     const event = await res.json();
     dispatch(recieveEvent(event));
     return res;
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      return dispatch(receiveErrors(resBody.errors));
+    }
   }
+  // const res = await jwtFetch(`/api/events/${event._id}`, {
+  //   method: "PATCH",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify(event),
+  // });
+  // if (res.ok) {
+  //   const event = await res.json();
+  //   dispatch(recieveEvent(event));
+  //   return res;
+  // } 
 };
 
 export const deleteEvent = (eventId) => async (dispatch) => {
