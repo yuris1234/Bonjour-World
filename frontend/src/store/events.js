@@ -147,18 +147,6 @@ export const updateEvent = (data) => async (dispatch) => {
       return dispatch(receiveErrors(resBody.errors));
     }
   }
-  // const res = await jwtFetch(`/api/events/${event._id}`, {
-  //   method: "PATCH",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(event),
-  // });
-  // if (res.ok) {
-  //   const event = await res.json();
-  //   dispatch(recieveEvent(event));
-  //   return res;
-  // } 
 };
 
 export const deleteEvent = (eventId) => async (dispatch) => {
