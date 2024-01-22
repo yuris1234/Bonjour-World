@@ -22,7 +22,7 @@ Welcome to Bonjour World, the ultimate language exchange hosting platform for la
 
 We leverage the power of the Google Maps API along with the Geocoding and Places API to create an interactive and dynamic map that showcases language exchange events worldwide.
 
-![splashgif](./frontend/public/splashgif.gif)
+![](frontend/public/splashgif.gif)
 
 ### Geocoding with Google Maps API
 
@@ -103,6 +103,8 @@ if (!markersRef.current || !markersRef.current[event._id]) {
 
   - **Host Events:** Users can easily host language exchange events, setting the location, time, and language preferences.
   - **Join Requests:** Language enthusiasts can send join requests to event hosts, and hosts can seamlessly accept or decline requests.
+
+![](frontend/public/profilegif.gif)
 
 ```javascript
 // POST /api/events/:id/users/:id (create a join request)
