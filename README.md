@@ -22,6 +22,8 @@ Welcome to Bonjour World, the ultimate language exchange hosting platform for la
 
 We leverage the power of the Google Maps API along with the Geocoding and Places API to create an interactive and dynamic map that showcases language exchange events worldwide.
 
+![splashgif](./frontend/public/splashgif.gif)
+
 ### Geocoding with Google Maps API
 
 The `getAddressCoordinates` function in the Bonjour World project utilizes the Google Maps Geocoding API to convert a human-readable address into geographical coordinates (latitude and longitude). This function is particularly useful for plotting events on the map based on their addresses.
