@@ -5,6 +5,7 @@ import { RECEIVE_EVENT } from "./events";
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const RECEIVE_USERS = "users/RECEIVE_USERS";
 export const RECEIVE_EVENT_JOIN = "users/RECEIVE_EVENT_JOIN";
+export const UPDATE_USER = "users/UPDATE_USER";
 
 export const receiveUser = (user) => ({
     type: RECEIVE_USER,
@@ -20,6 +21,26 @@ export const receiveEventJoin = (eventJoin) => ({
   type: RECEIVE_EVENT_JOIN,
   eventJoin
 })
+
+export const receiveUpdatedUser = (eventJoin) => ({
+  type: RECEIVE_EVENT_JOIN,
+  eventJoin,
+});
+
+export const updateUser = (user) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${user.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (res.ok) {
+    const updatedUser = await res.json();
+    dispatch(receiveUser(updatedUser));
+  }
+};
 
 export const getAttendees = (event) => (state) => {
   const holder = [];
