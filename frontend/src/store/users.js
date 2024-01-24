@@ -5,7 +5,6 @@ import { RECEIVE_EVENT } from "./events";
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const RECEIVE_USERS = "users/RECEIVE_USERS";
 export const RECEIVE_EVENT_JOIN = "users/RECEIVE_EVENT_JOIN";
-export const UPDATE_USER = "users/UPDATE_USER";
 
 export const receiveUser = (user) => ({
     type: RECEIVE_USER,

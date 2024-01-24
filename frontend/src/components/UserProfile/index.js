@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { getCurrentUser } from "../../store/session";
-import NavBar from "../NavBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+// import { getCurrentUser } from "../../store/session";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import "./index.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import EmptyUser from "../Images/EmptyUser.png";
-import EventsMapWrapper from "../EventMap";
+// import EmptyUser from "../Images/EmptyUser.png";
+// import EventsMapWrapper from "../EventMap";
 import EventIndexItem from "../Event/EventIndexItem";
 import { fetchEvents, getRelevantEvents } from "../../store/events";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -20,7 +19,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchUsers } from "../../store/users.js";
 
 const UserProfile = () => {
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
 
   // get profile user
@@ -31,6 +30,7 @@ const UserProfile = () => {
 
   // update bio
   const [isEditMode, setIsEditMode] = useState(false);
+  console.log('🦋🦋🦋 ~ isEditMode:', isEditMode);
   const [newBio, setNewBio] = useState(user?.bio);
   console.log("🦋🦋🦋 ~ newBio:", newBio);
 
@@ -38,6 +38,10 @@ const UserProfile = () => {
     dispatch(updateUser({ id: user.id, bio: newBio }));
     setIsEditMode(false);
   };
+
+  const handleEditBtnClick = () => {
+    setIsEditMode((prev) => !prev)
+  }
 
   // get current user
   const currentUser = useSelector((state) => state.session.user);
@@ -170,11 +174,13 @@ const UserProfile = () => {
                 </div>
                 <h2 id="profile-details-banner">Bio</h2>
 
-                <button onClick={() => setIsEditMode(true)}>Edit</button>
+                <button onClick={handleEditBtnClick}>Edit</button>
+                <button onClick={() => updateBio()}>Save btn for now</button>
                 {isEditMode ? (
-                  <textarea onChange={(e) => setNewBio(e.target.value)}>
-                    {newBio}
-                  </textarea>
+                  <textarea
+                    onChange={(e) => setNewBio(e.target.value)}
+                    value={newBio}
+                  ></textarea>
                 ) : (
                   <div className="profile-detail">{newBio}</div>
                 )}
@@ -236,7 +242,6 @@ const UserProfile = () => {
                 ? "Your Exchanges"
                 : `${user?.firstName}'s Exchanges`}
             </h2>
-            {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
               {events?.length > 0 ? (
                 events?.map((event) => (
