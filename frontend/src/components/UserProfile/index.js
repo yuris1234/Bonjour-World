@@ -34,7 +34,8 @@ const UserProfile = () => {
   console.log("🦋🦋🦋 ~ newBio:", newBio);
 
   const updateBio = () => {
-    dispatch(updateUser({ id: user._id, bio: newBio }));
+    const updatedUser = { ...user, bio: newBio };
+    dispatch(updateUser(updatedUser));
     setIsEditMode(false);
   };
 

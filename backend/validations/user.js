@@ -39,6 +39,8 @@ const validateUserInput = [
     .optional()
     .custom((value) => isValidLanguages(value))
     .withMessage("Languages must be one of the supported languages"),
+  check("bio")
+    .optional(),
   handleValidationErrors,
 ];
 
