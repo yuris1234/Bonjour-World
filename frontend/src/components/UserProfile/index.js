@@ -30,12 +30,11 @@ const UserProfile = () => {
 
   // update bio
   const [isEditMode, setIsEditMode] = useState(false);
-  console.log('🦋🦋🦋 ~ isEditMode:', isEditMode);
   const [newBio, setNewBio] = useState(user?.bio);
   console.log("🦋🦋🦋 ~ newBio:", newBio);
 
   const updateBio = () => {
-    dispatch(updateUser({ id: user.id, bio: newBio }));
+    dispatch(updateUser({ id: user._id, bio: newBio }));
     setIsEditMode(false);
   };
 
@@ -173,9 +172,15 @@ const UserProfile = () => {
                     </label> */}
                 </div>
                 <h2 id="profile-details-banner">Bio</h2>
+                {user?._id === currentUser?._id && (
+                  <>
+                    <button onClick={handleEditBtnClick}>Edit</button>
+                    <button onClick={() => updateBio()}>
+                      Save btn for now
+                    </button>
+                  </>
+                )}
 
-                <button onClick={handleEditBtnClick}>Edit</button>
-                <button onClick={() => updateBio()}>Save btn for now</button>
                 {isEditMode ? (
                   <textarea
                     onChange={(e) => setNewBio(e.target.value)}
@@ -184,7 +189,6 @@ const UserProfile = () => {
                 ) : (
                   <div className="profile-detail">{newBio}</div>
                 )}
-
                 <h2 id="profile-details-banner">Languages</h2>
                 <div className="profile-detail">{user?.languages}</div>
               </div>
@@ -217,12 +221,12 @@ const UserProfile = () => {
                             >
                               <img
                                 className="attendee-pfp"
-                                src={attendee.pfp}
-                                alt={attendee.username}
+                                src={attendee?.pfp}
+                                alt={attendee?.username}
                               />
                             </Link>
                             <span className="attendee-username">
-                              {attendee.username}
+                              {attendee?.username}
                             </span>
                           </div>
                         ) : (

@@ -27,7 +27,8 @@ export const receiveUpdatedUser = (eventJoin) => ({
 });
 
 export const updateUser = (user) => async (dispatch) => {
-  const res = await jwtFetch(`/api/users/${user.id}`, {
+  console.log('🐰 ~ user:', user);
+  const res = await jwtFetch(`/api/users/${user._id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -37,6 +38,7 @@ export const updateUser = (user) => async (dispatch) => {
 
   if (res.ok) {
     const updatedUser = await res.json();
+    console.log('🦋🦋🦋 ~ updatedUser:', updatedUser);
     dispatch(receiveUser(updatedUser));
   }
 };
