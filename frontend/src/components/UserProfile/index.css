@@ -223,7 +223,7 @@
 }
 
 .profile-detail {
-    /* width: 100%; */
+    width: 95%;
     text-align: center;
     margin-bottom: 20px;
     font-size: 1rem;
@@ -235,6 +235,7 @@
     border: 1px solid black;
     padding: 5px;
     border-radius: 5px;
+    width: 400px;
 }
 
 .event-container {

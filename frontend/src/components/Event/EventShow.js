@@ -189,7 +189,7 @@ const EventShow = () => {
               <div className="event-title-host">
                 {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
                 {user ? (
-                  <Link to={`users/${host?._id}`}>
+                  <Link to={`/profile/${host?._id}`}>
                     <img
                       className="attendee-pfp"
                       src={host?.pfp}
