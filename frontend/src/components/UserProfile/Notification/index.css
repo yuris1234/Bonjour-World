@@ -8,7 +8,6 @@
   border-radius: 10px;
   background-color: #F7F1DF;
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
-  /* background-color: red; */
 }
 
 .notification-container {
@@ -16,6 +15,7 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 10px;
+  /* border: 1px solid pink; */
 }
 
 .notification-container:first-child {
@@ -25,6 +25,7 @@
 .title-user {
   display: flex;
   flex-direction: column;
+  /* border: 1px solid gray; */
 }
 
 .pending-div {
@@ -33,35 +34,14 @@
   align-items: space-between;
   justify-content: start;
   gap: 10px;
-  height: 100%;
+  height: 300px;
   width: 450px;
   overflow-y: scroll;
+  /* border: 1px solid yellow; */
 }
 
 #notifications-title {
-  text-align: center;
   margin-top: 20px;
-}
-
-/* .pending-div {
-  border: 3px solid red;
-
-} */
-
-/* .pending-btns {
-  margin-left: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-
-.btns-container {
-  /* border: 1px solid red; */
-}
-
-.pending-user {
-  /* padding-right: 40px; */
-  /* border: 1px solid blue; */
 }
 
 .handle-delete {
