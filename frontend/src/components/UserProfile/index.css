@@ -201,13 +201,15 @@ width: 33%;
     width: 17px;
     fill: pink;
     /* padding-right: 50px; */
-    margin-left: 0;
+    margin-left: auto;
+    position: relative;
     cursor: pointer;
 }
 
 #profile-details-banner button {
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 
 .profile-detail {

@@ -59,6 +59,10 @@ const UserProfile = () => {
 
   // get user connections
   const connections = useSelector(getConnections(events));
+  const uniqueConnections = new Set(connections)
+  const dataSanitizedUniqueConnections = [...uniqueConnections];
+  console.log('🦋🦋🦋 ~ uniqueConnections:', );
+  console.log('🦋🦋🦋 ~ connections:', connections);
 
   const [highlightedEvent, setHighlightedEvent] = useState();
   // const [imageLoaded, setImageLoaded] = useState(false);
@@ -178,10 +182,10 @@ const UserProfile = () => {
                   Bio
                   {user?._id === currentUser?._id && (
                     <>
-                      {/* <button onClick={handleEditBtnClick}> */}
                       <EditIcon onClick={handleEditBtnClick} />
-                      {/* </button> */}
-                      <button onClick={() => updateBio()}>✔️</button>
+                      {isEditMode && (
+                        <button onClick={() => updateBio()}>✔️</button>
+                      )}
                     </>
                   )}
                 </h2>
@@ -217,7 +221,7 @@ const UserProfile = () => {
                   <div>
                     <h2 id="notifications-title">Exchange Connections</h2>
                     <div className="exchange-connections-div">
-                      {connections.map((attendee) => {
+                      {dataSanitizedUniqueConnections.map((attendee) => {
                         return attendee._id !== user._id &&
                           attendee._id !== currentUser._id ? (
                           <div className="attendee-details">
