@@ -17,6 +17,7 @@ import { fetchUser } from "../../store/users.js";
 import { getConnections } from "../../store/users.js";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchUsers } from "../../store/users.js";
+import { ReactComponent as EditIcon } from "../../static/images/pen.svg";
 
 const UserProfile = () => {
   // const history = useHistory();
@@ -173,20 +174,23 @@ const UserProfile = () => {
                       />
                     </label> */}
                 </div>
-                <h2 id="profile-details-banner">Bio</h2>
-                {user?._id === currentUser?._id && (
-                  <>
-                    <button onClick={handleEditBtnClick}>Edit</button>
-                    <button onClick={() => updateBio()}>
-                      Save btn for now
-                    </button>
-                  </>
-                )}
+                <h2 id="profile-details-banner">
+                  Bio
+                  {user?._id === currentUser?._id && (
+                    <>
+                      {/* <button onClick={handleEditBtnClick}> */}
+                      <EditIcon onClick={handleEditBtnClick} />
+                      {/* </button> */}
+                      <button onClick={() => updateBio()}>✔️</button>
+                    </>
+                  )}
+                </h2>
 
                 {isEditMode ? (
                   <textarea
                     onChange={(e) => setNewBio(e.target.value)}
                     value={newBio}
+                    autoFocus
                   ></textarea>
                 ) : (
                   <div className="profile-detail">{newBio}</div>

@@ -100,7 +100,8 @@ width: 33%;
     align-items: center;
     font-size: 4rem;
     border: 2px solid black;
-    font-family: 'BrandierTrial-SemiBoldItalic';;
+    font-family: 'BrandierTrial-SemiBoldItalic';
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -167,6 +168,7 @@ width: 33%;
     border-radius: 10px;
     border: 2px solid black;
     background-color: #F7F1DF;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* .profile div {
@@ -188,11 +190,24 @@ width: 33%;
     font-size: 1.5rem;
     background-color: #93c4a0;
     border-radius: 10px;
-    width: 100%;
+    width: 93%;
     height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#profile-details-banner svg {
+    width: 17px;
+    fill: pink;
+    /* padding-right: 50px; */
+    margin-left: 0;
+    cursor: pointer;
+}
+
+#profile-details-banner button {
+    background-color: transparent;
+    border: none;
 }
 
 .profile-detail {
@@ -200,6 +215,14 @@ width: 33%;
     text-align: center;
     margin-bottom: 20px;
     font-size: 1rem;
+}
+
+.profile-details textarea {
+    all: unset;
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 .event-container {

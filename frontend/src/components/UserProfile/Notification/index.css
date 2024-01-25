@@ -9,6 +9,7 @@
   /* width: 33%; */
     border-radius: 10px;
     background-color: #F7F1DF;
+box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 .notifications-container {
@@ -16,7 +17,7 @@
   align-items: center;
   justify-content: space-between;
   /* margin-top: 10px; */
-  /* border: 1px solid brown; */
+  border: 10px solid red;
   /* border-bottom: 1px solid #A2D5C6; */
     border-radius: 10px;
 }
