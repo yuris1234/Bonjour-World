@@ -5,7 +5,7 @@ import { addEventJoin, fetchUser, getPendingAttendees, getUser, receiveUser } fr
 import "./index.css";
 import { useEffect } from "react";
 
-export default function ({ event }) {
+const Notification = ({ event }) => {
   const dispatch = useDispatch();
 
   const handleAccept = async (e) => {
@@ -28,9 +28,8 @@ export default function ({ event }) {
   return (
     <>
       {users.map((user) => {
-
         return (
-          <div className="notifications-container">
+          <div className="notification-container">
             <div className="title-user">
               <div className="event-title">{event.title}</div>
               <div className="pending-user">{user?.username}</div>
@@ -57,3 +56,5 @@ export default function ({ event }) {
     </>
   );
 }
+
+export default Notification

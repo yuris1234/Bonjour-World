@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from "react";
 // import { getCurrentUser } from "../../store/session";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import "./index.css";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 // import EmptyUser from "../Images/EmptyUser.png";
 // import EventsMapWrapper from "../EventMap";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams, Link } from "react-router-dom";
+import "./index.css";
 import EventIndexItem from "../Event/EventIndexItem";
-import { fetchEvents, getRelevantEvents } from "../../store/events";
-import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { getHostedEvents } from "../../store/events";
+import {
+  fetchEvents,
+  getRelevantEvents,
+  getHostedEvents,
+} from "../../store/events";
 import Notification from "./Notification/index.js";
-import { getUser, updateUser } from "../../store/users.js";
-import { fetchUser } from "../../store/users.js";
-import { getConnections } from "../../store/users.js";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { fetchUsers } from "../../store/users.js";
+import { fetchUsers, fetchUser, getConnections, getUser, updateUser } from "../../store/users.js";
 import { ReactComponent as EditIcon } from "../../static/images/pen.svg";
 
 const UserProfile = () => {
@@ -61,8 +57,6 @@ const UserProfile = () => {
   const connections = useSelector(getConnections(events));
   const uniqueConnections = new Set(connections)
   const dataSanitizedUniqueConnections = [...uniqueConnections];
-  console.log('🦋🦋🦋 ~ uniqueConnections:', );
-  console.log('🦋🦋🦋 ~ connections:', connections);
 
   const [highlightedEvent, setHighlightedEvent] = useState();
   // const [imageLoaded, setImageLoaded] = useState(false);
@@ -222,8 +216,8 @@ const UserProfile = () => {
                     <h2 id="notifications-title">Exchange Connections</h2>
                     <div className="exchange-connections-div">
                       {dataSanitizedUniqueConnections.map((attendee) => {
-                        return attendee._id !== user._id &&
-                          attendee._id !== currentUser._id ? (
+                        return attendee?._id !== user?._id &&
+                          attendee._id !== currentUser?._id ? (
                           <div className="attendee-details">
                             <Link
                               to={`/profile/${attendee?._id}`}
