@@ -25,19 +25,15 @@ const UserProfile = () => {
   // get profile user
   const { id } = useParams();
   const user = useSelector(getUser(id));
-  console.log("🦋🦋🦋 ~ user:", user);
-  console.log("🦋🦋🦋 ~ bio:", user?.bio);
 
   // update bio
   const [isEditMode, setIsEditMode] = useState(false);
   const [newBio, setNewBio] = useState(user?.bio);
-  console.log("🦋🦋🦋 ~ newBio:", newBio);
-  console.log("🦋🦋🦋 ~ bio:", user?.bio);
 
   useEffect(() => {
     setNewBio(user?.bio);
   }, [user?.bio]);
-  
+
   const updateBio = () => {
     const updatedUser = { ...user, bio: newBio };
     dispatch(updateUser(updatedUser));
@@ -51,7 +47,7 @@ const UserProfile = () => {
   // get current user
   const currentUser = useSelector((state) => state.session.user);
 
-  const [uploadedImage, setUploadedImage] = useState(null);
+  // const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
   // get all events user is attending
