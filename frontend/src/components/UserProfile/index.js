@@ -3,7 +3,7 @@
 // import EventsMapWrapper from "../EventMap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./index.css";
 import EventIndexItem from "../Event/EventIndexItem";
 import {
@@ -16,7 +16,6 @@ import { fetchUsers, fetchUser, getConnections, getUser, updateUser } from "../.
 import { ReactComponent as EditIcon } from "../../static/images/pen.svg";
 
 const UserProfile = () => {
-  // const history = useHistory();
   const dispatch = useDispatch();
 
   // get profile user
@@ -217,7 +216,7 @@ const UserProfile = () => {
                     <div className="exchange-connections-div">
                       {dataSanitizedUniqueConnections.map((attendee) => {
                         return attendee?._id !== user?._id &&
-                          attendee._id !== currentUser?._id ? (
+                          attendee?._id !== currentUser?._id ? (
                           <div className="attendee-details">
                             <Link
                               to={`/profile/${attendee?._id}`}

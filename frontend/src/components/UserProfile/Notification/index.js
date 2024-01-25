@@ -29,9 +29,9 @@ const Notification = ({ event }) => {
     <>
       {users.map((user) => {
         return (
-          <div className="notification-container">
+          <div className="notification-container" key={user?._id}>
             <div className="title-user">
-              <div className="event-title">{event.title}</div>
+              <div className="event-title">{event?.title}</div>
               <div className="pending-user">{user?.username}</div>
             </div>
             <div className="btns-container">

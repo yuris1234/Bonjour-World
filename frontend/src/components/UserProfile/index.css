@@ -189,21 +189,18 @@
 #profile-details-banner {
     font-size: 1.5rem;
     background-color: #93c4a0;
+    /* background-color: red; */
     border-radius: 10px;
     width: 93%;
     height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 #profile-details-banner svg {
     width: 17px;
     fill: pink;
-    /* padding-right: 50px; */
-    position: relative;
-    right: 0;
     cursor: pointer;
+    align-self: 'flex-end'
 }
 
 #profile-details-banner button {
