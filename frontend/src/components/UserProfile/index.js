@@ -32,7 +32,12 @@ const UserProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [newBio, setNewBio] = useState(user?.bio);
   console.log("🦋🦋🦋 ~ newBio:", newBio);
+  console.log("🦋🦋🦋 ~ bio:", user?.bio);
 
+  useEffect(() => {
+    setNewBio(user?.bio);
+  }, [user?.bio]);
+  
   const updateBio = () => {
     const updatedUser = { ...user, bio: newBio };
     dispatch(updateUser(updatedUser));
