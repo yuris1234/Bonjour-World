@@ -171,17 +171,15 @@ const UserProfile = () => {
                       />
                     </label> */}
                 </div>
-                <h2 id="profile-details-banner">
-                  Bio
-                  {user?._id === currentUser?._id && (
-                    <>
-                      <EditIcon onClick={handleEditBtnClick} />
-                      {isEditMode && (
-                        <button onClick={() => updateBio()}>✔️</button>
-                      )}
-                    </>
-                  )}
-                </h2>
+                <h2 id="bio-profile-details-banner">Bio</h2>
+                {user?._id === currentUser?._id && (
+                  <div className="edit-bio-btns-div">
+                    <EditIcon onClick={handleEditBtnClick} />
+                    {isEditMode && (
+                      <button onClick={() => updateBio()}>✔️</button>
+                    )}
+                  </div>
+                )}
 
                 {isEditMode ? (
                   <textarea
@@ -217,7 +215,7 @@ const UserProfile = () => {
                       {dataSanitizedUniqueConnections.map((attendee) => {
                         return attendee?._id !== user?._id &&
                           attendee?._id !== currentUser?._id ? (
-                          <div className="attendee-details">
+                          <div className="attendee-details" key={attendee._id}>
                             <Link
                               to={`/profile/${attendee?._id}`}
                               key={attendee?.id}
