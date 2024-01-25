@@ -191,7 +191,9 @@ const UserProfile = () => {
                   <div className="profile-detail">{newBio}</div>
                 )}
                 <h2 id="profile-details-banner">Languages</h2>
-                <div className="profile-detail">{user?.languages}</div>
+                <div className="profile-detail">
+                  {user?.languages.join(", ")}
+                </div>
               </div>
 
               <div className="notifications-div">
