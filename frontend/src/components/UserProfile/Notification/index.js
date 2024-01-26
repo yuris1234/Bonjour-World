@@ -1,11 +1,12 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createJoinRequest, fetchEvent } from "../../../store/events";
 import { deleteJoinRequest } from "../../../store/events";
 import { addEventJoin, fetchUser, getPendingAttendees, getUser, receiveUser } from "../../../store/users";
 import "./index.css";
-import { useEffect } from "react";
+import ExchangeConnections from "../ExchangeConnections";
 
-const Notification = ({ event }) => {
+const Notification = ({ event, dataSanitizedUniqueConnections, user, currentUser }) => {
   const dispatch = useDispatch();
 
   const handleAccept = async (e) => {
@@ -28,8 +29,8 @@ const Notification = ({ event }) => {
 
   return (
     <>
-      {/* {users.length > 0 ? ( */}
-        {users.map((user) => {
+      {users.length > 0 && (
+        users.map(user => {
           return (
             <div className="notification-container" key={user?._id}>
               <div className="title-user">
@@ -53,11 +54,15 @@ const Notification = ({ event }) => {
                 </button>
               </div>
             </div>
-          );
+          )
         })
       // ) : (
-        // <p className="no-events">No pending requests... yet.</p>
-      }
+          // <ExchangeConnections
+          //   dataSanitizedUniqueConnections={dataSanitizedUniqueConnections}
+          //   user={user}
+          //   currentUser={currentUser}
+          // />
+      )}
     </>
   );
 }
