@@ -225,6 +225,8 @@ bottom: 100px;
   max-width: 500px;
   background-color: transparent;
   border: 2px solid black;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .event-form input[type="submit"] {
