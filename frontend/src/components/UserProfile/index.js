@@ -24,7 +24,7 @@ const UserProfile = () => {
 
   // update bio
   const [isEditMode, setIsEditMode] = useState(false);
-  const [newBio, setNewBio] = useState(user?.bio);
+  const [newBio, setNewBio] = useState(null);
 
   useEffect(() => {
     setNewBio(user?.bio);
@@ -38,6 +38,7 @@ const UserProfile = () => {
 
   const handleEditBtnClick = () => {
     setIsEditMode((prev) => !prev)
+    setNewBio(user?.bio);
   }
 
   // get current user
@@ -171,15 +172,17 @@ const UserProfile = () => {
                       />
                     </label> */}
                 </div>
-                <h2 id="bio-profile-details-banner">Bio</h2>
-                {user?._id === currentUser?._id && (
-                  <div className="edit-bio-btns-div">
-                    <EditIcon onClick={handleEditBtnClick} />
-                    {isEditMode && (
-                      <button onClick={() => updateBio()}>✔️</button>
-                    )}
-                  </div>
-                )}
+                <div id="bio-profile-details-banner">
+                  <div>Bio</div>
+                  {user?._id === currentUser?._id && (
+                    <div className="edit-bio-btns-div">
+                      {isEditMode && (
+                        <button onClick={() => updateBio()}>Save</button>
+                      )}
+                      <EditIcon onClick={handleEditBtnClick} />
+                    </div>
+                  )}
+                </div>
 
                 {isEditMode ? (
                   <textarea

@@ -201,25 +201,32 @@
 #bio-profile-details-banner {
     font-size: 1.5rem;
     background-color: #93c4a0;
-    /* background-color: red; */
     border-radius: 10px;
     width: 93%;
     height: 45px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .edit-bio-btns-div svg {
     width: 17px;
     fill: #0A345B;
     cursor: pointer;
+    justify-self: end;
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
 
 .edit-bio-btns-div button {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 40px;
 }
 
 .profile-detail {
