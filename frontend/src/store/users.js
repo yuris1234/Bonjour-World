@@ -21,6 +21,26 @@ export const receiveEventJoin = (eventJoin) => ({
   eventJoin
 })
 
+export const receiveUpdatedUser = (eventJoin) => ({
+  type: RECEIVE_EVENT_JOIN,
+  eventJoin,
+});
+
+export const updateUser = (user) => async (dispatch) => {
+  const res = await jwtFetch(`/api/users/${user._id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (res.ok) {
+    const updatedUser = await res.json();
+    dispatch(receiveUser(updatedUser));
+  }
+};
+
 export const getAttendees = (event) => (state) => {
   const holder = [];
   if (event) {

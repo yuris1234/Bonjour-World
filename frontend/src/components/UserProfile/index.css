@@ -6,7 +6,7 @@
     /* justify-content: center; */
     /* align-items: space-evenly; */
     /* border: 3px solid green; */
-  padding-top: 45px;
+    padding-top: 45px;
 }
 
 .profile-container {
@@ -46,7 +46,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-width: 33%;
+    width: 33%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -99,8 +99,9 @@ width: 33%;
     justify-content: center;
     align-items: center;
     font-size: 4rem;
-    /* border: 3px solid black; */
+    border: 2px solid black;
     font-family: 'BrandierTrial-SemiBoldItalic';
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -112,6 +113,7 @@ width: 33%;
     /* background-color: #F7F1DF; */
     border-radius: 10px;
     justify-content: space-between;
+    /* border: 2px solid black; */
 }
 
 .profile-img {
@@ -164,8 +166,9 @@ width: 33%;
     gap: 10px;
     width: 49%;
     border-radius: 10px;
-    /* border: 3px solid black; */
+    border: 2px solid black;
     background-color: #F7F1DF;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* .profile div {
@@ -186,19 +189,60 @@ width: 33%;
 #profile-details-banner {
     font-size: 1.5rem;
     background-color: #93c4a0;
+    /* background-color: red; */
     border-radius: 10px;
-    width: 100%;
+    width: 93%;
     height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#bio-profile-details-banner {
+    font-size: 1.5rem;
+    background-color: #93c4a0;
+    border-radius: 10px;
+    width: 93%;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.edit-bio-btns-div svg {
+    width: 17px;
+    fill: #0A345B;
+    cursor: pointer;
+    justify-self: end;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.edit-bio-btns-div button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 40px;
+}
+
 .profile-detail {
-    /* width: 100%; */
+    width: 95%;
     text-align: center;
     margin-bottom: 20px;
     font-size: 1rem;
+}
+
+.profile-details textarea {
+    all: unset;
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 400px;
 }
 
 .event-container {

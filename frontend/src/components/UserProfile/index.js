@@ -1,46 +1,63 @@
+// import { getCurrentUser } from "../../store/session";
+// import EmptyUser from "../Images/EmptyUser.png";
+// import EventsMapWrapper from "../EventMap";
 import React, { useState, useEffect } from "react";
-import { getCurrentUser } from "../../store/session";
-import NavBar from "../NavBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, Link } from "react-router-dom";
 import "./index.css";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import EmptyUser from "../Images/EmptyUser.png";
-import EventsMapWrapper from "../EventMap";
 import EventIndexItem from "../Event/EventIndexItem";
-import { fetchEvents, getRelevantEvents } from "../../store/events";
-import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { getHostedEvents } from "../../store/events";
+import {
+  fetchEvents,
+  getRelevantEvents,
+  getHostedEvents,
+} from "../../store/events";
 import Notification from "./Notification/index.js";
-import { getUser } from "../../store/users.js";
-import { fetchUser } from "../../store/users.js";
-import { getConnections } from "../../store/users.js";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { fetchUsers } from "../../store/users.js";
+import { fetchUsers, fetchUser, getConnections, getUser, updateUser } from "../../store/users.js";
+import { ReactComponent as EditIcon } from "../../static/images/pen.svg";
+import ExchangeConnections from "./ExchangeConnections/index.jsx";
 
 const UserProfile = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   // get profile user
-  const {id} = useParams()
-  const user = useSelector(getUser(id))
+  const { id } = useParams();
+  const user = useSelector(getUser(id));
+
+  // update bio
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [newBio, setNewBio] = useState(null);
+
+  useEffect(() => {
+    setNewBio(user?.bio);
+  }, [user?.bio]);
+
+  const updateBio = () => {
+    const updatedUser = { ...user, bio: newBio, languages: ["English"] };
+    dispatch(updateUser(updatedUser));
+    setIsEditMode(false);
+  };
+
+  const handleEditBtnClick = () => {
+    setIsEditMode((prev) => !prev)
+    setNewBio(user?.bio);
+  }
 
   // get current user
   const currentUser = useSelector((state) => state.session.user);
-  
-  const [uploadedImage, setUploadedImage] = useState(null);
+
+  // const [uploadedImage, setUploadedImage] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
-  
+
   // get all events user is attending
   const events = useSelector(getRelevantEvents(user?._id));
-  
+
   // get all hosted events for current user
   const hostedEvents = useSelector(getHostedEvents(user?._id));
 
   // get user connections
   const connections = useSelector(getConnections(events));
+  const uniqueConnections = new Set(connections)
+  const dataSanitizedUniqueConnections = [...uniqueConnections];
 
   const [highlightedEvent, setHighlightedEvent] = useState();
   // const [imageLoaded, setImageLoaded] = useState(false);
@@ -130,7 +147,9 @@ const UserProfile = () => {
         <div className={`actual-profile-container ${fadeIn ? "fade-in" : ""}`}>
           <div id="left-side">
             <div id="left-side-top">
-              {user?._id === currentUser?._id ? `Hello, ${user?.firstName} ${user?.lastName}` : `${user?.firstName} ${user?.lastName}` }
+              {user?._id === currentUser?._id
+                ? `Hello, ${user?.firstName} ${user?.lastName}`
+                : `${user?.firstName} ${user?.lastName}`}
             </div>
             <div id="left-side-bottom">
               <div className="profile-details">
@@ -154,11 +173,31 @@ const UserProfile = () => {
                       />
                     </label> */}
                 </div>
-                <div className="profile-detail">{user?.username}</div>
-                <h2 id="profile-details-banner">Bio</h2>
-                <div className="profile-detail">{user?.bio}</div>
+                <div id="bio-profile-details-banner">
+                  <div>Bio</div>
+                  {user?._id === currentUser?._id && (
+                    <div className="edit-bio-btns-div">
+                      {isEditMode && (
+                        <button onClick={() => updateBio()}>Save</button>
+                      )}
+                      <EditIcon onClick={handleEditBtnClick} />
+                    </div>
+                  )}
+                </div>
+
+                {isEditMode ? (
+                  <textarea
+                    onChange={(e) => setNewBio(e.target.value)}
+                    value={newBio}
+                    autoFocus
+                  ></textarea>
+                ) : (
+                  <div className="profile-detail">{newBio}</div>
+                )}
                 <h2 id="profile-details-banner">Languages</h2>
-                <div className="profile-detail">{user?.languages}</div>
+                <div className="profile-detail">
+                  {user?.languages.join(", ")}
+                </div>
               </div>
 
               <div className="notifications-div">
@@ -166,48 +205,57 @@ const UserProfile = () => {
                   <div>
                     <h2 id="notifications-title">Pending Requests</h2>
                     <div className="pending-div">
-                      {hostedEvents.length > 0 ? hostedEvents.map((event) => (
-                        <Notification key={event._id} event={event} />
-                      )) : <p>Nothing to see here... yet.</p>}
-                    </div>
-                  </div>
-                ) : 
-                  <div>
-                    <h2 id="notifications-title">Exchange Connections</h2>
-                    <div className="exchange-connections-div">
-                      {connections.map((attendee) => {
-                            return (attendee._id !== user._id && attendee._id !== currentUser._id ? (
-                            <div className="attendee-details">
-                              <Link to={`/profile/${attendee?._id}`} key={attendee?.id}>
-                                <img className="attendee-pfp" src={attendee.pfp} alt={attendee.username} />
-                              </Link>
-                              <span className="attendee-username">{attendee.username}</span>
-                            </div>)
-                            :
-                            ""
-                            )}
+                      {hostedEvents.length > 0 ? (
+                        hostedEvents.map((event) => (
+                          <Notification
+                            key={event._id}
+                            event={event}
+                            dataSanitizedUniqueConnections={
+                              dataSanitizedUniqueConnections
+                            }
+                            user={user}
+                            currentUser={currentUser}
+                          />
+                        ))
+                      ) : (
+                        <p>Nothing to see here... yet.</p>
                       )}
                     </div>
                   </div>
-                }
+                ) : (
+                  <div>
+                    <ExchangeConnections
+                      dataSanitizedUniqueConnections={
+                        dataSanitizedUniqueConnections
+                      }
+                      user={user}
+                      currentUser={currentUser}
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
 
           <div className="event-container">
             <h2 className="event-header">
-              {user?._id === currentUser?._id ? "Your Exchanges" : `${user?.firstName}'s Exchanges`}
+              {user?._id === currentUser?._id
+                ? "Your Exchanges"
+                : `${user?.firstName}'s Exchanges`}
             </h2>
-            {/* <h1 className="event-header">{user?.firstName}'s Events</h1> */}
             <div className="display-users-events">
-              {events?.length > 0 ? events?.map((event) => (
-                <EventIndexItem
-                  key={event._id}
-                  event={event}
-                  highlightedEvent={highlightedEvent}
-                  setHighlightedEvent={setHighlightedEvent}
-                />
-              )) : <p className="no-events">Nothing to see here... yet.</p>}
+              {events?.length > 0 ? (
+                events?.map((event) => (
+                  <EventIndexItem
+                    key={event._id}
+                    event={event}
+                    highlightedEvent={highlightedEvent}
+                    setHighlightedEvent={setHighlightedEvent}
+                  />
+                ))
+              ) : (
+                <p className="no-events">Nothing to see here... yet.</p>
+              )}
             </div>
           </div>
         </div>
