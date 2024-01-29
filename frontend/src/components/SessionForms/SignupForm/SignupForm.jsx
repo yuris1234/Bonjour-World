@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import './index.css';
 import { closeModal, openModal } from "../../../store/modal";
 import { signup, clearSessionErrors } from '../../../store/session';
@@ -166,7 +165,7 @@ const SignupForm = () => {
       value="Sign Up"
       disabled={!email || !username || !password || password !== passwordConfirmation}
     />
-    <p className="loginLink">
+    <p className="already-have-acct">
       Already have an account? <span onClick={alreadyHaveAcct}>Log in here.</span>
     </p>
   </form>
