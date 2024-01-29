@@ -47,8 +47,8 @@ const LoginForm = () => {
       }
     };
 
-    await typingEffect("demo@demo.com", setEmail);
-    await typingEffect("password", setPassword);
+    await typingEffect("bonjour@guest.com", setEmail);
+    await typingEffect("guestpassword1234", setPassword);
 
     // login guest after typing effect is complete
     const guestCredentials = {
