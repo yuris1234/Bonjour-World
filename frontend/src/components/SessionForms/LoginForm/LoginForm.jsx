@@ -33,7 +33,30 @@ const LoginForm = () => {
   };
 
   const handleGuestLogin = async () => {
-    await dispatch(login({ email: 'demo@demo.com', password: 'password' }));
+    setEmail("")
+    setPassword("")
+    
+    // typing effect
+    const typingEffect = async (credential, setCredential) => {
+      for (const char of credential) {
+        // typing in the credential one char at a time
+        await new Promise((resolve) => setTimeout(() => {
+          setCredential((prev) => prev + char);
+          resolve();
+        }, 30)); 
+      }
+    };
+
+    await typingEffect("demo@demo.com", setEmail);
+    await typingEffect("password", setPassword);
+
+    // login guest after typing effect is complete
+    const guestCredentials = {
+      email: "demo@demo.com",
+      password: "password"
+    };
+    await new Promise((resolve) => setTimeout(resolve, 300)); // short pause 
+    dispatch(login(guestCredentials));
     dispatch(closeModal());
     history.push('/events');
   };
