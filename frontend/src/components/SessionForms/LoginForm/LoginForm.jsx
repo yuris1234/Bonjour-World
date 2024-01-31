@@ -36,6 +36,7 @@ const LoginForm = () => {
   const handleGuestLogin = async () => {
     setEmail("")
     setPassword("")
+    setShowPassword(false)
     
     // typing effect
     const typingEffect = async (credential, setCredential) => {
@@ -86,7 +87,7 @@ const LoginForm = () => {
             onChange={update('password')}
             placeholder="Password"
           />
-          <div onClick={() => setShowPassword((prev) => !prev)}>toggle</div>
+          <i className={showPassword ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={() => setShowPassword((prev) => !prev)}/>
         {/* </label> */}
       </div>
 
