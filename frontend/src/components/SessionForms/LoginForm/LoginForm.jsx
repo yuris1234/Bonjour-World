@@ -9,7 +9,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false)
-  const errors = useSelector((state) => state.errors.session);
+  let errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -34,10 +34,11 @@ const LoginForm = () => {
   };
 
   const handleGuestLogin = async () => {
+    dispatch(clearSessionErrors());
     setEmail("")
     setPassword("")
     setShowPassword(false)
-    
+
     // typing effect
     const typingEffect = async (credential, setCredential) => {
       for (const char of credential) {
