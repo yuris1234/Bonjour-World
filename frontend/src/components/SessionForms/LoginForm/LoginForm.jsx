@@ -8,6 +8,7 @@ import { login, clearSessionErrors } from '../../../store/session';
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false)
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -80,11 +81,12 @@ const LoginForm = () => {
         {/* <label>
           Password */}
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={update('password')}
             placeholder="Password"
           />
+          <div onClick={() => setShowPassword((prev) => !prev)}>toggle</div>
         {/* </label> */}
       </div>
 
