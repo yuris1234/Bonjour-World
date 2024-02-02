@@ -9,7 +9,6 @@ import {
   clearEventErrors,
 } from "../../store/events";
 import { closeModal } from "../../store/modal";
-import "./EventForm.css";
 
 const EventUpdateForm = ({ eventId }) => {
   const errors = useSelector((state) => state.errors.event);
