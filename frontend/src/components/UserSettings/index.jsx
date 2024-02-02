@@ -15,11 +15,9 @@ const UserSettings = () => {
   const [email, setEmail] = useState(user?.email);
   const [languages, setLanguages] = useState(user?.languages);
 
-  useEffect(() => {
-    if (eventId) {
-      dispatch(fetchEvent(eventId));
-    }
-  }, [eventId]);
+  // useEffect(() => {
+  //   setUsername(user?.username);
+  // }, [user?.username]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

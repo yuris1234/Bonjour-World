@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import "./ProfileButton.css";
 // import ProfileBtnIcon from "../Images/EmptyUser.png";
 import { Icon } from "@iconify/react";
+import { openModal } from "../../store/modal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -38,7 +39,6 @@ function ProfileButton({ user }) {
     <>
       <button className="profile-btn" onClick={openMenu}>
         <Icon icon="bx:user" className="profile-btn-icon" />
-        {/* <img alt="" className="profile-btn-icon" src={ProfileBtnIcon} /> */}
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
@@ -48,7 +48,10 @@ function ProfileButton({ user }) {
             </Link>
           </li>
           <li>
-            <button className="logout-button">
+            <button
+              onClick={() => dispatch(openModal("updateSettings"))} 
+              className="logout-button"
+            >
               Settings
             </button>
           </li>
@@ -64,5 +67,3 @@ function ProfileButton({ user }) {
 }
 
 export default ProfileButton;
-
-// onClick={openUserSettingsModal}
