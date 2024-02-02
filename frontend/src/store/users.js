@@ -7,19 +7,19 @@ export const RECEIVE_USERS = "users/RECEIVE_USERS";
 export const RECEIVE_EVENT_JOIN = "users/RECEIVE_EVENT_JOIN";
 
 export const receiveUser = (user) => ({
-    type: RECEIVE_USER,
-    user
-})
+  type: RECEIVE_USER,
+  user,
+});
 
 export const receiveUsers = (users) => ({
-    type: RECEIVE_USERS,
-    users
-})
+  type: RECEIVE_USERS,
+  users,
+});
 
 export const receiveEventJoin = (eventJoin) => ({
   type: RECEIVE_EVENT_JOIN,
-  eventJoin
-})
+  eventJoin,
+});
 
 export const receiveUpdatedUser = (eventJoin) => ({
   type: RECEIVE_EVENT_JOIN,
@@ -34,6 +34,7 @@ export const updateUser = (user) => async (dispatch) => {
     },
     body: JSON.stringify(user),
   });
+  console.log("🦋🦋🦋 ~ res from store:", res);
 
   if (res.ok) {
     const updatedUser = await res.json();
@@ -46,24 +47,24 @@ export const getAttendees = (event) => (state) => {
   if (event) {
     Object.values(state.users).forEach((user) => {
       if (event.attendees.includes(user._id)) {
-        holder.push(user)
+        holder.push(user);
       }
-    }) 
-    return holder
+    });
+    return holder;
   }
-}
+};
 
 export const getPendingAttendees = (event) => (state) => {
   const holder = [];
   if (event) {
     Object.values(state.users).forEach((user) => {
       if (event.pendingAttendees.includes(user._id)) {
-        holder.push(user)
+        holder.push(user);
       }
-    }) 
-    return holder
+    });
+    return holder;
   }
-}
+};
 
 export const getConnections = (events) => (state) => {
   const holder = [];
@@ -75,11 +76,11 @@ export const getConnections = (events) => (state) => {
           holder.push(user);
           idHolder.push(user._id);
         }
-      })
-    })
+      });
+    });
   }
   return holder;
-}
+};
 
 export const getUser = (userId) => (state) => {
   if (state?.users) {
@@ -89,35 +90,37 @@ export const getUser = (userId) => (state) => {
 
 export const getHost = (event) => (state) => {
   if (event?.host) {
-    return state.users[event.host]
+    return state.users[event.host];
   }
-}
+};
 
 export const addEventJoin = (userId, eventId) => async (dispatch) => {
   const res = await jwtFetch(`/api/users/${userId}/events/${eventId}`, {
-    method: "POST"
-  })
+    method: "POST",
+  });
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveEventJoin(data));
   }
-}
+};
 
 export const removeEventJoin = (userId, eventId) => async (dispatch) => {
-  const res = await jwtFetch(`/api/users/${userId}/events/${eventId}`, {method: "DELETE"})
+  const res = await jwtFetch(`/api/users/${userId}/events/${eventId}`, {
+    method: "DELETE",
+  });
   if (res.ok) {
     const data = await res.json();
     dispatch(receiveEventJoin(data));
   }
-}
+};
 
 export const fetchUser = (userId) => async (dispatch) => {
-    const res = await jwtFetch(`/api/users/${userId}`);
-    if (res.ok) {
-        const user = await res.json();
-        dispatch(receiveUser(user));
-    }
-}
+  const res = await jwtFetch(`/api/users/${userId}`);
+  if (res.ok) {
+    const user = await res.json();
+    dispatch(receiveUser(user));
+  }
+};
 
 export const fetchUsers = () => async (dispatch) => {
   const res = await jwtFetch(`/api/users`);
@@ -126,36 +129,41 @@ export const fetchUsers = () => async (dispatch) => {
     const users = await res.json();
     dispatch(receiveUsers(users));
   }
-}
+};
 
 const usersReducer = (state = {}, action) => {
-  const newState = {}
-    switch (action.type) {
-        case RECEIVE_USER:
-          return { ...state, [action.user._id]: action.user };
-        case RECEIVE_USERS:
-          Object.values(action.users).forEach((user) => {
-            newState[user._id] = user;
-          })
-          return {...state, ...newState};
-        case RECEIVE_EVENT_JOIN:
-          return {...state, [action.eventJoin.user._id]: action.eventJoin.user}
-        case RECEIVE_JOIN_REQUEST:
-          return {...state, [action.joinRequest.user._id]: action.joinRequest.user}
-        case RECEIVE_EVENT:
-          if (action.event.attendees) {
-            Object.values(action.event.attendees).forEach((user) => {
-              newState[user._id] = user;
-          })}
+  const newState = {};
+  switch (action.type) {
+    case RECEIVE_USER:
+      return { ...state, [action.user._id]: action.user };
+    case RECEIVE_USERS:
+      Object.values(action.users).forEach((user) => {
+        newState[user._id] = user;
+      });
+      return { ...state, ...newState };
+    case RECEIVE_EVENT_JOIN:
+      return { ...state, [action.eventJoin.user._id]: action.eventJoin.user };
+    case RECEIVE_JOIN_REQUEST:
+      return {
+        ...state,
+        [action.joinRequest.user._id]: action.joinRequest.user,
+      };
+    case RECEIVE_EVENT:
+      if (action.event.attendees) {
+        Object.values(action.event.attendees).forEach((user) => {
+          newState[user._id] = user;
+        });
+      }
 
-        if (action.event.pendingAttendees) {
-            Object.values(action.event.pendingAttendees).forEach((user) => {
-            newState[user._id] = user;
-        })}
+      if (action.event.pendingAttendees) {
+        Object.values(action.event.pendingAttendees).forEach((user) => {
+          newState[user._id] = user;
+        });
+      }
 
-        return {...state, ...newState}
-        default: 
-          return state;
-    }
-}
+      return { ...state, ...newState };
+    default:
+      return state;
+  }
+};
 export default usersReducer;

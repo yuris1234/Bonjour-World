@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "./EventForm.css";
+import "../Event/EventForm.css";
 import { closeModal } from "../../store/modal";
 import { updateUser } from "../../store/users";
 
@@ -26,13 +26,16 @@ const UserSettings = () => {
       ...user,
       username,
       email,
-      languages,
+      languages
     };
-    const res = await dispatch(updateUser(updatedUser));
-    if (res.ok) {
+    // const res = await dispatch(updateUser(updatedUser));
+    dispatch(updateUser(updatedUser));
+    // console.log('🦋🦋🦋 ~ res:', res);
+    // if (res.ok) {
       dispatch(closeModal());
-      history.push(`/events/${user._id}`);
-    }
+      history.push(`/`);
+    // }
+    console.log('🦋🦋🦋 ~ updatedUser:', updatedUser);
   };
 
   const update = (field) => {

@@ -5,6 +5,7 @@ import EventForm from "../Event/EventForm";
 import EventUpdateForm from "../Event/EventUpdateForm";
 import "./modal.css";
 import { useDispatch, useSelector } from "react-redux";
+import UserSettings from "../UserSettings";
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -31,8 +32,12 @@ const Modal = () => {
       component = <EventForm modal={"null"} />;
       modalClass = "create-event-modal";
       break;
-    case "updateEvent": 
+    case "updateEvent":
       component = <EventUpdateForm eventId={eventId} modal={"null"} />;
+      modalClass = "update-event-modal";
+      break;
+    case "updateSettings":
+      component = <UserSettings modal={"null"} />;
       modalClass = "update-event-modal";
       break;
     default:
