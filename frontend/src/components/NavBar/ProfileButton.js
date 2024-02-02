@@ -47,7 +47,11 @@ function ProfileButton({ user }) {
               Profile
             </Link>
           </li>
-          {/* <hr/> */}
+          <li>
+            <button className="logout-button">
+              Settings
+            </button>
+          </li>
           <li>
             <button onClick={logoutUser} className="logout-button">
               Log Out
@@ -60,3 +64,5 @@ function ProfileButton({ user }) {
 }
 
 export default ProfileButton;
+
+// onClick={openUserSettingsModal}
