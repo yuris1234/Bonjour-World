@@ -111,24 +111,29 @@
   font-size: .95rem;
 }
 
+.time-select {
+  background-color: #0A345B;
+  color: white;
+  width: 105px;
+  height: 15px;
+  font-size: .75rem;
+  border: none;
+  white-space: nowrap;
+  margin-top: 8px;
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: 10px;
+  display: flex;
+}
+
 .languages-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  border: 3px solid blue;
   width: 500px;
 }
-
-/* .event-select-btn,
-.event-unselect-btn {
-  box-sizing: border-box;
-  height: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 .lang-btn {
   width: 65px;

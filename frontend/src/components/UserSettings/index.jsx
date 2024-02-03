@@ -150,14 +150,14 @@ const UserSettings = () => {
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn">
+                <div className="event-unselect-btn lang-btn">
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang">
+                <div className="event-select-btn lang-btn">
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
@@ -166,14 +166,14 @@ const UserSettings = () => {
           <div className="bottom-language-container">
             {lastSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn">
+                <div className="event-unselect-btn lang-btn">
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang">
+                <div className="event-select-btn lang-btn">
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );

@@ -50,7 +50,7 @@ const EventUpdateForm = ({ eventId }) => {
       address,
       date,
       time,
-      endTime
+      endTime,
     };
     const res = await dispatch(updateEvent(updatedEvent));
     if (res.ok) {
@@ -117,12 +117,12 @@ const EventUpdateForm = ({ eventId }) => {
   ];
 
   const addLanguage = (lang) => (e) => {
-    setLanguages([...languages, lang])
-  }
+    setLanguages([...languages, lang]);
+  };
 
   const removeLanguage = (lang) => (e) => {
-    setLanguages(languages.filter(val => val !== lang))
-  }
+    setLanguages(languages.filter((val) => val !== lang));
+  };
 
   const generateTimeOptions = () => {
     const timeOptions = [];
@@ -156,7 +156,7 @@ const EventUpdateForm = ({ eventId }) => {
 
       <div className="selects">
         <div className="select">
-          <div className="event-select-btn">
+          <div className="time-select">
             <select value={time} onChange={update("time")}>
               <option disabled value="">
                 Start Time
@@ -165,7 +165,7 @@ const EventUpdateForm = ({ eventId }) => {
             </select>
           </div>
 
-          <div className="event-select-btn">
+          <div className="time-select">
             <select value={endTime} onChange={update("endTime")}>
               <option disabled value="">
                 End Time
@@ -183,14 +183,14 @@ const EventUpdateForm = ({ eventId }) => {
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn">
+                <div className="event-unselect-btn lang-btn">
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn">
+                <div className="event-select-btn lang-btn">
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
@@ -199,14 +199,14 @@ const EventUpdateForm = ({ eventId }) => {
           <div className="bottom-language-container">
             {lastSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn">
+                <div className="event-unselect-btn lang-btn">
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn">
+                <div className="event-select-btn lang-btn">
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
