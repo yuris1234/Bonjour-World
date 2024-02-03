@@ -49,17 +49,12 @@ export const updateUser = (user) => async (dispatch) => {
       body: JSON.stringify(user),
     });
     const updatedUser = await res.json();
-    console.log("🦋🦋🦋 ~ res:", res);
-    console.log("🦋🦋🦋 ~ updatedUser:", updatedUser);
     dispatch(receiveUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
     return res;
   } catch (err) {
-    console.log("why are u going here")
     const resBody = await err.json();
     if (resBody.statusCode === 400) {
-      
-      console.log('🦋🦋🦋 ~ resBody.errors:', resBody.errors);
       dispatch(receiveUpdateUserErrors(resBody.errors));
     }
     return resBody;
