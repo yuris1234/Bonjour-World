@@ -2,25 +2,33 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../Event/EventForm.css";
 import { closeModal } from "../../store/modal";
-import { clearUpdateUserErrors, updateUser } from "../../store/users";
+import { clearUpdateUserErrors, fetchUser, fetchUsers, getUser, updateUser } from "../../store/users";
 import { receiveCurrentUser } from "../../store/session";
 import "./index.css"
 
 const UserSettings = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  console.log('🦋🦋🦋 ~ user:', user);
+  const currentUser = useSelector(getUser(user._id));
+  console.log('🦋🦋🦋 ~ currentUser:', currentUser);
+
   const errors = useSelector((state) => state.errors.updateUser);
 
-  const [username, setUsername] = useState(user?.username);
-  const [email, setEmail] = useState(user?.email);
-  const [languages, setLanguages] = useState(user?.languages);
+  const [username, setUsername] = useState(currentUser?.username);
+  const [email, setEmail] = useState(currentUser?.email);
+  const [languages, setLanguages] = useState(currentUser?.languages);
 
   useEffect(() => {
-    dispatch(receiveCurrentUser(user))
-    setUsername(user?.username);
-    setEmail(user?.email);
-    setLanguages(user?.languages);
-  }, [user, dispatch]);
+    // dispatch(receiveCurrentUser(user))
+    dispatch(fetchUsers());
+    dispatch(fetchUser(user._id));
+    console.log('🦋🦋🦋 from useeffeect ~ user:', user);
+    
+    // setUsername(user?.username);
+    // setEmail(user?.email);
+    // setLanguages(user?.languages);
+  }, []);
 
   useEffect(() => {
     return () => dispatch(clearUpdateUserErrors());
@@ -30,7 +38,7 @@ const UserSettings = () => {
     e.preventDefault();
 
     const updatedUser = {
-      ...user,
+      ...currentUser,
       username,
       email,
       languages
@@ -89,7 +97,7 @@ const UserSettings = () => {
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>Hi, {user?.firstName} {user?.lastName}</h2>
+      <h2>Hi, {currentUser?.firstName} {currentUser?.lastName}</h2>
 
       {/* <div className="selects">
         <div className="select">
