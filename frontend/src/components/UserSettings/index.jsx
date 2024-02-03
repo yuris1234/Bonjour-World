@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "../Event/EventForm.css";
 import { closeModal } from "../../store/modal";
 import { updateUser } from "../../store/users";
+import { receiveCurrentUser } from "../../store/session";
 
 const UserSettings = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const errors = useSelector((state) => state.errors.event);
-  const history = useHistory();
 
   const [username, setUsername] = useState(user?.username);
   const [email, setEmail] = useState(user?.email);
   const [languages, setLanguages] = useState(user?.languages);
 
-  // useEffect(() => {
-  //   setUsername(user?.username);
-  // }, [user?.username]);
+  useEffect(() => {
+    dispatch(receiveCurrentUser(user))
+    setUsername(user?.username);
+    setEmail(user?.email);
+    setLanguages(user?.languages);
+  }, [user, dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,14 +30,13 @@ const UserSettings = () => {
       email,
       languages
     };
-    // const res = await dispatch(updateUser(updatedUser));
-    dispatch(updateUser(updatedUser));
-    // console.log('🦋🦋🦋 ~ res:', res);
-    // if (res.ok) {
+    const res = await dispatch(updateUser(updatedUser));
+      console.log('🦋🦋🦋 ~ res:', res);
+
+    if (res.ok) {
+      console.log('🦋🦋🦋 ~ res:', res);
       dispatch(closeModal());
-      history.push(`/`);
-    // }
-    console.log('🦋🦋🦋 ~ updatedUser:', updatedUser);
+    }
   };
 
   const update = (field) => {
@@ -85,7 +86,7 @@ const UserSettings = () => {
 
   return (
     <form className="event-form" onSubmit={handleSubmit}>
-      <h2>Hi, {user.firstName} {user.lastName}</h2>
+      <h2>Hi, {user?.firstName} {user?.lastName}</h2>
 
       {/* <div className="selects">
         <div className="select">

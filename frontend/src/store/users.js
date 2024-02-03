@@ -1,10 +1,12 @@
 import jwtFetch from "./jwt";
 import { RECEIVE_JOIN_REQUEST } from "./events";
 import { RECEIVE_EVENT } from "./events";
+import { receiveCurrentUser } from "./session";
 
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const RECEIVE_USERS = "users/RECEIVE_USERS";
 export const RECEIVE_EVENT_JOIN = "users/RECEIVE_EVENT_JOIN";
+const RECEIVE_UPDATE_ERRORS = "session/RECEIVE_UPDATE_ERRORS";
 
 export const receiveUser = (user) => ({
   type: RECEIVE_USER,
@@ -26,21 +28,54 @@ export const receiveUpdatedUser = (eventJoin) => ({
   eventJoin,
 });
 
-export const updateUser = (user) => async (dispatch) => {
-  const res = await jwtFetch(`/api/users/${user._id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(user),
-  });
-  console.log("🦋🦋🦋 ~ res from store:", res);
+// Dispatch receiveUpdateErros to show validation errors on the frontend.
+export const receiveUpdateErros = (errors) => ({
+  type: RECEIVE_UPDATE_ERRORS,
+  errors,
+});
 
-  if (res.ok) {
+// export const updateUser = (user) => async (dispatch) => {
+//   const res = await jwtFetch(`/api/users/${user._id}`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(user),
+//   });
+
+//   if (res.ok) {
+//     const updatedUser = await res.json();
+//     dispatch(receiveUser(updatedUser));
+//   }
+//   return res
+// };
+
+export const updateUser = (user) => async (dispatch) => {
+  try {
+    const res = await jwtFetch(`/api/users/${user._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
     const updatedUser = await res.json();
+    console.log('🦋🦋🦋 ~ updatedUser:', updatedUser);
     dispatch(receiveUser(updatedUser));
+    dispatch(receiveCurrentUser(updatedUser));
+    console.log("🦋🦋🦋 ~ res:", res);
+    return res;
+  } catch (err) {
+    console.log('🦋🦋🦋 ~ err:', err);
+    const resBody = await err.json();
+    if (resBody.status === 400) {
+      dispatch(receiveUpdateErros(resBody.errors));
+    }
+    return resBody;
   }
 };
+
+
 
 export const getAttendees = (event) => (state) => {
   const holder = [];
