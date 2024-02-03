@@ -6,7 +6,8 @@ import { receiveCurrentUser } from "./session";
 export const RECEIVE_USER = "users/RECEIVE_USER";
 export const RECEIVE_USERS = "users/RECEIVE_USERS";
 export const RECEIVE_EVENT_JOIN = "users/RECEIVE_EVENT_JOIN";
-const RECEIVE_UPDATE_ERRORS = "session/RECEIVE_UPDATE_ERRORS";
+export const RECEIVE_UPDATE_ERRORS = "users/RECEIVE_UPDATE_ERRORS";
+export const CLEAR_UPDATE_ERRORS = "users/CLEAR_UPDATE_ERRORS";
 
 export const receiveUser = (user) => ({
   type: RECEIVE_USER,
@@ -29,26 +30,14 @@ export const receiveUpdatedUser = (eventJoin) => ({
 });
 
 // Dispatch receiveUpdateErros to show validation errors on the frontend.
-export const receiveUpdateErros = (errors) => ({
+export const receiveUpdateUserErrors = (errors) => ({
   type: RECEIVE_UPDATE_ERRORS,
   errors,
 });
 
-// export const updateUser = (user) => async (dispatch) => {
-//   const res = await jwtFetch(`/api/users/${user._id}`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(user),
-//   });
-
-//   if (res.ok) {
-//     const updatedUser = await res.json();
-//     dispatch(receiveUser(updatedUser));
-//   }
-//   return res
-// };
+export const clearUpdateUserErrors = () => ({
+  type: CLEAR_UPDATE_ERRORS,
+});
 
 export const updateUser = (user) => async (dispatch) => {
   try {
@@ -60,23 +49,22 @@ export const updateUser = (user) => async (dispatch) => {
       body: JSON.stringify(user),
     });
     const updatedUser = await res.json();
-    console.log('🦋🦋🦋 ~ updatedUser:', updatedUser);
+    console.log("🦋🦋🦋 ~ res:", res);
+    console.log("🦋🦋🦋 ~ updatedUser:", updatedUser);
     dispatch(receiveUser(updatedUser));
     dispatch(receiveCurrentUser(updatedUser));
-    console.log("🦋🦋🦋 ~ res:", res);
     return res;
   } catch (err) {
-    console.log('🦋🦋🦋 ~ err:', err);
+    console.log("why are u going here")
     const resBody = await err.json();
-    console.log('🦋🦋🦋 ~ resBody:', resBody);
     if (resBody.statusCode === 400) {
-      dispatch(receiveUpdateErros(resBody.errors));
+      
+      console.log('🦋🦋🦋 ~ resBody.errors:', resBody.errors);
+      dispatch(receiveUpdateUserErrors(resBody.errors));
     }
     return resBody;
   }
 };
-
-
 
 export const getAttendees = (event) => (state) => {
   const holder = [];
@@ -167,18 +155,14 @@ export const fetchUsers = () => async (dispatch) => {
   }
 };
 
-
 const nullErrors = null;
 
 export const updateUserErrorsReducer = (state = nullErrors, action) => {
-  console.log('🦋🦋🦋 ~ action:', action);
-  console.log('🦋🦋🦋 ~ state:', state);
   switch (action.type) {
     case RECEIVE_UPDATE_ERRORS:
-      debugger;
       return action.errors;
-    // case CLEAR_UPDATE_ERRORS:
-    //   return nullErrors;
+    case CLEAR_UPDATE_ERRORS:
+      return nullErrors;
     default:
       return state;
   }

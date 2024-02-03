@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../Event/EventForm.css";
 import { closeModal } from "../../store/modal";
-import { updateUser } from "../../store/users";
+import { clearUpdateUserErrors, updateUser } from "../../store/users";
 import { receiveCurrentUser } from "../../store/session";
 
 const UserSettings = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const errors = useSelector((state) => state.errors.event);
+  const errors = useSelector((state) => state.errors.updateUser);
 
   const [username, setUsername] = useState(user?.username);
   const [email, setEmail] = useState(user?.email);
@@ -21,6 +21,10 @@ const UserSettings = () => {
     setLanguages(user?.languages);
   }, [user, dispatch]);
 
+  useEffect(() => {
+    return () => dispatch(clearUpdateUserErrors());
+  }, [dispatch]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -31,10 +35,8 @@ const UserSettings = () => {
       languages
     };
     const res = await dispatch(updateUser(updatedUser));
-      console.log('🦋🦋🦋 ~ res:', res);
 
     if (res.ok) {
-      console.log('🦋🦋🦋 ~ res:', res);
       dispatch(closeModal());
     }
   };
@@ -142,6 +144,7 @@ const UserSettings = () => {
 
       <div className="select">
         <div className="errors">{errors?.languages}</div>
+
         <div className="languages-container">
           <div className="top-language-container">
             {firstSix.map((lang) => {
