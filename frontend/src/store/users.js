@@ -68,7 +68,8 @@ export const updateUser = (user) => async (dispatch) => {
   } catch (err) {
     console.log('🦋🦋🦋 ~ err:', err);
     const resBody = await err.json();
-    if (resBody.status === 400) {
+    console.log('🦋🦋🦋 ~ resBody:', resBody);
+    if (resBody.statusCode === 400) {
       dispatch(receiveUpdateErros(resBody.errors));
     }
     return resBody;
@@ -163,6 +164,23 @@ export const fetchUsers = () => async (dispatch) => {
   if (res.ok) {
     const users = await res.json();
     dispatch(receiveUsers(users));
+  }
+};
+
+
+const nullErrors = null;
+
+export const updateUserErrorsReducer = (state = nullErrors, action) => {
+  console.log('🦋🦋🦋 ~ action:', action);
+  console.log('🦋🦋🦋 ~ state:', state);
+  switch (action.type) {
+    case RECEIVE_UPDATE_ERRORS:
+      debugger;
+      return action.errors;
+    // case CLEAR_UPDATE_ERRORS:
+    //   return nullErrors;
+    default:
+      return state;
   }
 };
 
