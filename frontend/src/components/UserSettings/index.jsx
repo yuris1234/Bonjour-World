@@ -4,6 +4,7 @@ import "../Event/EventForm.css";
 import { closeModal } from "../../store/modal";
 import { clearUpdateUserErrors, updateUser } from "../../store/users";
 import { receiveCurrentUser } from "../../store/session";
+import "./index.css"
 
 const UserSettings = () => {
   const dispatch = useDispatch();
@@ -143,9 +144,9 @@ const UserSettings = () => {
       </div>
 
       <div className="select">
-        <div className="errors">{errors?.languages}</div>
-
         <div className="languages-container">
+        <h3 className="your-languages">Your Languages</h3>
+        <div className="errors lang-error">{errors?.languages}</div>
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (

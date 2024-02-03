@@ -197,7 +197,7 @@ const EventForm = () => {
 
       <div className="selects">
         <div className="select">
-          <div className="event-select-btn">
+          <div className="time-select">
             <select value={time} onChange={update("time")}>
               <option disabled value="">
                 Start Time
@@ -206,7 +206,7 @@ const EventForm = () => {
             </select>
           </div>
 
-          <div className="event-select-btn">
+          <div className="time-select">
             <select value={endTime} onChange={update("endTime")}>
               <option disabled value="">
                 End Time
@@ -220,21 +220,19 @@ const EventForm = () => {
 
       <div className="select">
         <div className="languages-container">
-        <div className="errors lang-error">{errors?.languages}</div>
+          <div className="errors lang-error">{errors?.languages}</div>
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn">
+                <div className="event-unselect-btn lang-btn">
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang">
-                  <span onClick={addLanguage(lang)}>
-                    {lang}
-                  </span>
+                <div className="event-select-btn lang-btn">
+                  <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
             })}
@@ -242,14 +240,14 @@ const EventForm = () => {
           <div className="bottom-language-container">
             {lastSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn">
+                <div className="event-unselect-btn lang-btn">
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang">
+                <div className="event-select-btn lang-btn">
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
