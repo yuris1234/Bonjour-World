@@ -3,15 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import "../Event/EventForm.css";
 import { closeModal } from "../../store/modal";
 import { clearUpdateUserErrors, fetchUser, fetchUsers, getUser, updateUser } from "../../store/users";
-import { receiveCurrentUser } from "../../store/session";
 import "./index.css"
 
 const UserSettings = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  console.log('🦋🦋🦋 ~ user:', user);
   const currentUser = useSelector(getUser(user._id));
-  console.log('🦋🦋🦋 ~ currentUser:', currentUser);
 
   const errors = useSelector((state) => state.errors.updateUser);
 
@@ -20,15 +17,15 @@ const UserSettings = () => {
   const [languages, setLanguages] = useState(currentUser?.languages);
 
   useEffect(() => {
-    // dispatch(receiveCurrentUser(user))
     dispatch(fetchUsers());
     dispatch(fetchUser(user._id));
-    console.log('🦋🦋🦋 from useeffeect ~ user:', user);
-    
-    // setUsername(user?.username);
-    // setEmail(user?.email);
-    // setLanguages(user?.languages);
-  }, []);
+  }, [dispatch, user._id]);
+
+  useEffect(() => {
+    setUsername(currentUser?.username);
+    setEmail(currentUser?.email);
+    setLanguages(currentUser?.languages);
+  }, [currentUser]);
 
   useEffect(() => {
     return () => dispatch(clearUpdateUserErrors());
