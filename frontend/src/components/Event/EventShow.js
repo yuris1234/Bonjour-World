@@ -170,7 +170,11 @@ const EventShow = () => {
           <ul className="event-info-list">
             <div className="event-languages">
               {event?.languages.map((lang) => {
-                return <div key={lang} className="event-lang">{lang}</div>;
+                return (
+                  <div key={lang} className="event-lang">
+                    {lang}
+                  </div>
+                );
               })}
             </div>
             <div className="event-title">
@@ -206,7 +210,9 @@ const EventShow = () => {
                     />
                   </Link>
                 )}
-                {host?.firstName}
+                <Link id="host-name" to={`/profile/${host?._id}`}>
+                  {host?.firstName}
+                </Link>
               </div>
             </div>
 
@@ -225,16 +231,16 @@ const EventShow = () => {
                     <div className="attendees">
                       {attendees?.map((attendee) => (
                         <div className="attendee-details" key={attendee._id}>
-                          <Link to={`/profile/${attendee._id}`}>
+                          <Link id="no-underline" to={`/profile/${attendee._id}`}>
                             <img
                               className="attendee-pfp"
                               src={attendee.pfp}
                               alt={attendee.username}
                             />
+                            <span id="attendee-username">
+                              {attendee.firstName}
+                            </span>
                           </Link>
-                          <span className="attendee-username">
-                            {attendee.firstName}
-                          </span>
                         </div>
                       ))}
                     </div>
