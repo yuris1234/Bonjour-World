@@ -202,11 +202,13 @@ const UserProfile = () => {
                   <div className="profile-detail">{newBio}</div>
                 )}
                 <div id="profile-details-banner">Languages</div>
+                {user?._id === currentUser?._id && (
                   <div className="edit-lang-btns-div">
                     <EditIcon
                       onClick={() => dispatch(openModal("updateSettings"))}
                     />
                   </div>
+                )}
                 <div className="profile-detail">
                   {user?.languages.join(", ")}
                 </div>

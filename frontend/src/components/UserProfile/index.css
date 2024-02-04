@@ -211,7 +211,7 @@
     position: relative;
 }
 
-.edit-bio-btns-div svg {
+.profile-details svg {
     width: 18px;
     fill: #0A345B;
     cursor: pointer;
@@ -233,11 +233,6 @@
 }
 
 .edit-lang-btns-div svg {
-    width: 18px;
-    fill: #0A345B;
-    cursor: pointer;
-    justify-self: end;
-    position: absolute;
     top: 565px;
     left: 450px;
 }
