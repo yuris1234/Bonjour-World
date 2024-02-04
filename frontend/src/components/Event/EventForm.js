@@ -10,6 +10,8 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 
 const EventForm = () => {
+  const dispatch = useDispatch();
+
   const [googleMapsLoaded, setGoogleMapsLoaded] = useState(false);
   const history = useHistory();
   const errors = useSelector((state) => state.errors.event);
@@ -20,11 +22,10 @@ const EventForm = () => {
   const [address, setAddress] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
-  const dispatch = useDispatch();
+  const [endTime, setEndTime] = useState("");
   const [addressSuggestions, setAddressSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const apiKey = process.env.REACT_APP_MAPS_API_KEY;
-  const [endTime, setEndTime] = useState("");
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
