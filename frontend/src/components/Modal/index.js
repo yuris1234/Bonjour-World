@@ -38,7 +38,7 @@ const Modal = () => {
       break;
     case "updateSettings":
       component = <UserSettings modal={"null"} />;
-      modalClass = "update-event-modal";
+      modalClass = "update-user-modal";
       break;
     default:
       return null;

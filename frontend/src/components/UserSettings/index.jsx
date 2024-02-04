@@ -96,56 +96,31 @@ const UserSettings = () => {
     <form className="user-settings-form" onSubmit={handleSubmit}>
       <h2>Hi, {currentUser?.firstName} {currentUser?.lastName}</h2>
 
-      {/* <div className="selects">
-        <div className="select">
-          <div className="errors">{errors?.time}</div>
-          <div className="event-select-btn">
-            <select value={time} onChange={update("time")}>
-              <option disabled value="">
-                Start Time
-              </option>
-              {generateTimeOptions()}
-            </select>
-          </div>
-        </div>
-
-        <div className="event-select-btn">
-          <select value={endTime} onChange={update("endTime")}>
-            <option disabled value="">
-              End Time
-            </option>
-            {generateTimeOptions()}
-          </select>
-        </div>
-      </div> */}
-
       <div className="inputs">
-        <div className="left-column">
-          {/* <div className="title-error errors">{errors?.title}</div>
-          <input
-            type="text"
-            value={title}
-            placeholder="Title"
-            onChange={update("title")}
-          /> */}
-
           <div className="date-error errors">{errors?.username}</div>
-          <input
-            type="username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
+          <div className="username-div">
+            <label htmlFor="username">Username</label>
+            <input
+                id="username"
+                type="username"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+            />
+          </div>
 
           <div className="address-error errors">{errors?.email}</div>
-          <input
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={update("email")}
-          />
-        </div>
+          <div className="email-div">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={update("email")}
+            />
+          </div>
       </div>
 
       <div className="select">
@@ -155,14 +130,14 @@ const UserSettings = () => {
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn lang-btn">
+                <div className="event-unselect-btn lang-btn" key={lang}>
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang-btn">
+                <div className="event-select-btn lang-btn" key={lang}>
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
@@ -171,14 +146,14 @@ const UserSettings = () => {
           <div className="bottom-language-container">
             {lastSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn lang-btn">
+                <div className="event-unselect-btn lang-btn" key={lang}>
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang-btn">
+                <div className="event-select-btn lang-btn" key={lang}>
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
