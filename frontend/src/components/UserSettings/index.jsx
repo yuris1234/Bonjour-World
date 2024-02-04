@@ -93,7 +93,7 @@ const UserSettings = () => {
   }
 
   return (
-    <form className="event-form" onSubmit={handleSubmit}>
+    <form className="user-settings-form" onSubmit={handleSubmit}>
       <h2>Hi, {currentUser?.firstName} {currentUser?.lastName}</h2>
 
       {/* <div className="selects">
@@ -138,7 +138,7 @@ const UserSettings = () => {
             }}
           />
 
-          <div className="errors">{errors?.email}</div>
+          <div className="address-error errors">{errors?.email}</div>
           <input
             type="text"
             placeholder="Email"
