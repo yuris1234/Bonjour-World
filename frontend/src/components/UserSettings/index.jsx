@@ -97,9 +97,9 @@ const UserSettings = () => {
       <h2>Hi, {currentUser?.firstName} {currentUser?.lastName}</h2>
 
       <div className="inputs">
-          <div className="date-error errors">{errors?.username}</div>
+          <div className="username-error errors">{errors?.username}</div>
           <div className="username-div">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Username:</label>
             <input
                 id="username"
                 type="username"
@@ -110,9 +110,9 @@ const UserSettings = () => {
             />
           </div>
 
-          <div className="address-error errors">{errors?.email}</div>
+          <div className="email-error errors">{errors?.email}</div>
           <div className="email-div">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email:</label>
             <input
               id="email"
               type="text"

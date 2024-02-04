@@ -42,10 +42,18 @@
   margin-bottom: 10px;
 }
 
-.title-error {
+.user-settings-form .username-error {
   position: absolute;
-  top: 270px;
-  left: 420px;
+  top: 70px;
+  left: 146px;
+  white-space: nowrap;
+}
+
+.user-settings-form .email-error {
+  position: absolute;
+  top: 115px;
+  left: 260px;
+  white-space: nowrap;
 }
 
 .your-languages {
@@ -57,36 +65,6 @@
 .languages-container {
   margin-top: 10px;
   margin-right: 10px;
-}
-
-.lang-btn {
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 8px;
-  white-space: nowrap;
-  border: none;
-  border-radius: 20px;
-  width: 70px;
-  height: 22px;
-  border: none;
-  font-size: .75rem;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 10px;
-  text-align: center;
-}
-
-.event-unselect-btn {
-  background-color: #0A345B;
-  color: white;
-}
-
-.event-select-btn {
-  cursor: pointer;
-  background-color: #F7F1DF;
-  color: black;
 }
 
 .x-button {
