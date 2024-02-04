@@ -225,14 +225,14 @@ const EventForm = () => {
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn lang-btn">
+                <div className="event-unselect-btn lang-btn" key={lang}>
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang-btn">
+                <div className="event-select-btn lang-btn" key={lang}>
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
@@ -241,14 +241,14 @@ const EventForm = () => {
           <div className="bottom-language-container">
             {lastSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn lang-btn">
+                <div className="event-unselect-btn lang-btn" key={lang}>
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang-btn">
+                <div className="event-select-btn lang-btn" key={lang}>
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
