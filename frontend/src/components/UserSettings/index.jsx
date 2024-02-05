@@ -103,6 +103,7 @@ const UserSettings = () => {
             <input
                 id="username"
                 type="username"
+                placeholder="Username"
                 value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
