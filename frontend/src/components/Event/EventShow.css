@@ -220,10 +220,19 @@ body {
     border-radius: 50%;
 }
 
-.attendee-username {
+#no-underline {
+    text-decoration: none;
+    color: black;
+}
+
+#attendee-username {
     position: relative;
     font-size: 15px;
-    bottom: 5px;
+    bottom: 20px;
+}
+
+#attendee-username:hover {
+    text-decoration: underline;
 }
 
 .event-date-time {
@@ -318,4 +327,13 @@ em {
     margin-left: 10px;
     font-size: 20px;
     font-weight: 800;
+}
+
+#host-name {
+    text-decoration: none;
+    color: black;
+}
+
+#host-name:hover {
+    text-decoration: underline;
 }

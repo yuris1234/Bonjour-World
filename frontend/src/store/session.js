@@ -1,5 +1,4 @@
 import jwtFetch from "./jwt";
-import { closeModal } from "./modal";
 
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
@@ -7,7 +6,7 @@ const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
 
 // Dispatch receiveCurrentUser when a user logs in.
-const receiveCurrentUser = (currentUser) => ({
+export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
   currentUser,
 });
@@ -29,7 +28,7 @@ export const clearSessionErrors = () => ({
 });
 
 export const signup = (user) => startSession(user, "api/users/register");
-export const login = (user) => startSession(user, "api/users/login")
+export const login = (user) => startSession(user, "api/users/login");
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("jwtToken");
@@ -45,12 +44,12 @@ const startSession = (userInfo, route) => async (dispatch) => {
     const { user, token } = await res.json();
     localStorage.setItem("jwtToken", token);
     dispatch(receiveCurrentUser(user));
-    return res
+    return res;
   } catch (err) {
     const res = await err.json();
     if (res.statusCode === 400) {
       dispatch(receiveErrors(res.errors));
-      return res
+      return res;
     }
   }
 };
@@ -67,7 +66,6 @@ export const sessionErrorsReducer = (state = nullErrors, action) => {
   switch (action.type) {
     case RECEIVE_SESSION_ERRORS:
       return action.errors;
-    case RECEIVE_CURRENT_USER:
     case CLEAR_SESSION_ERRORS:
       return nullErrors;
     default:

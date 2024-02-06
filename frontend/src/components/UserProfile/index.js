@@ -12,9 +12,16 @@ import {
   getHostedEvents,
 } from "../../store/events";
 import Notification from "./Notification/index.js";
-import { fetchUsers, fetchUser, getConnections, getUser, updateUser } from "../../store/users.js";
+import {
+  fetchUsers,
+  fetchUser,
+  getConnections,
+  getUser,
+  updateUser,
+} from "../../store/users.js";
 import { ReactComponent as EditIcon } from "../../static/images/pen.svg";
 import ExchangeConnections from "./ExchangeConnections/index.jsx";
+import { openModal } from "../../store/modal.js";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -38,9 +45,9 @@ const UserProfile = () => {
   };
 
   const handleEditBtnClick = () => {
-    setIsEditMode((prev) => !prev)
+    setIsEditMode((prev) => !prev);
     setNewBio(user?.bio);
-  }
+  };
 
   // get current user
   const currentUser = useSelector((state) => state.session.user);
@@ -56,7 +63,7 @@ const UserProfile = () => {
 
   // get user connections
   const connections = useSelector(getConnections(events));
-  const uniqueConnections = new Set(connections)
+  const uniqueConnections = new Set(connections);
   const dataSanitizedUniqueConnections = [...uniqueConnections];
 
   const [highlightedEvent, setHighlightedEvent] = useState();
@@ -194,7 +201,14 @@ const UserProfile = () => {
                 ) : (
                   <div className="profile-detail">{newBio}</div>
                 )}
-                <h2 id="profile-details-banner">Languages</h2>
+                <div id="profile-details-banner">Languages</div>
+                {user?._id === currentUser?._id && (
+                  <div className="edit-lang-btns-div">
+                    <EditIcon
+                      onClick={() => dispatch(openModal("updateSettings"))}
+                    />
+                  </div>
+                )}
                 <div className="profile-detail">
                   {user?.languages.join(", ")}
                 </div>

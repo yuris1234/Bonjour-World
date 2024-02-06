@@ -151,7 +151,6 @@ const EventShow = () => {
 
   return (
     <>
-      {/* <NavBar /> */}
       <div className="event-show-index">
         <div className="map-container">
           {event && (
@@ -170,7 +169,11 @@ const EventShow = () => {
           <ul className="event-info-list">
             <div className="event-languages">
               {event?.languages.map((lang) => {
-                return <div key={lang} className="event-lang">{lang}</div>;
+                return (
+                  <div key={lang} className="event-lang">
+                    {lang}
+                  </div>
+                );
               })}
             </div>
             <div className="event-title">
@@ -188,25 +191,23 @@ const EventShow = () => {
               </div>
               <div className="event-title-host">
                 {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
-                {user ? (
-                  <Link to={`/profile/${host?._id}`}>
-                    <img
-                      className="attendee-pfp"
-                      src={host?.pfp}
-                      alt={host?.username}
-                    />
-                  </Link>
-                ) : (
-                  <Link to="/">
-                    <img
-                      className="attendee-pfp"
-                      src={host?.pfp}
-                      alt={host?.username}
-                      onClick={handleLoggedOutProfileClick}
-                    />
-                  </Link>
-                )}
-                {host?.firstName}
+                <Link
+                  to={user ? `/profile/${host?._id}` : "/"}
+                  onClick={!user && handleLoggedOutProfileClick}
+                >
+                  <img
+                    className="attendee-pfp"
+                    src={host?.pfp}
+                    alt={host?.username}
+                  />
+                </Link>
+                <Link
+                  id="host-name"
+                  to={user ? `/profile/${host?._id}` : "/"}
+                  onClick={!user && handleLoggedOutProfileClick}
+                >
+                  {host?.firstName}
+                </Link>
               </div>
             </div>
 
@@ -225,16 +226,19 @@ const EventShow = () => {
                     <div className="attendees">
                       {attendees?.map((attendee) => (
                         <div className="attendee-details" key={attendee._id}>
-                          <Link to={`/profile/${attendee._id}`}>
+                          <Link
+                            id="no-underline"
+                            to={`/profile/${attendee._id}`}
+                          >
                             <img
                               className="attendee-pfp"
                               src={attendee.pfp}
                               alt={attendee.username}
                             />
+                            <span id="attendee-username">
+                              {attendee.firstName}
+                            </span>
                           </Link>
-                          <span className="attendee-username">
-                            {attendee.firstName}
-                          </span>
                         </div>
                       ))}
                     </div>

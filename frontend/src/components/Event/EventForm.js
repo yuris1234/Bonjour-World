@@ -10,6 +10,8 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 
 const EventForm = () => {
+  const dispatch = useDispatch();
+
   const [googleMapsLoaded, setGoogleMapsLoaded] = useState(false);
   const history = useHistory();
   const errors = useSelector((state) => state.errors.event);
@@ -20,11 +22,10 @@ const EventForm = () => {
   const [address, setAddress] = useState("");
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
-  const dispatch = useDispatch();
+  const [endTime, setEndTime] = useState("");
   const [addressSuggestions, setAddressSuggestions] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState("");
   const apiKey = process.env.REACT_APP_MAPS_API_KEY;
-  const [endTime, setEndTime] = useState("");
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
@@ -197,7 +198,7 @@ const EventForm = () => {
 
       <div className="selects">
         <div className="select">
-          <div className="event-select-btn">
+          <div className="time-select">
             <select value={time} onChange={update("time")}>
               <option disabled value="">
                 Start Time
@@ -206,7 +207,7 @@ const EventForm = () => {
             </select>
           </div>
 
-          <div className="event-select-btn">
+          <div className="time-select">
             <select value={endTime} onChange={update("endTime")}>
               <option disabled value="">
                 End Time
@@ -219,22 +220,20 @@ const EventForm = () => {
       </div>
 
       <div className="select">
-        <div className="errors">{errors?.languages}</div>
         <div className="languages-container">
+          <div className="errors lang-error">{errors?.languages}</div>
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn">
+                <div className="event-unselect-btn lang-btn" key={lang}>
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang">
-                  <span onClick={addLanguage(lang)}>
-                    {lang}
-                  </span>
+                <div className="event-select-btn lang-btn" key={lang}>
+                  <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
             })}
@@ -242,14 +241,14 @@ const EventForm = () => {
           <div className="bottom-language-container">
             {lastSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn">
+                <div className="event-unselect-btn lang-btn" key={lang}>
                   <div>{lang}</div>
                   <div className="x-button" onClick={removeLanguage(lang)}>
                     &times;
                   </div>
                 </div>
               ) : (
-                <div className="event-select-btn lang">
+                <div className="event-select-btn lang-btn" key={lang}>
                   <span onClick={addLanguage(lang)}>{lang}</span>
                 </div>
               );
