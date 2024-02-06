@@ -151,7 +151,6 @@ const EventShow = () => {
 
   return (
     <>
-      {/* <NavBar /> */}
       <div className="event-show-index">
         <div className="map-container">
           {event && (
@@ -192,25 +191,19 @@ const EventShow = () => {
               </div>
               <div className="event-title-host">
                 {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
-                {user ? (
-                  <Link to={`/profile/${host?._id}`}>
-                    <img
-                      className="attendee-pfp"
-                      src={host?.pfp}
-                      alt={host?.username}
-                    />
-                  </Link>
-                ) : (
-                  <Link to="/">
-                    <img
-                      className="attendee-pfp"
-                      src={host?.pfp}
-                      alt={host?.username}
-                      onClick={handleLoggedOutProfileClick}
-                    />
-                  </Link>
-                )}
-                <Link id="host-name" to={`/profile/${host?._id}`}>
+                <Link to={user ? `/profile/${host?._id}` : "/"}>
+                  <img
+                    className="attendee-pfp"
+                    src={host?.pfp}
+                    alt={host?.username}
+                    onClick={!user && handleLoggedOutProfileClick}
+                  />
+                </Link>
+                <Link
+                  id="host-name"
+                  to={user ? `/profile/${host?._id}` : "/"}
+                  onClick={!user && handleLoggedOutProfileClick}
+                >
                   {host?.firstName}
                 </Link>
               </div>
@@ -231,7 +224,10 @@ const EventShow = () => {
                     <div className="attendees">
                       {attendees?.map((attendee) => (
                         <div className="attendee-details" key={attendee._id}>
-                          <Link id="no-underline" to={`/profile/${attendee._id}`}>
+                          <Link
+                            id="no-underline"
+                            to={`/profile/${attendee._id}`}
+                          >
                             <img
                               className="attendee-pfp"
                               src={attendee.pfp}
