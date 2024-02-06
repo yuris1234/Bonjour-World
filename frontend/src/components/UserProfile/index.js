@@ -39,7 +39,7 @@ const UserProfile = () => {
   }, [user?.bio]);
 
   const updateBio = () => {
-    const updatedUser = { ...user, bio: newBio, languages: ["English"] };
+    const updatedUser = { ...user, bio: newBio };
     dispatch(updateUser(updatedUser));
     setIsEditMode(false);
   };
