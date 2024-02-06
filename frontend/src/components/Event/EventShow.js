@@ -191,12 +191,14 @@ const EventShow = () => {
               </div>
               <div className="event-title-host">
                 {/* <Icon icon="fluent-mdl2:party-leader" className="event-icon"/> */}
-                <Link to={user ? `/profile/${host?._id}` : "/"}>
+                <Link
+                  to={user ? `/profile/${host?._id}` : "/"}
+                  onClick={!user && handleLoggedOutProfileClick}
+                >
                   <img
                     className="attendee-pfp"
                     src={host?.pfp}
                     alt={host?.username}
-                    onClick={!user && handleLoggedOutProfileClick}
                   />
                 </Link>
                 <Link
