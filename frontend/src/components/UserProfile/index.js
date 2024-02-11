@@ -3,7 +3,7 @@
 // import EventsMapWrapper from "../EventMap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./index.css";
 import EventIndexItem from "../Event/EventIndexItem";
 import {
@@ -32,7 +32,7 @@ const UserProfile = () => {
 
   // update bio
   const [isEditMode, setIsEditMode] = useState(false);
-  const [newBio, setNewBio] = useState(null);
+  const [newBio, setNewBio] = useState(user?.bio);
 
   useEffect(() => {
     setNewBio(user?.bio);
