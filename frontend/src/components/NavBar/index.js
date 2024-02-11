@@ -76,17 +76,12 @@ const NavBar = () => {
   };
 
   return (
-    <>
-      <nav className="nav-bar">
-        <NavLink to="/" className="no-underline">
-          <h1 className="nav-bar-header">Bonjour World</h1>
-        </NavLink>
-
-
-        {/* <Translator /> */}
-        <div className="nav-links">{getLinks()}</div>
-      </nav>
-    </>
+    <nav className="nav-bar">
+      <NavLink to="/" className="no-underline">
+        <h1 className="nav-bar-header">Bonjour World</h1>
+      </NavLink>
+      <div className="nav-links">{getLinks()}</div>
+    </nav>
   );
 };
 
