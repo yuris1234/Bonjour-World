@@ -81,6 +81,7 @@ const SignupForm = () => {
               value={firstName}
               onChange={update('firstName')}
               placeholder="First Name"
+              autoFocus
             />
         </div>
 

@@ -73,6 +73,7 @@ const LoginForm = () => {
             value={email}
             onChange={update('email')}
             placeholder="Email"
+            autoFocus
           />
         <div className="errors">{errors?.password}</div>
           <input
