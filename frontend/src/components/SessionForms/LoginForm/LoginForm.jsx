@@ -88,7 +88,7 @@ const LoginForm = () => {
             onChange={update('password')}
             placeholder="Password"
           />
-          <i className={showPassword ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"} onClick={() => setShowPassword((prev) => !prev)}/>
+          <i className={showPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} onClick={() => setShowPassword((prev) => !prev)}/>
         {/* </label> */}
       </div>
 
