@@ -3,7 +3,7 @@
 // import EventsMapWrapper from "../EventMap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./index.css";
 import EventIndexItem from "../Event/EventIndexItem";
 import {
@@ -32,14 +32,14 @@ const UserProfile = () => {
 
   // update bio
   const [isEditMode, setIsEditMode] = useState(false);
-  const [newBio, setNewBio] = useState(null);
+  const [newBio, setNewBio] = useState(user?.bio);
 
   useEffect(() => {
     setNewBio(user?.bio);
   }, [user?.bio]);
 
   const updateBio = () => {
-    const updatedUser = { ...user, bio: newBio, languages: ["English"] };
+    const updatedUser = { ...user, bio: newBio };
     dispatch(updateUser(updatedUser));
     setIsEditMode(false);
   };
@@ -180,7 +180,7 @@ const UserProfile = () => {
                       />
                     </label> */}
                 </div>
-                <div id="bio-profile-details-banner">
+                <div id="profile-details-banner">
                   <div>Bio</div>
                   {user?._id === currentUser?._id && (
                     <div className="edit-bio-btns-div">
@@ -201,14 +201,16 @@ const UserProfile = () => {
                 ) : (
                   <div className="profile-detail">{newBio}</div>
                 )}
-                <div id="profile-details-banner">Languages</div>
-                {user?._id === currentUser?._id && (
-                  <div className="edit-lang-btns-div">
-                    <EditIcon
-                      onClick={() => dispatch(openModal("updateSettings"))}
-                    />
-                  </div>
-                )}
+                <div id="profile-details-banner">
+                  <div>Languages</div>
+                  {user?._id === currentUser?._id && (
+                    <div className="edit-lang-btns-div">
+                      <EditIcon
+                        onClick={() => dispatch(openModal("updateSettings"))}
+                      />
+                    </div>
+                  )}
+                </div>
                 <div className="profile-detail">
                   {user?.languages.join(", ")}
                 </div>

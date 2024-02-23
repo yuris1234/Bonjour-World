@@ -2,7 +2,7 @@ const { check } = require("express-validator");
 const handleValidationErrors = require("./handleValidationErrors");
 
 const isValidLanguages = (array) => {
-  if (array.length === 0) return false;
+  // if (array.length === 0) return false;
   langs = [
     "Arabic",
     "English",
