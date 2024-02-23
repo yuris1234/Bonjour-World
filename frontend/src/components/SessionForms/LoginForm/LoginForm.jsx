@@ -13,11 +13,9 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(clearSessionErrors());
-  //   };
-  // }, [dispatch]);
+  useEffect(() => {
+      dispatch(clearSessionErrors());
+  }, [dispatch]);
 
   const update = (field) => {
     const setState = field === 'email' ? setEmail : setPassword;
@@ -70,18 +68,13 @@ const LoginForm = () => {
 
       <div className="inputs">
         <div className="errors">{errors?.email}</div>
-        {/* <label>
-          Email */}
           <input
             type="email"
             value={email}
             onChange={update('email')}
             placeholder="Email"
           />
-        {/* </label> */}
         <div className="errors">{errors?.password}</div>
-        {/* <label>
-          Password */}
           <input
             type={showPassword ? "text" : "password"}
             value={password}
@@ -89,7 +82,6 @@ const LoginForm = () => {
             placeholder="Password"
           />
           <i className={showPassword ? "fa-solid fa-eye" : "fa-solid fa-eye-slash"} onClick={() => setShowPassword((prev) => !prev)}/>
-        {/* </label> */}
       </div>
 
       <div className="button-container">
