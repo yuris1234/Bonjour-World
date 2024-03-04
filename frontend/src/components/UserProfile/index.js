@@ -3,7 +3,7 @@
 // import EventsMapWrapper from "../EventMap";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import "./index.css";
 import EventIndexItem from "../Event/EventIndexItem";
 import {
@@ -22,7 +22,6 @@ import {
 import { ReactComponent as EditIcon } from "../../static/images/pen.svg";
 import ExchangeConnections from "./ExchangeConnections/index.jsx";
 import { openModal } from "../../store/modal.js";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -150,7 +149,7 @@ const UserProfile = () => {
   // };
 
   if (!currentUser) return <Redirect to="/" />;
-  if (!user) return <Redirect to="/page-not-found" />;
+  if (!user) return <Redirect to="/page-not-found" />; // invalid profile id
 
   return (
     <div className={`app-container ${fadeIn ? "fade-in" : ""}`}>
