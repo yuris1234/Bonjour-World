@@ -107,7 +107,7 @@ export const fetchEvents = (filters = {}) => async (dispatch) => {
 };
 
 export const fetchEvent = (eventId) => async (dispatch) => {
-  const res = await jwtFetch(`/api/events/${eventId}`);
+  const res = await fetch(`/api/events/${eventId}`);
 
   if (res.ok) {
     const event = await res.json();

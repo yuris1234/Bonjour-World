@@ -134,7 +134,7 @@ export const removeEventJoin = (userId, eventId) => async (dispatch) => {
 };
 
 export const fetchUser = (userId) => async (dispatch) => {
-  const res = await jwtFetch(`/api/users/${userId}`);
+  const res = await fetch(`/api/users/${userId}`);
   if (res.ok) {
     const user = await res.json();
     dispatch(receiveUser(user));

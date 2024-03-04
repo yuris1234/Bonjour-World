@@ -42,6 +42,9 @@ const App = () => {
             <NavBar />
             <UserProfile />
           </Route>
+          <Route path="page-not-found">
+            <PageNotFound />
+          </Route>
           <Route>
             <PageNotFound />
           </Route>

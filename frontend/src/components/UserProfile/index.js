@@ -22,6 +22,7 @@ import {
 import { ReactComponent as EditIcon } from "../../static/images/pen.svg";
 import ExchangeConnections from "./ExchangeConnections/index.jsx";
 import { openModal } from "../../store/modal.js";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min.js";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -147,6 +148,9 @@ const UserProfile = () => {
   //     setHighlightedEvent(null);
   //   },
   // };
+
+  if (!currentUser) return <Redirect to="/" />;
+  if (!user) return <Redirect to="/page-not-found" />;
 
   return (
     <div className={`app-container ${fadeIn ? "fade-in" : ""}`}>
