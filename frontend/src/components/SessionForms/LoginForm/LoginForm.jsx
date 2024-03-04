@@ -93,7 +93,7 @@ const LoginForm = () => {
         >
           Log In
         </button>
-        <button type="submit" onClick={handleGuestLogin} className='login-as-guest-button'>
+        <button type="button" onClick={handleGuestLogin} className='login-as-guest-button'>
           Login as Guest
         </button>
       </div>
