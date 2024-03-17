@@ -148,7 +148,6 @@ const EventShow = () => {
   }
 
   const handleLoggedOutProfileClick = () => dispatch(openModal("signup"));
-  if (!event) return <Redirect to="/page-not-found" />;
 
   return (
     <>

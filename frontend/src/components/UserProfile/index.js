@@ -149,7 +149,6 @@ const UserProfile = () => {
   // };
 
   if (!currentUser) return <Redirect to="/" />;
-  if (!user) return <Redirect to="/page-not-found" />; // invalid profile id
 
   return (
     <div className={`app-container ${fadeIn ? "fade-in" : ""}`}>
