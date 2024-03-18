@@ -56,7 +56,7 @@ const NavBar = () => {
             to={"/events"}
             activeClassName="active"
           >
-            All Events
+            Exchanges
           </NavLink>
           <button
             className="signup-button"

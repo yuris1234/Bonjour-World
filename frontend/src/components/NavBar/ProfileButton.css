@@ -9,6 +9,10 @@
   color: white;
 }
 
+.profile-btn-icon:hover {
+  color: #93c4a0;
+}
+
 .profile-dropdown {
   position: absolute;
   top: 80%;

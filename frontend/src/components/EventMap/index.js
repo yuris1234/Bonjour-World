@@ -213,10 +213,8 @@ export const EventMap = ({
   }, [map, mapOptions, language]);
 
   useEffect(() => {
-    const image =
-      "https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/earth-icon.png";
-      // "https://cdn.pixabay.com/photo/2012/04/11/11/39/group-27618_960_720.png";
-      // const image = "https://www.svgrepo.com/show/399293/story-map.svg";
+    const image = "https://i.im.ge/2024/03/19/REw8YM.iconmonstr-user-29-240.png";
+    // "https://i.im.ge/2024/03/19/RE6v6F.iconmonstr-school-2-240.png";
     const newMarkers = {};
     Object.values(events).forEach(async (event) => {
       if (language && !event.language.includes(language)) {
