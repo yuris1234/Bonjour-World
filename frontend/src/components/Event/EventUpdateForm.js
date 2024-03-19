@@ -184,15 +184,21 @@ const EventUpdateForm = ({ eventId }) => {
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn lang-btn" key={lang}>
+                <div
+                  className="event-unselect-btn lang-btn"
+                  key={lang}
+                  onClick={removeLanguage(lang)}
+                >
                   <div>{lang}</div>
-                  <div className="x-button" onClick={removeLanguage(lang)}>
-                    &times;
-                  </div>
+                  <div className="x-button">&times;</div>
                 </div>
               ) : (
-                <div className="event-select-btn lang-btn" key={lang}>
-                  <span onClick={addLanguage(lang)}>{lang}</span>
+                <div
+                  className="event-select-btn lang-btn"
+                  key={lang}
+                  onClick={addLanguage(lang)}
+                >
+                  <span>{lang}</span>
                 </div>
               );
             })}
@@ -200,15 +206,21 @@ const EventUpdateForm = ({ eventId }) => {
           <div className="bottom-language-container">
             {lastSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn lang-btn" key={lang}>
+                <div
+                  className="event-unselect-btn lang-btn"
+                  key={lang}
+                  onClick={removeLanguage(lang)}
+                >
                   <div>{lang}</div>
-                  <div className="x-button" onClick={removeLanguage(lang)}>
-                    &times;
-                  </div>
+                  <div className="x-button">&times;</div>
                 </div>
               ) : (
-                <div className="event-select-btn lang-btn" key={lang}>
-                  <span onClick={addLanguage(lang)}>{lang}</span>
+                <div
+                  className="event-select-btn lang-btn"
+                  key={lang}
+                  onClick={addLanguage(lang)}
+                >
+                  <span>{lang}</span>
                 </div>
               );
             })}

@@ -6,16 +6,15 @@ import { closeModal } from "../../store/modal";
 import { useHistory } from "react-router-dom";
 import PlacesAutocomplete, {
   geocodeByAddress,
-  getLatLng,
 } from "react-places-autocomplete";
 
 const EventForm = () => {
   const dispatch = useDispatch();
-
-  // const [googleMapsLoaded, setGoogleMapsLoaded] = useState(true);
   const history = useHistory();
+
   const errors = useSelector((state) => state.errors.event);
   const currentUser = useSelector((state) => state.session.user);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [languages, setLanguages] = useState([]);
@@ -23,33 +22,10 @@ const EventForm = () => {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [addressSuggestions, setAddressSuggestions] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState("");
-  const apiKey = process.env.REACT_APP_MAPS_API_KEY;
 
   useEffect(() => {
     return () => dispatch(clearEventErrors());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   const loadGoogleMapsScript = () => {
-  //     const script = document.createElement("script");
-  //     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-  //     script.async = true;
-  //     script.defer = true;
-  //     script.addEventListener("load", () => {
-  //       setGoogleMapsLoaded(true);
-  //     });
-  //     script.addEventListener("error", () => {
-  //       console.error("Error loading Google Maps script");
-  //     });
-  //     document.head.appendChild(script);
-  //   };
-
-  //   if (!googleMapsLoaded) {
-  //     loadGoogleMapsScript();
-  //   }
-  // });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,53 +43,24 @@ const EventForm = () => {
     };
 
     const res = await dispatch(createEvent(createdEvent));
+
     if (res?.title) {
       dispatch(closeModal());
       history.push(`/events/${res._id}`);
     }
   };
 
-  const handleAddressChange = (address) => {
-    setAddress(address);
-    setAddressSuggestions([]);
-
-    if (address.trim() === "") {
-      return;
-    }
-
-    const requestOptions = {
-      input: address,
-    };
-
-    const service = new window.google.maps.places.AutocompleteService();
-    service.getPlacePredictions(requestOptions, (predictions, status) => {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        setAddressSuggestions(predictions);
-      }
-    });
-  };
+  const handleAddressChange = (address) => setAddress(address);
 
   const handleSelect = async (address) => {
     try {
       const results = await geocodeByAddress(address);
-      const latLng = await getLatLng(results[0]);
-
-      setSelectedAddress(address);
-
       const streetAddress = results[0]?.formatted_address.split(",")[0].trim();
       setAddress(streetAddress);
     } catch (error) {
       console.error("Error selecting address:", error);
     }
   };
-
-  // const fetchPlaceDetails = async (placeId) => {
-  //   const response = await fetch(
-  //     `https://maps.googleapis.com/maps/api/place/details/json?key=${apiKey}&placeid=${placeId}&libraries=places`
-  //   );
-  //   const data = await response.json();
-  //   return data.result;
-  // };
 
   const update = (field) => {
     return (e) => {
@@ -225,15 +172,21 @@ const EventForm = () => {
           <div className="top-language-container">
             {firstSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn lang-btn" key={lang}>
+                <div
+                  className="event-unselect-btn lang-btn"
+                  key={lang}
+                  onClick={removeLanguage(lang)}
+                >
                   <div>{lang}</div>
-                  <div className="x-button" onClick={removeLanguage(lang)}>
-                    &times;
-                  </div>
+                  <div className="x-button">&times;</div>
                 </div>
               ) : (
-                <div className="event-select-btn lang-btn" key={lang}>
-                  <span onClick={addLanguage(lang)}>{lang}</span>
+                <div
+                  className="event-select-btn lang-btn"
+                  key={lang}
+                  onClick={addLanguage(lang)}
+                >
+                  <span>{lang}</span>
                 </div>
               );
             })}
@@ -241,15 +194,21 @@ const EventForm = () => {
           <div className="bottom-language-container">
             {lastSix.map((lang) => {
               return languages?.includes(lang) ? (
-                <div className="event-unselect-btn lang-btn" key={lang}>
+                <div
+                  className="event-unselect-btn lang-btn"
+                  key={lang}
+                  onClick={removeLanguage(lang)}
+                >
                   <div>{lang}</div>
-                  <div className="x-button" onClick={removeLanguage(lang)}>
-                    &times;
-                  </div>
+                  <div className="x-button">&times;</div>
                 </div>
               ) : (
-                <div className="event-select-btn lang-btn" key={lang}>
-                  <span onClick={addLanguage(lang)}>{lang}</span>
+                <div
+                  className="event-select-btn lang-btn"
+                  key={lang}
+                  onClick={addLanguage(lang)}
+                >
+                  <span>{lang}</span>
                 </div>
               );
             })}
@@ -277,47 +236,41 @@ const EventForm = () => {
 
           <div className="address-error errors">{errors?.address}</div>
 
-          {/* {  */}
-            <PlacesAutocomplete
-              value={address}
-              onChange={handleAddressChange}
-              onSelect={handleSelect}
-            >
-              {({
-                getInputProps,
-                suggestions,
-                getSuggestionItemProps,
-                loading,
-              }) => (
-                <div>
-                  <input
-                    {...getInputProps({
-                      placeholder: "Type your address",
-                    })}
-                  />
-                  <div className="autocomplete-dropdown-container">
-                    {loading && <div>Loading...</div>}
-                    {suggestions.map((suggestion, index) => {
-                      const style = {
-                        backgroundColor: suggestion.active ? "#41b6e6" : "#fff",
-                      };
-
-                      return (
-                        <div
-                          {...getSuggestionItemProps(suggestion, {
-                            className: "suggestion-item",
-                          })}
-                          key={index}
-                        >
-                          {suggestion.description}
-                        </div>
-                      );
-                    })}
-                  </div>
+          <PlacesAutocomplete
+            value={address}
+            onChange={handleAddressChange}
+            onSelect={handleSelect}
+          >
+            {({
+              getInputProps,
+              suggestions,
+              getSuggestionItemProps,
+              loading,
+            }) => (
+              <div>
+                <input
+                  {...getInputProps({
+                    placeholder: "Type your address",
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map((suggestion, index) => {
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className: "suggestion-item",
+                        })}
+                        key={index}
+                      >
+                        {suggestion.description}
+                      </div>
+                    );
+                  })}
                 </div>
-              )}
-            </PlacesAutocomplete>
-          {/* )} */}
+              </div>
+            )}
+          </PlacesAutocomplete>
         </div>
       </div>
 
