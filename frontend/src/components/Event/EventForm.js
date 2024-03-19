@@ -12,7 +12,7 @@ import PlacesAutocomplete, {
 const EventForm = () => {
   const dispatch = useDispatch();
 
-  const [googleMapsLoaded, setGoogleMapsLoaded] = useState(false);
+  // const [googleMapsLoaded, setGoogleMapsLoaded] = useState(true);
   const history = useHistory();
   const errors = useSelector((state) => state.errors.event);
   const currentUser = useSelector((state) => state.session.user);
@@ -31,25 +31,25 @@ const EventForm = () => {
     return () => dispatch(clearEventErrors());
   }, [dispatch]);
 
-  useEffect(() => {
-    const loadGoogleMapsScript = () => {
-      const script = document.createElement("script");
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-      script.async = true;
-      script.defer = true;
-      script.addEventListener("load", () => {
-        setGoogleMapsLoaded(true);
-      });
-      script.addEventListener("error", () => {
-        console.error("Error loading Google Maps script");
-      });
-      document.head.appendChild(script);
-    };
+  // useEffect(() => {
+  //   const loadGoogleMapsScript = () => {
+  //     const script = document.createElement("script");
+  //     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+  //     script.async = true;
+  //     script.defer = true;
+  //     script.addEventListener("load", () => {
+  //       setGoogleMapsLoaded(true);
+  //     });
+  //     script.addEventListener("error", () => {
+  //       console.error("Error loading Google Maps script");
+  //     });
+  //     document.head.appendChild(script);
+  //   };
 
-    if (!googleMapsLoaded) {
-      loadGoogleMapsScript();
-    }
-  });
+  //   if (!googleMapsLoaded) {
+  //     loadGoogleMapsScript();
+  //   }
+  // });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,13 +107,13 @@ const EventForm = () => {
     }
   };
 
-  const fetchPlaceDetails = async (placeId) => {
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/details/json?key=${apiKey}&placeid=${placeId}&libraries=places`
-    );
-    const data = await response.json();
-    return data.result;
-  };
+  // const fetchPlaceDetails = async (placeId) => {
+  //   const response = await fetch(
+  //     `https://maps.googleapis.com/maps/api/place/details/json?key=${apiKey}&placeid=${placeId}&libraries=places`
+  //   );
+  //   const data = await response.json();
+  //   return data.result;
+  // };
 
   const update = (field) => {
     return (e) => {
@@ -277,7 +277,7 @@ const EventForm = () => {
 
           <div className="address-error errors">{errors?.address}</div>
 
-          {googleMapsLoaded && (
+          {/* {  */}
             <PlacesAutocomplete
               value={address}
               onChange={handleAddressChange}
@@ -317,7 +317,7 @@ const EventForm = () => {
                 </div>
               )}
             </PlacesAutocomplete>
-          )}
+          {/* )} */}
         </div>
       </div>
 
