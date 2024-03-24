@@ -111,18 +111,25 @@
 }
 
 .user-guide-section .instruction-sign-up-div {
-  background-image: url("../Images/SplashPageImgs/signup-png.png");
+  width: 80%;
+  background-image: url("../../static/images/user-guide/signup.png");
   object-fit: cover;
 }
 
 .user-guide-section .instruction-event-div {
-  background-image: url("../Images/SplashPageImgs/ShowEvent.png");
+  background-image: url("../../static/images/user-guide/exchanges.png");
+  object-fit: cover;
+  width: 80%;
 }
 
 .user-guide-section .instruction-host-div {
-  background-image: url("../Images/SplashPageImgs/HostEvent.png");
+  background-image: url("../../static/images/user-guide/host-exchange.png");
+  object-fit: cover;
+  width: 80%;
 }
 
 .user-guide-section .instruction-profile-div {
-  background-image: url("../Images/SplashPageImgs/Profile.png");
+  background-image: url("../../static/images/user-guide/user-profile.png");
+  object-fit: cover;
+  width: 80%;
 }
