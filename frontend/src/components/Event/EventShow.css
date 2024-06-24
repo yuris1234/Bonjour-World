@@ -218,6 +218,7 @@ body {
     width: 40px;
     padding: 5px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 #no-underline {
@@ -299,16 +300,15 @@ body {
 .event-lang {
     white-space: nowrap;
     border-radius: 20px;
-    width: 60px;
+    min-width: fit-content;
     background-color:  #0A345B;
     color: white;
     font-size: .9rem;
     z-index: 100;
-    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 9px;
+    padding: 0 15px;
     height: 30px;
     text-align: center;
     margin-right: 5px;
@@ -332,6 +332,8 @@ em {
 #host-name {
     text-decoration: none;
     color: black;
+    margin-top: 0;
+    cursor: pointer;
 }
 
 #host-name:hover {

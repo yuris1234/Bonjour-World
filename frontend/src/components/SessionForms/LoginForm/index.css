@@ -1,125 +1,125 @@
 .login-modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 300px;
-  width: 400px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    height: 330px;
+    width: 420px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  padding: 20px;
-  background-color: #93c4a0;
-  border-radius: 15px;
-  width: 100%;
-  height: 100%;
-  /* border: 1px solid pink; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 30px 20px;
+    background-color: #93c4a0;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .login-form h2 {
-  color: black;
-  font-size: 2rem;
-  /* margin-bottom: 10px; */
-}
-
-/* .login-form label {
-  color: #A2D5C6;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-} */
-
-.login-form input {
-  padding: 8px;
-  /* margin-top: 5px; */
-  background-color: transparent;
-  color: black;
-  border: none;
-  border-bottom: 1px solid black;
-  font-size: 1rem;
-  outline: none;
-  /* border: 1px solid pink; */
-  margin-left: 17%;
+    color: black;
+    font-size: 2rem;
+    margin-bottom: 25px;
 }
 
 .login-form input::placeholder {
-  color: gray;
+    color: gray;
+}
+
+.login-form input[type='text'], .login-form input[type='password'] {
+    padding: 8px;
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 0.9rem;
+    outline: none;
+    width: 230px;
+    box-sizing: border-box;
+}
+
+.login-form input[type='password'] {
+    padding-right: 40px;
+}
+
+.input-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
 }
 
 .login-form i {
-  /* background-color: red; */
-  margin-right: 40px;
-  cursor: pointer;
+    cursor: pointer;
+    position: absolute;
+    right: 12px; 
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .login-form .errors {
-  color: red;
-  margin-top: 8px;
-  font-size: 0.7rem;
-  text-align: center;
-  /* border: 1px solid pink; */
-  width: 300px;
+    color: red;
+    font-size: 0.7rem;
+    text-align: center;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: -25px;
 }
 
 .login-form .button-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 10px;
-  font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    margin-top: 25px;
 }
 
 .login-form .login-button,
 .login-form .login-as-guest-button {
-  color: white;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 5px;
-  margin-top: 8px;
-  white-space: nowrap;
-  border: none;
-  border-radius: 15px;
-  width: 150px;
-  height: 30px;
+    color: white;
+    padding: 8px;
+    white-space: nowrap;
+    border: none;
+    border-radius: 25px;
+    width: 150px;
+    height: 35px;
 }
 
 .login-form .login-button {
-  background-color: black;
-  margin: 0;
+    background-color: black;
+    margin: 0;
 }
 
 .login-form .login-as-guest-button {
-  border: none;
-  background-color: #0A345B;
-  font-weight: bold;
+    border: none;
+    background-color: #0a345b;
+    font-weight: bold;
 }
 
-.login-form input[type="submit"]:disabled,
+.login-form input[type='submit']:disabled,
 .login-form button:disabled {
-  background-color: #ccc;
-  color: black;
-  cursor: not-allowed;
+    background-color: #ccc;
+    color: black;
+    cursor: not-allowed;
 }
 
 .login-form button:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
-.login-form input[type="submit"]:disabled,
+.login-form input[type='submit']:disabled,
 .login-form button:disabled {
-  transform: none;
+    transform: none;
 }
+
