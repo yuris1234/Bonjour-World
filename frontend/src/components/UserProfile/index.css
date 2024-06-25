@@ -233,6 +233,7 @@
     padding: 5px;
     border-radius: 5px;
     width: 400px;
+    outline: none;
 }
 
 .event-container {
